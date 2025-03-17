@@ -897,6 +897,28 @@
                 display: none !important;
             }
             
+            /* Mostrar o botão de acesso ao currículo completo apenas no PDF */
+            .view-full-cv-button {
+                display: block !important;
+                position: fixed !important;
+                bottom: 20px !important;
+                right: 20px !important;
+                background-color: var(--primary-color) !important;
+                color: white !important;
+                font-size: 12px !important;
+                padding: 8px 12px !important;
+                border-radius: 5px !important;
+                text-decoration: none !important;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
+                z-index: 9999 !important;
+                font-weight: bold !important;
+                text-align: center !important;
+            }
+            
+            .view-full-cv-button i {
+                margin-right: 5px !important;
+            }
+            
             @page {
                 size: A4;
                 margin: 2mm;
@@ -906,6 +928,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- Botão de acesso ao currículo completo (visível apenas no PDF) -->
+    <a href="https://pedrohmarconato.github.io/Pedro-Marconato-CV/" target="_blank" class="view-full-cv-button">
+        <i class="fas fa-globe"></i> Acesse o Currículo Completo Online
+    </a>
+    
     <div class="cv-container">
         <header class="header">
             <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
