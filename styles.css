@@ -1,0 +1,1018 @@
+/* Estilos Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.container {
+    max-width: 1050px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+h3 {
+    color: #1a4b84;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.section-header {
+    margin-bottom: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #1a4b84;
+    padding-bottom: 6px;
+}
+
+.section-header h3 {
+    position: relative;
+    padding-bottom: 0;
+}
+
+section {
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+.classic-section {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.dark-section {
+    background-color: #f3f6f9;
+}
+
+/* Cabeçalho */
+header {
+    background: linear-gradient(135deg, #0c3b6a 0%, #1a4b84 100%);
+    color: white;
+    padding: 20px;
+    border-bottom: 3px solid #2d7dd2;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.header-left {
+    flex: 1.5;
+    padding-right: 20px;
+}
+
+.header-right {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+header h2 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0;
+    opacity: 0.9;
+    letter-spacing: 0.3px;
+}
+
+.contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.contact-btn {
+    background-color: #ffffff;
+    color: #1a4b84;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    width: fit-content;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.contact-btn:hover {
+    background-color: #f0f8ff;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contact-btn i {
+    color: #1a4b84;
+    font-size: 0.9rem;
+}
+
+.call-to-action {
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-style: italic;
+    opacity: 0.8;
+    text-align: right;
+}
+
+.secondary-info {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}
+
+.secondary-info a, 
+.secondary-info span {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.secondary-info a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.secondary-info i {
+    font-size: 0.8rem;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Layout Principal */
+main {
+    padding: 20px 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 25px;
+}
+
+.main-column {
+    flex: 3;
+}
+
+.sidebar {
+    flex: 1;
+    padding: 0;
+    border-radius: 8px;
+}
+
+/* Perfil Profissional e Diferencial */
+.profile, .differential {
+    margin-bottom: 15px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+}
+
+.profile-header {
+    background: linear-gradient(135deg, #0c3b6a 0%, #1a4b84 100%);
+    color: white;
+    padding: 10px 15px;
+    border-bottom: 2px solid #2d7dd2;
+}
+
+.profile-header h3 {
+    color: white;
+    margin-bottom: 0;
+    border-bottom: none;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.profile-content {
+    padding: 15px;
+    background-color: #e9f0f9;
+}
+
+.profile p {
+    text-align: justify;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #333;
+    margin: 0;
+}
+
+.profile p strong {
+    color: #1a4b84;
+    font-weight: 600;
+}
+
+.highlight-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.highlight-list li {
+    margin-bottom: 6px;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.4;
+    font-size: 0.9rem;
+}
+
+.highlight-list li:last-child {
+    margin-bottom: 0;
+}
+
+.highlight-list li i {
+    color: #4CAF50;
+    position: absolute;
+    left: 0;
+    top: 3px;
+}
+
+/* Skills Row para competências e ferramentas */
+.skills-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.skills-row .strategic-skills {
+    flex: 1.3;
+}
+
+.skills-row .tools {
+    flex: 1;
+}
+
+/* Competências */
+.strategic-skills {
+    flex: 1;
+    min-width: 280px;
+}
+
+.strategic-skills ul {
+    list-style-type: none;
+    padding-top: 5px;
+}
+
+.strategic-skills li {
+    margin-bottom: 6px;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.3;
+    font-size: 0.85rem;
+}
+
+.strategic-skills i {
+    color: #4CAF50;
+    margin-right: 8px;
+    margin-top: 2px;
+    font-size: 0.8rem;
+}
+
+ul.two-columns {
+    column-count: 3;
+    column-gap: 15px;
+}
+
+/* Experiência Profissional */
+.experience {
+    margin-bottom: 0;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 15px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 14px;
+    height: 100%;
+    width: 1px;
+    background-color: #1a4b84;
+}
+
+.job {
+    margin-bottom: 18px;
+    position: relative;
+}
+
+.job:last-child {
+    margin-bottom: 0;
+}
+
+.job-header {
+    margin-bottom: 8px;
+}
+
+.position-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.job-number {
+    background: linear-gradient(135deg, #0c3b6a 0%, #1a4b84 100%);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 0.85rem;
+}
+
+.job-title {
+    flex: 1;
+}
+
+.job h4 {
+    font-weight: 600;
+    color: #1a4b84;
+    margin-bottom: 2px;
+    font-size: 0.95rem;
+}
+
+.job h5 {
+    font-weight: 500;
+    color: #555;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.job-period {
+    color: #777;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.job-description {
+    padding-left: 43px;
+}
+
+.job-summary {
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #555;
+    font-style: italic;
+    padding-bottom: 6px;
+    border-bottom: 1px dotted #ddd;
+}
+
+/* Achievement List */
+.achievement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.achievement {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    border-left: 3px solid #1a4b84;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.achievement:hover {
+    background-color: #f1f5fa;
+    transform: translateX(3px);
+    z-index: 30;
+}
+
+.achievement i {
+    color: #1a4b84;
+    font-size: 1rem;
+    margin-right: 12px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.achievement span {
+    font-size: 0.85rem;
+    color: #444;
+}
+
+/* Tooltip styles */
+.tooltip-container {
+    position: relative;
+}
+
+.tooltip {
+    position: absolute;
+    top: 0;
+    background-color: white;
+    width: 300px;
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e0e0e0;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    transform: translateY(-10px);
+    pointer-events: none;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Ajusta posição para tooltips em elementos próximos ao final da página */
+.achievement:nth-last-child(-n+2) .tooltip {
+    bottom: 0;
+    top: auto;
+    transform: translateY(0);
+}
+
+/* Para tooltips muito próximos ao final da página */
+.achievement:last-child .tooltip {
+    bottom: 0;
+    top: auto;
+}
+
+/* Garantir que tooltip dos últimos itens seja centralizado em telas até 1200px */
+@media (max-width: 1200px) and (min-width: 769px) {
+    .achievement:nth-last-child(-n+2) .tooltip {
+        top: -20px;
+        bottom: auto;
+        transform: translateX(-50%) translateY(-100%);
+    }
+}
+
+.tooltip-right {
+    left: calc(100% + 15px);
+    transform-origin: left center;
+    max-height: 90vh; /* Limitar altura para não ultrapassar a janela */
+}
+
+.tooltip-left {
+    right: calc(100% + 15px);
+    transform-origin: right center;
+    max-height: 90vh; /* Limitar altura para não ultrapassar a janela */
+}
+
+/* Garantir que tooltips não ultrapassem os limites da página */
+@media (max-width: 1200px) and (min-width: 769px) {
+    .tooltip-container {
+        position: relative;
+    }
+    
+    .tooltip-left, .tooltip-right {
+        left: 50%;
+        right: auto;
+        top: -20px;
+        transform: translateX(-50%) translateY(-100%);
+    }
+    
+    .tooltip-container:hover .tooltip {
+        transform: translateX(-50%) translateY(-100%);
+    }
+}
+
+.tooltip-container:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+@media (max-width: 1200px) {
+    .tooltip-container:hover .tooltip {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.tooltip-header {
+    background: linear-gradient(135deg, #0c3b6a 0%, #1a4b84 100%);
+    color: white;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 6px 6px 0 0;
+}
+
+.tooltip-content {
+    padding: 15px;
+}
+
+.tooltip-content p {
+    margin-bottom: 6px;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #444;
+}
+
+.tooltip-content p:last-child {
+    margin-bottom: 0;
+}
+
+.tooltip-content p strong {
+    color: #1a4b84;
+    font-weight: 600;
+}
+
+/* Ferramentas */
+.tools {
+    margin-bottom: 20px;
+}
+
+.skill {
+    margin-bottom: 10px;
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.skill-header span {
+    font-size: 0.85rem;
+}
+
+.skill-level {
+    font-weight: 600;
+    color: #1a4b84;
+    font-size: 0.75rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background-color: #e9ecef;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid #d0d0d0;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(to right, #0c3b6a, #2d7dd2);
+    border-radius: 3px;
+}
+
+/* Formação */
+.education-item {
+    display: flex;
+    margin-bottom: 10px;
+    gap: 8px;
+    padding: 3px 0;
+}
+
+.education-item:last-child {
+    margin-bottom: 0;
+}
+
+.education-year {
+    font-weight: 600;
+    color: #1a4b84;
+    font-size: 0.75rem;
+    min-width: 65px;
+}
+
+.education-content {
+    flex: 1;
+}
+
+.education-item h4 {
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.education-item p {
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 0;
+    line-height: 1.3;
+}
+
+/* Idiomas */
+.language-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.language-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.language-level {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.language-level.native {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.language-level.intermediate {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.language-level.basic {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+/* Projetos */
+.project-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.project-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.project-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #0c3b6a 0%, #1a4b84 100%);
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.project-content {
+    flex: 1;
+}
+
+.project-item h4 {
+    color: #1a4b84;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.project-item p {
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tag {
+    background-color: #e1eefe;
+    color: #1a4b84;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    border: 1px solid #c3d9f5;
+}
+
+/* Modais */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    border: 1px solid #1a4b84;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #777;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #1a4b84;
+}
+
+.modal h2 {
+    color: #1a4b84;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #1a4b84;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #0c3b6a 0%, #1a4b84 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #1a4b84 0%, #2d7dd2 100%);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividade */
+@media (max-width: 1000px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+    
+    .skills-container {
+        flex-direction: column;
+    }
+    
+    .skills-row {
+        flex-direction: column;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .header-right {
+        margin-top: 20px;
+        width: 100%;
+    }
+    
+    .contact-actions {
+        width: 100%;
+        max-width: 380px;
+        align-items: center;
+    }
+    
+    .contact-item {
+        width: 100%;
+        align-items: center;
+    }
+    
+    .call-to-action {
+        text-align: center;
+    }
+    
+    .contact-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .secondary-info {
+        margin-top: 15px;
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    ul.two-columns {
+        column-count: 2;
+    }
+    
+    .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    header {
+        padding: 30px;
+    }
+    
+    main {
+        padding: 25px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 20px;
+    }
+    
+    /* Tooltip responsiveness */
+    .tooltip {
+        width: 280px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    
+    .tooltip-right, .tooltip-left {
+        position: fixed;
+        left: 50%;
+        right: auto;
+        top: 50%;
+        transform: translate(-50%, -50%) !important;
+        z-index: 1000;
+        max-height: 70vh;
+    }
+    
+    /* Para dispositivos móveis, sempre centralizar todos os tooltips */
+    .achievement:nth-last-child(-n+2) .tooltip {
+        bottom: auto;
+        top: 50%;
+    }
+    
+    .tooltip-container {
+        position: relative;
+    }
+    
+    .achievement {
+        position: relative;
+        z-index: 10;
+    }
+    
+    .achievement-list {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    ul.two-columns {
+        column-count: 1;
+    }
+    
+    .job-description {
+        padding-left: 15px;
+    }
+    
+    .position-info {
+        gap: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .classic-section {
+        padding: 15px;
+    }
+    
+    .par-item {
+        padding: 15px;
+    }
+    
+    .modal-content {
+        padding: 15px;
+    }
+    
+    .secondary-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* Mobile tooltip adjustments */
+    .tooltip {
+        width: 90%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .tooltip-right, .tooltip-left {
+        width: 90%;
+        max-width: 300px;
+    }
+}

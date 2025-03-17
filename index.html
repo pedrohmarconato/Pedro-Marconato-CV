@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Pedro Henrique Lima Marconato</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #0d3b66;
+            --secondary-color: #1e5f94;
+            --accent-color: #4a90e2;
+            --light-accent: #e5f0ff;
+            --dark-accent: #053159;
+            --quadrant-1: #E6F2FF;
+            --quadrant-2: #E6F2FF;
+            --quadrant-3: #E6F2FF;
+            --quadrant-4: #E6F2FF;
+            --light-color: #f5f7fa;
+            --text-color: #2c3e50;
+            --border-color: #e0e6ed;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+        }
+        
+        .cv-container {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 20px auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+        
+        .role {
+            font-size: 18px;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .contact-info {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin-right: 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-bottom: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .contact-button:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        .contact-button i {
+            margin-right: 6px;
+        }
+        
+        .pulse {
+            position: relative;
+        }
+        
+        .pulse::after {
+            content: "clique para mandar";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            font-size: 10px;
+            white-space: nowrap;
+            margin-top: 2px;
+            opacity: 0.9;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .location i {
+            margin-right: 5px;
+        }
+        
+        .section {
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-text {
+            text-align: justify;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .skills-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .skills-column {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--quadrant-1);
+            padding: 15px;
+            border-radius: 6px;
+        }
+        
+        .skills-column:nth-child(2) {
+            background-color: var(--quadrant-2);
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .skill-item i {
+            color: var(--accent-color);
+            margin-right: 8px;
+            margin-top: 3px;
+        }
+        
+        .tools-container {
+            margin-top: 15px;
+        }
+        
+        .tool-item {
+            margin-bottom: 12px;
+        }
+        
+        .tool-name {
+            display: block;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .differential-container {
+            background-color: var(--quadrant-3);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        
+        .differential-item {
+            margin-bottom: 10px;
+            padding-left: 22px;
+            position: relative;
+            font-size: 14px;
+        }
+        
+        .differential-item i {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            color: var(--accent-color);
+        }
+        
+        .experience-timeline {
+            position: relative;
+            margin-left: 20px;
+            padding-left: 30px;
+        }
+        
+        .experience-timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+            border-radius: 3px;
+        }
+        
+        .experience-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding: 15px;
+            border-radius: 6px;
+            background-color: var(--light-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .experience-item:nth-child(odd) {
+            background-color: var(--quadrant-1);
+        }
+        
+        .experience-item:nth-child(even) {
+            background-color: var(--quadrant-2);
+        }
+        
+        .experience-item::before {
+            content: "";
+            position: absolute;
+            left: -36px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 3px solid var(--primary-color);
+            z-index: 1;
+        }
+        
+        .job-title {
+            font-weight: 600;
+            font-size: 17px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .job-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        
+        .company {
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+        
+        .period {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        
+        .job-description {
+            font-size: 13px;
+            margin-bottom: 18px;
+            line-height: 1.5;
+            color: #444;
+        }
+        
+        .achievements-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .achievement-item {
+            flex: 1;
+            min-width: 250px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .achievement-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .achievement-icon {
+            font-size: 20px;
+            color: var(--accent-color);
+            margin-right: 10px;
+            padding-top: 2px;
+        }
+        
+        .achievement-content {
+            flex: 1;
+        }
+        
+        .achievement-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+        
+        .achievement-description {
+            font-size: 13px;
+            line-height: 1.4;
+            color: #444;
+        }
+        
+        .education-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            background-color: var(--quadrant-2);
+            padding: 15px;
+            border-radius: 6px;
+        }
+        
+        .education-item {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 12px;
+        }
+        
+        .degree {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--primary-color);
+        }
+        
+        .university {
+            font-size: 13px;
+            margin-top: 3px;
+        }
+        
+        .thesis {
+            font-size: 12px;
+            font-style: italic;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .project-item {
+            flex: 1;
+            min-width: 200px;
+            background-color: var(--quadrant-4);
+            border-radius: 6px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        .project-description {
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.6);
+            color: var(--primary-color);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .hide-for-pdf {
+            display: block;
+        }
+        
+        /* Tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .tooltip .tooltip-icon {
+            color: var(--accent-color);
+            font-size: 14px;
+            margin-left: 5px;
+            transition: transform 0.2s, color 0.2s;
+        }
+        
+        .tooltip:hover .tooltip-icon {
+            color: var(--primary-color);
+            transform: scale(1.2);
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 320px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: left;
+            border-radius: 8px;
+            padding: 0;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -160px;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: translateY(10px);
+            font-size: 12px;
+            line-height: 1.4;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+        
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -8px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--secondary-color) transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .tooltip-header {
+            background-color: rgba(0,0,0,0.15);
+            padding: 10px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-weight: 600;
+            font-size: 13px;
+        }
+        
+        .tooltip-content {
+            padding: 12px 15px;
+        }
+        
+        .tooltip-section {
+            margin-bottom: 10px;
+        }
+        
+        .tooltip-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .tooltip-section-title {
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .tooltip-section-title i {
+            margin-right: 5px;
+            font-size: 11px;
+        }
+        
+        .tooltip-list {
+            margin: 0;
+            padding-left: 15px;
+        }
+        
+        .tooltip-list li {
+            margin-bottom: 3px;
+            position: relative;
+        }
+        
+        .tooltip-list li::before {
+            content: "•";
+            position: absolute;
+            left: -12px;
+            color: var(--accent-color);
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                font-size: 8px !important;
+                line-height: 1.2 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            .cv-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .hide-for-pdf {
+                display: none !important;
+            }
+            
+            /* Esconder o estágio (último item da experiência) */
+            .experience-item:nth-last-child(1) {
+                display: none !important;
+            }
+            
+            .header {
+                padding: 10px !important;
+                margin-bottom: 0 !important;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+                color: white !important;
+            }
+            
+            .header h1 {
+                font-size: 16px !important;
+                margin-bottom: 2px !important;
+            }
+            
+            .role {
+                font-size: 12px !important;
+                margin-top: 0 !important;
+            }
+            
+            .contact-info {
+                margin-top: 5px !important;
+                gap: 5px !important;
+            }
+            
+            .section {
+                padding: 5px 10px !important;
+                margin-bottom: 0 !important;
+                border-bottom: none !important;
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                margin-bottom: 5px !important;
+                font-size: 12px !important;
+                padding: 3px 8px !important;
+                box-shadow: none !important;
+                border-radius: 2px !important;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+                color: white !important;
+            }
+            
+            /* Profile section */
+            .profile-text {
+                font-size: 7px !important;
+                line-height: 1.3 !important;
+                margin-bottom: 5px !important;
+            }
+            
+            /* Skills and tools section */
+            .skills-container {
+                gap: 5px !important;
+            }
+            
+            .skills-column {
+                padding: 5px !important;
+                min-width: auto !important;
+                border-radius: 3px !important;
+                background-color: var(--quadrant-1) !important;
+            }
+            
+            .skill-item {
+                margin-bottom: 2px !important;
+                font-size: 7px !important;
+            }
+            
+            .skill-item i {
+                font-size: 7px !important;
+                margin-top: 1px !important;
+                color: var(--accent-color) !important;
+            }
+            
+            .tool-item {
+                margin-bottom: 3px !important;
+            }
+            
+            .tool-name {
+                font-size: 7px !important;
+                margin-bottom: 1px !important;
+            }
+            
+            .progress-bar {
+                height: 4px !important;
+                background-color: rgba(255, 255, 255, 0.5) !important;
+            }
+            
+            .progress {
+                background: linear-gradient(90deg, var(--primary-color), var(--accent-color)) !important;
+            }
+            
+            /* Differential section */
+            .differential-container {
+                padding: 5px !important;
+                margin-top: 5px !important;
+                border-radius: 3px !important;
+                background-color: var(--quadrant-1) !important;
+            }
+            
+            .differential-item {
+                margin-bottom: 2px !important;
+                font-size: 7px !important;
+                padding-left: 12px !important;
+            }
+            
+            .differential-item i {
+                font-size: 7px !important;
+                left: 0 !important;
+                top: 2px !important;
+                color: var(--accent-color) !important;
+            }
+            
+            /* Experience section */
+            .experience-timeline {
+                margin-left: 10px !important;
+                padding-left: 15px !important;
+            }
+            
+            .experience-timeline::before {
+                width: 2px !important;
+                background: linear-gradient(to bottom, var(--primary-color), var(--accent-color)) !important;
+            }
+            
+            .experience-item {
+                margin-bottom: 8px !important;
+                padding: 5px !important;
+                box-shadow: none !important;
+                border-radius: 3px !important;
+                background-color: var(--quadrant-1) !important;
+            }
+            
+            .experience-item:nth-child(odd) {
+                background-color: var(--quadrant-1) !important;
+            }
+            
+            .experience-item:nth-child(even) {
+                background-color: var(--quadrant-1) !important;
+            }
+            
+            .experience-item::before {
+                width: 8px !important;
+                height: 8px !important;
+                left: -18px !important;
+                border-width: 1px !important;
+                background-color: var(--accent-color) !important;
+                border: 1px solid var(--primary-color) !important;
+            }
+            
+            .job-title {
+                font-size: 10px !important;
+                margin-bottom: 1px !important;
+                color: var(--primary-color) !important;
+            }
+            
+            .job-number {
+                width: 16px !important;
+                height: 16px !important;
+                font-size: 8px !important;
+                margin-right: 5px !important;
+                background-color: var(--primary-color) !important;
+                color: white !important;
+            }
+            
+            .company {
+                font-size: 8px !important;
+                margin-bottom: 1px !important;
+                color: var(--secondary-color) !important;
+            }
+            
+            .period {
+                font-size: 7px !important;
+                margin-bottom: 2px !important;
+                padding: 0 4px !important;
+                background-color: rgba(255, 255, 255, 0.5) !important;
+            }
+            
+            .job-description {
+                font-size: 7px !important;
+                margin-bottom: 5px !important;
+                line-height: 1.3 !important;
+            }
+            
+            /* Achievement items */
+            .achievements-container {
+                gap: 4px !important;
+                margin-top: 5px !important;
+            }
+            
+            .achievement-item {
+                padding: 4px !important;
+                min-width: auto !important;
+                border-radius: 3px !important;
+                background-color: rgba(255, 255, 255, 0.6) !important;
+            }
+            
+            .achievement-icon {
+                font-size: 10px !important;
+                margin-right: 4px !important;
+                color: var(--accent-color) !important;
+            }
+            
+            .achievement-title {
+                font-size: 7px !important;
+                margin-bottom: 1px !important;
+                color: var(--primary-color) !important;
+            }
+            
+            .achievement-description {
+                font-size: 6px !important;
+                line-height: 1.2 !important;
+            }
+            
+            /* Education section */
+            .education-container {
+                padding: 5px !important;
+                gap: 8px !important;
+                border-radius: 3px !important;
+                background-color: var(--quadrant-1) !important;
+            }
+            
+            .education-item {
+                margin-bottom: 3px !important;
+            }
+            
+            .degree {
+                font-size: 8px !important;
+                color: var(--primary-color) !important;
+            }
+            
+            .university, .thesis {
+                font-size: 7px !important;
+                margin-top: 1px !important;
+            }
+            
+            /* Projects section */
+            .projects-container {
+                gap: 5px !important;
+                margin-top: 5px !important;
+            }
+            
+            .project-item {
+                padding: 5px !important;
+                min-width: auto !important;
+                border-radius: 3px !important;
+                box-shadow: none !important;
+                background-color: var(--quadrant-1) !important;
+            }
+            
+            .project-title {
+                font-size: 8px !important;
+                margin-bottom: 2px !important;
+                color: var(--primary-color) !important;
+            }
+            
+            .project-description {
+                font-size: 6px !important;
+                margin-bottom: 3px !important;
+                line-height: 1.2 !important;
+            }
+            
+            .tech-tag {
+                font-size: 6px !important;
+                padding: 1px 4px !important;
+                margin-right: 2px !important;
+                margin-bottom: 2px !important;
+                background-color: rgba(255, 255, 255, 0.6) !important;
+                color: var(--primary-color) !important;
+            }
+            
+            /* Hide tooltips */
+            .tooltip .tooltip-icon {
+                display: none !important;
+            }
+            
+            /* Hide print button */
+            #printButton {
+                display: none !important;
+            }
+            
+            /* Compact layout fixes */
+            .contact-button {
+                padding: 3px 6px !important;
+                font-size: 7px !important;
+                margin-right: 4px !important;
+                background-color: rgba(255, 255, 255, 0.15) !important;
+                color: white !important;
+            }
+            
+            .contact-button i {
+                font-size: 7px !important;
+            }
+            
+            .contact-button::after {
+                display: none !important;
+            }
+            
+            .pulse::after {
+                display: none !important;
+            }
+            
+            /* Remove some content for single page PDF */
+            .pdf-hide-achievements .achievement-item:nth-child(n+3) {
+                display: none !important;
+            }
+            
+            @page {
+                size: A4;
+                margin: 2mm;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="cv-container">
+        <header class="header">
+            <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
+            <div class="role">Gestão de CRM e Inteligência de Dados</div>
+            
+            <div class="contact-info">
+                <button class="contact-button pulse" onclick="openEmailForm()">
+                    <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
+                </button>
+                
+                <button class="contact-button pulse" onclick="openPhoneForm()">
+                    <i class="fas fa-phone"></i> +55 (55) 981147758
+                </button>
+                
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i> Cachoeira do Sul, RS
+                </div>
+                
+                <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button">
+                    <i class="fab fa-linkedin"></i> linkedin.com/in/pedrohmarconato
+                </a>
+            </div>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title">PERFIL PROFISSIONAL</h2>
+            <p class="profile-text">
+                Profissional em Gestão de CRM e Inteligência de Dados com foco em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa de Brand Equity que fundamentou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos. Como Coordenador de CRM nas Lojas Renner, otimizei R$5MM em orçamento, gerando economia de R$480 mil, implementei 80% de automação nas comunicações e estratégias que resultaram em incremento de 32% em consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.
+            </p>
+        </section>
+        
+        <section class="section">
+            <div class="skills-container">
+                <div class="skills-column">
+                    <h2 class="section-title">COMPETÊNCIAS ESTRATÉGICAS</h2>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Gestão de CRM</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Customer Equity</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Business Intelligence</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Liderança Estratégica</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>LLM & Agentes IA</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Brand Equity</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>IA para CRM</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Gestão de Marcas</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Redes Neurais</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Computer Vision</span>
+                    </div>
+                </div>
+                
+                <div class="skills-column">
+                    <h2 class="section-title">FERRAMENTAS</h2>
+                    <div class="tools-container">
+                        <div class="tool-item">
+                            <span class="tool-name">PowerBI</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-item">
+                            <span class="tool-name">Oracle/Databricks</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-item">
+                            <span class="tool-name">Responsys</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-item">
+                            <span class="tool-name">Python/SQL</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-item">
+                            <span class="tool-name">IA/LLM APIs</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="differential-container">
+                <h2 class="section-title">DIFERENCIAL COMPETITIVO</h2>
+                <div class="differential-item">
+                    <i class="fas fa-award"></i>
+                    <span>Expert em CRM orientado a resultados quantificáveis (+32% em conversão)</span>
+                </div>
+                <div class="differential-item">
+                    <i class="fas fa-award"></i>
+                    <span>Pioneirismo em transformação digital e migração de plataformas de dados</span>
+                </div>
+                <div class="differential-item">
+                    <i class="fas fa-award"></i>
+                    <span>Metodologia comprovada em pesquisa de Brand Equity e Customer Centricity</span>
+                </div>
+                <div class="differential-item">
+                    <i class="fas fa-award"></i>
+                    <span>Aplicação de IA para personalização e automação de processos de CRM</span>
+                </div>
+                <div class="differential-item">
+                    <i class="fas fa-award"></i>
+                    <span>Desenvolvimento de soluções proprietárias com Claude, OpenAI e visão computacional</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">EXPERIÊNCIA PROFISSIONAL</h2>
+            
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="job-title">
+                        <div class="job-number">1</div>
+                        COORDENADOR DE CRM
+                        <div class="tooltip">
+                            <i class="fas fa-info-circle tooltip-icon"></i>
+                            <span class="tooltip-text">
+                                <div class="tooltip-header">
+                                    Detalhes da Posição: Coordenador de CRM
+                                </div>
+                                <div class="tooltip-content">
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-users"></i> Gestão de Equipe e Orçamento
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Liderança de equipe com 8 profissionais (6 internos, 2 terceirizados)</li>
+                                            <li>Gestão de orçamento anual de R$5 milhões (excluso folha de pagamento)</li>
+                                            <li>Implementação de framework Renner para gestão de equipe e metodologia ágil</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-money-bill-wave"></i> Otimização de Custos
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Benchmarking de preços com fornecedores do mercado</li>
+                                            <li>Análise de ROI para cada contrato terceirizado</li>
+                                            <li>Implementação de novo modelo de governança para aprovações</li>
+                                            <li>Redução de R$0,03 por disparo (impacto de R$350 mil em 15 meses)</li>
+                                            <li>Gestão de R$5 milhões em bonificações junto a bandeiras</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-chart-pie"></i> Estratégias Data-Driven
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Segmentação avançada baseada em comportamento de consumo</li>
+                                            <li>Desenvolvimento de modelos preditivos para identificação de compras potenciais</li>
+                                            <li>Estratégias personalizadas com incentivos específicos por segmento</li>
+                                            <li>Parcerias estratégicas com estabelecimentos de alto potencial</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-bullseye"></i> Métricas e Resultados
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Implementação de OKRs para mensuração de desempenho</li>
+                                            <li>Automação de 80% das comunicações com clientes</li>
+                                            <li>Alcance mensal de 7 milhões de clientes e 15 milhões de comunicações</li>
+                                            <li>Crescimento de 37% em verbas de disparo (2023-2025)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="company">Realize CFI</div>
+                    <div class="period">Set/2022 - Atual</div>
+                    
+                    <div class="job-description">
+                        Responsável por estratégias de CRM, gestão de orçamento e contratos, liderança de equipe e implementação de métricas de desempenho para maximizar resultados. Gerencio comunicação com mais de 7 milhões de clientes mensalmente, otimizando canais e mensagens para aumentar engajamento e conversão.
+                    </div>
+                    
+                    <div class="achievements-container">
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Otimização de Contratos</div>
+                                <div class="achievement-description">
+                                    Economia de R$ 480 mil em contratos terceirizados, mantendo a qualidade dos serviços e otimizando a gestão de R$ 5 milhões anuais.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Reestruturação de SLAs</div>
+                                <div class="achievement-description">
+                                    Reestruturação de 100% dos SLAs com fornecedores, aumentando a eficiência operacional e melhorando a qualidade dos serviços.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Aumento de Consumo OFF-Us</div>
+                                <div class="achievement-description">
+                                    Aumento de 8% no consumo OFF-Us e incremento de +7 p.p YoY em consumo geral através de estratégias data-driven.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Redução de Churn</div>
+                                <div class="achievement-description">
+                                    Redução de 23% na taxa de churn e ampliação de 28% de consumo dos clientes engajados nas campanhas personalizadas.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">
+                        <div class="job-number">2</div>
+                        ESPECIALISTA DE DADOS
+                        <div class="tooltip">
+                            <i class="fas fa-info-circle tooltip-icon"></i>
+                            <span class="tooltip-text">
+                                <div class="tooltip-header">
+                                    Detalhes da Posição: Especialista de Dados
+                                </div>
+                                <div class="tooltip-content">
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-database"></i> Transformação de Plataforma
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Liderança pioneira na migração de Oracle para Databricks</li>
+                                            <li>Desenvolvimento de plano estratégico de migração em fases</li>
+                                            <li>Realização de Provas de Conceito (PoCs) para validação de benefícios</li>
+                                            <li>Implementação de arquitetura otimizada para análises de CRM</li>
+                                            <li>Aceleração do desenvolvimento de análises e modelos avançados</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-laptop-code"></i> Desenvolvimento Técnico
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Treinamento da equipe em novas tecnologias e metodologias</li>
+                                            <li>Criação de documentação técnica e guias de melhores práticas</li>
+                                            <li>Produção de relatórios estratégicos para diversas áreas da companhia</li>
+                                            <li>Desenvolvimento de dashboards para canais como assistente virtual</li>
+                                            <li>Análise de desempenho de cartões em estabelecimentos concorrentes</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-users-cog"></i> Framework Customer Centricity
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Criação de modelo de ciclo de vida com estágios específicos</li>
+                                            <li>Implementação de algoritmos de clustering para microssegmentação</li>
+                                            <li>Desenvolvimento de métricas de valor (LTV, churn risk, propensão)</li>
+                                            <li>Estruturação de abordagem baseada em "mês de relacionamento"</li>
+                                            <li>Integração de visões de produto e cliente em modelo único</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-chart-line"></i> Impactos Estratégicos
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Democratização do acesso a dados para times de negócio</li>
+                                            <li>Redução significativa do tempo de processamento analítico</li>
+                                            <li>Viabilização de análises em tempo real para decisões</li>
+                                            <li>Criação de bases segmentadas para comunicações personalizadas</li>
+                                            <li>Pioneirismo em relatórios de avaliação de desempenho OFF-Us</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="company">Realize CFI</div>
+                    <div class="period">Jul/2021 - Set/2022</div>
+                    
+                    <div class="job-description">
+                        Liderei a transformação digital e migração para plataforma Databricks, desenvolvendo soluções analíticas avançadas e implementando framework de Customer Centricity. Produzi dashboards estratégicos e criei modelos de segmentação para otimizar as estratégias de comunicação e aumentar a conversão.
+                    </div>
+                    
+                    <div class="achievements-container">
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Transformação Digital</div>
+                                <div class="achievement-description">
+                                    Liderei a migração pioneira da plataforma Oracle para Databricks, aumentando exponencialmente a capacidade de processamento e reduzindo tempo de análise.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Democratização de Dados</div>
+                                <div class="achievement-description">
+                                    Viabilizei insights em tempo real para decisões estratégicas e facilitei o acesso a dados analíticos para outros departamentos.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-users-cog"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Framework Customer Centricity</div>
+                                <div class="achievement-description">
+                                    Desenvolvi modelo de ciclo de vida do cliente e implementei algoritmos de clustering para microssegmentação personalizada.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Aumento de Conversão</div>
+                                <div class="achievement-description">
+                                    Criei base de segmentação eficiente para comunicações, impulsionando significativamente a conversão nas campanhas dirigidas.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">
+                        <div class="job-number">3</div>
+                        ESPECIALISTA (PRESTADOR DE SERVIÇOS)
+                        <div class="tooltip">
+                            <i class="fas fa-info-circle tooltip-icon"></i>
+                            <span class="tooltip-text">
+                                <div class="tooltip-header">
+                                    Detalhes da Posição: Especialista (Prestador de Serviços)
+                                </div>
+                                <div class="tooltip-content">
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-sitemap"></i> Reestruturação da Área de CRM
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Atuação sênior na reconstrução estratégica da área em cenário de recursos limitados</li>
+                                            <li>Implementação de metodologia ágil para gerenciamento de atividades</li>
+                                            <li>Desenvolvimento de fluxos de trabalho e sistemas de priorização</li>
+                                            <li>Criação de documentação de processos e padrões de qualidade</li>
+                                            <li>Elaboração de planos de capacitação técnica para novos membros</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-search-dollar"></i> Enriquecimento de Dados Transacionais
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Desenvolvimento de metodologia para análise de dados de cartão</li>
+                                            <li>Criação de algoritmos para classificação de MCCs (Merchant Category Codes)</li>
+                                            <li>Implementação de processo de normalização de nomes de estabelecimentos</li>
+                                            <li>Desenvolvimento de taxonomia de segmentos de mercado</li>
+                                            <li>Estruturação de análises comparativas de share of wallet por categoria</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-chart-bar"></i> Automação e Business Intelligence
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Automação de relatórios críticos para diferentes níveis hierárquicos</li>
+                                            <li>Desenvolvimento de dashboards estratégicos com PowerBI</li>
+                                            <li>Criação de estrutura de visão de compras com cartões terceiros</li>
+                                            <li>Automação de fontes de dados com múltiplas origens</li>
+                                            <li>Entrega de 2 relatórios para diretoria durante pandemia (itens emergenciais)</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-handshake"></i> Resultados e Impactos de Negócio
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Identificação de mais de R$1 bilhão em compras por segmentos de mercado</li>
+                                            <li>Potencialização de análises competitivas para Renner (comportamento com concorrentes)</li>
+                                            <li>Desenvolvimento de insights sobre comportamento de consumo dos cartões</li>
+                                            <li>Aceleração na capacitação de novos colaboradores</li>
+                                            <li>Redução significativa no time-to-market das campanhas</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="company">Realize CFI</div>
+                    <div class="period">Jul/2020 - Jul/2021</div>
+                    
+                    <div class="job-description">
+                        Atuei na reestruturação da área de CRM, implementando processos eficientes e metodologias de enriquecimento de dados. Desenvolvi análises de segmentação de mercado e automatizei relatórios críticos, gerando insights valiosos para decisões estratégicas e identificando oportunidades de cross-selling.
+                    </div>
+                    
+                    <div class="achievements-container">
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-sitemap"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Reestruturação de CRM</div>
+                                <div class="achievement-description">
+                                    Implementação eficiente de pipeline, aumentando produtividade da equipe e reduzindo significativamente o time-to-market das campanhas.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Capacitação de Equipe</div>
+                                <div class="achievement-description">
+                                    Aceleração na capacitação de novos colaboradores com redução expressiva no tempo de onboarding e aumento de proficiência técnica.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-search-dollar"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Análise de Dados Transacionais</div>
+                                <div class="achievement-description">
+                                    Identificação de mais de R$ 1 bilhão em compras por segmentos de mercado através de metodologia de enriquecimento de dados.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Estratégias de Cross-Selling</div>
+                                <div class="achievement-description">
+                                    Potencialização de análises competitivas e desenvolvimento de novas oportunidades de negócios baseadas em comportamento de consumo.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">
+                        <div class="job-number">4</div>
+                        ANALISTA DE INTELIGÊNCIA DE MERCADO
+                        <div class="tooltip">
+                            <i class="fas fa-info-circle tooltip-icon"></i>
+                            <span class="tooltip-text">
+                                <div class="tooltip-header">
+                                    Detalhes da Posição: Analista de Inteligência de Mercado
+                                </div>
+                                <div class="tooltip-content">
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-trophy"></i> Auditoria de Brand Equity
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Auditoria de pesquisa com investimento de R$300 mil</li>
+                                            <li>Identificação técnica de falhas metodológicas críticas</li>
+                                            <li>Argumentação técnica junto ao fornecedor para correção</li>
+                                            <li>Garantia de qualidade em investimento estratégico</li>
+                                            <li>Fundamentação para decisões estratégicas de marketing</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-chart-line"></i> Automação de Business Intelligence
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Desenvolvimento de conexões automáticas com múltiplas fontes</li>
+                                            <li>Criação de modelos de dados otimizados no PowerBI</li>
+                                            <li>Implementação de sistema de atualizações programadas</li>
+                                            <li>Capacitação da equipe na nova plataforma e metodologia</li>
+                                            <li>Redução de 12h semanais em trabalho manual de relatórios</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-balance-scale"></i> Otimização Fiscal e Orçamentária
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Condução de auditoria detalhada dos registros fiscais</li>
+                                            <li>Análise aprofundada da legislação tributária aplicável</li>
+                                            <li>Documentação de discrepâncias entre práticas e exigências legais</li>
+                                            <li>Elaboração do orçamento de 2020 (aprovado pela diretoria)</li>
+                                            <li>Economia de R$1,5 milhão em impostos que seriam pagos indevidamente</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-bullseye"></i> Metas e Estratégia Comercial
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Identificação de gaps no sistema de metas comerciais</li>
+                                            <li>Construção de novo regramento com base em dados</li>
+                                            <li>Desenvolvimento de argumentos estratégicos para equipe de vendas</li>
+                                            <li>Aumento da capacidade de análise da equipe comercial</li>
+                                            <li>Fornecimento de insights acionáveis para time de vendas</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="company">Grupo RBS</div>
+                    <div class="period">Mar/2019 - Jul/2020</div>
+                    
+                    <div class="job-description">
+                        Conduzi análises de Brand Equity, automatizei relatórios estratégicos e identificei oportunidades fiscais significativas. Transformei processos manuais em soluções automatizadas, liberando horas semanais para análises de maior valor agregado e fornecendo insights acionáveis para a equipe comercial.
+                    </div>
+                    
+                    <div class="achievements-container">
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Auditoria de Brand Equity</div>
+                                <div class="achievement-description">
+                                    Auditoria de pesquisa com investimento de R$300 mil, identificando falhas metodológicas críticas e fundamentando decisões estratégicas.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Automação de Relatórios</div>
+                                <div class="achievement-description">
+                                    Redução de 12h semanais de trabalho manual através da migração e reconstrução de relatórios para PowerBI com automação de fontes.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-comments-dollar"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Otimização Fiscal</div>
+                                <div class="achievement-description">
+                                    Economia de R$ 1,5 milhão em impostos que seriam pagos indevidamente através de análise aprofundada e identificação de gaps contábeis.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Reformulação de Metas</div>
+                                <div class="achievement-description">
+                                    Identificação de gaps em metas comerciais e construção de novo regramento, aumentando eficiência e alinhamento com objetivos estratégicos.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">
+                        <div class="job-number">5</div>
+                        ESTAGIÁRIO
+                        <div class="tooltip">
+                            <i class="fas fa-info-circle tooltip-icon"></i>
+                            <span class="tooltip-text">
+                                <div class="tooltip-header">
+                                    Detalhes da Posição: Estagiário
+                                </div>
+                                <div class="tooltip-content">
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-search"></i> Metodologia de Pesquisa
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Condução de pesquisa com consumidores usando metodologia multidimensional</li>
+                                            <li>Criação de questionários específicos para 5 dimensões-chave de Brand Equity</li>
+                                            <li>Desenvolvimento de framework de análise de marcas locais vs. globais</li>
+                                            <li>Definição de amostragem e coleta de dados com validação estatística</li>
+                                            <li>Planejamento e execução de pesquisa completa com recursos limitados</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-chart-pie"></i> Análise de Dimensões de Brand Equity
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Loyalty: análise do grau de fidelidade e propensão a recompra</li>
+                                            <li>Perceived Quality: avaliação da qualidade percebida dos produtos</li>
+                                            <li>Memories: investigação de recordações e associações emocionais</li>
+                                            <li>Personality: mapeamento de atributos de personalidade da marca</li>
+                                            <li>Organizational Association: análise da relação com a empresa</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-table"></i> Processamento e Interpretação
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Análise de dados quantitativos com técnicas estatísticas</li>
+                                            <li>Interpretação de dados qualitativos sobre percepção da marca</li>
+                                            <li>Cruzamento de variáveis para identificar correlações relevantes</li>
+                                            <li>Comparação sistemática com benchmarks de mercado</li>
+                                            <li>Identificação de padrões de comportamento e percepção</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-lightbulb"></i> Recomendações Estratégicas
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Desenvolvimento de recomendações baseadas em evidências</li>
+                                            <li>Estratégias para potencializar pontos fortes (Quality e Organization)</li>
+                                            <li>Táticas para melhorar dimensões subdesenvolvidas (Memories)</li>
+                                            <li>Abordagens de diferenciação viáveis para empresa regional</li>
+                                            <li>Plano de ação para competir com marcas globais (Nike, Puma, Adidas)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="company">Praxis Active Sports | Santa Maria - Presencial</div>
+                    <div class="period">Jun/2015 - Dez/2015</div>
+                    
+                    <div class="job-description">
+                        Desenvolvi pesquisa de Brand Equity para analisar o posicionamento da marca local frente a competidores globais. Investiguei múltiplas dimensões de percepção do consumidor, identificando forças em qualidade percebida e associações organizacionais, além de oportunidades para melhorar aspectos de memória e reconhecimento da marca.
+                    </div>
+                    
+                    <div class="achievements-container">
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Análise Multidimensional</div>
+                                <div class="achievement-description">
+                                    Desenvolvimento de estudo abrangente de Brand Equity analisando 5 dimensões-chave para compreender a percepção dos consumidores.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-thumbs-up"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Identificação de Forças</div>
+                                <div class="achievement-description">
+                                    Descoberta de que Perceived Quality e Organizational Association eram aspectos de destaque para consumidores, orientando investimentos em marketing.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Oportunidades de Melhoria</div>
+                                <div class="achievement-description">
+                                    Reconhecimento de que a dimensão Memories apresentava oportunidades significativas para desenvolvimento estratégico da marca.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-chess-knight"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Estratégia Competitiva</div>
+                                <div class="achievement-description">
+                                    Elaboração de recomendações para competir efetivamente com marcas globais (Nike, Puma, Adidas) a partir de diferenciais locais.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">FORMAÇÃO</h2>
+            <div class="education-container">
+                <div class="education-item">
+                    <div class="degree">Mestrado em Administração</div>
+                    <div class="university">Universidade Federal de Santa Maria</div>
+                    <div class="thesis">Dissertação: Customer Equity</div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="degree">Graduação em Administração</div>
+                    <div class="university">Universidade Federal de Santa Maria</div>
+                    <div class="thesis">TCC: Brand Equity</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">PROJETOS DE IA EM DESENVOLVIMENTO</h2>
+            <div class="projects-container">
+                <div class="project-item">
+                    <div class="project-title">FORÇA</div>
+                    <div class="project-description">
+                        Aplicativo de musculação com personalização avançada via IA. Plano de negócios com estratégia de crescimento via afiliados.
+                    </div>
+                    <div>
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Claude API</span>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="project-title">RECONHECIMENTO VISUAL</div>
+                    <div class="project-description">
+                        Sistema de reconhecimento de aparelhos de academia via câmera com recomendação personalizada de treinos.
+                    </div>
+                    <div>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">Computer Vision</span>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="project-title">MIELKE</div>
+                    <div class="project-description">
+                        Sistema de gestão para consultórios odontológicos com fluxo automatizado de cobrança e agendamento.
+                    </div>
+                    <div>
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">OpenAI API</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="hide-for-pdf">
+            <section class="section">
+                <h2 class="section-title">IDIOMAS</h2>
+                <div class="education-container">
+                    <div class="education-item">
+                        <div class="degree">Português</div>
+                        <div class="university">Nativo</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Inglês</div>
+                        <div class="university">Intermediário</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Espanhol</div>
+                        <div class="university">Básico</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <!-- Modal para e-mail -->
+    <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background-color:white; padding:30px; border-radius:5px; width:90%; max-width:500px; position:relative;">
+            <button onclick="closeEmailModal()" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:20px; cursor:pointer;">×</button>
+            <h3 style="margin-bottom:20px; color:var(--primary-color);">Enviar E-mail</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <div style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:500;">Seu Nome</label>
+                    <input type="text" name="name" required style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;">
+                </div>
+                <div style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:500;">Seu E-mail</label>
+                    <input type="email" name="email" required style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;">
+                </div>
+                <div style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:500;">Assunto</label>
+                    <input type="text" name="subject" required style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;">
+                </div>
+                <div style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:500;">Mensagem</label>
+                    <textarea name="message" required rows="5" style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;"></textarea>
+                </div>
+                <button type="submit" style="background-color:var(--primary-color); color:white; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; font-weight:500;">Enviar</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal para telefone -->
+    <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background-color:white; padding:30px; border-radius:5px; width:90%; max-width:500px; position:relative;">
+            <button onclick="closePhoneModal()" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:20px; cursor:pointer;">×</button>
+            <h3 style="margin-bottom:20px; color:var(--primary-color);">Entrar em Contato por Telefone</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <input type="hidden" name="contact_type" value="phone_request">
+                <div style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:500;">Seu Nome</label>
+                    <input type="text" name="name" required style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;">
+                </div>
+                <div style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:500;">Seu Telefone</label>
+                    <input type="tel" name="phone" required style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;">
+                </div>
+                <div style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:500;">Melhor horário para contato</label>
+                    <input type="text" name="best_time" required style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;">
+                </div>
+                <div style="margin-bottom:15px;">
+                    <label style="display:block; margin-bottom:5px; font-weight:500;">Mensagem (Opcional)</label>
+                    <textarea name="message" rows="3" style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;"></textarea>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button type="submit" style="background-color:var(--primary-color); color:white; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; font-weight:500;">Solicitar Contato</button>
+                    <a href="https://wa.me/55981117258" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; font-weight:500;">
+                        <i class="fab fa-whatsapp" style="margin-right:5px;"></i> WhatsApp
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        function openEmailForm() {
+            document.getElementById('emailModal').style.display = 'flex';
+        }
+        
+        function closeEmailModal() {
+            document.getElementById('emailModal').style.display = 'none';
+        }
+        
+        function openPhoneForm() {
+            document.getElementById('phoneModal').style.display = 'flex';
+        }
+        
+        function closePhoneModal() {
+            document.getElementById('phoneModal').style.display = 'none';
+        }
+        
+        // Fecha o modal ao clicar fora dele
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('emailModal')) {
+                closeEmailModal();
+            }
+            if (event.target == document.getElementById('phoneModal')) {
+                closePhoneModal();
+            }
+        }
+        
+        // Optimizações para PDF
+        function optimizeForPDF() {
+            document.body.classList.add('pdf-mode');
+            
+            // Adicionar classe para esconder alguns achievements
+            document.querySelectorAll('.experience-item').forEach(item => {
+                item.classList.add('pdf-hide-achievements');
+            });
+            
+            // Reduzir texto das descrições para PDF
+            document.querySelectorAll('.job-description').forEach(desc => {
+                // Guardar texto original como atributo
+                if (!desc.hasAttribute('data-original')) {
+                    desc.setAttribute('data-original', desc.innerHTML);
+                    // Criar versão abreviada (cerca de 50% do tamanho)
+                    let shortened = desc.innerHTML.split('.').slice(0, 1).join('.') + '.';
+                    desc.innerHTML = shortened;
+                }
+            });
+            
+            // Esconder os projects menos importantes
+            const projectsContainer = document.querySelector('.projects-container');
+            if (projectsContainer && projectsContainer.children.length > 2) {
+                // Keep only the first two projects
+                for (let i = 2; i < projectsContainer.children.length; i++) {
+                    projectsContainer.children[i].style.display = 'none';
+                }
+            }
+            
+            window.print();
+            
+            // Restaurar conteúdo original após imprimir
+            setTimeout(() => {
+                document.body.classList.remove('pdf-mode');
+                
+                // Remover classe que esconde achievements
+                document.querySelectorAll('.experience-item').forEach(item => {
+                    item.classList.remove('pdf-hide-achievements');
+                });
+                
+                // Restaurar textos originais
+                document.querySelectorAll('.job-description').forEach(desc => {
+                    if (desc.hasAttribute('data-original')) {
+                        desc.innerHTML = desc.getAttribute('data-original');
+                    }
+                });
+                
+                // Restaurar os projetos escondidos
+                if (projectsContainer) {
+                    for (let i = 0; i < projectsContainer.children.length; i++) {
+                        projectsContainer.children[i].style.display = '';
+                    }
+                }
+            }, 1000);
+        }
+        
+        // Adiciona botão para imprimir/salvar como PDF
+        document.addEventListener('DOMContentLoaded', function() {
+            const printButton = document.createElement('button');
+            printButton.id = 'printButton';
+            printButton.innerHTML = '<i class="fas fa-file-pdf"></i> Salvar como PDF';
+            printButton.style.position = 'fixed';
+            printButton.style.bottom = '20px';
+            printButton.style.right = '20px';
+            printButton.style.backgroundColor = '#0d3b66';
+            printButton.style.color = 'white';
+            printButton.style.border = 'none';
+            printButton.style.borderRadius = '4px';
+            printButton.style.padding = '10px 15px';
+            printButton.style.cursor = 'pointer';
+            printButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            printButton.style.zIndex = '999';
+            printButton.onclick = optimizeForPDF;
+            document.body.appendChild(printButton);
+        });
+    </script>
+</body>
+</html>
