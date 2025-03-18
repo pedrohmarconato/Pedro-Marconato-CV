@@ -473,7 +473,9 @@
             transition: transform 0.2s, color 0.2s;
         }
         
-        .tooltip:hover .tooltip-icon {
+        .tooltip:hover .tooltip-icon,
+        .tooltip:focus .tooltip-icon,
+        .tooltip:active .tooltip-icon {
             color: var(--primary-color);
             transform: scale(1.2);
         }
@@ -481,10 +483,10 @@
         .tooltip .tooltip-text {
             visibility: hidden;
             width: 320px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(145deg, #1a4b84, #2d7dd2);
             color: white;
             text-align: left;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 0;
             position: absolute;
             z-index: 100;
@@ -492,12 +494,14 @@
             left: 50%;
             margin-left: -160px;
             opacity: 0;
-            transition: opacity 0.3s, transform 0.3s;
+            transition: opacity 0.4s, transform 0.3s;
             transform: translateY(10px);
-            font-size: 12px;
-            line-height: 1.4;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+            font-size: 13px;
+            line-height: 1.5;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
             overflow: hidden;
+            max-height: 80vh; /* Limita a altura em telas pequenas */
+            overflow-y: auto; /* Permite rolagem se necessário */
         }
         
         .tooltip .tooltip-text::after {
@@ -508,47 +512,78 @@
             margin-left: -8px;
             border-width: 8px;
             border-style: solid;
-            border-color: var(--secondary-color) transparent transparent transparent;
+            border-color: #2d7dd2 transparent transparent transparent;
         }
         
-        .tooltip:hover .tooltip-text {
+        .tooltip:hover .tooltip-text,
+        .tooltip:focus .tooltip-text,
+        .tooltip:active .tooltip-text,
+        .tooltip.tooltip-active .tooltip-text {
             visibility: visible;
             opacity: 1;
             transform: translateY(0);
+            min-height: 300px; /* Altura mínima para garantir boa visibilidade */
+        }
+        
+        /* Fazendo a tooltip permanecer visível quando clicada (para mobile) */
+        .tooltip-active .tooltip-text {
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
         
         .tooltip-header {
             background-color: rgba(0,0,0,0.15);
-            padding: 10px 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            font-weight: 600;
-            font-size: 13px;
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.5px;
         }
         
         .tooltip-content {
-            padding: 12px 15px;
+            padding: 15px 20px;
         }
         
         .tooltip-section {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 12px;
         }
         
         .tooltip-section:last-child {
             margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
         }
         
         .tooltip-section-title {
-            font-weight: 600;
-            font-size: 12px;
-            margin-bottom: 4px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,1);
         }
         
         .tooltip-section-title i {
-            margin-right: 5px;
-            font-size: 11px;
+            margin-right: 8px;
+            font-size: 13px;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.15);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+        }
+        
+        .tooltip-stat {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 5px 0;
+            color: #fff;
         }
         
         .tooltip-list {
@@ -557,8 +592,9 @@
         }
         
         .tooltip-list li {
-            margin-bottom: 3px;
+            margin-bottom: 6px;
             position: relative;
+            line-height: 1.5;
         }
         
         .tooltip-list li::before {
@@ -566,6 +602,64 @@
             position: absolute;
             left: -12px;
             color: var(--accent-color);
+        }
+        
+        /* Tooltip close button for all devices */
+        .tooltip-mobile-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.3);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .tooltip-mobile-close:hover {
+            background: rgba(255,255,255,0.5);
+        }
+        
+        /* Enhanced web responsiveness for tooltips */
+        .tooltip-active .tooltip-text {
+            position: absolute;
+            z-index: 9999;
+            overflow-y: auto;
+        }
+        
+        /* Mobile responsiveness for tooltips */
+        @media (max-width: 768px) {
+            .tooltip .tooltip-text {
+                width: 280px;
+                margin-left: -140px;
+                font-size: 12px;
+                max-height: 70vh;
+            }
+            
+            .tooltip-header {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .tooltip-content {
+                padding: 12px 15px;
+            }
+            
+            /* Move tooltip to fixed position on mobile */
+            .tooltip-active .tooltip-text {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) !important;
+                bottom: auto;
+                margin-left: 0;
+            }
         }
         
         @media print {
@@ -926,6 +1020,31 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #1a4b84, #2d7dd2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-button i {
+            margin-right: 6px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+    </style>
 </head>
 <body>
     <!-- Botão de acesso ao currículo completo (visível apenas no PDF) -->
@@ -960,7 +1079,7 @@
         <section class="section">
             <h2 class="section-title">PERFIL PROFISSIONAL</h2>
             <p class="profile-text">
-                Profissional em Gestão de CRM e Inteligência de Dados com foco em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa de Brand Equity que fundamentou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos. Como Coordenador de CRM nas Lojas Renner, otimizei R$5MM em orçamento, gerando economia de R$480 mil, implementei 80% de automação nas comunicações e estratégias que resultaram em incremento de 32% em consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.
+                Profissional em Gestão de CRM e Inteligência de Dados com foco em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa de Brand Equity que fundamentou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos. Como Coordenador de CRM nas Lojas Renner, otimizei orçamento gerando economia de 10% ao ano, implementei 80% de comunicações automatizadas e estratégias que resultaram em incremento no consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.
             </p>
         </section>
         
@@ -1047,6 +1166,13 @@
                                 <div class="progress" style="width: 80%"></div>
                             </div>
                         </div>
+                        
+                        <div class="tool-item">
+                            <span class="tool-name">Kanbanize</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1055,7 +1181,7 @@
                 <h2 class="section-title">DIFERENCIAL COMPETITIVO</h2>
                 <div class="differential-item">
                     <i class="fas fa-award"></i>
-                    <span>Expert em CRM orientado a resultados quantificáveis (+32% em conversão)</span>
+                    <span>Expert em CRM orientado a resultados quantificáveis </span>
                 </div>
                 <div class="differential-item">
                     <i class="fas fa-award"></i>
@@ -1109,9 +1235,8 @@
                                         <ul class="tooltip-list">
                                             <li>Benchmarking de preços com fornecedores do mercado</li>
                                             <li>Análise de ROI para cada contrato terceirizado</li>
-                                            <li>Implementação de novo modelo de governança para aprovações</li>
                                             <li>Redução de R$0,03 por disparo (impacto de R$350 mil em 15 meses)</li>
-                                            <li>Gestão de R$5 milhões em bonificações junto a bandeiras</li>
+                                            <li>Gestão em bonificações junto a bandeiras</li>
                                         </ul>
                                     </div>
                                     
@@ -1120,10 +1245,9 @@
                                             <i class="fas fa-chart-pie"></i> Estratégias Data-Driven
                                         </div>
                                         <ul class="tooltip-list">
-                                            <li>Segmentação avançada baseada em comportamento de consumo</li>
+                                            <li>Segmentação avançada baseada em comportamento de consumo, gerando menos comunicação e mais assertividade</li>
                                             <li>Desenvolvimento de modelos preditivos para identificação de compras potenciais</li>
                                             <li>Estratégias personalizadas com incentivos específicos por segmento</li>
-                                            <li>Parcerias estratégicas com estabelecimentos de alto potencial</li>
                                         </ul>
                                     </div>
                                     
@@ -1132,7 +1256,7 @@
                                             <i class="fas fa-bullseye"></i> Métricas e Resultados
                                         </div>
                                         <ul class="tooltip-list">
-                                            <li>Implementação de OKRs para mensuração de desempenho</li>
+                                            <li>Implementação de OKRs para mensuração de desempenho: incremental, ROI entre outros</li>
                                             <li>Automação de 80% das comunicações com clientes</li>
                                             <li>Alcance mensal de 7 milhões de clientes e 15 milhões de comunicações</li>
                                             <li>Crescimento de 37% em verbas de disparo (2023-2025)</li>
@@ -1143,7 +1267,7 @@
                         </div>
                     </div>
                     <div class="company">Realize CFI</div>
-                    <div class="period">Set/2022 - Atual</div>
+                    <div class="period">Set/2022 - Fev/2025</div>
                     
                     <div class="job-description">
                         Responsável por estratégias de CRM, gestão de orçamento e contratos, liderança de equipe e implementação de métricas de desempenho para maximizar resultados. Gerencio comunicação com mais de 7 milhões de clientes mensalmente, otimizando canais e mensagens para aumentar engajamento e conversão.
@@ -1157,7 +1281,7 @@
                             <div class="achievement-content">
                                 <div class="achievement-title">Otimização de Contratos</div>
                                 <div class="achievement-description">
-                                    Economia de R$ 480 mil em contratos terceirizados, mantendo a qualidade dos serviços e otimizando a gestão de R$ 5 milhões anuais.
+                                    Economia de 10% em contratos terceirizados, mantendo a qualidade dos serviços e otimizando a gestão de milhões em orçamento.
                                 </div>
                             </div>
                         </div>
@@ -1167,9 +1291,9 @@
                                 <i class="fas fa-handshake"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Reestruturação de SLAs</div>
+                                <div class="achievement-title">Incremental de CRM aumentando</div>
                                 <div class="achievement-description">
-                                    Reestruturação de 100% dos SLAs com fornecedores, aumentando a eficiência operacional e melhorando a qualidade dos serviços.
+                                    Crescimento de +7 p.p YoY no incremental de consumo advindo de CRM, aumentando a importância da área na geração de receitas para a empresa.
                                 </div>
                             </div>
                         </div>
@@ -1181,7 +1305,7 @@
                             <div class="achievement-content">
                                 <div class="achievement-title">Aumento de Consumo OFF-Us</div>
                                 <div class="achievement-description">
-                                    Aumento de 8% no consumo OFF-Us e incremento de +7 p.p YoY em consumo geral através de estratégias data-driven.
+                                    Aumento de 8% no consumo OFF-Us, através de estratégias data-driven.
                                 </div>
                             </div>
                         </div>
@@ -1705,6 +1829,9 @@
                     <div class="degree">Mestrado em Administração</div>
                     <div class="university">Universidade Federal de Santa Maria</div>
                     <div class="thesis">Dissertação: Customer Equity</div>
+                    <a href="https://repositorio.ufsm.br/bitstream/handle/1/18895/DIS_PPGADMINISTRACAO_2019_MARCONATO_PEDRO.pdf;jsessionid=6A485B3D860AA4A153DBF63E8B7BE674?sequence=1" target="_blank" class="cta-button">
+                        <i class="fas fa-file-pdf"></i> Ver dissertação completa
+                    </a>
                 </div>
                 
                 <div class="education-item">
@@ -1913,7 +2040,7 @@
                 });
                 
                 // Restaurar os projetos escondidos
-                if (projectsContainer) {
+                if (projectsContainer) {    
                     for (let i = 0; i < projectsContainer.children.length; i++) {
                         projectsContainer.children[i].style.display = '';
                     }
@@ -1939,6 +2066,67 @@
             printButton.style.zIndex = '999';
             printButton.onclick = optimizeForPDF;
             document.body.appendChild(printButton);
+        });
+    </script>
+    <script>
+        // Script para tooltips em dispositivos móveis e web
+        document.addEventListener('DOMContentLoaded', function() {
+            const tooltips = document.querySelectorAll('.tooltip');
+            
+            tooltips.forEach(tooltip => {
+                const tooltipText = tooltip.querySelector('.tooltip-text');
+                
+                // Adiciona botão de fechar em cada tooltip para todos os dispositivos
+                const closeButton = document.createElement('div');
+                closeButton.className = 'tooltip-mobile-close';
+                closeButton.innerHTML = '<i class="fas fa-times"></i>';
+                tooltipText.appendChild(closeButton);
+                
+                // Evento de clique no botão fechar
+                closeButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    tooltip.classList.remove('tooltip-active');
+                });
+                
+                // Implementação para dispositivos móveis e desktop
+                tooltip.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Se já estiver ativo, desativa
+                    if (tooltip.classList.contains('tooltip-active')) {
+                        tooltip.classList.remove('tooltip-active');
+                    } else {
+                        // Fecha todos os outros tooltips abertos
+                        tooltips.forEach(t => {
+                            if (t !== tooltip) {
+                                t.classList.remove('tooltip-active');
+                            }
+                        });
+                        // Ativa este tooltip
+                        tooltip.classList.add('tooltip-active');
+                    }
+                });
+                
+                // Previne que o tooltip feche quando clica dentro dele
+                tooltipText.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+                
+                // Permite rolar o conteúdo do tooltip com a roda do mouse
+                tooltipText.addEventListener('wheel', function(e) {
+                    e.stopPropagation();
+                });
+            });
+            
+            // Fecha todas as tooltips quando clicar fora delas
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.tooltip')) {
+                    tooltips.forEach(tooltip => {
+                        tooltip.classList.remove('tooltip-active');
+                    });
+                }
+            });
         });
     </script>
 </body>
