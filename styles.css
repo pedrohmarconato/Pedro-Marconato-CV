@@ -619,4 +619,64 @@ main {
     .par-item {
         padding: 15px;
     }
+}       flex-direction: column;
+    }
+    
+    .skills-container {
+        flex-direction: column;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .header-right {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    ul.two-columns {
+        column-count: 1;
+    }
+    
+    .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    header {
+        padding: 30px;
+    }
+    
+    main {
+        padding: 25px;
+    }
+    
+    .sidebar {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .job-description {
+        padding-left: 15px;
+    }
+    
+    .position-info {
+        gap: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .profile, .strategic-skills, .competitive-edge, .experience {
+        padding: 15px;
+    }
+    
+    .par-item {
+        padding: 15px;
+    }
 }

@@ -1044,18 +1044,69 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
+        
+        /* Estilos para botões de idioma */
+        .language-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .language-button {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #1a3b64, #2c5282);
+            color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0.95);
+        }
+        
+        .language-button i {
+            margin-right: 8px;
+        }
+        
+        .language-button:hover {
+            transform: translateY(-2px) scale(0.95);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #1e4571, #2a5298);
+            color: white;
+        }
+        
+        .language-button.language-active {
+            background: linear-gradient(135deg, #0d6efd, #4a94eb);
+            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+            position: relative;
+            transform: scale(1.05);
+            color: white;
+        }
+        
+        .language-button.language-active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 3px;
+            background-color: #4a94eb;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
-    <!-- Botão de acesso ao currículo completo (visível apenas no PDF) -->
-    <a href="https://pedrohmarconato.github.io/Pedro-Marconato-CV/" target="_blank" class="view-full-cv-button">
-        <i class="fas fa-globe"></i> Acesse o Currículo Completo Online
-    </a>
-    
     <div class="cv-container">
         <header class="header">
             <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
-            <div class="role">Gestão de CRM e Inteligência de Dados</div>
+            <div class="role lang-pt">Gestão de CRM e Inteligência de Dados</div>
+            <div class="role lang-en">CRM Management and Data Intelligence</div>
             
             <div class="contact-info">
                 <button class="contact-button pulse" onclick="openEmailForm()">
@@ -1070,6 +1121,15 @@
                     <i class="fas fa-map-marker-alt"></i> Cachoeira do Sul, RS
                 </div>
                 
+                <div class="language-buttons">
+                    <button class="language-button language-active" onclick="switchLanguage('en')">
+                        <i class="fas fa-globe"></i> EN
+                    </button>
+                    <button class="language-button" onclick="switchLanguage('pt')">
+                        <i class="fas fa-globe"></i> PT
+                    </button>
+                </div>
+                
                 <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button">
                     <i class="fab fa-linkedin"></i> linkedin.com/in/pedrohmarconato
                 </a>
@@ -1077,60 +1137,152 @@
         </header>
         
         <section class="section">
-            <h2 class="section-title">PERFIL PROFISSIONAL</h2>
-            <p class="profile-text">
+            <h2 class="section-title lang-pt">PERFIL PROFISSIONAL</h2>
+            <h2 class="section-title lang-en">PROFESSIONAL PROFILE</h2>
+            <p class="profile-text lang-pt">
                 Profissional em Gestão de CRM e Inteligência de Dados com foco em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa de Brand Equity que fundamentou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos. Como Coordenador de CRM nas Lojas Renner, otimizei orçamento gerando economia de 10% ao ano, implementei 80% de comunicações automatizadas e estratégias que resultaram em incremento no consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.
+            </p>
+            <p class="profile-text lang-en">
+                Professional in CRM Management and Data Intelligence focused on quantifiable results. At Grupo RBS, I led a Brand Equity research audit that supported strategic decisions. At DBC/Realize CFI, I developed a pipeline for competitor analysis generating insights on R$1B in transactions and automated critical reports. As CRM Coordinator at Lojas Renner, I optimized budget generating 10% yearly savings, implemented 80% automated communications and strategies that resulted in increased consumption. My approach integrates data, technology and strategic vision for tangible results.
             </p>
         </section>
         
         <section class="section">
             <div class="skills-container">
                 <div class="skills-column">
-                    <h2 class="section-title">COMPETÊNCIAS ESTRATÉGICAS</h2>
-                    <div class="skill-item">
+                    <h2 class="section-title lang-pt">COMPETÊNCIAS ESTRATÉGICAS</h2>
+                    <h2 class="section-title lang-en">STRATEGIC SKILLS</h2>
+                    
+                    <div class="skill-item lang-pt">
                         <i class="fas fa-check-circle"></i>
                         <span>Gestão de CRM</span>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item lang-en">
                         <i class="fas fa-check-circle"></i>
-                        <span>Customer Equity</span>
+                        <span>CRM Management</span>
                     </div>
-                    <div class="skill-item">
+                    
+                    <div class="skill-item lang-pt">
                         <i class="fas fa-check-circle"></i>
-                        <span>Business Intelligence</span>
+                        <span>Análise de Dados</span>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item lang-en">
                         <i class="fas fa-check-circle"></i>
-                        <span>Liderança Estratégica</span>
+                        <span>Data Analysis</span>
                     </div>
-                    <div class="skill-item">
+                    
+                    <div class="skill-item lang-pt">
                         <i class="fas fa-check-circle"></i>
-                        <span>LLM & Agentes IA</span>
+                        <span>Otimização de KPIs</span>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item lang-en">
+                        <i class="fas fa-check-circle"></i>
+                        <span>KPI Optimization</span>
+                    </div>
+                    
+                    <div class="skill-item lang-pt">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Automação de Processos</span>
+                    </div>
+                    <div class="skill-item lang-en">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Process Automation</span>
+                    </div>
+                    
+                    <div class="skill-item lang-pt">
+                        <i class="fas fa-check-circle"></i>
+                        <span>BI</span>
+                    </div>
+                    <div class="skill-item lang-en">
+                        <i class="fas fa-check-circle"></i>
+                        <span>BI</span>
+                    </div>
+                    
+                    <div class="skill-item lang-pt">
                         <i class="fas fa-check-circle"></i>
                         <span>Brand Equity</span>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item lang-en">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Brand Equity</span>
+                    </div>
+                    
+                    <div class="skill-item lang-pt">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Customer Equity</span>
+                    </div>
+                    <div class="skill-item lang-en">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Customer Equity</span>
+                    </div>
+                    
+                    <div class="skill-item lang-pt">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Gestão de Equipes</span>
+                    </div>
+                    <div class="skill-item lang-en">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Team Management</span>
+                    </div>
+                    
+                    <div class="skill-item lang-pt">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Inteligência de Dados</span>
+                    </div>
+                    <div class="skill-item lang-en">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Data Intelligence</span>
+                    </div>
+                    
+                    <div class="skill-item lang-pt">
                         <i class="fas fa-check-circle"></i>
                         <span>IA para CRM</span>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item lang-en">
+                        <i class="fas fa-check-circle"></i>
+                        <span>AI for CRM</span>
+                    </div>
+                    
+                    <div class="skill-item lang-pt">
                         <i class="fas fa-check-circle"></i>
                         <span>Gestão de Marcas</span>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item lang-en">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Brand Management</span>
+                    </div>
+                    
+                    <div class="skill-item lang-pt">
+                        <i class="fas fa-check-circle"></i>
+                        <span>ML & Deep Learning</span>
+                    </div>
+                    <div class="skill-item lang-en">
+                        <i class="fas fa-check-circle"></i>
+                        <span>ML & Deep Learning</span>
+                    </div>
+                    
+                    <div class="skill-item lang-pt">
                         <i class="fas fa-check-circle"></i>
                         <span>Redes Neurais</span>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item lang-en">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Neural Networks</span>
+                    </div>
+                    
+                    <div class="skill-item lang-pt">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Computer Vision</span>
+                    </div>
+                    <div class="skill-item lang-en">
                         <i class="fas fa-check-circle"></i>
                         <span>Computer Vision</span>
                     </div>
                 </div>
                 
                 <div class="skills-column">
-                    <h2 class="section-title">FERRAMENTAS</h2>
+                    <h2 class="section-title lang-pt">FERRAMENTAS</h2>
+                    <h2 class="section-title lang-en">TOOLS</h2>
                     <div class="tools-container">
                         <div class="tool-item">
                             <span class="tool-name">PowerBI</span>
@@ -1203,28 +1355,41 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">EXPERIÊNCIA PROFISSIONAL</h2>
+            <h2 class="section-title lang-pt">EXPERIÊNCIA PROFISSIONAL</h2>
+            <h2 class="section-title lang-en">PROFESSIONAL EXPERIENCE</h2>
             
             <div class="experience-timeline">
                 <div class="experience-item">
                     <div class="job-title">
                         <div class="job-number">1</div>
-                        COORDENADOR DE CRM
+                        <span class="lang-pt">COORDENADOR DE CRM</span>
+                        <span class="lang-en">CRM COORDINATOR</span>
                         <div class="tooltip">
                             <i class="fas fa-info-circle tooltip-icon"></i>
                             <span class="tooltip-text">
-                                <div class="tooltip-header">
+                                <div class="tooltip-header lang-pt">
                                     Detalhes da Posição: Coordenador de CRM
+                                </div>
+                                <div class="tooltip-header lang-en">
+                                    Position Details: CRM Coordinator
                                 </div>
                                 <div class="tooltip-content">
                                     <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
+                                        <div class="tooltip-section-title lang-pt">
                                             <i class="fas fa-users"></i> Gestão de Equipe e Orçamento
                                         </div>
-                                        <ul class="tooltip-list">
+                                        <div class="tooltip-section-title lang-en">
+                                            <i class="fas fa-users"></i> Team and Budget Management
+                                        </div>
+                                        <ul class="tooltip-list lang-pt">
                                             <li>Liderança de equipe com 8 profissionais (6 internos, 2 terceirizados)</li>
                                             <li>Gestão de orçamento anual de R$5 milhões (excluso folha de pagamento)</li>
                                             <li>Implementação de framework Renner para gestão de equipe e metodologia ágil</li>
+                                        </ul>
+                                        <ul class="tooltip-list lang-en">
+                                            <li>Team leadership with 8 professionals (6 internal, 2 outsourced)</li>
+                                            <li>Management of R$5 million annual budget (excluding payroll)</li>
+                                            <li>Implementation of Renner framework for team management and agile methodology</li>
                                         </ul>
                                     </div>
                                     
@@ -1241,25 +1406,42 @@
                                     </div>
                                     
                                     <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
+                                        <div class="tooltip-section-title lang-pt">
                                             <i class="fas fa-chart-pie"></i> Estratégias Data-Driven
                                         </div>
-                                        <ul class="tooltip-list">
+                                        <div class="tooltip-section-title lang-en">
+                                            <i class="fas fa-chart-pie"></i> Data-Driven Strategies
+                                        </div>
+                                        <ul class="tooltip-list lang-pt">
                                             <li>Segmentação avançada baseada em comportamento de consumo, gerando menos comunicação e mais assertividade</li>
                                             <li>Desenvolvimento de modelos preditivos para identificação de compras potenciais</li>
                                             <li>Estratégias personalizadas com incentivos específicos por segmento</li>
                                         </ul>
+                                        <ul class="tooltip-list lang-en">
+                                            <li>Advanced segmentation based on consumer behavior, generating less communication and more assertiveness</li>
+                                            <li>Development of predictive models for identifying potential purchases</li>
+                                            <li>Personalized strategies with specific incentives by segment</li>
+                                        </ul>
                                     </div>
                                     
                                     <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
+                                        <div class="tooltip-section-title lang-pt">
                                             <i class="fas fa-bullseye"></i> Métricas e Resultados
                                         </div>
-                                        <ul class="tooltip-list">
+                                        <div class="tooltip-section-title lang-en">
+                                            <i class="fas fa-bullseye"></i> Metrics and Results
+                                        </div>
+                                        <ul class="tooltip-list lang-pt">
                                             <li>Implementação de OKRs para mensuração de desempenho: incremental, ROI entre outros</li>
                                             <li>Automação de 80% das comunicações com clientes</li>
                                             <li>Alcance mensal de 7 milhões de clientes e 15 milhões de comunicações</li>
                                             <li>Crescimento de 37% em verbas de disparo (2023-2025)</li>
+                                        </ul>
+                                        <ul class="tooltip-list lang-en">
+                                            <li>Implementation of OKRs for performance measurement: incremental, ROI among others</li>
+                                            <li>Automation of 80% of customer communications</li>
+                                            <li>Monthly reach of 7 million customers and 15 million communications</li>
+                                            <li>37% growth in deployment budget (2023-2025)</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1270,7 +1452,8 @@
                     <div class="period">Set/2022 - Fev/2025</div>
                     
                     <div class="job-description">
-                        Responsável por estratégias de CRM, gestão de orçamento e contratos, liderança de equipe e implementação de métricas de desempenho para maximizar resultados. Gerencio comunicação com mais de 7 milhões de clientes mensalmente, otimizando canais e mensagens para aumentar engajamento e conversão.
+                        <p class="lang-pt">Responsável por estratégias de CRM, gestão de orçamento e contratos, liderança de equipe e implementação de métricas de desempenho para maximizar resultados. Gerencio comunicação com mais de 7 milhões de clientes mensalmente, otimizando canais e mensagens para aumentar engajamento e conversão.</p>
+                        <p class="lang-en">Responsible for CRM strategies, budget and contract management, team leadership and implementation of performance metrics to maximize results. Managed communication with over 7 million customers monthly, optimizing channels and messages to increase engagement and conversion.</p>
                     </div>
                     
                     <div class="achievements-container">
@@ -1279,9 +1462,13 @@
                                 <i class="fas fa-money-bill-wave"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Otimização de Contratos</div>
-                                <div class="achievement-description">
+                                <div class="achievement-title lang-pt">Otimização de Contratos</div>
+                                <div class="achievement-title lang-en">Contract Optimization</div>
+                                <div class="achievement-description lang-pt">
                                     Economia de 10% em contratos terceirizados, mantendo a qualidade dos serviços e otimizando a gestão de milhões em orçamento.
+                                </div>
+                                <div class="achievement-description lang-en">
+                                    10% savings on outsourced contracts, maintaining service quality and optimizing management of millions in budget.
                                 </div>
                             </div>
                         </div>
@@ -1291,9 +1478,13 @@
                                 <i class="fas fa-handshake"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Incremental de CRM aumentando</div>
-                                <div class="achievement-description">
+                                <div class="achievement-title lang-pt">Incremental de CRM aumentando</div>
+                                <div class="achievement-title lang-en">Increasing CRM Incremental</div>
+                                <div class="achievement-description lang-pt">
                                     Crescimento de +7 p.p YoY no incremental de consumo advindo de CRM, aumentando a importância da área na geração de receitas para a empresa.
+                                </div>
+                                <div class="achievement-description lang-en">
+                                    Growth of +7 p.p YoY in consumption incremental from CRM, increasing the importance of the area in revenue generation for the company.
                                 </div>
                             </div>
                         </div>
@@ -1391,10 +1582,11 @@
                         </div>
                     </div>
                     <div class="company">Realize CFI</div>
-                    <div class="period">Jul/2021 - Set/2022</div>
+                    <div class="period">Jul/2020 - Mar/2022</div>
                     
                     <div class="job-description">
-                        Liderei a transformação digital e migração para plataforma Databricks, desenvolvendo soluções analíticas avançadas e implementando framework de Customer Centricity. Produzi dashboards estratégicos e criei modelos de segmentação para otimizar as estratégias de comunicação e aumentar a conversão.
+                        <p class="lang-pt">Liderei a transformação digital e migração para plataforma Databricks, desenvolvendo soluções analíticas avançadas e implementando framework de Customer Centricity. Produzi dashboards estratégicos e criei modelos de segmentação para otimizar as estratégias de comunicação e aumentar a conversão.</p>
+                        <p class="lang-en">Led the digital transformation and migration to Databricks platform, developing advanced analytical solutions and implementing a Customer Centricity framework. Produced strategic dashboards and created segmentation models to optimize communication strategies and increase conversion.</p>
                     </div>
                     
                     <div class="achievements-container">
@@ -1403,9 +1595,13 @@
                                 <i class="fas fa-database"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Transformação Digital</div>
-                                <div class="achievement-description">
+                                <div class="achievement-title lang-pt">Transformação Digital</div>
+                                <div class="achievement-title lang-en">Digital Transformation</div>
+                                <div class="achievement-description lang-pt">
                                     Liderei a migração pioneira da plataforma Oracle para Databricks, aumentando exponencialmente a capacidade de processamento e reduzindo tempo de análise.
+                                </div>
+                                <div class="achievement-description lang-en">
+                                    Led the pioneering migration from Oracle platform to Databricks, exponentially increasing processing capacity and reducing analysis time.
                                 </div>
                             </div>
                         </div>
@@ -1415,9 +1611,13 @@
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Democratização de Dados</div>
-                                <div class="achievement-description">
+                                <div class="achievement-title lang-pt">Democratização de Dados</div>
+                                <div class="achievement-title lang-en">Data Democratization</div>
+                                <div class="achievement-description lang-pt">
                                     Viabilizei insights em tempo real para decisões estratégicas e facilitei o acesso a dados analíticos para outros departamentos.
+                                </div>
+                                <div class="achievement-description lang-en">
+                                    Enabled real-time insights for strategic decisions and facilitated access to analytical data for other departments.
                                 </div>
                             </div>
                         </div>
@@ -1642,7 +1842,7 @@
                     <div class="period">Mar/2019 - Jul/2020</div>
                     
                     <div class="job-description">
-                        Conduzi análises de Brand Equity, automatizei relatórios estratégicos e identificei oportunidades fiscais significativas. Transformei processos manuais em soluções automatizadas, liberando horas semanais para análises de maior valor agregado e fornecendo insights acionáveis para a equipe comercial.
+                        Conduzi análises de Brand Equity, automatizei relatórios estratégicos e identifiquei oportunidades fiscais significativas. Transformei processos manuais em soluções automatizadas, liberando horas semanais para análises de maior valor agregado e fornecendo insights acionáveis para a equipe comercial.
                     </div>
                     
                     <div class="achievements-container">
@@ -1823,32 +2023,45 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">FORMAÇÃO</h2>
+            <h2 class="section-title lang-pt">FORMAÇÃO</h2>
+            <h2 class="section-title lang-en">EDUCATION</h2>
             <div class="education-container">
                 <div class="education-item">
-                    <div class="degree">Mestrado em Administração</div>
+                    <div class="degree lang-pt">Mestrado em Administração</div>
+                    <div class="degree lang-en">Master's in Business Administration</div>
                     <div class="university">Universidade Federal de Santa Maria</div>
-                    <div class="thesis">Dissertação: Customer Equity</div>
-                    <a href="https://repositorio.ufsm.br/bitstream/handle/1/18895/DIS_PPGADMINISTRACAO_2019_MARCONATO_PEDRO.pdf;jsessionid=6A485B3D860AA4A153DBF63E8B7BE674?sequence=1" target="_blank" class="cta-button">
+                    <div class="thesis lang-pt">Dissertação: Customer Equity</div>
+                    <div class="thesis lang-en">Thesis: Customer Equity</div>
+                    <a href="https://repositorio.ufsm.br/bitstream/handle/1/18895/DIS_PPGADMINISTRACAO_2019_MARCONATO_PEDRO.pdf;jsessionid=6A485B3D860AA4A153DBF63E8B7BE674?sequence=1" target="_blank" class="cta-button lang-pt">
                         <i class="fas fa-file-pdf"></i> Ver dissertação completa
+                    </a>
+                    <a href="https://repositorio.ufsm.br/bitstream/handle/1/18895/DIS_PPGADMINISTRACAO_2019_MARCONATO_PEDRO.pdf;jsessionid=6A485B3D860AA4A153DBF63E8B7BE674?sequence=1" target="_blank" class="cta-button lang-en">
+                        <i class="fas fa-file-pdf"></i> View full thesis
                     </a>
                 </div>
                 
                 <div class="education-item">
-                    <div class="degree">Graduação em Administração</div>
+                    <div class="degree lang-pt">Graduação em Administração</div>
+                    <div class="degree lang-en">Bachelor's in Business Administration</div>
                     <div class="university">Universidade Federal de Santa Maria</div>
-                    <div class="thesis">TCC: Brand Equity</div>
+                    <div class="thesis lang-pt">TCC: Brand Equity</div>
+                    <div class="thesis lang-en">Final Project: Brand Equity</div>
                 </div>
             </div>
         </section>
         
         <section class="section">
-            <h2 class="section-title">PROJETOS DE IA EM DESENVOLVIMENTO</h2>
+            <h2 class="section-title lang-pt">PROJETOS DE IA EM DESENVOLVIMENTO</h2>
+            <h2 class="section-title lang-en">AI PROJECTS IN DEVELOPMENT</h2>
             <div class="projects-container">
                 <div class="project-item">
-                    <div class="project-title">FORÇA</div>
-                    <div class="project-description">
+                    <div class="project-title lang-pt">FORÇA</div>
+                    <div class="project-title lang-en">STRENGTH</div>
+                    <div class="project-description lang-pt">
                         Aplicativo de musculação com personalização avançada via IA. Plano de negócios com estratégia de crescimento via afiliados.
+                    </div>
+                    <div class="project-description lang-en">
+                        Bodybuilding app with advanced AI personalization. Business plan with affiliate-driven growth strategy.
                     </div>
                     <div>
                         <span class="tech-tag">React Native</span>
@@ -1858,9 +2071,13 @@
                 </div>
                 
                 <div class="project-item">
-                    <div class="project-title">RECONHECIMENTO VISUAL</div>
-                    <div class="project-description">
+                    <div class="project-title lang-pt">RECONHECIMENTO VISUAL</div>
+                    <div class="project-title lang-en">VISUAL RECOGNITION</div>
+                    <div class="project-description lang-pt">
                         Sistema de reconhecimento de aparelhos de academia via câmera com recomendação personalizada de treinos.
+                    </div>
+                    <div class="project-description lang-en">
+                        Camera-based gym equipment recognition system with personalized workout recommendations.
                     </div>
                     <div>
                         <span class="tech-tag">TensorFlow</span>
@@ -2128,6 +2345,36 @@
                 }
             });
         });
+    </script>
+    
+    <script>
+        // Função para troca de idioma
+        function switchLanguage(lang) {
+            // Remove classe ativa de todos os botões de idioma
+            document.querySelectorAll('.language-button').forEach(btn => {
+                btn.classList.remove('language-active');
+            });
+            
+            // Adiciona classe ativa ao botão do idioma selecionado
+            document.querySelector(`.language-button[onclick="switchLanguage('${lang}')"]`).classList.add('language-active');
+            
+            // Efeito de transição suave ao mudar de idioma
+            document.body.style.opacity = '0.7';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 300);
+            
+            // Implementar a lógica de alteração de idioma aqui
+            if (lang === 'en') {
+                // Mostrar elementos em inglês, ocultar em português
+                document.querySelectorAll('.lang-en').forEach(el => el.style.display = '');
+                document.querySelectorAll('.lang-pt').forEach(el => el.style.display = 'none');
+            } else {
+                // Mostrar elementos em português, ocultar em inglês
+                document.querySelectorAll('.lang-pt').forEach(el => el.style.display = '');
+                document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
+            }
+        }
     </script>
 </body>
 </html>
