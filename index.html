@@ -527,107 +527,6 @@
         
         /* Fazendo a tooltip permanecer visível quando clicada (para mobile) */
         .tooltip-active .tooltip-text {
-            visibility: visible !important;
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-        
-        .tooltip-header {
-            background-color: rgba(0,0,0,0.15);
-            padding: 12px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-            font-weight: 700;
-            font-size: 15px;
-            letter-spacing: 0.5px;
-        }
-        
-        .tooltip-content {
-            padding: 15px 20px;
-        }
-        
-        .tooltip-section {
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 12px;
-        }
-        
-        .tooltip-section:last-child {
-            margin-bottom: 0;
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        
-        .tooltip-section-title {
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            color: rgba(255,255,255,1);
-        }
-        
-        .tooltip-section-title i {
-            margin-right: 8px;
-            font-size: 13px;
-            color: var(--accent-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.15);
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-        }
-        
-        .tooltip-stat {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 5px 0;
-            color: #fff;
-        }
-        
-        .tooltip-list {
-            margin: 0;
-            padding-left: 15px;
-        }
-        
-        .tooltip-list li {
-            margin-bottom: 6px;
-            position: relative;
-            line-height: 1.5;
-        }
-        
-        .tooltip-list li::before {
-            content: "•";
-            position: absolute;
-            left: -12px;
-            color: var(--accent-color);
-        }
-        
-        /* Tooltip close button for all devices */
-        .tooltip-mobile-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255,255,255,0.3);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        
-        .tooltip-mobile-close:hover {
-            background: rgba(255,255,255,0.5);
-        }
-        
-        /* Enhanced web responsiveness for tooltips */
-        .tooltip-active .tooltip-text {
             position: absolute;
             z-index: 9999;
             overflow-y: auto;
@@ -1018,6 +917,27 @@
                 margin: 2mm;
             }
         }
+        
+        .project-cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white !important; /* Garante que a cor do texto seja branca */
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 10px; /* Espaçamento acima do botão */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .project-cta-button:hover {
+            background-color: var(--dark-accent);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+        .project-cta-button i {
+            margin-right: 6px;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -1047,11 +967,6 @@
     </style>
 </head>
 <body>
-    <!-- Botão de acesso ao currículo completo (visível apenas no PDF) -->
-    <a href="https://pedrohmarconato.github.io/Pedro-Marconato-CV/" target="_blank" class="view-full-cv-button">
-        <i class="fas fa-globe"></i> Acesse o Currículo Completo Online
-    </a>
-    
     <div class="cv-container">
         <header class="header">
             <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
@@ -1642,7 +1557,7 @@
                     <div class="period">Mar/2019 - Jul/2020</div>
                     
                     <div class="job-description">
-                        Conduzi análises de Brand Equity, automatizei relatórios estratégicos e identificei oportunidades fiscais significativas. Transformei processos manuais em soluções automatizadas, liberando horas semanais para análises de maior valor agregado e fornecendo insights acionáveis para a equipe comercial.
+                        Conduzi análises de Brand Equity, automatizei relatórios estratégicos e identifiquei oportunidades fiscais significativas. Transformei processos manuais em soluções automatizadas, liberando horas semanais para análises de maior valor agregado e fornecendo insights acionáveis para a equipe comercial.
                     </div>
                     
                     <div class="achievements-container">
@@ -1846,14 +1761,21 @@
             <h2 class="section-title">PROJETOS DE IA EM DESENVOLVIMENTO</h2>
             <div class="projects-container">
                 <div class="project-item">
-                    <div class="project-title">FORÇA</div>
+                    <div class="project-title"><img src="repofull.png" alt="RepoFull Logo" style="height: 30px; margin-bottom: 5px;"></div>
                     <div class="project-description">
-                        Aplicativo de musculação com personalização avançada via IA. Plano de negócios com estratégia de crescimento via afiliados.
+                        Insights semanais selecionados com curadoria humana e resumidos por inteligência artificial — direto ao ponto, sem ruído.
+                    </div>
+                    <div style="margin-top: 12px; margin-bottom: 8px;">
+                        <a href="https://www.repo.news/" target="_blank" class="project-cta-button">
+                            <i class="fas fa-external-link-alt"></i> Visitar Repo News
+                        </a>
                     </div>
                     <div>
-                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Vite</span>
                         <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">Claude API</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">React Query</span>
                     </div>
                 </div>
                 
@@ -2062,7 +1984,7 @@
             printButton.style.borderRadius = '4px';
             printButton.style.padding = '10px 15px';
             printButton.style.cursor = 'pointer';
-            printButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            printButton.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
             printButton.style.zIndex = '999';
             printButton.onclick = optimizeForPDF;
             document.body.appendChild(printButton);
