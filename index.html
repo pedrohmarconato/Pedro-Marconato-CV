@@ -571,7 +571,6 @@
                 line-height: 1.2 !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
-                color-adjust: exact !important;
             }
             
             .cv-container {
@@ -584,8 +583,8 @@
                 display: none !important;
             }
             
-            /* Esconder o estágio (último item da experiência) */
-            .experience-item:nth-last-child(1) {
+            .differential-container,
+            .cv-container > .section:nth-of-type(5) { /* Hides 'Projetos de IA' section */
                 display: none !important;
             }
             
@@ -769,15 +768,20 @@
             
             /* Achievement items */
             .achievements-container {
+                display: flex !important; /* Ensure flex behavior */
+                flex-wrap: wrap !important; /* Allow wrapping if items are too wide */
                 gap: 4px !important;
                 margin-top: 5px !important;
             }
             
             .achievement-item {
                 padding: 4px !important;
-                min-width: auto !important;
+                min-width: auto !important; /* Allow shrinking */
                 border-radius: 3px !important;
                 background-color: rgba(255, 255, 255, 0.6) !important;
+                flex-basis: calc(25% - 3px) !important; /* Aim for 4 items per row */
+                flex-grow: 1 !important; /* Allow items to grow if fewer than 4 */
+                box-sizing: border-box !important; /* Ensure padding is included in basis calculation */
             }
             
             .achievement-icon {
