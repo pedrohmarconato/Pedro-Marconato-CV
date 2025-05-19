@@ -186,8 +186,9 @@ window.sandTransition = (function() {
     let completedEffects = 0;
     
     // Etapa 2: Aplicar gradualmente a mudança de cores em todos os elementos (exceto alvo da areia)
-    const colorTransitionDuration = 2500; // ms
-    const colorTransitionStart = Date.now();
+    // Sincronizar cores com areia: duração = sand duration+atraso máximo
+    const colorTransitionDuration = 1800 + 400; // ms
+    const colorTransitionStart = performance.now();
     
     // Funções para interpolação de cores
     function hexToRgb(hex) {
@@ -217,7 +218,7 @@ window.sandTransition = (function() {
     
     // Identifica todos os elementos coloridos para transição gradual
     function updateColors() {
-      const progress = Math.min(1, (Date.now() - colorTransitionStart) / colorTransitionDuration);
+      const progress = Math.min(1, (performance.now() - colorTransitionStart) / colorTransitionDuration);
       
       // Atualizar gradiente do header
       const header = document.querySelector('.header');
@@ -243,8 +244,8 @@ window.sandTransition = (function() {
       }
     }
     
-    // Iniciar transição de cores
-    setTimeout(updateColors, 300);
+    // Iniciar transição de cores imediatamente, sincronizada com areia
+    updateColors();
     
     // Etapa 3: Aplicar efeito de areia sobre elementos específicos
     sandElements.forEach(el => {
@@ -252,29 +253,12 @@ window.sandTransition = (function() {
         applySandEffect(el, source, destination, () => {
           completedEffects++;
           if (completedEffects === totalEffects) {
-            // Etapa 4: Fade out/in final
-            const overlay = document.createElement('div');
-            overlay.style.position = 'fixed';
-            overlay.style.top = '0';
-            overlay.style.left = '0';
-            overlay.style.width = '100vw';
-            overlay.style.height = '100vh';
-            overlay.style.backgroundColor = 'white';
-            overlay.style.opacity = '0';
-            overlay.style.transition = 'opacity 0.5s';
-            overlay.style.zIndex = '10000';
-            document.body.appendChild(overlay);
-            
-            setTimeout(() => {
-              overlay.style.opacity = '0.8';
-              setTimeout(() => {
-                if (typeof onComplete === 'function') {
-                  onComplete();
-                } else {
-                  window.location.href = 'sicredi.html';
-                }
-              }, 500);
-            }, 200);
+            // Sem fade: navegar direto
+            if (typeof onComplete === 'function') {
+              onComplete();
+            } else {
+              window.location.href = 'sicredi.html';
+            }
           }
         });
       }, Math.random() * 400); // Começa em momentos ligeiramente diferentes
@@ -321,25 +305,38 @@ window.sandTransition = (function() {
     const newPrimary = hexToRgb(destTheme.primary);
     const newSecondary = hexToRgb(destTheme.secondary);
     
-    // Criar pontos de emissão de areia no lado esquerdo
+    // Criar pontos de emissão de areia no lado esquerdo e direito
     const emitters = [];
-    const emitterCount = 12;
+    const emitterCount = 16; // aumenta emissores para intensificar efeito
     
+    // Emissores da esquerda (L→R)
     for (let i = 0; i < emitterCount; i++) {
       emitters.push({
         x: 0,
         y: (canvas.height / emitterCount) * i + (canvas.height / emitterCount / 2),
-        rate: 2 + Math.random() * 3, // Partículas por frame
+        rate: 4 + Math.random() * 4,
         progress: 0,
-        activeUntil: (0.7 + Math.random() * 0.2) // Percentual da animação até quando este emissor permanece ativo
+        activeUntil: 0.7 + Math.random() * 0.2,
+        direction: 1
+      });
+    }
+    // Emissores da direita (R→L)
+    for (let i = 0; i < emitterCount; i++) {
+      emitters.push({
+        x: canvas.width,
+        y: (canvas.height / emitterCount) * i + (canvas.height / emitterCount / 2),
+        rate: 4 + Math.random() * 4,
+        progress: 0,
+        activeUntil: 0.7 + Math.random() * 0.2,
+        direction: -1
       });
     }
     
     // Criar camadas de grãos (para dar profundidade)
     const layers = [
-      { depth: 0.8, size: 1.5, speed: 1.0, count: 0, particles: [] }, // Fundo (mais lento)
-      { depth: 0.9, size: 2.0, speed: 1.3, count: 0, particles: [] }, // Meio
-      { depth: 1.0, size: 2.5, speed: 1.5, count: 0, particles: [] }  // Frente (mais rápido)
+      { depth: 0.8, size: 2.0, speed: 1.2, count: 0, particles: [] }, // Fundo (mais lento)
+      { depth: 0.9, size: 2.5, speed: 1.6, count: 0, particles: [] }, // Meio
+      { depth: 1.0, size: 3.0, speed: 2.0, count: 0, particles: [] }  // Frente (mais rápido)
     ];
     
     // Quantidade total de partículas desejada
@@ -378,7 +375,7 @@ window.sandTransition = (function() {
       const layer = layers[layerIndex];
       
       // Calcular posição com pequena variação aleatória
-      const x = emitter.x + (Math.random() * 5);
+      const x = emitter.x + emitter.direction * (Math.random() * 5);
       const y = emitter.y + (Math.random() * 6 - 3);
       
       // Calcular a posição de cor no gradiente (baseado na posição vertical)
@@ -403,11 +400,11 @@ window.sandTransition = (function() {
         x,
         y,
         // Velocidade inicial
-        vx: (2 + Math.random() * 2) * layer.speed,
-        vy: (Math.random() * 1 - 0.5) * layer.speed,
+        vx: emitter.direction * (4 + Math.random() * 4) * layer.speed, // maior velocidade horizontal
+        vy: (Math.random() * 2 - 1) * layer.speed, // maior velocidade vertical
         // Propriedades físicas
-        gravity: 0.04 * layer.speed,
-        friction: 0.99,
+        gravity: 0.03 * layer.speed, // menos gravidade para voar mais longe
+        friction: 0.97, // menos atrito para manter velocidade
         // Tamanho (variação para cada partícula)
         size: (Math.random() * 0.5 + 0.8) * layer.size,
         // Aparência
@@ -681,430 +678,4 @@ window.sandTransition = (function() {
   };
 })();
 
-
-const sandTransition = {
-    // Temas extraídos dos arquivos HTML
-    themes: {
-      blue: {
-        primary: '#0d3b66',
-        secondary: '#1e5f94',
-        name: 'CV General (Azul)'
-      },
-      green: {
-        primary: '#1b7139',
-        secondary: '#63c834',
-        name: 'Sicredi (Verde)'
-      }
-    },
-    
-    // Elementos e estados
-    canvas: null,
-    ctx: null,
-    animationFrame: null,
-    isTransitioning: false,
-    destinationUrl: '',
-    
-    // Função para inicializar o sistema
-    init: function() {
-      // Criar elemento canvas para a transição
-      this.createTransitionCanvas();
-      
-      // Capturar cliques em links entre as páginas
-      document.addEventListener('click', (e) => {
-        const link = e.target.closest('a');
-        if (!link) return;
-        
-        // Verificar se é um link entre as duas páginas específicas
-        const href = link.getAttribute('href');
-        if ((href === 'cv_general.html' || href === 'sicredi.html') && !this.isTransitioning) {
-          e.preventDefault();
-          
-          // Iniciar transição
-          this.startTransition(href);
-        }
-      });
-    },
-    
-    // Criar canvas para a transição
-    createTransitionCanvas: function() {
-      this.canvas = document.createElement('canvas');
-      this.canvas.style.position = 'fixed';
-      this.canvas.style.top = '0';
-      this.canvas.style.left = '0';
-      this.canvas.style.width = '100%';
-      this.canvas.style.height = '100%';
-      this.canvas.style.zIndex = '9999';
-      this.canvas.style.pointerEvents = 'none';
-      this.canvas.style.display = 'none';
-      document.body.appendChild(this.canvas);
-      
-      this.ctx = this.canvas.getContext('2d');
-    },
-    
-    // Função para converter cores hex para RGB
-    hexToRgb: function(hex) {
-      hex = hex.replace(/^#/, '');
-      const bigint = parseInt(hex, 16);
-      return {
-        r: (bigint >> 16) & 255,
-        g: (bigint >> 8) & 255,
-        b: bigint & 255
-      };
-    },
-    
-    // Iniciar a transição para uma nova página
-    startTransition: function(destUrl) {
-      if (this.isTransitioning) return;
-      
-      this.isTransitioning = true;
-      this.destinationUrl = destUrl;
-      
-      // Determinar os temas de origem e destino
-      const currentTheme = destUrl.includes('sicredi') ? 'blue' : 'green';
-      const targetTheme = destUrl.includes('sicredi') ? 'green' : 'blue';
-      
-      // Configurar o canvas
-      this.setupCanvas();
-      
-      // Obter cores para a transição
-      const currentPrimary = this.hexToRgb(this.themes[currentTheme].primary);
-      const currentSecondary = this.hexToRgb(this.themes[currentTheme].secondary);
-      const newPrimary = this.hexToRgb(this.themes[targetTheme].primary);
-      const newSecondary = this.hexToRgb(this.themes[targetTheme].secondary);
-      
-      // Iniciar a animação de partículas
-      this.animateSandTransition(currentPrimary, currentSecondary, newPrimary, newSecondary);
-    },
-    
-    // Configurar o canvas para a transição
-    setupCanvas: function() {
-      // Ajustar o tamanho do canvas para a janela
-      this.canvas.width = window.innerWidth;
-      this.canvas.height = window.innerHeight;
-      this.canvas.style.display = 'block';
-    },
-    
-    // Animação de transição com efeito de areia
-    animateSandTransition: function(currentPrimary, currentSecondary, newPrimary, newSecondary) {
-      // Configurações da animação
-      const duration = 1800; // ms
-      const startTime = performance.now();
-      
-      // Criar emissores de partículas (lado esquerdo)
-      const emitters = [];
-      const emitterCount = 12;
-      
-      for (let i = 0; i < emitterCount; i++) {
-        emitters.push({
-          x: 0,
-          y: (this.canvas.height / emitterCount) * i + (this.canvas.height / emitterCount / 2),
-          rate: 2 + Math.random() * 3, // Partículas por frame
-          progress: 0,
-          activeUntil: (0.7 + Math.random() * 0.2) // Percentual da animação até quando este emissor permanece ativo
-        });
-      }
-      
-      // Criar camadas de partículas (para dar profundidade)
-      const layers = [
-        { depth: 0.8, size: 1.5, speed: 1.0, count: 0, particles: [] }, // Fundo (mais lento)
-        { depth: 0.9, size: 2.0, speed: 1.3, count: 0, particles: [] }, // Meio
-        { depth: 1.0, size: 2.5, speed: 1.5, count: 0, particles: [] }  // Frente (mais rápido)
-      ];
-      
-      // Quantidade total de partículas
-      const totalParticles = Math.floor((this.canvas.width * this.canvas.height) / 120);
-      
-      // Distribuir partículas entre camadas
-      layers[0].count = Math.floor(totalParticles * 0.5);
-      layers[1].count = Math.floor(totalParticles * 0.3);
-      layers[2].count = Math.floor(totalParticles * 0.2);
-      
-      // Inicializar arrays de partículas
-      layers.forEach(layer => {
-        layer.particles = [];
-      });
-      
-      // Superfícies para colisão (simular "montículos" de areia)
-      const surfaces = [
-        { x1: 0, y1: this.canvas.height * 0.95, x2: this.canvas.width, y2: this.canvas.height * 0.95 } // Base
-      ];
-      
-      // Pilha de areia que vai se formando (atualizada dinamicamente)
-      const sandPiles = [];
-      const pileSegments = 40; // Dividir a largura em segmentos
-      const segmentWidth = this.canvas.width / pileSegments;
-      
-      for (let i = 0; i < pileSegments; i++) {
-        sandPiles.push({
-          x: i * segmentWidth,
-          height: 0,
-          maxHeight: (this.canvas.height * 0.2) + (Math.random() * this.canvas.height * 0.05) // Altura máxima variável
-        });
-      }
-      
-      // Função para criar uma nova partícula
-      const createSandParticle = (emitter, layerIndex) => {
-        const layer = layers[layerIndex];
-        
-        // Calcular posição com pequena variação aleatória
-        const x = emitter.x + (Math.random() * 5);
-        const y = emitter.y + (Math.random() * 6 - 3);
-        
-        // Calcular a posição de cor no gradiente (baseado na posição vertical)
-        const colorPosition = y / this.canvas.height;
-        
-        // Misturar as cores com base na posição
-        const color = {
-          r: Math.round(newPrimary.r * (1 - colorPosition) + newSecondary.r * colorPosition),
-          g: Math.round(newPrimary.g * (1 - colorPosition) + newSecondary.g * colorPosition),
-          b: Math.round(newPrimary.b * (1 - colorPosition) + newSecondary.b * colorPosition)
-        };
-        
-        // Adicionar variação sutil à cor para efeito de granulação
-        const colorVariation = 10; // Variação RGB
-        color.r = Math.max(0, Math.min(255, color.r + (Math.random() * colorVariation * 2 - colorVariation)));
-        color.g = Math.max(0, Math.min(255, color.g + (Math.random() * colorVariation * 2 - colorVariation)));
-        color.b = Math.max(0, Math.min(255, color.b + (Math.random() * colorVariation * 2 - colorVariation)));
-        
-        // Criar partícula com propriedades
-        return {
-          x,
-          y,
-          // Velocidade inicial
-          vx: (2 + Math.random() * 2) * layer.speed,
-          vy: (Math.random() * 1 - 0.5) * layer.speed,
-          // Propriedades físicas
-          gravity: 0.04 * layer.speed,
-          friction: 0.99,
-          // Tamanho
-          size: (Math.random() * 0.5 + 0.8) * layer.size,
-          // Aparência
-          color,
-          // Comportamento
-          bounced: false,
-          settled: false,
-          opacity: 0.9 * layer.depth,
-          // Forma (grãos de areia variados)
-          shape: Math.floor(Math.random() * 3) // 0, 1, 2 = diferentes formas
-        };
-      };
-      
-      // Verificar colisão com superfícies e pilhas
-      const checkCollisions = (particle) => {
-        // Verificar colisão com superfícies
-        for (const surface of surfaces) {
-          if (
-            particle.y + particle.size >= surface.y1 &&
-            particle.y - particle.size <= surface.y1 + 2 &&
-            particle.x >= surface.x1 &&
-            particle.x <= surface.x2 &&
-            particle.vy > 0
-          ) {
-            // Colisão com superfície base
-            particle.y = surface.y1 - particle.size;
-            particle.vy = -particle.vy * 0.3; // Amortecimento
-            particle.vx *= 0.8; // Fricção
-            particle.bounced = true;
-            return true;
-          }
-        }
-        
-        // Verificar colisão com pilhas de areia
-        const pileIndex = Math.floor(particle.x / segmentWidth);
-        if (
-          pileIndex >= 0 &&
-          pileIndex < pileSegments &&
-          particle.y + particle.size >= this.canvas.height - sandPiles[pileIndex].height &&
-          particle.vy > 0
-        ) {
-          // Colisão com pilha de areia
-          particle.y = this.canvas.height - sandPiles[pileIndex].height - particle.size;
-          
-          // Se a velocidade for pequena, considerar que assentou
-          if (Math.abs(particle.vy) < 0.5 && Math.abs(particle.vx) < 0.5) {
-            particle.settled = true;
-            particle.vx = 0;
-            particle.vy = 0;
-            
-            // Aumentar altura da pilha de areia neste segmento
-            if (sandPiles[pileIndex].height < sandPiles[pileIndex].maxHeight) {
-              sandPiles[pileIndex].height += particle.size * 0.5;
-            }
-            
-            // Simular a areia se espalhando para os lados
-            if (pileIndex > 0 && 
-                sandPiles[pileIndex].height > sandPiles[pileIndex-1].height + particle.size * 2) {
-              // Espalhar para a esquerda
-              sandPiles[pileIndex].height -= particle.size * 0.2;
-              sandPiles[pileIndex-1].height += particle.size * 0.2;
-            }
-            if (pileIndex < pileSegments - 1 && 
-                sandPiles[pileIndex].height > sandPiles[pileIndex+1].height + particle.size * 2) {
-              // Espalhar para a direita
-              sandPiles[pileIndex].height -= particle.size * 0.2;
-              sandPiles[pileIndex+1].height += particle.size * 0.2;
-            }
-          } else {
-            // Quicar com amortecimento
-            particle.vy = -particle.vy * 0.2;
-            particle.vx *= 0.8;
-            particle.bounced = true;
-          }
-          return true;
-        }
-        
-        return false;
-      };
-      
-      // Desenhar uma partícula
-      const drawSandParticle = (particle) => {
-        this.ctx.fillStyle = `rgba(${particle.color.r}, ${particle.color.g}, ${particle.color.b}, ${particle.opacity})`;
-        
-        switch (particle.shape) {
-          case 0: // Círculo (grão arredondado)
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-            this.ctx.fill();
-            break;
-            
-          case 1: // Quadrado (grão angular)
-            this.ctx.fillRect(
-              particle.x - particle.size / 1.5, 
-              particle.y - particle.size / 1.5, 
-              particle.size * 1.3, 
-              particle.size * 1.3
-            );
-            break;
-            
-          case 2: // Triângulo irregular (grão pontiagudo)
-            this.ctx.beginPath();
-            this.ctx.moveTo(particle.x, particle.y - particle.size);
-            this.ctx.lineTo(particle.x + particle.size, particle.y + particle.size);
-            this.ctx.lineTo(particle.x - particle.size, particle.y + particle.size * 0.8);
-            this.ctx.closePath();
-            this.ctx.fill();
-            break;
-        }
-      };
-      
-      // Função de animação
-      const animate = (currentTime) => {
-        const elapsed = currentTime - startTime;
-        
-        // Progresso da animação (0 a 1)
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // Limpar o canvas
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        
-        // Desenhar o gradiente de fundo atual
-        const gradientBg = this.ctx.createLinearGradient(0, 0, this.canvas.width, 0);
-        gradientBg.addColorStop(0, `rgb(${currentPrimary.r}, ${currentPrimary.g}, ${currentPrimary.b})`);
-        gradientBg.addColorStop(1, `rgb(${currentSecondary.r}, ${currentSecondary.g}, ${currentSecondary.b})`);
-        this.ctx.fillStyle = gradientBg;
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        
-        // Emitir novas partículas se estiver na fase de emissão
-        if (progress < 0.8) {
-          emitters.forEach((emitter, emitterIndex) => {
-            if (progress <= emitter.activeUntil) {
-              // Determinar quantas partículas emitir neste frame
-              const particlesToEmit = Math.random() < 0.5 ? Math.floor(emitter.rate) : Math.ceil(emitter.rate);
-              
-              for (let i = 0; i < particlesToEmit; i++) {
-                // Escolher uma camada com preferência para a camada de fundo
-                const layerIndex = Math.random() < 0.7 ? 0 : (Math.random() < 0.7 ? 1 : 2);
-                layers[layerIndex].particles.push(createSandParticle(emitter, layerIndex));
-              }
-            }
-          });
-        }
-        
-        // Atualizar e desenhar partículas por camada (de trás para frente)
-        layers.forEach(layer => {
-          // Atualizar partículas (física)
-          layer.particles.forEach(particle => {
-            if (!particle.settled) {
-              // Aplicar gravidade
-              particle.vy += particle.gravity;
-              
-              // Aplicar atrito
-              particle.vx *= particle.friction;
-              particle.vy *= particle.friction;
-              
-              // Atualizar posição
-              particle.x += particle.vx;
-              particle.y += particle.vy;
-              
-              // Verificar colisões
-              checkCollisions(particle);
-              
-              // Verificar se saiu do canvas
-              if (particle.x < 0 || particle.x > this.canvas.width || particle.y > this.canvas.height) {
-                particle.settled = true;
-              }
-            }
-          });
-          
-          // Desenhar partículas desta camada
-          layer.particles.forEach(particle => {
-            drawSandParticle(particle);
-          });
-        });
-        
-        // Sobrepor gradualmente o novo gradiente (para áreas sem areia)
-        const overlayOpacity = Math.min(progress * 1.2, 0.95);
-        
-        const newGradient = this.ctx.createLinearGradient(0, 0, this.canvas.width, 0);
-        newGradient.addColorStop(0, `rgba(${newPrimary.r}, ${newPrimary.g}, ${newPrimary.b}, ${overlayOpacity})`);
-        newGradient.addColorStop(1, `rgba(${newSecondary.r}, ${newSecondary.g}, ${newSecondary.b}, ${overlayOpacity})`);
-        
-        this.ctx.fillStyle = newGradient;
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        
-        // Continuar a animação ou finalizar
-        if (progress < 1) {
-          this.animationFrame = requestAnimationFrame(animate);
-        } else {
-          // Finalizar a animação e navegar para o destino
-          this.completeTransition();
-        }
-      };
-      
-      // Iniciar a animação
-      this.animationFrame = requestAnimationFrame(animate.bind(this));
-    },
-    
-    // Finalizar a transição e navegar para a nova página
-    completeTransition: function() {
-      // Criar um overlay de fade-out branco
-      const overlay = document.createElement('div');
-      overlay.style.position = 'fixed';
-      overlay.style.top = '0';
-      overlay.style.left = '0';
-      overlay.style.width = '100%';
-      overlay.style.height = '100%';
-      overlay.style.backgroundColor = 'white';
-      overlay.style.zIndex = '10000';
-      overlay.style.opacity = '0';
-      overlay.style.transition = 'opacity 0.3s ease-in-out';
-      document.body.appendChild(overlay);
-      
-      // Fade-out suave
-      setTimeout(() => {
-        overlay.style.opacity = '1';
-        setTimeout(() => {
-          // Limpar o canvas e navegar para o destino
-          if (this.animationFrame) {
-            cancelAnimationFrame(this.animationFrame);
-          }
-          window.location.href = this.destinationUrl;
-        }, 300);
-      }, 50);
-    }
-  };
-  
-  // Inicializar o sistema quando o DOM estiver pronto
-  document.addEventListener('DOMContentLoaded', () => {
-    sandTransition.init();
-  });
+// ... restante do código ...
