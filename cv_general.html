@@ -2107,5 +2107,53 @@
             });
         });
     </script>
+<script>
+// Sand transition trigger ao carregar cv_general.html com parâmetros especiais
+(function() {
+    function getUrlParams() {
+        const params = {};
+        window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+            params[key] = decodeURIComponent(value);
+        });
+        return params;
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = getUrlParams();
+        if (params.action === 'sandTransition' && params.targetPage === 'sicredi.html') {
+            // Torna fundo transparente
+            document.body.style.background = 'transparent';
+            var cv = document.querySelector('.cv-container');
+            if (cv) cv.style.background = 'transparent';
+
+            // Cria iframe de sicredi.html em background
+            var iframe = document.createElement('iframe');
+            iframe.src = 'sicredi.html';
+            iframe.style.position = 'fixed';
+            iframe.style.top = 0;
+            iframe.style.left = 0;
+            iframe.style.width = '100vw';
+            iframe.style.height = '100vh';
+            iframe.style.zIndex = '-1';
+            iframe.style.border = 'none';
+            document.body.appendChild(iframe);
+
+            // Aguarda iframe carregar e executa efeito de areia
+            iframe.onload = function() {
+                // Executa animação de areia sobre o header
+                var header = document.querySelector('.header');
+                if (window.sandTransition && typeof window.sandTransition.startSandEffect === 'function') {
+                    window.sandTransition.startSandEffect('cv_general', 'sicredi', function() {
+                        window.location.href = 'sicredi.html';
+                    });
+                } else {
+                    // fallback: redireciona direto
+                    window.location.href = 'sicredi.html';
+                }
+            };
+        }
+    });
+})();
+</script>
+<script src="sand-transition.js"></script>
 </body>
 </html>
