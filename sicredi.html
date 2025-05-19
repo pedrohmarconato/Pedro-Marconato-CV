@@ -898,18 +898,19 @@
             }
             
             .project-description {
-                font-size: 6px !important;
-                margin-bottom: 3px !important;
-                line-height: 1.2 !important;
+                font-size: 13px;
+                margin-bottom: 10px;
             }
             
             .tech-tag {
-                font-size: 6px !important;
-                padding: 1px 4px !important;
-                margin-right: 2px !important;
-                margin-bottom: 2px !important;
-                background-color: rgba(255, 255, 255, 0.6) !important;
-                color: var(--primary-color) !important;
+                display: inline-block;
+                background-color: rgba(255, 255, 255, 0.6);
+                color: var(--primary-color);
+                padding: 3px 8px;
+                border-radius: 4px;
+                font-size: 11px;
+                margin-right: 5px;
+                margin-bottom: 5px;
             }
             
             /* Hide tooltips */
@@ -1031,14 +1032,6 @@
             <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
             <div class="role">Gestão de CRM e Inteligência de Dados</div>
             
-            <dotlottie-player
-                src="sicredi/Uploads/sicredi_colors.lottie"
-                background="transparent"
-                speed="1"
-                style="width: 100px; height: 100px; position: absolute; top: 20px; right: 20px; z-index: 10;"
-                loop
-                autoplay>
-            </dotlottie-player>
 
             <div class="contact-info">
                 <button class="contact-button pulse" onclick="openEmailForm()">
@@ -1824,6 +1817,17 @@
                 </div>
             </div>
         </section>
+        
+        <section class="section">
+            <h2 class="section-title">PROJETOS</h2>
+            <div class="projects-container">
+                <div class="project-item">
+                    <div class="project-title"><img src="repofull.png" alt="RepoFull Logo" style="height: 50px; margin-bottom: 0px;"></div>
+                    <div class="project-description">
+                        Insights semanais selecionados com curadoria humana e resumidos por inteligência artificial — direto ao ponto, sem ruído.
+                    </div>
+                    <div style="margin-top: 12px; margin-bottom: 8px;">
+                        <a href="https://www.repo.news/" target="_blank" class="project-cta-button">
                             <i class="fas fa-external-link-alt"></i> Visitar Repo News
                         </a>
                     </div>
