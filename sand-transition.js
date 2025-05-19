@@ -50,6 +50,8 @@ window.sandTransition = (function() {
 
   // Cria e executa a animação de areia
   function sandTransition(destinationHref) {
+    // Adiciona classe para ativar as animações CSS
+    document.body.classList.add('play-sand-animations');
     const theme = getThemeForHref(destinationHref);
     const canvas = document.createElement('canvas');
     canvas.width = window.innerWidth;
@@ -126,6 +128,8 @@ window.sandTransition = (function() {
         canvas.style.transition = 'opacity 0.35s';
         canvas.style.opacity = 0;
         setTimeout(() => {
+          // Remove a classe antes de navegar para a próxima página
+          document.body.classList.remove('play-sand-animations');
           document.body.removeChild(canvas);
           window.location.href = destinationHref;
         }, 350);
@@ -157,6 +161,9 @@ window.sandTransition = (function() {
   });
   // Expor função programática para animação customizada
   function startSandEffect(sourceTheme, destinationTheme, onComplete) {
+    // Adiciona classe para ativar todas as animações CSS
+    document.body.classList.add('play-sand-animations');
+    
     // Verificar e buscar os temas corretos
     const source = THEMES[sourceTheme] || THEMES['cv_general'];
     const destination = THEMES[destinationTheme] || THEMES['sicredi'];
@@ -253,6 +260,9 @@ window.sandTransition = (function() {
         applySandEffect(el, source, destination, () => {
           completedEffects++;
           if (completedEffects === totalEffects) {
+            // Remove a classe quando todos os efeitos de areia forem concluídos
+            document.body.classList.remove('play-sand-animations');
+            
             // Sem fade: navegar direto
             if (typeof onComplete === 'function') {
               onComplete();

@@ -48,6 +48,14 @@
             color: white;
             padding: 30px;
             position: relative;
+            background-size: 200% 200%;
+            animation: gradientFlow 15s ease-in-out infinite alternate;
+            will-change: background-position;
+            animation-play-state: paused;
+        }
+        
+        .play-sand-animations .header {
+            animation-play-state: running;
         }
         
         .header h1 {
@@ -119,6 +127,41 @@
             100% { opacity: 0.5; }
         }
         
+        /* Animações para efeito de areia */
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        @keyframes colorPulse {
+            0% { color: var(--accent-color); }
+            50% { color: var(--secondary-color); }
+            100% { color: var(--accent-color); }
+        }
+        
+        @keyframes boxShadowPulse {
+            0% { box-shadow: 0 2px 4px rgba(13, 59, 102, 0.1); }
+            50% { box-shadow: 0 4px 8px rgba(13, 59, 102, 0.2); }
+            100% { box-shadow: 0 2px 4px rgba(13, 59, 102, 0.1); }
+        }
+        
+        @keyframes bgColorShift {
+            0% { background-color: var(--quadrant-1); }
+            50% { background-color: var(--light-accent); }
+            100% { background-color: var(--quadrant-1); }
+        }
+        
+        @keyframes borderColorPulse {
+            0% { border-color: var(--border-color); }
+            50% { border-color: var(--accent-color); }
+            100% { border-color: var(--border-color); }
+        }
+        
+        @keyframes iconFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+        
         .location {
             display: flex;
             align-items: center;
@@ -145,6 +188,14 @@
             border-radius: 4px;
             letter-spacing: 0.5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-size: 200% 200%;
+            animation: gradientFlow 15s ease-in-out infinite alternate;
+            will-change: background-position;
+            animation-play-state: paused;
+        }
+        
+        .play-sand-animations .section-title {
+            animation-play-state: running;
         }
         
         .profile-text {
@@ -166,10 +217,13 @@
             background-color: var(--quadrant-1);
             padding: 15px;
             border-radius: 6px;
+            animation: bgColorShift 10s ease-in-out infinite alternate;
+            will-change: background-color, box-shadow;
+            animation-play-state: paused;
         }
         
-        .skills-column:nth-child(2) {
-            background-color: var(--quadrant-2);
+        .play-sand-animations .skills-column {
+            animation-play-state: running;
         }
         
         .skill-item {
@@ -183,6 +237,13 @@
             color: var(--accent-color);
             margin-right: 8px;
             margin-top: 3px;
+            animation: colorPulse 12s ease-in-out infinite alternate, iconFloat 3s ease-in-out infinite alternate;
+            will-change: transform, color;
+            animation-play-state: paused, paused;
+        }
+        
+        .play-sand-animations .skill-item i {
+            animation-play-state: running, running;
         }
         
         .tools-container {
@@ -220,17 +281,23 @@
         }
         
         .differential-item {
+            display: flex;
+            align-items: flex-start;
             margin-bottom: 10px;
-            padding-left: 22px;
-            position: relative;
             font-size: 14px;
         }
         
         .differential-item i {
-            position: absolute;
-            left: 0;
-            top: 4px;
             color: var(--accent-color);
+            margin-right: 8px;
+            margin-top: 3px;
+            animation: colorPulse 12s ease-in-out infinite alternate, iconFloat 3s ease-in-out infinite alternate;
+            will-change: color, transform;
+            animation-play-state: paused, paused;
+        }
+        
+        .play-sand-animations .differential-item i {
+            animation-play-state: running, running;
         }
         
         .experience-timeline {
@@ -251,12 +318,19 @@
         }
         
         .experience-item {
-            margin-bottom: 30px;
-            position: relative;
-            padding: 15px;
-            border-radius: 6px;
             background-color: var(--light-color);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            animation: boxShadowPulse 18s ease-in-out infinite alternate;
+            will-change: box-shadow;
+            animation-play-state: paused;
+        }
+        
+        .play-sand-animations .experience-item {
+            animation-play-state: running;
         }
         
         .experience-item:nth-child(odd) {
@@ -281,13 +355,19 @@
         }
         
         .job-title {
-            font-weight: 600;
-            font-size: 17px;
+            font-weight: 700;
             color: var(--primary-color);
+            font-size: 16px;
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
             position: relative;
+            animation: colorPulse 20s ease-in-out infinite alternate;
+            will-change: color;
+            animation-play-state: paused;
+        }
+        
+        .play-sand-animations .job-title {
+            animation-play-state: running;
         }
         
         .job-number {
@@ -304,10 +384,16 @@
         }
         
         .company {
-            font-weight: 500;
-            font-size: 15px;
+            font-size: 14px;
             color: var(--secondary-color);
-            margin-bottom: 5px;
+            margin: 5px 0;
+            animation: colorPulse 16s ease-in-out infinite alternate;
+            will-change: color;
+            animation-play-state: paused;
+        }
+        
+        .play-sand-animations .company {
+            animation-play-state: running;
         }
         
         .period {
@@ -357,6 +443,13 @@
             color: var(--accent-color);
             margin-right: 10px;
             padding-top: 2px;
+            animation: colorPulse 15s ease-in-out infinite alternate, iconFloat 3s ease-in-out infinite alternate;
+            will-change: color, transform;
+            animation-play-state: paused, paused;
+        }
+        
+        .play-sand-animations .achievement-icon {
+            animation-play-state: running, running;
         }
         
         .achievement-content {
@@ -471,6 +564,9 @@
             font-size: 14px;
             margin-left: 5px;
             transition: transform 0.2s, color 0.2s;
+            animation: iconFloat 3s ease-in-out infinite alternate;
+            will-change: transform;
+            animation-play-state: paused;
         }
         
         .tooltip:hover .tooltip-icon,
@@ -764,7 +860,7 @@
                 padding: 5px !important;
                 box-shadow: none !important;
                 border-radius: 3px !important;
-                background-color: var(--quadrant-1) !important;
+                background-color: var(--light-color) !important;
             }
             
             .experience-item:nth-child(odd) {
@@ -977,6 +1073,13 @@
         .project-cta-button {
             display: inline-block;
             background-color: var(--accent-color);
+            animation: bgColorShift 14s ease-in-out infinite alternate;
+            will-change: background-color;
+            animation-play-state: paused;
+        }
+        
+        .play-sand-animations .project-cta-button {
+            animation-play-state: running;
             color: white !important; /* Garante que a cor do texto seja branca */
             padding: 8px 15px;
             text-decoration: none;
@@ -985,6 +1088,9 @@
             transition: background-color 0.3s, transform 0.2s;
             margin-top: 10px; /* Espaçamento acima do botão */
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            animation: btnPulseBlue 4s ease-in-out infinite alternate;
+            will-change: box-shadow, transform;
+            animation-play-state: paused;
         }
         .project-cta-button:hover {
             background-color: var(--dark-accent);
@@ -994,9 +1100,7 @@
         .project-cta-button i {
             margin-right: 6px;
         }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
+        
         .cta-button {
             display: inline-flex;
             align-items: center;
@@ -1008,8 +1112,12 @@
             margin-top: 10px;
             font-size: 13px;
             font-weight: 600;
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease-in-out infinite alternate;
+            will-change: background-position, transform;
             transition: all 0.3s ease;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation-play-state: paused;
         }
         
         .cta-button i {
@@ -1020,7 +1128,20 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
+        
+        /* Iniciar animações simultâneas à sand */
+        .play-sand-animations .header,
+        .play-sand-animations .section-title,
+        .play-sand-animations .skills-column,
+        .play-sand-animations .skill-item i,
+        .play-sand-animations .achievement-icon i,
+        .play-sand-animations .tooltip-icon,
+        .play-sand-animations .project-cta-button,
+        .play-sand-animations .cta-button {
+            animation-play-state: running !important;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="cv-container">
