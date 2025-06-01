@@ -1,0 +1,61 @@
+/* transition-styles.css */
+
+/* Estado de transição */
+body.transitioning {
+  overflow: hidden;
+}
+
+/* Desativa animações CSS durante a transição JS */
+body.transitioning * {
+  animation-play-state: paused !important;
+  transition: none !important;
+}
+
+/* Elementos que participam da transição de cor */
+body.transitioning .header,
+body.transitioning .section-title,
+body.transitioning .contact-button,
+body.transitioning .cta-button {
+  transition: background 2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+body.transitioning .skill-item i,
+body.transitioning .achievement-icon,
+body.transitioning .differential-item i {
+  transition: color 2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Overlay durante transição para suavizar */
+body.transitioning::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  z-index: 9998;
+  animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  50% { opacity: 0.1; }
+  100% { opacity: 0; }
+}
+
+/* Melhora a performance da animação */
+.transitioning .header,
+.transitioning .section-title,
+.transitioning .skill-item i,
+.transitioning .achievement-icon {
+  will-change: background, color;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Remove animações de hover durante transição */
+body.transitioning *:hover {
+  transform: none !important;
+}
