@@ -43,9 +43,9 @@ window.sandTransition = (function() {
 
   // Encontra o tema de destino baseado no href
   function getThemeForHref(href) {
-    if (href.includes('cv_general.html')) return THEMES['cv_general.html'];
-    if (href.includes('sicredi.html')) return THEMES['sicredi.html'];
-    return THEMES['cv_general.html'];
+    if (href.includes('cv_general.html')) return THEMES['cv_general'];
+    if (href.includes('sicredi.html')) return THEMES['sicredi'];
+    return THEMES['cv_general'];
   }
 
   // Cria e executa a animação de areia
