@@ -223,29 +223,53 @@ window.sandTransition = (function() {
       return rgbToHex(r, g, b);
     }
     
-    // Identifica todos os elementos coloridos para transição gradual
+    // Atualiza gradualmente as variáveis CSS do tema
     function updateColors() {
-      const progress = Math.min(1, (performance.now() - colorTransitionStart) / colorTransitionDuration);
-      
-      // Atualizar gradiente do header
-      const header = document.querySelector('.header');
-      if (header) {
-        header.style.background = `linear-gradient(135deg, ${interpolateColor(source.primary, destination.primary, progress)}, ${interpolateColor(source.secondary, destination.secondary, progress)})`;      
+      const progress = Math.min(
+        1,
+        (performance.now() - colorTransitionStart) / colorTransitionDuration
+      );
+
+      const rootStyle = document.documentElement.style;
+      rootStyle.setProperty(
+        '--primary-color',
+        interpolateColor(source.primary, destination.primary, progress)
+      );
+      rootStyle.setProperty(
+        '--secondary-color',
+        interpolateColor(source.secondary, destination.secondary, progress)
+      );
+      rootStyle.setProperty(
+        '--accent-color',
+        interpolateColor(source.accent, destination.accent, progress)
+      );
+      rootStyle.setProperty(
+        '--light-accent',
+        interpolateColor(source.light, destination.light, progress)
+      );
+      rootStyle.setProperty(
+        '--dark-accent',
+        interpolateColor(source.dark, destination.dark, progress)
+      );
+
+      const quad = interpolateColor(source.quadrant, destination.quadrant, progress);
+      for (let i = 1; i <= 4; i++) {
+        rootStyle.setProperty(`--quadrant-${i}`, quad);
       }
-      
-      // Atualizar gradiente de todos os section-titles
-      document.querySelectorAll('h2.section-title').forEach(title => {
-        title.style.background = `linear-gradient(135deg, ${interpolateColor(source.primary, destination.primary, progress)}, ${interpolateColor(source.secondary, destination.secondary, progress)})`;      
-      });
-      
-      // Atualizar cores de botões
-      document.querySelectorAll('.cta-button, .contact-button, button:not(.tooltip-mobile-close)').forEach(btn => {
-        if (btn.style.backgroundColor) {
-          btn.style.backgroundColor = interpolateColor(source.primary, destination.primary, progress);
-        }
-      });
-      
-      // Continuar atualizando cores até completar
+
+      rootStyle.setProperty(
+        '--light-color',
+        interpolateColor(source.lightBg, destination.lightBg, progress)
+      );
+      rootStyle.setProperty(
+        '--text-color',
+        interpolateColor(source.text, destination.text, progress)
+      );
+      rootStyle.setProperty(
+        '--border-color',
+        interpolateColor(source.border, destination.border, progress)
+      );
+
       if (progress < 1) {
         requestAnimationFrame(updateColors);
       }
