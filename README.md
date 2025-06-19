@@ -6,7 +6,6 @@ Este repositório contém a versão web do Currículo de Pedro Henrique Lima Mar
 
 - `index.html` – página inicial que pergunta o nome da empresa e direciona para a versão adequada do CV.
 - `cv_general.html` – versão padrão do currículo.
-- `sicredi.html` – versão personalizada para o Sicredi.
 - `css/` – arquivos de estilos adicionais.
 - `js/` – scripts JavaScript (contém o efeito de transição de areia).
 - `img/` – imagens utilizadas no CV.
