@@ -1,121 +1,677 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seleção de Empresa</title>
+    <title>Company Selection</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Open Sans', sans-serif;
-            /* background-color: #f0f8ff; Removed for transparent background */
-            color: #333;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1a1a1a;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        /* Animated gradient background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #061c32 0%, #031b2f 15%, #052a46 30%, #012d4e 45%, #083b62 60%, #07508b 75%, #0560a9 90%, #061c32 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating geometric shapes */
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg);
+            top: 70%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            bottom: 10%;
+            left: 30%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(20px) rotate(240deg); }
+        }
+
+        /* Modern glassmorphism container */
+        .container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 252, 255, 0.98) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            padding: 50px 45px;
+            border-radius: 28px;
+            box-shadow: 
+                0 20px 50px rgba(6, 28, 50, 0.3),
+                0 15px 30px rgba(0, 0, 0, 0.15),
+                inset 0 1px 2px rgba(255, 255, 255, 0.9),
+                inset 0 -1px 2px rgba(190, 226, 240, 0.3);
+            border: 1px solid rgba(190, 226, 240, 0.5);
+            position: relative;
+            z-index: 999;
+            width: 90%;
+            max-width: 480px;
+            max-height: calc(100vh - 80px);
+            transform: translateY(0) perspective(1000px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: auto;
+            animation: dynamicGlow 20s ease infinite;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(190, 226, 240, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes dynamicGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 20px 50px rgba(6, 28, 50, 0.35),
+                    0 15px 30px rgba(0, 0, 0, 0.15),
+                    0 0 100px rgba(6, 28, 50, 0.25),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+                    inset 0 -1px 2px rgba(190, 226, 240, 0.3);
+            }
+            15% { 
+                box-shadow: 
+                    0 20px 50px rgba(3, 27, 47, 0.35),
+                    0 15px 30px rgba(0, 0, 0, 0.15),
+                    0 0 100px rgba(3, 27, 47, 0.25),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+                    inset 0 -1px 2px rgba(190, 226, 240, 0.3);
+            }
+            30% { 
+                box-shadow: 
+                    0 20px 50px rgba(5, 42, 70, 0.35),
+                    0 15px 30px rgba(0, 0, 0, 0.15),
+                    0 0 100px rgba(5, 42, 70, 0.28),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+                    inset 0 -1px 2px rgba(190, 226, 240, 0.3);
+            }
+            45% { 
+                box-shadow: 
+                    0 20px 50px rgba(1, 45, 78, 0.35),
+                    0 15px 30px rgba(0, 0, 0, 0.15),
+                    0 0 100px rgba(1, 45, 78, 0.28),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+                    inset 0 -1px 2px rgba(190, 226, 240, 0.3);
+            }
+            60% { 
+                box-shadow: 
+                    0 20px 50px rgba(8, 59, 98, 0.35),
+                    0 15px 30px rgba(0, 0, 0, 0.15),
+                    0 0 100px rgba(8, 59, 98, 0.3),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+                    inset 0 -1px 2px rgba(190, 226, 240, 0.3);
+            }
+            75% { 
+                box-shadow: 
+                    0 20px 50px rgba(7, 80, 139, 0.35),
+                    0 15px 30px rgba(0, 0, 0, 0.15),
+                    0 0 100px rgba(7, 80, 139, 0.3),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+                    inset 0 -1px 2px rgba(190, 226, 240, 0.3);
+            }
+            90% { 
+                box-shadow: 
+                    0 20px 50px rgba(5, 96, 169, 0.35),
+                    0 15px 30px rgba(0, 0, 0, 0.15),
+                    0 0 100px rgba(5, 96, 169, 0.28),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+                    inset 0 -1px 2px rgba(190, 226, 240, 0.3);
+            }
+        }
+
+        .container:hover {
+            transform: translateY(-3px) scale(1.01);
+            animation-play-state: paused;
+        }
+
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #0560a9, #083b62) border-box;
+            box-shadow: 0 6px 24px rgba(5, 96, 169, 0.35),
+                        0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 32px rgba(5, 96, 169, 0.45),
+                        0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #061c32 0%, #07508b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
             text-align: center;
         }
-        .background-iframe {
+
+        .subtitle {
+            color: #052a46;
+            font-size: 17px;
+            margin-bottom: 0;
+            font-weight: 500;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .label-wrapper {
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-size: 17px;
+            font-weight: 500;
+            color: #031b2f;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .label-pt {
+            display: block;
+            font-size: 13px;
+            font-weight: 400;
+            color: #083b62;
+            font-style: italic;
+            opacity: 0.65;
+        }
+
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 20px 20px 20px 52px;
+            border: 2px solid transparent;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 400;
+            color: #031b2f;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #bee2f0, #0560a9) border-box;
+            transition: all 0.3s ease;
+            outline: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        input[type="text"]:focus {
+            background: linear-gradient(#f8fbfd, #f8fbfd) padding-box,
+                        linear-gradient(135deg, #0560a9, #083b62) border-box;
+            box-shadow: 0 0 0 3px rgba(5, 96, 169, 0.15),
+                        0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-1px);
+        }
+
+        input[type="text"]::placeholder {
+            color: #9ca3af;
+        }
+
+        button {
+            width: 100%;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, #07508b 0%, #0560a9 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.2px;
+            box-shadow: 0 4px 15px rgba(7, 80, 139, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .button-text-pt {
+            font-size: 13px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(7, 80, 139, 0.4);
+            background: linear-gradient(135deg, #083b62 0%, #0163a8 100%);
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(7, 80, 139, 0.3);
+        }
+
+        .disclaimer-wrapper {
+            margin-top: 20px;
+            padding: 16px;
+            background: linear-gradient(135deg, rgba(190, 226, 240, 0.4), rgba(190, 226, 240, 0.25));
+            border-radius: 12px;
+            border: 1px solid rgba(190, 226, 240, 0.6);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .disclaimer-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 8s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        .disclaimer-text {
+            font-size: 12px;
+            color: #031b2f;
+            line-height: 1.5;
+            text-align: center;
+            margin: 0;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .disclaimer-text strong {
+            color: #061c32;
+            font-weight: 600;
+        }
+
+        .disclaimer-text-pt {
+            font-size: 11px;
+            color: #052a46;
+            font-style: italic;
+            display: block;
+            margin-top: 3px;
+            font-weight: 400;
+        }
+
+        /* Loading state */
+        .loading {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 60px 30px;
+                max-height: calc(100vh - 40px);
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        /* Door animation styles */
+        .door-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 998;
+            pointer-events: none;
+            display: none;
+        }
+
+        .door-wrapper.active {
+            display: block;
+        }
+
+        .doors {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .door {
+            flex: 1;
+            height: 100%;
+            background: linear-gradient(135deg, #061c32 0%, #031b2f 15%, #052a46 30%, #012d4e 45%, #083b62 60%, #07508b 75%, #0560a9 90%, #061c32 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            transition: transform 2.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            position: relative;
+        }
+
+        .door.left {
+            transform-origin: left center;
+        }
+
+        .door.right {
+            transform-origin: right center;
+        }
+
+        .door-wrapper.opening .door.left {
+            transform: translateX(-100%);
+        }
+
+        .door-wrapper.opening .door.right {
+            transform: translateX(100%);
+        }
+
+        /* Door center line */
+        .door::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .door.left::after {
+            right: 0;
+        }
+
+        .door.right::after {
+            left: 0;
+        }
+
+        /* Container becomes the handle that moves with the door */
+        .container.door-handle {
+            transition: transform 2.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .door-wrapper.opening ~ .container.door-handle {
+            transform: translateX(calc(100vw + 50%));
+        }
+
+        /* Hidden iframe for preloading */
+        .target-frame {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: none;
-            opacity: 0.15; /* Adjust transparency as needed */
-            z-index: -1;
-            pointer-events: none; /* Makes iframe non-interactive */
-        }
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            width: 90%;
-            max-width: 400px;
-            position: relative; /* Ensure container is above iframe */
-            z-index: 1;         /* Ensure container is above iframe */
-        }
-        h1 {
-            color: #0056b3; /* Primary blue from original index */
-            margin-bottom: 25px;
-            font-size: 24px;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 18px;
-            color: #333;
-        }
-        input[type="text"] {
-            width: calc(100% - 24px); /* Account for padding */
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            /* text-transform: lowercase; CSS hint, JS enforces */
-        }
-        button {
-            background-color: #007bff; /* Accent blue from original index */
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #0056b3; /* Darker blue */
-        }
-        .disclaimer-text {
-            font-size: 12px;
-            color: #666;
-            margin-top: 20px;
-            line-height: 1.4;
+            z-index: 1;
+            opacity: 1;
+            pointer-events: auto;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <iframe src="cv_general.html" class="background-iframe"></iframe>
-    <div class="container">
-        <h1>Bem-vindo(a)!</h1>
-        <label for="companyName">Você trabalha em que empresa?</label>
-        <input type="text" id="companyName" name="companyName" placeholder="Digite o nome da empresa">
-        <button onclick="checkCompany()">Acessar CV</button>
-        <p class="disclaimer-text">* As informações não serão usadas posteriormente, a informação personalizará o CV</p>
+    <div class="animated-bg"></div>
+    
+    <!-- Hidden iframe for target page -->
+    <iframe class="target-frame" id="targetFrame"></iframe>
+    
+    <!-- Door animation wrapper -->
+    <div class="door-wrapper" id="doorWrapper">
+        <div class="doors">
+            <div class="door left"></div>
+            <div class="door right"></div>
+        </div>
+    </div>
+    
+    <!-- Floating shapes -->
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    
+    <div class="container door-handle">
+        <div class="profile-section">
+            <img src="assets/images/Pedro.jfif" alt="Pedro Marconato" class="profile-img">
+            <h1>Welcome!</h1>
+            <p class="subtitle">Pedro Marconato</p>
+        </div>
+        
+        <div class="label-wrapper">
+            <label for="companyName">Which company do you work for?</label>
+            <span class="label-pt">Em qual empresa você trabalha?</span>
+        </div>
+        
+        <div class="input-wrapper">
+            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            <input type="text" id="companyName" name="companyName" placeholder="Enter company name" autocomplete="off">
+        </div>
+        
+        <button onclick="checkCompany()">
+            <span id="buttonText">Access Resume</span>
+            <span id="buttonTextPt" class="button-text-pt">Acessar Currículo</span>
+            <div class="loading" id="loading"></div>
+        </button>
+        
+        <div class="disclaimer-wrapper">
+            <p class="disclaimer-text">
+                <strong>🔒 Privacy guaranteed:</strong> Information is used only to personalize your resume and is not stored.
+                <span class="disclaimer-text-pt">As informações são usadas apenas para personalizar seu currículo e não são armazenadas.</span>
+            </p>
+        </div>
     </div>
 
     <script>
         const companyInput = document.getElementById('companyName');
+        const button = document.querySelector('button');
+        const buttonText = document.getElementById('buttonText');
+        const loading = document.getElementById('loading');
 
         function checkCompany() {
-            const companyName = companyInput.value.trim().toLowerCase(); // Enforce lowercase and trim whitespace
-
-            if (companyName === "sicredi") {
-                window.location.href = "cv_general.html?action=sandTransition&targetPage=sicredi.html";
-            } else {
-                window.location.href = "cv_general.html";
+            const companyName = companyInput.value.trim().toLowerCase();
+            
+            if (!companyName) {
+                // Add shake animation for empty input
+                companyInput.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    companyInput.style.animation = '';
+                }, 500);
+                return;
             }
+            
+            // Show loading state
+            buttonText.style.display = 'none';
+            document.getElementById('buttonTextPt').style.display = 'none';
+            loading.style.display = 'block';
+            button.disabled = true;
+            
+            // Company mappings
+            const companyMappings = {
+                'templates/companies/ifood.html': ['ifood', 'i food', 'if'],
+                'templates/companies/rdstation.html': ['rd', 'rdstation', 'rds', 'rd station'],
+                'templates/companies/sicredi.html': ['sicredi', 'sic', 'sicred'],
+                'templates/companies/boticario.html': ['boticario', 'gb', 'grupoboticario', 'grupo boticario', 'grupo boticário', 'grupoboticário']
+            };
+            
+            // Find matching target
+            let target = 'cv_general.html';
+            for (const [page, keywords] of Object.entries(companyMappings)) {
+                if (keywords.includes(companyName)) {
+                    target = page;
+                    break;
+                }
+            }
+            
+            // Show door animation and load target page
+            const doorWrapper = document.getElementById('doorWrapper');
+            const targetFrame = document.getElementById('targetFrame');
+            const container = document.querySelector('.container');
+            
+            // Activate door animation
+            doorWrapper.classList.add('active');
+            
+            // Preload target page in iframe with cache busting
+            targetFrame.src = target + '?t=' + new Date().getTime();
+            
+            // Hide the animated background immediately to show iframe content
+            document.querySelector('.animated-bg').style.display = 'none';
+            document.querySelectorAll('.shape').forEach(shape => shape.style.display = 'none');
+            
+            // Wait a bit then start door opening animation
+            setTimeout(() => {
+                doorWrapper.classList.add('opening');
+            }, 500);
         }
 
-        // Enforce lowercase as user types and validate
+        // Enforce lowercase as user types
         companyInput.addEventListener('input', function() {
             let value = this.value;
             let sanitizedValue = "";
             for (let i = 0; i < value.length; i++) {
                 let char = value[i];
-                // Allow letters, numbers, and spaces, convert letters to lowercase
-                if ( (char >= 'a' && char <= 'z') || (char >= '0' && char <= '9') || char === ' ') {
+                if ((char >= 'a' && char <= 'z') || (char >= '0' && char <= '9') || char === ' ') {
                     sanitizedValue += char;
                 } else if (char >= 'A' && char <= 'Z') {
                     sanitizedValue += char.toLowerCase();
                 }
-                // Other characters are ignored
             }
             this.value = sanitizedValue;
         });
@@ -123,8 +679,38 @@
         // Allow Enter key to submit
         companyInput.addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
-                event.preventDefault(); 
+                event.preventDefault();
                 checkCompany();
+            }
+        });
+
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Function to reload iframe (useful for development)
+        window.reloadFrame = function() {
+            const iframe = document.getElementById('targetFrame');
+            if (iframe && iframe.src) {
+                // Remove old timestamp and add new one
+                let url = iframe.src.split('?')[0];
+                iframe.src = url + '?t=' + new Date().getTime();
+                console.log('Iframe reloaded with fresh content');
+            }
+        };
+
+        // Add keyboard shortcut for reloading iframe (Ctrl+R or Cmd+R)
+        document.addEventListener('keydown', function(event) {
+            if ((event.ctrlKey || event.metaKey) && event.key === 'r') {
+                event.preventDefault();
+                window.reloadFrame();
             }
         });
     </script>

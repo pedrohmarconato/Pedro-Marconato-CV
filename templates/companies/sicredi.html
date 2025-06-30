@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Marconato - Sicredi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            /* Sicredi Official Colors */
+            --sicredi-green: #3FA110;
+            --sicredi-dark-green: #146E37;
+            --sicredi-light-neutral: #D7E6C8;
+            --sicredi-dark-neutral: #5A645A;
+            
+            /* Applied Colors */
+            --primary-color: #3FA110;
+            --secondary-color: #146E37;
+            --accent-color: #3FA110;
+            --light-accent: #D7E6C8;
+            --dark-accent: #146E37;
+            --text-color: #2c3e50;
+            --border-color: rgba(63, 161, 16, 0.2);
+            --background-gradient: linear-gradient(135deg, #3FA110 0%, #146E37 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: #f8faf7;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f8faf7 0%, #e8f5e1 25%, #f0f8ed 50%, #e8f5e1 75%, #f8faf7 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating shapes */
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            background: var(--sicredi-green);
+            border-radius: 50%;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            background: var(--sicredi-dark-green);
+            transform: rotate(45deg);
+            top: 60%;
+            right: 10%;
+            animation-delay: 8s;
+        }
+
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            background: var(--sicredi-green);
+            border-radius: 50%;
+            bottom: 20%;
+            left: 25%;
+            animation-delay: 15s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(30px) rotate(240deg); }
+        }
+        
+        .cv-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 28px;
+            box-shadow: 
+                0 10px 40px rgba(63, 161, 16, 0.1),
+                inset 0 1px 2px rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(63, 161, 16, 0.05);
+            overflow: hidden;
+            position: relative;
+            animation: containerGlow 20s ease infinite;
+        }
+
+        @keyframes containerGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 20px 50px rgba(63, 161, 16, 0.15),
+                    0 0 100px rgba(63, 161, 16, 0.05),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+            }
+            50% { 
+                box-shadow: 
+                    0 20px 50px rgba(63, 161, 16, 0.2),
+                    0 0 120px rgba(63, 161, 16, 0.1),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.95);
+            }
+        }
+
+        .cv-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(63, 161, 16, 0.05) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .header {
+            background: var(--background-gradient);
+            padding: 60px 60px 80px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 8s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .sicredi-logo {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            width: 140px;
+            height: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        .header-text {
+            max-width: 850px;
+            padding-right: 180px;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .role {
+            font-size: 20px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 10px 16px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+        
+        .contact-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-button i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .location i {
+            margin-right: 6px;
+        }
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .contact-cta {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+            animation: gentlePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.02);
+            }
+        }
+        
+        .section {
+            padding: 35px 80px;
+            position: relative;
+        }
+
+        .section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 80px;
+            right: 80px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+        }
+        
+        .section-title {
+            background: var(--background-gradient);
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 12px 20px;
+            border-radius: 14px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(63, 161, 16, 0.2);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: titleShimmer 6s infinite;
+        }
+
+        @keyframes titleShimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+        
+        .profile-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-color);
+            text-align: justify;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        @media (max-width: 1000px) {
+            .skills-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .skills-column {
+            background: linear-gradient(135deg, rgba(215, 230, 200, 0.3), rgba(215, 230, 200, 0.1));
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(63, 161, 16, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .skills-column:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(63, 161, 16, 0.1);
+            border-color: rgba(63, 161, 16, 0.2);
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--text-color);
+            transition: transform 0.2s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .skill-item i {
+            color: var(--sicredi-green);
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        
+        .tool-item {
+            margin-bottom: 18px;
+        }
+        
+        .tool-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .tool-percentage {
+            font-size: 13px;
+            color: var(--sicredi-green);
+            font-weight: 600;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: rgba(63, 161, 16, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--sicredi-green), var(--sicredi-dark-green));
+            border-radius: 10px;
+            position: relative;
+            animation: progressGrow 1.5s ease-out;
+        }
+
+        @keyframes progressGrow {
+            from { width: 0; }
+        }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progressShimmer 2s infinite;
+        }
+
+        @keyframes progressShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .tooltip .tooltip-icon {
+            color: var(--sicredi-green);
+            font-size: 14px;
+            margin-left: 5px;
+            transition: transform 0.2s, color 0.2s;
+        }
+        
+        .tooltip:hover .tooltip-icon,
+        .tooltip:focus .tooltip-icon,
+        .tooltip:active .tooltip-icon {
+            color: var(--sicredi-dark-green);
+            transform: scale(1.2);
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 380px;
+            background: linear-gradient(145deg, var(--sicredi-dark-green), var(--sicredi-green));
+            color: white;
+            text-align: left;
+            border-radius: 12px;
+            padding: 0;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -190px;
+            opacity: 0;
+            transition: opacity 0.4s, transform 0.3s;
+            transform: translateY(10px);
+            font-size: 13px;
+            line-height: 1.5;
+            box-shadow: 0 10px 30px rgba(20, 110, 55, 0.3);
+            overflow: hidden;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -8px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--sicredi-green) transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltip-text,
+        .tooltip:focus .tooltip-text,
+        .tooltip:active .tooltip-text,
+        .tooltip.tooltip-active .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            min-height: 330px;
+        }
+        
+        .tooltip-active .tooltip-text {
+            position: absolute;
+            z-index: 9999;
+            overflow-y: auto;
+        }
+        
+        .tooltip-header {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 12px 18px;
+            font-weight: 600;
+            font-size: 1.05em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+        
+        .tooltip-content {
+            padding: 18px;
+        }
+        
+        .tooltip-section {
+            margin-bottom: 15px;
+        }
+        
+        .tooltip-section:last-of-type {
+            margin-bottom: 0;
+        }
+        
+        .tooltip-section-title {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 1em;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        
+        .tooltip-section-title .fas {
+            margin-right: 12px;
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+            opacity: 1;
+            color: #f0f0f0;
+        }
+        
+        .tooltip-list {
+            list-style-position: outside;
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+        
+        .tooltip-list li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .tooltip-list li::marker {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Mobile responsiveness for tooltips */
+        @media (max-width: 768px) {
+            .tooltip .tooltip-text {
+                width: 90vw;
+                max-width: 320px;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-left: 0;
+                font-size: 12px;
+                max-height: 75vh;
+            }
+            
+            .tooltip-active .tooltip-text {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) !important;
+                width: 90vw;
+                max-width: 380px;
+                z-index: 10000;
+            }
+        }
+        
+        .experience-timeline {
+            position: relative;
+            margin-left: 30px;
+            padding-left: 40px;
+        }
+        
+        .experience-timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--sicredi-green), var(--sicredi-dark-green));
+            border-radius: 3px;
+        }
+        
+        .experience-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding: 25px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(63, 161, 16, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 20px rgba(63, 161, 16, 0.08);
+            border-color: rgba(63, 161, 16, 0.15);
+        }
+        
+        .experience-item::before {
+            content: "";
+            position: absolute;
+            left: -46px;
+            top: 35px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--sicredi-green);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(63, 161, 16, 0.2);
+            z-index: 1;
+        }
+        
+        .job-title {
+            font-weight: 600;
+            font-size: 20px;
+            color: var(--sicredi-dark-green);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .job-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--background-gradient);
+            color: white;
+            border-radius: 50%;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(63, 161, 16, 0.3);
+        }
+        
+        .company {
+            font-weight: 500;
+            font-size: 16px;
+            color: var(--sicredi-green);
+            margin-bottom: 5px;
+        }
+        
+        .period {
+            font-size: 14px;
+            color: var(--sicredi-dark-neutral);
+            font-style: italic;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: rgba(215, 230, 200, 0.5);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        
+        .job-description {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+        
+        .achievements-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        @media (max-width: 900px) {
+            .achievements-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .achievements-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .achievement-item {
+            background: linear-gradient(135deg, rgba(63, 161, 16, 0.05), rgba(63, 161, 16, 0.02));
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid rgba(63, 161, 16, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(63, 161, 16, 0.15);
+            border-color: var(--sicredi-green);
+        }
+        
+        .achievement-icon {
+            font-size: 24px;
+            color: var(--sicredi-green);
+            flex-shrink: 0;
+        }
+        
+        .achievement-content {
+            flex: 1;
+        }
+        
+        .achievement-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--sicredi-dark-green);
+            margin-bottom: 6px;
+        }
+        
+        .achievement-description {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+        
+        .education-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        
+        @media (max-width: 700px) {
+            .education-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .education-item {
+            background: linear-gradient(135deg, rgba(215, 230, 200, 0.4), rgba(215, 230, 200, 0.2));
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(63, 161, 16, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(63, 161, 16, 0.1);
+        }
+        
+        .degree {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--sicredi-dark-green);
+            margin-bottom: 8px;
+        }
+        
+        .university {
+            font-size: 15px;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+        
+        .thesis {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--sicredi-dark-neutral);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            background: var(--background-gradient);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(63, 161, 16, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(63, 161, 16, 0.4);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button i {
+            margin-right: 8px;
+        }
+        
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        @media (max-width: 900px) {
+            .projects-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .project-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(63, 161, 16, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--background-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(63, 161, 16, 0.15);
+            border-color: var(--sicredi-green);
+        }
+        
+        .project-title {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--sicredi-dark-green);
+            margin-bottom: 12px;
+        }
+        
+        .project-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background: rgba(63, 161, 16, 0.1);
+            color: var(--sicredi-dark-green);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(63, 161, 16, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--sicredi-green);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(63, 161, 16, 0.3);
+        }
+
+        /* Print button */
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--background-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(63, 161, 16, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        /* Language toggle button */
+        .language-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: 2px solid rgba(63, 161, 16, 0.2);
+        }
+        
+        .language-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(63, 161, 16, 0.3);
+            border-color: rgba(63, 161, 16, 0.4);
+        }
+        
+        .language-option {
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-color);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .language-option i {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        .language-option.active {
+            background: var(--background-gradient);
+            color: white;
+            box-shadow: 0 2px 10px rgba(63, 161, 16, 0.3);
+            animation: pulseActive 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseActive {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .language-option.active i {
+            opacity: 1;
+            animation: checkRotate 0.5s ease-out;
+        }
+        
+        @keyframes checkRotate {
+            from {
+                transform: rotate(-180deg);
+                opacity: 0;
+            }
+            to {
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+        }
+        
+        .language-option:not(.active):hover {
+            background: rgba(63, 161, 16, 0.05);
+            color: var(--sicredi-green);
+        }
+        
+        .language-divider {
+            width: 1px;
+            height: 20px;
+            background: rgba(63, 161, 16, 0.2);
+            margin: 0 5px;
+        }
+
+        .print-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(63, 161, 16, 0.4);
+        }
+
+        .print-button i {
+            font-size: 24px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .cv-container {
+                max-width: 100%;
+                margin: 20px;
+            }
+            
+            .header {
+                padding: 40px 30px 60px 30px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .header-text {
+                padding-right: 0;
+            }
+
+            .sicredi-logo {
+                width: 100px;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+
+            .section:not(:last-child)::after {
+                left: 20px;
+                right: 20px;
+            }
+
+            .experience-timeline {
+                margin-left: 20px;
+                padding-left: 30px;
+            }
+
+            .achievements-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .animated-bg,
+            .shape,
+            .print-button,
+            .language-toggle {
+                display: none !important;
+            }
+
+            .cv-container {
+                box-shadow: none;
+                border: none;
+                margin: 0;
+            }
+
+            .section-title {
+                background: var(--sicredi-green) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .header {
+                background: var(--sicredi-green) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                page-break-inside: avoid;
+                padding: 30px !important;
+            }
+            
+            .header-text {
+                padding-right: 0 !important;
+            }
+            
+            /* Logo específico do Sicredi */
+            .sicredi-logo {
+                position: static !important;
+                display: block !important;
+                margin: 20px auto 0 !important;
+                width: 100px !important;
+                opacity: 1 !important;
+                filter: brightness(0) invert(1) !important;
+            }
+            
+            /* Esconder elementos decorativos */
+            .header::after,
+            .header::before {
+                display: none !important;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="animated-bg"></div>
+    
+    <!-- Floating shapes -->
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    
+    <div class="cv-container">
+        <header class="header">
+            <div class="header-content">
+                <img src="../../assets/images/sicredi.svg" alt="Sicredi" class="sicredi-logo">
+                <div class="header-text">
+                    <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
+                    <div class="role">CRM Management and Data Intelligence</div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <button class="contact-button" onclick="openEmailForm()">
+                                <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
+                            </button>
+                            <span class="contact-cta">Click to send an email</span>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <button class="contact-button" onclick="openPhoneForm()">
+                                <i class="fas fa-phone"></i> +55 (55) 981147758
+                            </button>
+                            <span class="contact-cta">Click to send a message</span>
+                        </div>
+                        
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i> Cachoeira do Sul, RS
+                        </div>
+                        
+                        <div class="contact-item">
+                            <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                            <span class="contact-cta">Click to visit LinkedIn</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title">PROFESSIONAL PROFILE</h2>
+            <p class="profile-text">
+                Professional in CRM Management and Data Intelligence focused on quantifiable results. At Grupo RBS, I led a Brand Equity research audit that supported strategic decisions. At DBC/Realize CFI, I developed a pipeline for competitor analysis generating insights on R$1B in transactions and automated critical reports. As CRM Coordinator at Lojas Renner, I optimized budget generating 10% annual savings, implemented 80% automated communications and strategies that resulted in consumption increase. My approach integrates data, technology and strategic vision for tangible results.
+            </p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">SKILLS & TOOLS</h2>
+            <div class="skills-container">
+                <div class="skills-column">
+                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Strategic Skills</h3>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>CRM Management</span>
+                            <span class="tool-percentage">98%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 98%"></div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>Customer Equity</span>
+                            <span class="tool-percentage">92%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>Business Intelligence</span>
+                            <span class="tool-percentage">88%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>Strategic Leadership</span>
+                            <span class="tool-percentage">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>Brand Equity</span>
+                            <span class="tool-percentage">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>Brand Management</span>
+                            <span class="tool-percentage">78%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 78%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-column">
+                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Tools & Technologies</h3>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>PowerBI</span>
+                            <span class="tool-percentage">95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>Oracle/Databricks</span>
+                            <span class="tool-percentage">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>Python/SQL</span>
+                            <span class="tool-percentage">75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>Kanbanize</span>
+                            <span class="tool-percentage">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-column">
+                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Emerging Technologies</h3>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>LLM & AI Agents</span>
+                            <span class="tool-percentage">82%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 82%"></div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>AI for CRM</span>
+                            <span class="tool-percentage">86%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 86%"></div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>AI/LLM APIs</span>
+                            <span class="tool-percentage">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>Data Analytics</span>
+                            <span class="tool-percentage">91%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 91%"></div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>Machine Learning</span>
+                            <span class="tool-percentage">77%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 77%"></div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span>Responsys</span>
+                            <span class="tool-percentage">75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
+            
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="job-title">
+                        <div class="job-number">1</div>
+                        CRM COORDINATOR
+                        <div class="tooltip">
+                            <i class="fas fa-info-circle tooltip-icon"></i>
+                            <span class="tooltip-text">
+                                <div class="tooltip-header">
+                                    Position Details: CRM Coordinator
+                                </div>
+                                <div class="tooltip-content">
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-users"></i> Team and Budget Management
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Leadership of multidisciplinary team with 8 professionals</li>
+                                            <li>Annual budget management of R$ 25 million</li>
+                                            <li>Savings of R$ 2.5M/year in outsourced contracts</li>
+                                        </ul>
+                                    </div>
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-chart-line"></i> Performance Metrics
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>R$ 180M incremental consumption via CRM (+7 p.p YoY)</li>
+                                            <li>+450M in OFF-Us volume (8% increase)</li>
+                                            <li>350K customers retained (23% churn reduction)</li>
+                                            <li>+R$ 1.2K average ticket (28% increase)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-rocket"></i> Implemented Innovations
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>80% automated communications</li>
+                                            <li>Advanced segmentation with Machine Learning</li>
+                                            <li>Real-time dashboard for decision making</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="company">Realize CFI</div>
+                    <div class="period">Sep/2022 - Feb/2025</div>
+                    
+                    <div class="job-description">
+                        Responsible for CRM strategies, budget and contract management, team leadership and implementation of performance metrics to maximize results. I manage communication with over 7 million customers monthly, optimizing channels and messages to increase engagement and conversion.
+                    </div>
+                    
+                    <div class="achievements-container">
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Contract Optimization</div>
+                                <div class="achievement-description">
+                                    10% savings in outsourced contracts while maintaining service quality.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">CRM Incremental</div>
+                                <div class="achievement-description">
+                                    Growth of +7 p.p YoY in consumption incremental from CRM.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">OFF-Us Consumption Increase</div>
+                                <div class="achievement-description">
+                                    8% increase in OFF-Us consumption through data-driven strategies.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Churn Reduction</div>
+                                <div class="achievement-description">
+                                    23% reduction in churn rate and 28% consumption increase.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">
+                        <div class="job-number">2</div>
+                        DATA SPECIALIST
+                        <div class="tooltip">
+                            <i class="fas fa-info-circle tooltip-icon"></i>
+                            <span class="tooltip-text">
+                                <div class="tooltip-header">
+                                    Position Details: Data Specialist
+                                </div>
+                                <div class="tooltip-content">
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-database"></i> Platform Transformation
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Pioneer migration from Oracle to Databricks</li>
+                                            <li>300% increase in processing capacity (from 2TB to 8TB/day)</li>
+                                            <li>Modern data architecture implementation</li>
+                                        </ul>
+                                    </div>
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-tachometer-alt"></i> Performance and Innovation
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Real-time insights with latency < 2 seconds</li>
+                                            <li>Segmentation model for 7M+ customers in 15 clusters</li>
+                                            <li>35% increase in conversion (CTR: 2.1% → 2.8%)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-users-cog"></i> Framework Customer Centricity
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>Customer lifecycle model development</li>
+                                            <li>Advanced clustering algorithms</li>
+                                            <li>Strategic dashboards for decision making</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="company">Realize CFI</div>
+                    <div class="period">Jul/2021 - Sep/2022</div>
+                    
+                    <div class="job-description">
+                        Led digital transformation and migration to Databricks platform, developing advanced analytical solutions and implementing Customer Centricity framework. Produced strategic dashboards and created segmentation models to optimize communication strategies.
+                    </div>
+                    
+                    <div class="achievements-container">
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Digital Transformation</div>
+                                <div class="achievement-description">
+                                    Pioneer Oracle to Databricks migration, increasing processing capacity by 300%.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Data Democratization</div>
+                                <div class="achievement-description">
+                                    Enabled real-time insights for strategic decisions.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-users-cog"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Customer Centricity Framework</div>
+                                <div class="achievement-description">
+                                    Developed lifecycle model and clustering algorithms for 7M+ customers.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Conversion Increase</div>
+                                <div class="achievement-description">
+                                    Created efficient segmentation base boosting conversion by +35%.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">
+                        <div class="job-number">3</div>
+                        MARKET INTELLIGENCE ANALYST
+                        <div class="tooltip">
+                            <i class="fas fa-info-circle tooltip-icon"></i>
+                            <span class="tooltip-text">
+                                <div class="tooltip-header">
+                                    Position Details: Market Intelligence Analyst
+                                </div>
+                                <div class="tooltip-content">
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-trophy"></i> Brand Equity Audit
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>R$ 300k research audit</li>
+                                            <li>Analysis of 3,000+ respondents</li>
+                                            <li>Foundation for strategic brand decisions</li>
+                                        </ul>
+                                    </div>
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-clock"></i> Automation and Efficiency
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>12h weekly reduction in manual processes</li>
+                                            <li>600h/year saved through automation</li>
+                                            <li>Complete migration to PowerBI</li>
+                                        </ul>
+                                    </div>
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas fa-comments-dollar"></i> Tax Optimization
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            <li>R$ 1.5 million savings in taxes</li>
+                                            <li>18% reduction in tax burden</li>
+                                            <li>In-depth analysis of tax opportunities</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="company">Grupo RBS</div>
+                    <div class="period">Mar/2019 - Jul/2020</div>
+                    
+                    <div class="job-description">
+                        Conducted Brand Equity analyses, automated strategic reports and identified significant tax opportunities. Transformed manual processes into automated solutions, freeing up weekly hours for higher value-added analyses.
+                    </div>
+                    
+                    <div class="achievements-container">
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Brand Equity Audit</div>
+                                <div class="achievement-description">
+                                    R$300k research audit, supporting strategic decisions.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Report Automation</div>
+                                <div class="achievement-description">
+                                    12h weekly reduction through PowerBI migration.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas fa-comments-dollar"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">Tax Optimization</div>
+                                <div class="achievement-description">
+                                    R$ 1.5 million tax savings through in-depth analysis.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">EDUCATION</h2>
+            <div class="education-container">
+                <div class="education-item">
+                    <div class="degree">Master's in Business Administration</div>
+                    <div class="university">Federal University of Santa Maria</div>
+                    <div class="thesis">Thesis: Customer Equity</div>
+                    <a href="https://repositorio.ufsm.br/bitstream/handle/1/18895/DIS_PPGADMINISTRACAO_2019_MARCONATO_PEDRO.pdf" target="_blank" class="cta-button">
+                        <i class="fas fa-file-pdf"></i> View full thesis
+                    </a>
+                </div>
+                
+                <div class="education-item">
+                    <div class="degree">Bachelor's in Business Administration</div>
+                    <div class="university">Federal University of Santa Maria</div>
+                    <div class="thesis">Final Paper: Brand Equity</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">PROJECTS & INNOVATION</h2>
+            <div class="projects-container">
+                <div class="project-item">
+                    <div class="project-title">REPO NEWS</div>
+                    <div class="project-description">
+                        Weekly insights selected with human curation and summarized by artificial intelligence — straight to the point, no noise.
+                    </div>
+                    <a href="https://www.repo.news/" target="_blank" class="cta-button">
+                        <i class="fas fa-external-link-alt"></i> Visit Repo News
+                    </a>
+                    <div style="margin-top: 15px;">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="project-title">VISUAL RECOGNITION</div>
+                    <div class="project-description">
+                        Gym equipment recognition system via camera with personalized workout recommendations.
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="project-title">MIELKE</div>
+                    <div class="project-description">
+                        Management system for dental offices with automated billing and scheduling flow.
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">OpenAI API</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Language toggle button -->
+    <div class="language-toggle">
+        <a href="sicredi.html" class="language-option active">
+            <i class="fas fa-check-circle"></i>
+            <span>EN</span>
+        </a>
+        <div class="language-divider"></div>
+        <a href="sicredi_pt.html" class="language-option">
+            <span>PT</span>
+        </a>
+    </div>
+    
+    <!-- Print button -->
+    <button class="print-button" onclick="var win = window.open('../../cv_styles/cv_sicredi_style_EN.html', '_blank'); win.onload = function() { win.print(); }">
+        <i class="fas fa-file-pdf"></i>
+    </button>
+    
+    <!-- Email Modal -->
+    <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+            <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
+            <h3 style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Send Email</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
+                    <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Email</label>
+                    <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Subject</label>
+                    <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:25px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message</label>
+                    <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.15);">Send</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Phone Modal -->
+    <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+            <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
+            <h3 style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Get in Touch</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <input type="hidden" name="contact_type" value="phone_request">
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
+                    <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Phone</label>
+                    <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Best time to contact</label>
+                    <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:25px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message (Optional)</label>
+                    <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
+                </div>
+                <div style="display:flex; gap:15px;">
+                    <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.15);">Request Contact</button>
+                    <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.15);">
+                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> WhatsApp
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        function openEmailForm() {
+            document.getElementById('emailModal').style.display = 'flex';
+        }
+        
+        function closeEmailModal() {
+            document.getElementById('emailModal').style.display = 'none';
+        }
+        
+        function openPhoneForm() {
+            document.getElementById('phoneModal').style.display = 'flex';
+        }
+        
+        function closePhoneModal() {
+            document.getElementById('phoneModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('emailModal')) {
+                closeEmailModal();
+            }
+            if (event.target == document.getElementById('phoneModal')) {
+                closePhoneModal();
+            }
+        }
+
+        // Style form inputs on focus
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(--sicredi-green)';
+                });
+                input.addEventListener('blur', function() {
+                    this.style.borderColor = '#e5e7eb';
+                });
+            });
+            
+            // Tooltip functionality for mobile
+            const tooltips = document.querySelectorAll('.tooltip');
+            tooltips.forEach(tooltip => {
+                tooltip.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // Close all other tooltips
+                    tooltips.forEach(t => {
+                        if (t !== this) {
+                            t.classList.remove('tooltip-active');
+                        }
+                    });
+                    
+                    // Toggle current tooltip
+                    this.classList.toggle('tooltip-active');
+                });
+            });
+            
+            // Close tooltips when clicking outside
+            document.addEventListener('click', function() {
+                tooltips.forEach(tooltip => {
+                    tooltip.classList.remove('tooltip-active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
