@@ -203,8 +203,8 @@
         }
 
         .profile-img {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid transparent;
@@ -213,6 +213,13 @@
             box-shadow: 0 6px 24px rgba(5, 96, 169, 0.35),
                         0 2px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: high-quality;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
 
         .profile-img:hover {
@@ -310,7 +317,7 @@
 
         button {
             width: 100%;
-            padding: 20px 24px;
+            padding: 18px 24px 22px 24px;
             background: linear-gradient(135deg, #07508b 0%, #0560a9 100%);
             color: white;
             border: none;
@@ -320,19 +327,23 @@
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             letter-spacing: 0.2px;
             box-shadow: 0 4px 15px rgba(7, 80, 139, 0.3);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
+            min-height: 70px;
+            justify-content: center;
+            line-height: 1.3;
         }
 
         .button-text-pt {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 400;
-            opacity: 0.9;
+            opacity: 0.95;
+            line-height: 1.2;
         }
 
         button::before {
@@ -411,6 +422,46 @@
             display: block;
             margin-top: 3px;
             font-weight: 400;
+        }
+
+        /* Skip company link styles */
+        .skip-company-wrapper {
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .skip-company-link {
+            display: inline-block;
+            font-size: 13px;
+            color: #0784c7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(7, 132, 199, 0.05);
+            border: 1px solid rgba(7, 132, 199, 0.2);
+        }
+
+        .skip-company-link:hover {
+            color: #0563a3;
+            background: rgba(7, 132, 199, 0.1);
+            border-color: rgba(7, 132, 199, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .skip-text-pt {
+            font-size: 12px;
+            color: #0563a3;
+            font-style: italic;
+            display: block;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        .skip-text-en {
+            display: block;
         }
 
         /* Loading state */
@@ -591,6 +642,13 @@
             <div class="loading" id="loading"></div>
         </button>
         
+        <div class="skip-company-wrapper">
+            <a href="templates/companies/general.html" class="skip-company-link">
+                <span class="skip-text-en">Enter without company info</span>
+                <span class="skip-text-pt">Entrar sem informar empresa</span>
+            </a>
+        </div>
+        
         <div class="disclaimer-wrapper">
             <p class="disclaimer-text">
                 <strong>🔒 Privacy guaranteed:</strong> Information is used only to personalize your resume and is not stored.
@@ -628,11 +686,13 @@
                 'templates/companies/ifood.html': ['ifood', 'i food', 'if'],
                 'templates/companies/rdstation.html': ['rd', 'rdstation', 'rds', 'rd station'],
                 'templates/companies/sicredi.html': ['sicredi', 'sic', 'sicred'],
-                'templates/companies/boticario.html': ['boticario', 'gb', 'grupoboticario', 'grupo boticario', 'grupo boticário', 'grupoboticário']
+                'templates/companies/boticario.html': ['boticario', 'gb', 'grupoboticario', 'grupo boticario', 'grupo boticário', 'grupoboticário'],
+                'templates/companies/completebari.html': ['completebari', 'complete bari', 'bari', 'cb', 'complete'],
+                'templates/companies/allos.html': ['allos', 'allo', 'all', 'consultoria', 'consulting']
             };
             
             // Find matching target
-            let target = 'cv_general.html';
+            let target = 'templates/companies/general.html';
             for (const [page, keywords] of Object.entries(companyMappings)) {
                 if (keywords.includes(companyName)) {
                     target = page;

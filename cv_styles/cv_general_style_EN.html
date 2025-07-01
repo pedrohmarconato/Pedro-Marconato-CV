@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Henrique Marconato - CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            /* General CV Colors */
+            --primary-color: #4F9E8F;
+            --secondary-color: #367C64;
+            --accent-color: #6BBAA3;
+            --light-accent: #ecf0f1;
+            --dark-accent: #1a252f;
+            --text-color: #2c3e50;
+            --border-color: rgba(52, 73, 94, 0.2);
+            --background-gradient: linear-gradient(135deg, #4F9E8F 0%, #367C64 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Main container */
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Header Section */
+        .header {
+            background: var(--background-gradient);
+            padding: 50px 50px 55px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.2), transparent);
+            animation: shimmer 8s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .header-tagline {
+            font-size: 17px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            margin-top: 22px;
+            margin-bottom: 28px;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-top: 12px;
+        }
+        
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 8px 14px;
+            color: white;
+            font-size: 12.5px;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact-item i {
+            margin-right: 6px;
+            font-size: 12px;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 25px 50px;
+            position: relative;
+        }
+
+        .section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            right: 50px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+        }
+        
+        .section-title {
+            background: var(--background-gradient);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            padding: 8px 16px;
+            border-radius: 12px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.3), transparent);
+            animation: titleShimmer 6s infinite;
+        }
+
+        @keyframes titleShimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        /* Área de Atuação Section */
+        .area-section {
+            background: linear-gradient(135deg, rgba(236, 240, 241, 0.8), rgba(189, 195, 199, 0.5));
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(52, 73, 94, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .area-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .area-subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        /* Resumo de Qualificações */
+        .qualifications-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .qualifications-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 14px;
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: var(--text-color);
+        }
+
+        .qualifications-list li::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 20px;
+            top: -2px;
+        }
+        
+        /* Skills & Tools Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .skills-section {
+            background: linear-gradient(135deg, rgba(236, 240, 241, 0.8), rgba(189, 195, 199, 0.5));
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(52, 73, 94, 0.1);
+        }
+
+        .skills-section h3 {
+            font-size: 12px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tag {
+            background: rgba(52, 152, 219, 0.15);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10.5px;
+            font-weight: 500;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+
+        /* Cursos Complementares */
+        .courses-section {
+            margin-top: 10px;
+        }
+
+        .course-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(52, 73, 94, 0.1);
+            font-size: 11px;
+        }
+
+        .course-item:last-child {
+            border-bottom: none;
+        }
+
+        .course-name {
+            color: var(--text-color);
+            font-weight: 500;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .course-info {
+            color: var(--accent-color);
+            font-size: 10px;
+            font-style: italic;
+        }
+        
+        /* Experience Timeline */
+        .experience-timeline {
+            position: relative;
+            margin-left: 20px;
+            padding-left: 30px;
+        }
+        
+        .experience-timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+            border-radius: 3px;
+        }
+        
+        .experience-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding: 18px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(52, 73, 94, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 20px rgba(52, 73, 94, 0.08);
+            border-color: rgba(52, 152, 219, 0.2);
+        }
+        
+        .experience-item::before {
+            content: "";
+            position: absolute;
+            left: -36px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            z-index: 1;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .job-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+        
+        .company {
+            font-weight: 500;
+            font-size: 13px;
+            color: var(--accent-color);
+        }
+        
+        .period {
+            font-size: 12px;
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-align: right;
+        }
+        
+        .job-description {
+            font-size: 12px;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 12px;
+        }
+
+        .job-bullets {
+            list-style: none;
+            padding: 0;
+        }
+
+        .job-bullets li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+
+        .job-bullets li::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        /* Education */
+        .education-tech-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 25px;
+        }
+        
+        .education-section {
+            background: linear-gradient(135deg, rgba(236, 240, 241, 0.8), rgba(189, 195, 199, 0.5));
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(52, 73, 94, 0.1);
+        }
+
+        .education-item {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(52, 73, 94, 0.1);
+        }
+
+        .education-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .degree {
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--primary-color);
+            margin-bottom: 3px;
+        }
+        
+        .university {
+            font-size: 11px;
+            color: var(--text-color);
+            margin-bottom: 2px;
+        }
+        
+        .edu-period {
+            font-size: 10px;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .tech-skills-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        /* Languages */
+        .language-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .language-item {
+            text-align: center;
+        }
+
+        .language-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+
+        .language-level {
+            font-size: 11px;
+            color: var(--text-color);
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .cv-container {
+                max-width: 100%;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            .header {
+                background: var(--background-gradient) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                padding: 25px 35px !important;
+                page-break-after: avoid;
+            }
+
+            .section-title {
+                background: var(--primary-color) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color: white !important;
+                page-break-after: avoid;
+            }
+
+            .section {
+                padding: 15px 35px;
+                page-break-inside: avoid;
+            }
+
+            .experience-item {
+                page-break-inside: avoid;
+            }
+
+            /* Reduce font sizes for better fit */
+            .header h1 {
+                font-size: 22px !important;
+            }
+
+            .header {
+                padding: 20px 30px 25px 30px !important;
+            }
+
+            .contact-item {
+                font-size: 9px !important;
+                padding: 3px 6px !important;
+            }
+
+            .section-title {
+                font-size: 12px !important;
+                padding: 4px 10px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .section {
+                padding: 12px 30px !important;
+            }
+
+            .job-title {
+                font-size: 13px !important;
+            }
+
+            .job-description, .job-bullets li {
+                font-size: 10px !important;
+                line-height: 1.4 !important;
+            }
+
+            .qualifications-list li {
+                font-size: 11px !important;
+                margin-bottom: 8px !important;
+                line-height: 1.5 !important;
+                padding-left: 20px !important;
+            }
+
+            .experience-item {
+                padding: 12px !important;
+                margin-bottom: 12px !important;
+            }
+
+            .skills-section {
+                padding: 8px !important;
+            }
+
+            .skill-tag {
+                font-size: 8px !important;
+                padding: 2px 6px !important;
+            }
+
+            .degree {
+                font-size: 11px !important;
+            }
+
+            .university {
+                font-size: 9px !important;
+            }
+
+            .course-name {
+                font-size: 9px !important;
+            }
+
+            .course-info {
+                font-size: 8px !important;
+            }
+
+            /* Hide animations */
+            * {
+                animation: none !important;
+            }
+
+            /* Adjust margins */
+            .experience-item {
+                margin-bottom: 15px !important;
+            }
+
+            .section:not(:last-child)::after {
+                display: none;
+            }
+
+            @page {
+                size: A4;
+                margin: 8mm;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="cv-container">
+        <header class="header">
+            <div class="header-content">
+                <h1>PEDRO HENRIQUE MARCONATO</h1>
+                
+                <div class="header-tagline">CRM | ANALYTICS | BUSINESS INTELLIGENCE | LTV | SQL</div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i> Brazilian, Married, 33 years old
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i> +55 (55) 98114-7758
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i> linkedin.com/in/pedrohmarconato
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <section class="section" style="padding-top: 35px;">
+            <h2 class="section-title">PROFESSIONAL SUMMARY</h2>
+            <ul class="qualifications-list">
+                <li>Master's in Business Administration, with Analytics background, combining data intelligence, CRM, analytical visualization and automation to generate business value</li>
+                <li>Experience in large and highly complex companies, such as RBS Group, Realize CFI (Lojas Renner S.A. Group) and Rede Globo, leading strategic projects in CRM, business intelligence and marketing performance</li>
+                <li>Expertise with data applied to marketing, channels, credit, control and operations, connecting areas and translating technical needs into high-impact analytical solutions</li>
+                <li>Highlights in visualization, segmentation and consumer behavior projects, with mastery of tools such as Databricks, SQL, Responsys, Power BI, Python, Salesforce, Mailchimp, Tableau, SAS, Mix Agents and Kanbanize</li>
+                <li>Knowledge in agile methodologies (Scrum, Kanban), working on backlog prioritization, squad structuring and delivery acceleration with customer focus</li>
+                <li>Experience with multi-source data integration, pipeline construction, predictive analytics and behavior mapping to support strategic decisions</li>
+                <li>Differential in combining analytical capacity, strategic thinking and technical knowledge, with recognized performance as leadership even in consultative structures</li>
+                <li>People management, leading multidisciplinary teams focused on development, autonomy and consistent results generation</li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">EDUCATION & TECHNOLOGY</h2>
+            <div class="education-tech-container">
+                <div class="education-section">
+                    <h3 style="font-size: 12px; color: var(--primary-color); margin-bottom: 12px; font-weight: 600;">EDUCATION</h3>
+                    <div class="education-item">
+                        <div class="degree">Master's in Business Administration</div>
+                        <div class="university">Federal University of Santa Maria - UFSM</div>
+                        <div class="edu-period">Completed: 2019</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Bachelor's in Business Administration</div>
+                        <div class="university">Federal University of Santa Maria - UFSM</div>
+                        <div class="edu-period">Completed: 2015</div>
+                    </div>
+                </div>
+                
+                <div class="tech-skills-container">
+                    <div class="skills-section">
+                        <h3>TOOLS & PLATFORMS</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">Databricks</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Power BI</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Oracle Responsys</span>
+                            <span class="skill-tag">Kanbanize</span>
+                            <span class="skill-tag">Mailchimp</span>
+                            <span class="skill-tag">Mix Agents</span>
+                            <span class="skill-tag">SAS</span>
+                            <span class="skill-tag">Tableau</span>
+                            <span class="skill-tag">Salesforce CRM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-section">
+                        <h3>CERTIFICATIONS & COURSES</h3>
+                        <div class="courses-section">
+                            <div class="course-item">
+                                <span class="course-name">Statement of Accomplishment - Intermediate R Course</span>
+                                <span class="course-info">Marketing Analytics In Practice - Coursera</span>
+                            </div>
+                            <div class="course-item">
+                                <span class="course-name">Marketing Analytics in R</span>
+                                <span class="course-info">PPGA - Graduate Program in Business Administration</span>
+                            </div>
+                            <div class="course-item">
+                                <span class="course-name">Problem Solving Fundamentals</span>
+                                <span class="course-info">Marketing in a Digital World - Illinois University</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
+            
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">LOJAS RENNER | REALIZE CFI (National Financial Services Company)</div>
+                        </div>
+                        <div class="period">2020-2025</div>
+                    </div>
+                    
+                    <div class="job-title" style="margin-top: 10px; margin-bottom: 8px;">CRM Manager</div>
+                    <div class="period" style="font-size: 11px; color: var(--secondary-color); margin-bottom: 10px;">2021-2025</div>
+                    
+                    <ul class="job-bullets">
+                        <li>Responsible for leading the strategic CRM front, focusing on area evolution, customer base growth and business value generation</li>
+                        <li>Definition and monitoring of area OKRs, connecting business goals to relationship indicators</li>
+                        <li>Planning, execution and optimization of multichannel relationship campaigns (email, SMS, push, among others), applying intelligent segmentations and automations to increase usage frequency and sales</li>
+                        <li>Building personalized journeys based on customer behavior and profile, promoting lifecycle evolution and loyalty in financial products (cards, loans, insurance and consumption in the Renner ecosystem)</li>
+                        <li>Management of agile rhythm (daily, planning, reviews and retrospectives), using frameworks such as Scrum and Kanban to maintain delivery pace, priority visibility and impact focus</li>
+                        <li>Area backlog management, with mapping, prioritization and organization of demands according to incremental value and alignment with the commercial team</li>
+                        <li>Strategic management of suppliers and technology partners, including CRM, automation and data enrichment platforms, ensuring delivery quality and alignment with area guidelines</li>
+                        <li>Continuous interface with key areas (IT, Products, Analytics, Marketing, Stores and Commercial), promoting alignment between CRM initiatives and corporate objectives</li>
+                        <li>Technical and operational management of tools such as Oracle Responsys, Databricks and Power BI, enabling automated segmentations, data processing and performance dashboards</li>
+                        <li>Monitoring and analysis of KPIs and campaign indicators, using data to guide decisions, validate hypotheses and promote continuous improvement</li>
+                        <li>Leadership of projects and strategic initiatives for active customer base expansion and new communication channel activation</li>
+                    </ul>
+                    
+                    <div class="job-title" style="margin-top: 15px; margin-bottom: 8px;">Analytics Specialist</div>
+                    <div class="period" style="font-size: 11px; color: var(--secondary-color); margin-bottom: 10px;">2020-2021</div>
+                    
+                    <ul class="job-bullets">
+                        <li>Responsible for creating dashboards and strategic indicators for areas such as Marketing, CRM, Credit and Channels, delivering an integrated and real-time view to support business decisions</li>
+                        <li>Development of segmented databases and automated reports focused on the CRM team, focusing on efficiency gains, analysis agility and revenue generation through more precise actions</li>
+                        <li>Organization and integration of operational, behavioral and transactional data, consolidating multiple sources into a reliable base for complete customer lifecycle analyses</li>
+                        <li>Practical use of tools such as SQL, BigQuery, Python and Power BI for exploratory analyses, routine automations and development of predictive models applied to business</li>
+                        <li>Close collaboration with Marketing, Products, Risk and Operations areas, translating strategic needs into applicable analyses, focusing on action direction and decision making</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Analytics Specialist</div>
+                            <div class="company">DBC COMPANY (National IT Consulting Company)</div>
+                        </div>
+                        <div class="period">2020-2021</div>
+                    </div>
+                    
+                    <ul class="job-bullets">
+                        <li>Responsible for supporting the strategic restructuring of the CRM area at client Realize, implementing agile methodologies (Kanban) and defining processes that reduced campaign time-to-market and increased operational efficiency</li>
+                    </ul>
+                </div>
+                
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Business Intelligence Analyst</div>
+                            <div class="company">RBS GROUP (National Media Company)</div>
+                        </div>
+                        <div class="period">2019 - 2020</div>
+                    </div>
+                    
+                    <ul class="job-bullets">
+                        <li>Responsible for structuring and analyzing commercial performance, audience and market behavior data, supporting leadership in strategic decision making for client Rede Globo</li>
+                        <li>Development of segmentation studies and consumption potential mapping, using data to guide decisions, validate hypotheses and promote sales and prospecting actions</li>
+                        <li>Creation of analytical reports and dashboards in real time to support business decisions</li>
+                        <li>Direct interface with leadership, translating market data into action plans and growth opportunities</li>
+                        <li>Analysis of KPIs and campaign indicators, using data to guide decisions, validate hypotheses and promote continuous improvement</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
