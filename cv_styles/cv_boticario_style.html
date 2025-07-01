@@ -5,26 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedro Henrique Marconato - CV</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
         
         :root {
-            /* Boticário Colors */
-            --boticario-primary-blue: #0075B1;
-            --boticario-dark-blue: #001D3A;
-            --boticario-secondary-green: #7BC224;
-            --boticario-light-green: #C3DE3C;
-            --boticario-light-gray: #F5F5F5;
-            --boticario-dark-gray: #333333;
+            /* O Boticário Inspired Colors */
+            --boticario-navy: #1B2B4A;
+            --boticario-dark-blue: #0D1829;
+            --boticario-purple: #8A4FFF;
+            --boticario-light-purple: #B47EFF;
+            --boticario-orange: #FF6B35;
+            --boticario-coral: #FF8C69;
+            --boticario-white: #FFFFFF;
+            --boticario-light-gray: #F8F9FA;
             
             /* Applied Colors */
-            --primary-color: #0075B1;
-            --secondary-color: #001D3A;
-            --accent-color: #7BC224;
-            --light-accent: #F5F5F5;
-            --dark-accent: #001D3A;
+            --primary-color: #1B2B4A;
+            --secondary-color: #8A4FFF;
+            --accent-color: #FF6B35;
+            --light-accent: #F8F9FA;
+            --dark-accent: #0D1829;
             --text-color: #2c3e50;
-            --border-color: rgba(0, 117, 177, 0.2);
-            --background-gradient: linear-gradient(135deg, #0075B1 0%, #001D3A 100%);
+            --border-color: rgba(27, 43, 74, 0.2);
+            --background-gradient: linear-gradient(135deg, #1B2B4A 0%, #0D1829 50%, #8A4FFF 100%);
         }
         
         * {
@@ -67,7 +69,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(123, 194, 36, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(138, 79, 255, 0.2), transparent);
             animation: shimmer 8s infinite;
         }
 
@@ -127,8 +129,9 @@
         }
         
         .header h1 {
-            font-size: 32px;
-            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
             color: white;
             margin-bottom: 8px;
             letter-spacing: -0.5px;
@@ -210,7 +213,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(123, 194, 36, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(138, 79, 255, 0.3), transparent);
             animation: titleShimmer 6s infinite;
         }
 
@@ -224,14 +227,14 @@
             background: linear-gradient(135deg, rgba(240, 248, 255, 0.8), rgba(220, 240, 250, 0.5));
             padding: 20px;
             border-radius: 16px;
-            border: 1px solid rgba(0, 117, 177, 0.1);
+            border: 1px solid rgba(27, 43, 74, 0.1);
             margin-bottom: 20px;
         }
 
         .area-title {
             font-size: 20px;
             font-weight: 700;
-            color: var(--boticario-dark-blue);
+            color: var(--dark-accent);
             text-align: center;
             margin-bottom: 12px;
             text-transform: uppercase;
@@ -280,12 +283,12 @@
             background: linear-gradient(135deg, rgba(240, 248, 255, 0.8), rgba(220, 240, 250, 0.5));
             padding: 16px;
             border-radius: 14px;
-            border: 1px solid rgba(0, 117, 177, 0.1);
+            border: 1px solid rgba(27, 43, 74, 0.1);
         }
 
         .skills-section h3 {
             font-size: 12px;
-            color: var(--boticario-dark-blue);
+            color: var(--dark-accent);
             margin-bottom: 10px;
             font-weight: 600;
             text-transform: uppercase;
@@ -299,7 +302,7 @@
 
         .skill-tag {
             background: rgba(123, 194, 36, 0.15);
-            color: var(--boticario-dark-blue);
+            color: var(--dark-accent);
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 10.5px;
@@ -360,7 +363,7 @@
             border-radius: 14px;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 117, 177, 0.1);
+            border: 1px solid rgba(27, 43, 74, 0.1);
             transition: all 0.3s ease;
         }
 
@@ -394,7 +397,7 @@
         .job-title {
             font-weight: 600;
             font-size: 16px;
-            color: var(--boticario-dark-blue);
+            color: var(--dark-accent);
             margin-bottom: 4px;
         }
         
@@ -451,7 +454,7 @@
             background: linear-gradient(135deg, rgba(240, 248, 255, 0.8), rgba(220, 240, 250, 0.5));
             padding: 20px;
             border-radius: 14px;
-            border: 1px solid rgba(0, 117, 177, 0.1);
+            border: 1px solid rgba(27, 43, 74, 0.1);
         }
 
         .education-item {
@@ -469,7 +472,7 @@
         .degree {
             font-weight: 600;
             font-size: 13px;
-            color: var(--boticario-dark-blue);
+            color: var(--dark-accent);
             margin-bottom: 3px;
         }
         
@@ -504,7 +507,7 @@
 
         .language-name {
             font-weight: 600;
-            color: var(--boticario-dark-blue);
+            color: var(--dark-accent);
             font-size: 13px;
             margin-bottom: 2px;
         }
@@ -515,6 +518,20 @@
         }
 
         /* Print Styles */
+        /* Forçar cores para impressão */
+        .header {
+            background: #1B2B4A !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        
+        .section-title {
+            background: #1B2B4A !important;
+            color: #FFFFFF !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        
         @media print {
             body {
                 background: white;
@@ -531,15 +548,20 @@
             }
 
             .header {
-                background: var(--background-gradient) !important;
+                background: #1B2B4A !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 padding: 25px 35px !important;
                 page-break-after: avoid;
             }
+            
+            .header::before,
+            .header::after {
+                display: none !important;
+            }
 
             .section-title {
-                background: var(--boticario-primary-blue) !important;
+                background: #1B2B4A !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 color: white !important;

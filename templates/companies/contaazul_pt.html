@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedro Marconato - O Boticário</title>
+    <title>Pedro Marconato - CV</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
-            /* O Boticário Inspired Colors */
-            --boticario-navy: #1B2B4A;
-            --boticario-dark-blue: #0D1829;
-            --boticario-purple: #8A4FFF;
-            --boticario-light-purple: #B47EFF;
-            --boticario-orange: #FF6B35;
-            --boticario-coral: #FF8C69;
-            --boticario-white: #FFFFFF;
-            --boticario-light-gray: #F8F9FA;
+            /* Neutral Colors */
+            --primary-blue: #1AC2FF;
+            --secondary-blue: #007BB8;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #333333;
             
             /* Applied Colors */
-            --primary-color: #1B2B4A;
-            --secondary-color: #8A4FFF;
-            --accent-color: #FF6B35;
-            --light-accent: #F8F9FA;
-            --dark-accent: #0D1829;
+            --primary-color: #1AC2FF;
+            --secondary-color: #007BB8;
+            --accent-color: #6A4FFF;
+            --light-accent: #F5F5F5;
+            --dark-accent: #0056A0;
             --text-color: #2c3e50;
-            --border-color: rgba(27, 43, 74, 0.2);
-            --background-gradient: linear-gradient(135deg, #1B2B4A 0%, #0D1829 50%, #8A4FFF 100%);
+            --border-color: rgba(26, 194, 255, 0.2);
+            --background-gradient: linear-gradient(135deg, #1AC2FF 0%, #007BB8 100%);
         }
         
         * {
@@ -74,7 +71,7 @@
         .shape:nth-child(1) {
             width: 200px;
             height: 100px;
-            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
             border-radius: 50%;
             top: 10%;
             left: 5%;
@@ -84,7 +81,7 @@
         .shape:nth-child(2) {
             width: 150px;
             height: 150px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-color));
             transform: rotate(45deg);
             top: 60%;
             right: 10%;
@@ -94,7 +91,7 @@
         .shape:nth-child(3) {
             width: 80px;
             height: 80px;
-            background: linear-gradient(90deg, var(--accent-color), var(--boticario-coral));
+            background: linear-gradient(90deg, var(--secondary-blue), var(--primary-blue));
             border-radius: 50%;
             bottom: 20%;
             left: 25%;
@@ -115,10 +112,10 @@
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-radius: 28px;
             box-shadow: 
-                0 20px 50px rgba(20, 110, 55, 0.15),
+                0 20px 50px rgba(74, 144, 226, 0.15),
                 0 15px 30px rgba(0, 0, 0, 0.08),
                 inset 0 1px 2px rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(123, 194, 36, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.15);
             overflow: hidden;
             position: relative;
             animation: containerGlow 20s ease infinite;
@@ -127,16 +124,16 @@
         @keyframes containerGlow {
             0%, 100% { 
                 box-shadow: 
-                    0 10px 40px rgba(0, 117, 177, 0.08),
+                    0 10px 40px rgba(74, 144, 226, 0.08),
                     0 5px 20px rgba(0, 0, 0, 0.05),
-                    0 0 80px rgba(123, 194, 36, 0.03),
+                    0 0 80px rgba(74, 144, 226, 0.03),
                     inset 0 1px 2px rgba(255, 255, 255, 0.9);
             }
             50% { 
                 box-shadow: 
-                    0 10px 40px rgba(123, 194, 36, 0.08),
+                    0 10px 40px rgba(44, 90, 160, 0.08),
                     0 5px 20px rgba(0, 0, 0, 0.05),
-                    0 0 100px rgba(255, 122, 0, 0.03),
+                    0 0 100px rgba(107, 163, 229, 0.03),
                     inset 0 1px 2px rgba(255, 255, 255, 0.9);
             }
         }
@@ -148,9 +145,9 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(0, 117, 177, 0.02) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 30%, rgba(123, 194, 36, 0.02) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 80%, rgba(255, 122, 0, 0.02) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 50%, rgba(74, 144, 226, 0.02) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(44, 90, 160, 0.02) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 80%, rgba(107, 163, 229, 0.02) 0%, transparent 50%);
             animation: rotate 30s linear infinite;
             pointer-events: none;
         }
@@ -161,167 +158,247 @@
         }
         
         .header {
-            background: var(--background-gradient);
-            padding: 80px 60px 100px 60px;
+            background: linear-gradient(135deg, #1AC2FF 0%, #007BB8 50%, #6A4FFF 100%);
+            padding: 100px 60px 120px 60px;
             position: relative;
             overflow: hidden;
-            min-height: 400px;
+            min-height: 500px;
             display: flex;
             align-items: center;
+            justify-content: center;
         }
-
-        /* Formas fluidas curvas inspiradas no Boticário */
+        
+        /* Animated wave backgrounds */
         .header::before {
             content: '';
             position: absolute;
             top: -50%;
-            left: -30%;
-            width: 150%;
+            left: -50%;
+            width: 200%;
             height: 200%;
-            background: radial-gradient(ellipse at center, var(--secondary-color) 0%, transparent 70%);
-            opacity: 0.15;
-            border-radius: 50%;
-            animation: floatCurve 20s ease-in-out infinite;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(106, 79, 255, 0.4) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(26, 194, 255, 0.3) 0%, transparent 50%);
+            animation: waveMotion 15s ease-in-out infinite;
         }
 
         .header::after {
             content: '';
             position: absolute;
-            bottom: -40%;
-            right: -20%;
-            width: 120%;
-            height: 150%;
-            background: radial-gradient(ellipse at center, var(--accent-color) 0%, transparent 60%);
-            opacity: 0.1;
-            border-radius: 50%;
-            animation: floatCurve 25s ease-in-out infinite reverse;
-        }
-
-        @keyframes floatCurve {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            25% { transform: translate(-20px, -30px) rotate(90deg) scale(1.1); }
-            50% { transform: translate(30px, -20px) rotate(180deg) scale(0.9); }
-            75% { transform: translate(-10px, 20px) rotate(270deg) scale(1.05); }
-        }
-
-        /* Formas curvas adicionais */
-        .header-curves {
-            position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.2" d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,128C672,107,768,85,864,96C960,107,1056,149,1152,165.3C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+            background-size: 1440px 320px;
+            animation: wave 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+            transform: translate3d(0, 0, 0);
+        }
+
+        @keyframes waveMotion {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(3deg) scale(1.1); }
+            50% { transform: rotate(-3deg) scale(0.95); }
+            75% { transform: rotate(1deg) scale(1.05); }
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-1440px); }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
             pointer-events: none;
         }
 
-        .curve-shape {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
-            opacity: 0.08;
-        }
-
-        .curve-shape:nth-child(1) {
-            width: 300px;
-            height: 200px;
-            top: 10%;
-            left: 70%;
-            animation: slideReveal 15s ease-in-out infinite;
-        }
-
-        .curve-shape:nth-child(2) {
-            width: 250px;
-            height: 180px;
-            bottom: 20%;
+        .particle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
             left: 10%;
-            animation: slideReveal 18s ease-in-out infinite 5s;
+            animation: floatUp 8s infinite ease-in-out;
         }
 
-        .curve-shape:nth-child(3) {
-            width: 180px;
-            height: 120px;
-            top: 50%;
+        .particle:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 40%;
             right: 20%;
-            animation: slideReveal 12s ease-in-out infinite 3s;
+            animation: floatUp 10s infinite ease-in-out 1s;
+            background: rgba(106, 79, 255, 0.3);
         }
 
-        @keyframes slideReveal {
+        .particle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 30%;
+            left: 30%;
+            animation: floatUp 12s infinite ease-in-out 2s;
+            background: rgba(26, 194, 255, 0.3);
+        }
+
+        @keyframes floatUp {
             0%, 100% { 
-                transform: translateX(-100px) scale(0.8);
-                opacity: 0;
-            }
-            25%, 75% { 
-                transform: translateX(0) scale(1);
-                opacity: 0.08;
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
             }
             50% { 
-                transform: translateX(50px) scale(1.1);
-                opacity: 0.12;
+                transform: translateY(-50px) rotate(180deg);
+                opacity: 0.8;
             }
         }
 
         .header-content {
             position: relative;
-            z-index: 1;
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+            max-width: 900px;
         }
 
-        .boticario-logo {
-            position: absolute;
-            bottom: 30px;
-            right: 50px;
-            width: 250px;
+        /* Logo container with animation */
+        .logo-container {
+            margin-bottom: 40px;
+            animation: logoEntrance 1.5s ease-out, logoContainerGlow 4s ease-in-out infinite 2s;
+            position: relative;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 20px 60px rgba(255, 255, 255, 0.2),
+                0 0 80px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes logoContainerGlow {
+            0%, 100% { 
+                background: rgba(255, 255, 255, 0.15);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 
+                    0 20px 60px rgba(255, 255, 255, 0.2),
+                    0 0 80px rgba(255, 255, 255, 0.1),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            }
+            50% { 
+                background: rgba(255, 255, 255, 0.25);
+                border: 2px solid rgba(255, 255, 255, 0.5);
+                box-shadow: 
+                    0 20px 60px rgba(255, 255, 255, 0.4),
+                    0 0 100px rgba(255, 255, 255, 0.3),
+                    0 0 150px rgba(255, 255, 255, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        @keyframes logoEntrance {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2) rotate(90deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .contaazul-logo-header {
+            width: 300px;
             height: auto;
-            opacity: 0.85;
-            z-index: 3;
-            filter: brightness(0) invert(1) drop-shadow(0 4px 15px rgba(255, 255, 255, 0.3));
+            filter: drop-shadow(0 15px 40px rgba(255, 255, 255, 0.8))
+                    drop-shadow(0 5px 15px rgba(255, 255, 255, 0.6))
+                    drop-shadow(0 0 30px rgba(255, 255, 255, 0.4))
+                    drop-shadow(0 0 60px rgba(255, 255, 255, 0.3));
+            transition: all 0.5s ease;
+            animation: logoPulse 3s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .contaazul-logo-header:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 20px 50px rgba(255, 255, 255, 1))
+                    drop-shadow(0 8px 20px rgba(255, 255, 255, 0.8))
+                    drop-shadow(0 0 40px rgba(255, 255, 255, 0.6))
+                    drop-shadow(0 0 80px rgba(255, 255, 255, 0.4));
+        }
+
+        /* Animated tagline */
+        .company-tagline {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            animation: taglineGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes taglineGlow {
+            from { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); }
+            to { text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(26, 194, 255, 0.6); }
         }
 
         .header-text {
             max-width: 850px;
-            padding-right: 220px;
+            margin: 0 auto;
         }
         
         .header h1 {
-            font-family: 'Poppins', sans-serif;
             font-size: 42px;
             font-weight: 800;
             color: white;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             letter-spacing: -1px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #FFFFFF 0%, var(--boticario-light-purple) 50%, #FFFFFF 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textShimmer 8s ease-in-out infinite;
-            line-height: 1.1;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            animation: nameSlide 1s ease-out 0.5s both;
         }
 
-        @keyframes textShimmer {
-            0%, 100% { background-position: 200% center; }
-            50% { background-position: 0% center; }
+        @keyframes nameSlide {
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
         
         .role {
-            font-family: 'Inter', sans-serif;
             font-size: 22px;
-            font-weight: 300;
+            font-weight: 600;
             color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 25px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            letter-spacing: 0.5px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), var(--boticario-coral), rgba(255, 255, 255, 0.9));
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: roleGlow 6s ease-in-out infinite;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: roleSlide 1s ease-out 0.7s both;
         }
 
-        @keyframes roleGlow {
-            0%, 100% { background-position: 200% center; }
-            50% { background-position: 0% center; }
+        @keyframes roleSlide {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
         
         .contact-info {
@@ -334,42 +411,25 @@
         .contact-button {
             display: inline-flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            border-radius: 16px;
-            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 10px 16px;
             text-decoration: none;
             color: white;
             font-size: 14px;
             font-weight: 500;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
+            overflow: visible;
         }
         
         .contact-button:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .contact-button:hover::before {
-            left: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         .contact-button i {
@@ -437,7 +497,7 @@
             padding: 12px 20px;
             border-radius: 14px;
             letter-spacing: 0.3px;
-            box-shadow: 0 4px 12px rgba(63, 161, 16, 0.1);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.1);
             display: inline-block;
             position: relative;
             overflow: hidden;
@@ -469,7 +529,7 @@
         .skills-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 30px;
         }
         
         @media (max-width: 1000px) {
@@ -485,18 +545,18 @@
         }
         
         .skills-column {
-            background: linear-gradient(135deg, rgba(0, 117, 177, 0.08), rgba(0, 29, 58, 0.03));
-            padding: 20px;
-            border-radius: 14px;
-            border: 1px solid rgba(0, 117, 177, 0.15);
+            background: linear-gradient(135deg, rgba(224, 224, 224, 0.3), rgba(224, 224, 224, 0.1));
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(74, 144, 226, 0.15);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
         .skills-column:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 117, 177, 0.12);
-            border-color: rgba(0, 117, 177, 0.25);
+            box-shadow: 0 8px 24px rgba(74, 144, 226, 0.1);
+            border-color: rgba(74, 144, 226, 0.2);
         }
         
         .skill-item {
@@ -513,14 +573,13 @@
         }
         
         .skill-item i {
-            color: var(--sicredi-green);
+            color: var(--primary-blue);
             margin-right: 12px;
             font-size: 18px;
         }
         
         .tool-item {
-            margin-bottom: 14px;
-            padding: 8px 0;
+            margin-bottom: 18px;
         }
         
         .tool-name {
@@ -529,59 +588,19 @@
             align-items: center;
             font-weight: 500;
             font-size: 14px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             color: var(--text-color);
         }
 
         .tool-percentage {
-            font-size: 12px;
-            color: #0075B1;
+            font-size: 13px;
+            color: var(--accent-color);
             font-weight: 600;
         }
         
-        /* Sistema de dots otimizado */
-        .dots-container {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            flex-wrap: nowrap;
-        }
-        
-        .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background-color: rgba(0, 117, 177, 0.15);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-        }
-        
-        .dot.filled {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            box-shadow: 0 1px 3px rgba(27, 43, 74, 0.3);
-            animation: dotPulse 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes dotPulse {
-            0% { 
-                transform: scale(1);
-                box-shadow: 0 1px 3px rgba(0, 117, 177, 0.3);
-            }
-            100% { 
-                transform: scale(1.1);
-                box-shadow: 0 2px 6px rgba(0, 117, 177, 0.4);
-            }
-        }
-        
-        .tool-item:hover .dot.filled {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
-            transform: scale(1.15);
-        }
-        
-        /* Progress bar styles */
         .progress-bar {
             height: 8px;
-            background: rgba(0, 117, 177, 0.1);
+            background: rgba(74, 144, 226, 0.1);
             border-radius: 10px;
             overflow: hidden;
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -589,10 +608,23 @@
         
         .progress {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--dark-accent));
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
             border-radius: 10px;
             position: relative;
             animation: progressGrow 1.5s ease-out;
+        }
+        
+        /* Subtle colored progress bars */
+        .tool-item:nth-child(3n+1) .progress {
+            background: linear-gradient(90deg, #4A90E2 0%, #5BA0F2 100%);
+        }
+        
+        .tool-item:nth-child(3n+2) .progress {
+            background: linear-gradient(90deg, #2C5AA0 0%, #3D6AB0 100%);
+        }
+        
+        .tool-item:nth-child(3n) .progress {
+            background: linear-gradient(90deg, #6BA3E5 0%, #7BB3F5 100%);
         }
 
         @keyframes progressGrow {
@@ -632,14 +664,14 @@
         .tooltip:hover .tooltip-icon,
         .tooltip:focus .tooltip-icon,
         .tooltip:active .tooltip-icon {
-            color: var(--sicredi-dark-green);
+            color: var(--secondary-blue);
             transform: scale(1.2);
         }
         
         .tooltip .tooltip-text {
             visibility: hidden;
             width: 380px;
-            background: linear-gradient(145deg, var(--sicredi-dark-green), var(--sicredi-green));
+            background: linear-gradient(145deg, var(--secondary-blue), var(--primary-blue));
             color: white;
             text-align: left;
             border-radius: 12px;
@@ -654,7 +686,7 @@
             transform: translateY(10px);
             font-size: 13px;
             line-height: 1.5;
-            box-shadow: 0 10px 30px rgba(20, 110, 55, 0.15);
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.15);
             overflow: hidden;
             max-height: 85vh;
             overflow-y: auto;
@@ -668,7 +700,7 @@
             margin-left: -8px;
             border-width: 8px;
             border-style: solid;
-            border-color: var(--sicredi-green) transparent transparent transparent;
+            border-color: var(--primary-blue) transparent transparent transparent;
         }
         
         .tooltip:hover .tooltip-text,
@@ -777,7 +809,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, var(--sicredi-green), var(--sicredi-dark-green));
+            background: linear-gradient(to bottom, var(--primary-blue), var(--secondary-blue));
             border-radius: 3px;
         }
         
@@ -788,16 +820,15 @@
             border-radius: 16px;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(123, 194, 36, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.15);
             transition: all 0.3s ease;
         }
 
         .experience-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 4px 20px rgba(0, 117, 177, 0.08);
-            border-color: rgba(0, 117, 177, 0.15);
+            box-shadow: 0 4px 20px rgba(74, 144, 226, 0.08);
+            border-color: rgba(74, 144, 226, 0.15);
         }
-        
         
         .experience-item::before {
             content: "";
@@ -807,16 +838,16 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--sicredi-green);
+            background: var(--primary-blue);
             border: 3px solid white;
-            box-shadow: 0 0 0 3px rgba(63, 161, 16, 0.2);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
             z-index: 1;
         }
         
         .job-title {
             font-weight: 600;
             font-size: 20px;
-            color: var(--sicredi-dark-green);
+            color: var(--secondary-blue);
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -834,23 +865,23 @@
             border-radius: 50%;
             font-size: 16px;
             font-weight: 600;
-            box-shadow: 0 3px 10px rgba(63, 161, 16, 0.15);
+            box-shadow: 0 3px 10px rgba(74, 144, 226, 0.15);
         }
         
         .company {
             font-weight: 500;
             font-size: 16px;
-            color: var(--sicredi-green);
+            color: var(--primary-blue);
             margin-bottom: 5px;
         }
         
         .period {
             font-size: 14px;
-            color: var(--sicredi-dark-neutral);
+            color: var(--dark-gray);
             font-style: italic;
             margin-bottom: 15px;
             display: inline-block;
-            background: rgba(215, 230, 200, 0.5);
+            background: rgba(224, 224, 224, 0.5);
             padding: 4px 12px;
             border-radius: 20px;
         }
@@ -881,10 +912,10 @@
         }
         
         .achievement-item {
-            background: linear-gradient(135deg, rgba(63, 161, 16, 0.05), rgba(63, 161, 16, 0.02));
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.05), rgba(74, 144, 226, 0.02));
             border-radius: 12px;
             padding: 18px;
-            border: 1px solid rgba(123, 194, 36, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.15);
             display: flex;
             align-items: flex-start;
             gap: 12px;
@@ -893,13 +924,13 @@
         
         .achievement-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(63, 161, 16, 0.15);
-            border-color: var(--sicredi-green);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.15);
+            border-color: var(--primary-blue);
         }
         
         .achievement-icon {
             font-size: 24px;
-            color: var(--sicredi-green);
+            color: var(--primary-blue);
             flex-shrink: 0;
         }
         
@@ -910,7 +941,7 @@
         .achievement-title {
             font-weight: 600;
             font-size: 15px;
-            color: var(--sicredi-dark-green);
+            color: var(--secondary-blue);
             margin-bottom: 6px;
         }
         
@@ -933,22 +964,22 @@
         }
         
         .education-item {
-            background: linear-gradient(135deg, rgba(215, 230, 200, 0.4), rgba(215, 230, 200, 0.2));
+            background: linear-gradient(135deg, rgba(224, 224, 224, 0.4), rgba(224, 224, 224, 0.2));
             padding: 25px;
             border-radius: 16px;
-            border: 1px solid rgba(123, 194, 36, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.15);
             transition: all 0.3s ease;
         }
 
         .education-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(63, 161, 16, 0.1);
+            box-shadow: 0 8px 24px rgba(74, 144, 226, 0.1);
         }
         
         .degree {
             font-weight: 600;
             font-size: 18px;
-            color: var(--sicredi-dark-green);
+            color: var(--secondary-blue);
             margin-bottom: 8px;
         }
         
@@ -961,10 +992,9 @@
         .thesis {
             font-size: 14px;
             font-style: italic;
-            color: var(--sicredi-dark-neutral);
+            color: var(--dark-gray);
         }
 
-        
         .projects-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -988,7 +1018,7 @@
             border-radius: 16px;
             padding: 30px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(123, 194, 36, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.15);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -1013,14 +1043,14 @@
         
         .project-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(63, 161, 16, 0.15);
-            border-color: var(--sicredi-green);
+            box-shadow: 0 8px 30px rgba(74, 144, 226, 0.15);
+            border-color: var(--primary-blue);
         }
         
         .project-title {
             font-weight: 600;
             font-size: 18px;
-            color: var(--sicredi-dark-green);
+            color: var(--secondary-blue);
             margin-bottom: 12px;
         }
         
@@ -1033,64 +1063,23 @@
         
         .tech-tag {
             display: inline-block;
-            background: rgba(63, 161, 16, 0.1);
-            color: var(--sicredi-dark-green);
+            background: rgba(74, 144, 226, 0.1);
+            color: var(--secondary-blue);
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 500;
             margin-right: 8px;
             margin-bottom: 8px;
-            border: 1px solid rgba(0, 117, 177, 0.2);
+            border: 1px solid rgba(74, 144, 226, 0.2);
             transition: all 0.2s ease;
         }
 
         .tech-tag:hover {
-            background: var(--sicredi-green);
+            background: var(--primary-blue);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(63, 161, 16, 0.3);
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            background: var(--background-gradient);
-            color: white;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 12px;
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 117, 177, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 117, 177, 0.2);
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button i {
-            margin-right: 8px;
+            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
         }
 
         /* Print button */
@@ -1108,7 +1097,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(63, 161, 16, 0.3);
+            box-shadow: 0 4px 20px rgba(74, 144, 226, 0.3);
             transition: all 0.3s ease;
             z-index: 100;
         }
@@ -1127,13 +1116,13 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             z-index: 100;
-            border: 2px solid rgba(63, 161, 16, 0.2);
+            border: 2px solid rgba(74, 144, 226, 0.2);
         }
         
         .language-toggle:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(63, 161, 16, 0.3);
-            border-color: rgba(63, 161, 16, 0.4);
+            box-shadow: 0 6px 30px rgba(74, 144, 226, 0.3);
+            border-color: rgba(74, 144, 226, 0.4);
         }
         
         .language-option {
@@ -1159,7 +1148,7 @@
         .language-option.active {
             background: var(--background-gradient);
             color: white;
-            box-shadow: 0 2px 10px rgba(0, 117, 177, 0.3);
+            box-shadow: 0 2px 10px rgba(74, 144, 226, 0.3);
             animation: pulseActive 2s ease-in-out infinite;
         }
         
@@ -1189,73 +1178,262 @@
         }
         
         .language-option:not(.active):hover {
-            background: rgba(0, 117, 177, 0.05);
-            color: var(--sicredi-green);
+            background: rgba(74, 144, 226, 0.05);
+            color: var(--primary-blue);
         }
         
         .language-divider {
             width: 1px;
             height: 20px;
-            background: rgba(63, 161, 16, 0.2);
+            background: rgba(74, 144, 226, 0.2);
             margin: 0 5px;
         }
 
         .print-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(63, 161, 16, 0.4);
+            box-shadow: 0 6px 30px rgba(74, 144, 226, 0.4);
         }
 
         .print-button i {
             font-size: 24px;
         }
 
+
         /* Responsive design */
         @media (max-width: 768px) {
             .cv-container {
+                margin: 0;
+                border-radius: 0;
                 max-width: 100%;
-                margin: 20px;
             }
             
             .header {
-                padding: 40px 30px 60px 30px;
+                padding: 60px 20px 80px 20px;
+                min-height: 400px;
             }
-
+            
+            .header h1 {
+                font-size: 28px;
+                text-align: center;
+            }
+            
+            .role {
+                font-size: 16px;
+                text-align: center;
+            }
+            
+            .contaazul-logo-header {
+                width: 200px;
+            }
+            
+            .company-tagline {
+                font-size: 18px;
+                letter-spacing: 1px;
+            }
+            
+            .contact-info {
+                justify-content: center;
+                flex-direction: column;
+                gap: 6px;
+            }
+            
+            .contact-item {
+                font-size: 12px;
+                padding: 6px 10px;
+                width: 100%;
+            }
+            
+            .contact-button {
+                padding: 6px 10px;
+                font-size: 12px;
+                min-height: 36px;
+                width: 100%;
+            }
+            
+            .contact-cta {
+                font-size: 11px;
+            }
+            
+            .section {
+                padding: 20px 15px;
+            }
+            
+            .section-title {
+                font-size: 14px;
+                margin-bottom: 15px;
+                padding: 6px 12px;
+            }
+            
+            /* Education grid */
+            .education-tech-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .education-grid,
+            .education-container {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Skills */
+            .skills-grid,
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .skill-items {
+                font-size: 11px;
+            }
+            
+            /* Experience */
+            .experience-timeline {
+                padding-left: 15px;
+                margin-left: 0;
+            }
+            
+            .company-header {
+                flex-direction: column;
+                gap: 3px;
+                margin-bottom: 15px;
+            }
+            
+            .company-name {
+                font-size: 13px;
+            }
+            
+            .job-title {
+                font-size: 12px;
+            }
+            
+            .job-period {
+                font-size: 10px;
+            }
+            
+            .achievements li {
+                font-size: 11px;
+                padding-left: 15px;
+                margin-bottom: 8px;
+                line-height: 1.5;
+            }
+            
+            /* Remove logos */
+            .boticario-logo,
+            .sicredi-logo,
+            .ifood-logo,
+            .rd-logo,
+            .rdstation-logo {
+                display: none;
+            }
+            
+            /* Projects */
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-item {
+                padding: 15px;
+            }
+            
+            /* Header content adjustments */
             .header-content {
                 flex-direction: column;
                 text-align: center;
-                gap: 20px;
+                gap: 15px;
             }
             
             .header-text {
                 padding-right: 0;
             }
-
-            .boticario-logo {
-                width: 50px;
-                bottom: 15px;
-                right: 15px;
-            }
-
-            .header h1 {
-                font-size: 26px;
-            }
-
-            .section {
-                padding: 30px 20px;
-            }
-
-            .section:not(:last-child)::after {
-                left: 20px;
-                right: 20px;
-            }
-
-            .experience-timeline {
-                margin-left: 20px;
-                padding-left: 30px;
-            }
-
+            
+            /* Achievement container mobile */
             .achievements-container {
                 grid-template-columns: 1fr;
+            }
+            
+            /* Section separator adjustments */
+            .section:not(:last-child)::after {
+                left: 15px;
+                right: 15px;
+            }
+            
+            .contaazul-logo {
+                width: 160px;
+                bottom: 10px;
+                right: 10px;
+            }
+            
+            /* Modals */
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                padding: 20px;
+            }
+            
+            .modal input,
+            .modal textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 12px;
+            }
+            
+            .modal button {
+                min-height: 44px;
+                font-size: 14px;
+            }
+            
+            /* Fixed buttons */
+            .print-button,
+            .language-toggle {
+                position: fixed;
+                bottom: 20px;
+                top: auto;
+                padding: 10px 16px;
+                font-size: 12px;
+                min-height: 40px;
+                z-index: 100;
+            }
+            
+            .print-button {
+                right: 20px;
+            }
+            
+            .language-toggle {
+                right: auto;
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 18px;
+            }
+            
+            .section {
+                padding: 15px 10px;
+            }
+            
+            .section-title {
+                font-size: 12px;
+            }
+            
+            .achievements li {
+                padding-left: 12px;
+                font-size: 10px;
+            }
+            
+            .company-name {
+                font-size: 12px;
+            }
+            
+            .job-title {
+                font-size: 11px;
+            }
+            
+            .job-period {
+                font-size: 9px;
+            }
+            
+            .contaazul-logo {
+                width: 120px;
             }
         }
 
@@ -1279,13 +1457,13 @@
             }
 
             .section-title {
-                background: var(--sicredi-green) !important;
+                background: var(--primary-blue) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
 
             .header {
-                background: var(--sicredi-green) !important;
+                background: var(--primary-blue) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 page-break-inside: avoid;
@@ -1294,16 +1472,6 @@
             
             .header-text {
                 padding-right: 0 !important;
-            }
-            
-            /* Logo específico do Boticário */
-            .boticario-logo {
-                position: static !important;
-                display: block !important;
-                margin: 20px auto 0 !important;
-                width: 120px !important;
-                opacity: 1 !important;
-                filter: brightness(0) invert(1) !important;
             }
             
             /* Esconder elementos decorativos */
@@ -1325,30 +1493,34 @@
     
     <div class="cv-container">
         <header class="header">
-            <div class="header-curves">
-                <div class="curve-shape"></div>
-                <div class="curve-shape"></div>
-                <div class="curve-shape"></div>
-            </div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            
             <div class="header-content">
-                <img src="../../assets/images/boticario.svg" alt="O Boticário" class="boticario-logo">
+                <div class="logo-container">
+                    <img src="../../assets/images/logo_conta_azul.svg" alt="Conta Azul" class="contaazul-logo-header">
+                </div>
+                
+                <div class="company-tagline">Simplificando a Gestão Empresarial</div>
+                
                 <div class="header-text">
                     <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
-                    <div class="role">CRM Management and Data Intelligence</div>
+                    <div class="role">Gestão de CRM & Inteligência de Dados</div>
                     
                     <div class="contact-info">
                         <div class="contact-item">
                             <button class="contact-button" onclick="openEmailForm()">
                                 <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
                             </button>
-                            <span class="contact-cta">Click to send an email</span>
+                            <span class="contact-cta">Clique para enviar um e-mail</span>
                         </div>
                         
                         <div class="contact-item">
                             <button class="contact-button" onclick="openPhoneForm()">
                                 <i class="fas fa-phone"></i> +55 (55) 981147758
                             </button>
-                            <span class="contact-cta">Click to send a message</span>
+                            <span class="contact-cta">Clique para enviar uma mensagem</span>
                         </div>
                         
                         <div class="location">
@@ -1359,7 +1531,7 @@
                             <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
                                 <i class="fab fa-linkedin"></i> LinkedIn
                             </a>
-                            <span class="contact-cta">Click to visit LinkedIn</span>
+                            <span class="contact-cta">Clique para visitar o LinkedIn</span>
                         </div>
                     </div>
                 </div>
@@ -1367,314 +1539,170 @@
         </header>
         
         <section class="section">
-            <h2 class="section-title">PROFESSIONAL PROFILE</h2>
+            <h2 class="section-title">PERFIL PROFISSIONAL</h2>
             <p class="profile-text">
-                Professional in CRM Management and Data Intelligence focused on quantifiable results. At Grupo RBS, I led a Brand Equity research audit that supported strategic decisions. At DBC/Realize CFI, I developed a pipeline for competitor analysis generating insights on R$1B in transactions and automated critical reports. As CRM Coordinator at Lojas Renner, I optimized budget generating 10% annual savings, implemented 80% automated communications and strategies that resulted in consumption increase. My approach integrates data, technology and strategic vision for tangible results.
+                Profissional em Gestão de CRM e Inteligência de Dados focado em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa Brand Equity que suportou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos. Como Coordenador de CRM na Lojas Renner, otimizei orçamento gerando 10% de economia anual, implementei 80% de comunicações automatizadas e estratégias que resultaram em aumento de consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.
             </p>
         </section>
         
         <section class="section">
-            <h2 class="section-title">SKILLS & TOOLS</h2>
+            <h2 class="section-title">HABILIDADES E FERRAMENTAS</h2>
             <div class="skills-container">
                 <div class="skills-column">
-                    <h3 style="font-size: 16px; color: #001D3A; margin-bottom: 16px; font-weight: 600;">Strategic Skills</h3>
+                    <h3 style="font-size: 16px; color: var(--secondary-blue); margin-bottom: 20px; font-weight: 600;">Habilidades Estratégicas</h3>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>CRM Management</span>
-                            <span class="tool-percentage">Expert</span>
+                            <span>Gestão de CRM</span>
+                            <span class="tool-percentage">98%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 98%"></div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
                             <span>Customer Equity</span>
-                            <span class="tool-percentage">Expert</span>
+                            <span class="tool-percentage">92%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 92%"></div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
                             <span>Business Intelligence</span>
-                            <span class="tool-percentage">Advanced</span>
+                            <span class="tool-percentage">88%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 88%"></div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>Strategic Leadership</span>
-                            <span class="tool-percentage">Advanced</span>
+                            <span>Liderança Estratégica</span>
+                            <span class="tool-percentage">85%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 85%"></div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
                             <span>Brand Equity</span>
-                            <span class="tool-percentage">Advanced</span>
+                            <span class="tool-percentage">80%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 80%"></div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>Brand Management</span>
-                            <span class="tool-percentage">Advanced</span>
+                            <span>Gestão de Marca</span>
+                            <span class="tool-percentage">78%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 78%"></div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Tools & Technologies</h3>
+                    <h3 style="font-size: 16px; color: var(--secondary-blue); margin-bottom: 20px; font-weight: 600;">Ferramentas e Tecnologias</h3>
                     <div class="tool-item">
                         <div class="tool-name">
                             <span>PowerBI</span>
-                            <span class="tool-percentage">Expert</span>
+                            <span class="tool-percentage">95%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 95%"></div>
                         </div>
                     </div>
                     
                     <div class="tool-item">
                         <div class="tool-name">
                             <span>Oracle/Databricks</span>
-                            <span class="tool-percentage">Expert</span>
+                            <span class="tool-percentage">90%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%"></div>
                         </div>
                     </div>
                     
                     <div class="tool-item">
                         <div class="tool-name">
                             <span>Python/SQL</span>
-                            <span class="tool-percentage">Advanced</span>
+                            <span class="tool-percentage">75%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%"></div>
                         </div>
                     </div>
                     
                     <div class="tool-item">
                         <div class="tool-name">
                             <span>Kanbanize</span>
-                            <span class="tool-percentage">Expert</span>
+                            <span class="tool-percentage">90%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%"></div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Emerging Technologies</h3>
+                    <h3 style="font-size: 16px; color: var(--secondary-blue); margin-bottom: 20px; font-weight: 600;">Tecnologias Emergentes</h3>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>LLM & AI Agents</span>
-                            <span class="tool-percentage">Advanced</span>
+                            <span>LLM e Agentes IA</span>
+                            <span class="tool-percentage">82%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 82%"></div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>AI for CRM</span>
-                            <span class="tool-percentage">Advanced</span>
+                            <span>IA para CRM</span>
+                            <span class="tool-percentage">86%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 86%"></div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>AI/LLM APIs</span>
-                            <span class="tool-percentage">Advanced</span>
+                            <span>APIs IA/LLM</span>
+                            <span class="tool-percentage">80%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 80%"></div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>Data Analytics</span>
-                            <span class="tool-percentage">Expert</span>
+                            <span>Análise de Dados</span>
+                            <span class="tool-percentage">91%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 91%"></div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
                             <span>Machine Learning</span>
-                            <span class="tool-percentage">Advanced</span>
+                            <span class="tool-percentage">77%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 77%"></div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
                             <span>Responsys</span>
-                            <span class="tool-percentage">Advanced</span>
+                            <span class="tool-percentage">75%</span>
                         </div>
-                        <div class="dots-container">
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot filled"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%"></div>
                         </div>
                     </div>
                 </div>
@@ -1682,49 +1710,49 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
+            <h2 class="section-title">EXPERIÊNCIA PROFISSIONAL</h2>
             
             <div class="experience-timeline">
                 <div class="experience-item">
                     <div class="job-title">
                         <div class="job-number">1</div>
-                        CRM COORDINATOR
+                        COORDENADOR DE CRM
                         <div class="tooltip">
                             <i class="fas fa-info-circle tooltip-icon"></i>
                             <span class="tooltip-text">
                                 <div class="tooltip-header">
-                                    Position Details: CRM Coordinator
+                                    Detalhes da Posição: Coordenador de CRM
                                 </div>
                                 <div class="tooltip-content">
                                     <div class="tooltip-section">
                                         <div class="tooltip-section-title">
-                                            <i class="fas fa-users"></i> Team and Budget Management
+                                            <i class="fas fa-users"></i> Gestão de Equipe e Orçamento
                                         </div>
                                         <ul class="tooltip-list">
-                                            <li>Leadership of multidisciplinary team with 8 professionals</li>
-                                            <li>Annual budget management of R$ 25 million</li>
-                                            <li>Savings of R$ 2.5M/year in outsourced contracts</li>
+                                            <li>Liderança de equipe multidisciplinar com 8 profissionais</li>
+                                            <li>Gestão de orçamento anual de R$ 25 milhões</li>
+                                            <li>Economia de R$ 2,5M/ano em contratos terceirizados</li>
                                         </ul>
                                     </div>
                                     <div class="tooltip-section">
                                         <div class="tooltip-section-title">
-                                            <i class="fas fa-chart-line"></i> Performance Metrics
+                                            <i class="fas fa-chart-line"></i> Métricas de Performance
                                         </div>
                                         <ul class="tooltip-list">
-                                            <li>R$ 180M incremental consumption via CRM (+7 p.p YoY)</li>
-                                            <li>+450M in OFF-Us volume (8% increase)</li>
-                                            <li>350K customers retained (23% churn reduction)</li>
-                                            <li>+R$ 1.2K average ticket (28% increase)</li>
+                                            <li>R$ 180M de consumo incremental via CRM (+7 p.p YoY)</li>
+                                            <li>+450M em volume OFF-Us (aumento de 8%)</li>
+                                            <li>350K clientes retidos (redução de 23% no churn)</li>
+                                            <li>+R$ 1.2K ticket médio (aumento de 28%)</li>
                                         </ul>
                                     </div>
                                     <div class="tooltip-section">
                                         <div class="tooltip-section-title">
-                                            <i class="fas fa-rocket"></i> Implemented Innovations
+                                            <i class="fas fa-rocket"></i> Inovações Implementadas
                                         </div>
                                         <ul class="tooltip-list">
-                                            <li>80% automated communications</li>
-                                            <li>Advanced segmentation with Machine Learning</li>
-                                            <li>Real-time dashboard for decision making</li>
+                                            <li>80% de comunicações automatizadas</li>
+                                            <li>Segmentação avançada com Machine Learning</li>
+                                            <li>Dashboard em tempo real para tomada de decisão</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1732,10 +1760,10 @@
                         </div>
                     </div>
                     <div class="company">Realize CFI</div>
-                    <div class="period">Sep/2022 - Feb/2025</div>
+                    <div class="period">Set/2022 - Fev/2025</div>
                     
                     <div class="job-description">
-                        Responsible for CRM strategies, budget and contract management, team leadership and implementation of performance metrics to maximize results. I manage communication with over 7 million customers monthly, optimizing channels and messages to increase engagement and conversion.
+                        Responsável por estratégias de CRM, gestão de orçamento e contratos, liderança de equipe e implementação de métricas de performance para maximizar resultados. Gerencio comunicação com mais de 7 milhões de clientes mensalmente, otimizando canais e mensagens para aumentar engajamento e conversão.
                     </div>
                     
                     <div class="achievements-container">
@@ -1744,9 +1772,9 @@
                                 <i class="fas fa-money-bill-wave"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Contract Optimization</div>
+                                <div class="achievement-title">Otimização de Contratos</div>
                                 <div class="achievement-description">
-                                    10% savings in outsourced contracts while maintaining service quality.
+                                    Economia de 10% em contratos terceirizados mantendo qualidade de serviço.
                                 </div>
                             </div>
                         </div>
@@ -1756,9 +1784,9 @@
                                 <i class="fas fa-chart-line"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">CRM Incremental</div>
+                                <div class="achievement-title">Incremental CRM</div>
                                 <div class="achievement-description">
-                                    Growth of +7 p.p YoY in consumption incremental from CRM.
+                                    Crescimento de +7 p.p YoY no consumo incremental oriundo do CRM.
                                 </div>
                             </div>
                         </div>
@@ -1768,9 +1796,9 @@
                                 <i class="fas fa-shopping-cart"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">OFF-Us Consumption Increase</div>
+                                <div class="achievement-title">Aumento Consumo OFF-Us</div>
                                 <div class="achievement-description">
-                                    8% increase in OFF-Us consumption through data-driven strategies.
+                                    Crescimento de 8% no consumo OFF-Us através de estratégias data-driven.
                                 </div>
                             </div>
                         </div>
@@ -1780,9 +1808,9 @@
                                 <i class="fas fa-users"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Churn Reduction</div>
+                                <div class="achievement-title">Redução de Churn</div>
                                 <div class="achievement-description">
-                                    23% reduction in churn rate and 28% consumption increase.
+                                    Redução de 23% na taxa de churn e 28% de aumento no consumo.
                                 </div>
                             </div>
                         </div>
@@ -1792,32 +1820,32 @@
                 <div class="experience-item">
                     <div class="job-title">
                         <div class="job-number">2</div>
-                        DATA SPECIALIST
+                        ESPECIALISTA DE DADOS
                         <div class="tooltip">
                             <i class="fas fa-info-circle tooltip-icon"></i>
                             <span class="tooltip-text">
                                 <div class="tooltip-header">
-                                    Position Details: Data Specialist
+                                    Detalhes da Posição: Especialista de Dados
                                 </div>
                                 <div class="tooltip-content">
                                     <div class="tooltip-section">
                                         <div class="tooltip-section-title">
-                                            <i class="fas fa-database"></i> Platform Transformation
+                                            <i class="fas fa-database"></i> Transformação de Plataforma
                                         </div>
                                         <ul class="tooltip-list">
-                                            <li>Pioneer migration from Oracle to Databricks</li>
-                                            <li>300% increase in processing capacity (from 2TB to 8TB/day)</li>
-                                            <li>Modern data architecture implementation</li>
+                                            <li>Pioneiro na migração de Oracle para Databricks</li>
+                                            <li>Aumento de 300% na capacidade de processamento (de 2TB para 8TB/dia)</li>
+                                            <li>Implementação de arquitetura de dados moderna</li>
                                         </ul>
                                     </div>
                                     <div class="tooltip-section">
                                         <div class="tooltip-section-title">
-                                            <i class="fas fa-tachometer-alt"></i> Performance and Innovation
+                                            <i class="fas fa-tachometer-alt"></i> Performance e Inovação
                                         </div>
                                         <ul class="tooltip-list">
-                                            <li>Real-time insights with latency < 2 seconds</li>
-                                            <li>Segmentation model for 7M+ customers in 15 clusters</li>
-                                            <li>35% increase in conversion (CTR: 2.1% → 2.8%)</li>
+                                            <li>Insights em tempo real com latência < 2 segundos</li>
+                                            <li>Modelo de segmentação para 7M+ clientes em 15 clusters</li>
+                                            <li>Aumento de 35% na conversão (CTR: 2.1% → 2.8%)</li>
                                         </ul>
                                     </div>
                                     <div class="tooltip-section">
@@ -1825,9 +1853,9 @@
                                             <i class="fas fa-users-cog"></i> Framework Customer Centricity
                                         </div>
                                         <ul class="tooltip-list">
-                                            <li>Customer lifecycle model development</li>
-                                            <li>Advanced clustering algorithms</li>
-                                            <li>Strategic dashboards for decision making</li>
+                                            <li>Desenvolvimento de modelo de ciclo de vida do cliente</li>
+                                            <li>Algoritmos avançados de clusterização</li>
+                                            <li>Dashboards estratégicos para tomada de decisão</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1835,10 +1863,10 @@
                         </div>
                     </div>
                     <div class="company">Realize CFI</div>
-                    <div class="period">Jul/2021 - Sep/2022</div>
+                    <div class="period">Jul/2021 - Set/2022</div>
                     
                     <div class="job-description">
-                        Led digital transformation and migration to Databricks platform, developing advanced analytical solutions and implementing Customer Centricity framework. Produced strategic dashboards and created segmentation models to optimize communication strategies.
+                        Liderei a transformação digital e migração para plataforma Databricks, desenvolvendo soluções analíticas avançadas e implementando framework de Customer Centricity. Produzi dashboards estratégicos e criei modelos de segmentação para otimizar estratégias de comunicação.
                     </div>
                     
                     <div class="achievements-container">
@@ -1847,9 +1875,9 @@
                                 <i class="fas fa-database"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Digital Transformation</div>
+                                <div class="achievement-title">Transformação Digital</div>
                                 <div class="achievement-description">
-                                    Pioneer Oracle to Databricks migration, increasing processing capacity by 300%.
+                                    Pioneiro na migração Oracle para Databricks, aumentando capacidade de processamento em 300%.
                                 </div>
                             </div>
                         </div>
@@ -1859,9 +1887,9 @@
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Data Democratization</div>
+                                <div class="achievement-title">Democratização de Dados</div>
                                 <div class="achievement-description">
-                                    Enabled real-time insights for strategic decisions.
+                                    Habilitei insights em tempo real para decisões estratégicas.
                                 </div>
                             </div>
                         </div>
@@ -1871,9 +1899,9 @@
                                 <i class="fas fa-users-cog"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Customer Centricity Framework</div>
+                                <div class="achievement-title">Framework Customer Centricity</div>
                                 <div class="achievement-description">
-                                    Developed lifecycle model and clustering algorithms for 7M+ customers.
+                                    Desenvolvi modelo de ciclo de vida e algoritmos de clusterização para 7M+ clientes.
                                 </div>
                             </div>
                         </div>
@@ -1883,9 +1911,9 @@
                                 <i class="fas fa-bullseye"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Conversion Increase</div>
+                                <div class="achievement-title">Aumento de Conversão</div>
                                 <div class="achievement-description">
-                                    Created efficient segmentation base boosting conversion by +35%.
+                                    Criei base de segmentação eficiente aumentando conversão em +35%.
                                 </div>
                             </div>
                         </div>
@@ -1895,42 +1923,42 @@
                 <div class="experience-item">
                     <div class="job-title">
                         <div class="job-number">3</div>
-                        MARKET INTELLIGENCE ANALYST
+                        ANALISTA DE INTELIGÊNCIA DE MERCADO
                         <div class="tooltip">
                             <i class="fas fa-info-circle tooltip-icon"></i>
                             <span class="tooltip-text">
                                 <div class="tooltip-header">
-                                    Position Details: Market Intelligence Analyst
+                                    Detalhes da Posição: Analista de Inteligência de Mercado
                                 </div>
                                 <div class="tooltip-content">
                                     <div class="tooltip-section">
                                         <div class="tooltip-section-title">
-                                            <i class="fas fa-trophy"></i> Brand Equity Audit
+                                            <i class="fas fa-trophy"></i> Auditoria Brand Equity
                                         </div>
                                         <ul class="tooltip-list">
-                                            <li>R$ 300k research audit</li>
-                                            <li>Analysis of 3,000+ respondents</li>
-                                            <li>Foundation for strategic brand decisions</li>
+                                            <li>Auditoria de pesquisa de R$ 300k</li>
+                                            <li>Análise de 3.000+ respondentes</li>
+                                            <li>Fundação para decisões estratégicas de marca</li>
                                         </ul>
                                     </div>
                                     <div class="tooltip-section">
                                         <div class="tooltip-section-title">
-                                            <i class="fas fa-clock"></i> Automation and Efficiency
+                                            <i class="fas fa-clock"></i> Automação e Eficiência
                                         </div>
                                         <ul class="tooltip-list">
-                                            <li>12h weekly reduction in manual processes</li>
-                                            <li>600h/year saved through automation</li>
-                                            <li>Complete migration to PowerBI</li>
+                                            <li>Redução de 12h semanais em processos manuais</li>
+                                            <li>600h/ano economizadas através de automação</li>
+                                            <li>Migração completa para PowerBI</li>
                                         </ul>
                                     </div>
                                     <div class="tooltip-section">
                                         <div class="tooltip-section-title">
-                                            <i class="fas fa-comments-dollar"></i> Tax Optimization
+                                            <i class="fas fa-comments-dollar"></i> Otimização Tributária
                                         </div>
                                         <ul class="tooltip-list">
-                                            <li>R$ 1.5 million savings in taxes</li>
-                                            <li>18% reduction in tax burden</li>
-                                            <li>In-depth analysis of tax opportunities</li>
+                                            <li>Economia de R$ 1,5 milhão em impostos</li>
+                                            <li>Redução de 18% na carga tributária</li>
+                                            <li>Análise aprofundada de oportunidades fiscais</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1941,7 +1969,7 @@
                     <div class="period">Mar/2019 - Jul/2020</div>
                     
                     <div class="job-description">
-                        Conducted Brand Equity analyses, automated strategic reports and identified significant tax opportunities. Transformed manual processes into automated solutions, freeing up weekly hours for higher value-added analyses.
+                        Conduzi análises de Brand Equity, automatizei relatórios estratégicos e identifiquei oportunidades tributárias significativas. Transformei processos manuais em soluções automatizadas, liberando horas semanais para análises de maior valor agregado.
                     </div>
                     
                     <div class="achievements-container">
@@ -1950,9 +1978,9 @@
                                 <i class="fas fa-trophy"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Brand Equity Audit</div>
+                                <div class="achievement-title">Auditoria Brand Equity</div>
                                 <div class="achievement-description">
-                                    R$300k research audit, supporting strategic decisions.
+                                    Auditoria de pesquisa de R$300k, suportando decisões estratégicas.
                                 </div>
                             </div>
                         </div>
@@ -1962,9 +1990,9 @@
                                 <i class="fas fa-clock"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Report Automation</div>
+                                <div class="achievement-title">Automação de Relatórios</div>
                                 <div class="achievement-description">
-                                    12h weekly reduction through PowerBI migration.
+                                    Redução de 12h semanais através de migração para PowerBI.
                                 </div>
                             </div>
                         </div>
@@ -1974,9 +2002,9 @@
                                 <i class="fas fa-comments-dollar"></i>
                             </div>
                             <div class="achievement-content">
-                                <div class="achievement-title">Tax Optimization</div>
+                                <div class="achievement-title">Otimização Tributária</div>
                                 <div class="achievement-description">
-                                    R$ 1.5 million tax savings through in-depth analysis.
+                                    Economia de R$ 1,5 milhão em impostos através de análise aprofundada.
                                 </div>
                             </div>
                         </div>
@@ -1986,32 +2014,29 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">EDUCATION</h2>
+            <h2 class="section-title">FORMAÇÃO ACADÊMICA</h2>
             <div class="education-container">
                 <div class="education-item">
-                    <div class="degree">Master's in Business Administration</div>
-                    <div class="university">Federal University of Santa Maria</div>
-                    <div class="thesis">Thesis: Customer Equity</div>
-                    <a href="https://repositorio.ufsm.br/bitstream/handle/1/18895/DIS_PPGADMINISTRACAO_2019_MARCONATO_PEDRO.pdf" target="_blank" class="cta-button">
-                        <i class="fas fa-file-pdf"></i> View complete dissertation
-                    </a>
+                    <div class="degree">Mestrado em Administração</div>
+                    <div class="university">Universidade Federal de Santa Maria</div>
+                    <div class="thesis">Dissertação: Customer Equity</div>
                 </div>
                 
                 <div class="education-item">
-                    <div class="degree">Bachelor's in Business Administration</div>
-                    <div class="university">Federal University of Santa Maria</div>
-                    <div class="thesis">Final Paper: Brand Equity</div>
+                    <div class="degree">Bacharelado em Administração</div>
+                    <div class="university">Universidade Federal de Santa Maria</div>
+                    <div class="thesis">TCC: Brand Equity</div>
                 </div>
             </div>
         </section>
         
         <section class="section">
-            <h2 class="section-title">PROJECTS & INNOVATION</h2>
+            <h2 class="section-title">PROJETOS E INOVAÇÃO</h2>
             <div class="projects-container">
                 <div class="project-item">
                     <div class="project-title">REPO NEWS</div>
                     <div class="project-description">
-                        Weekly insights selected with human curation and summarized by artificial intelligence — straight to the point, no noise.
+                        Insights semanais selecionados com curadoria humana e resumidos por inteligência artificial — direto ao ponto, sem ruído.
                     </div>
                     <div style="margin-top: 15px;">
                         <span class="tech-tag">React</span>
@@ -2021,9 +2046,9 @@
                 </div>
                 
                 <div class="project-item">
-                    <div class="project-title">VISUAL RECOGNITION</div>
+                    <div class="project-title">RECONHECIMENTO VISUAL</div>
                     <div class="project-description">
-                        Gym equipment recognition system via camera with personalized workout recommendations.
+                        Sistema de reconhecimento de equipamentos de academia via câmera com recomendações personalizadas de treino.
                     </div>
                     <div style="margin-top: 15px;">
                         <span class="tech-tag">TensorFlow</span>
@@ -2035,7 +2060,7 @@
                 <div class="project-item">
                     <div class="project-title">MIELKE</div>
                     <div class="project-description">
-                        Management system for dental offices with automated billing and scheduling flow.
+                        Sistema de gestão para consultórios odontológicos com fluxo automatizado de faturamento e agendamento.
                     </div>
                     <div style="margin-top: 15px;">
                         <span class="tech-tag">Next.js</span>
@@ -2049,44 +2074,44 @@
     
     <!-- Language toggle button -->
     <div class="language-toggle">
-        <a href="boticario.html" class="language-option active">
-            <i class="fas fa-check-circle"></i>
+        <a href="contaazul.html" class="language-option">
             <span>EN</span>
         </a>
         <div class="language-divider"></div>
-        <a href="boticario_pt.html" class="language-option">
+        <a href="contaazul_pt.html" class="language-option active">
+            <i class="fas fa-check-circle"></i>
             <span>PT</span>
         </a>
     </div>
     
     <!-- Print button -->
-    <button class="print-button" onclick="var win = window.open('../../cv_styles/cv_boticario_style_EN.html', '_blank'); win.onload = function() { win.print(); }">
+    <button class="print-button" onclick="var win = window.open('../../cv_styles/cv_contaazul_style.html', '_blank'); win.onload = function() { win.print(); }">
         <i class="fas fa-file-pdf"></i>
     </button>
     
     <!-- Email Modal -->
     <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
-            <h3 style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Send Email</h3>
+            <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
+            <h3 style="margin-bottom:25px; color: var(--secondary-blue); font-size: 24px;">Enviar E-mail</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Email</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu E-mail</label>
                     <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Subject</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Assunto</label>
                     <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem</label>
                     <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
-                <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.3);">Send</button>
+                <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);">Enviar</button>
             </form>
         </div>
     </div>
@@ -2094,28 +2119,28 @@
     <!-- Phone Modal -->
     <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
-            <h3 style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Get in Touch</h3>
+            <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
+            <h3 style="margin-bottom:25px; color: var(--secondary-blue); font-size: 24px;">Entre em Contato</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <input type="hidden" name="contact_type" value="phone_request">
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Phone</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Telefone</label>
                     <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Best time to contact</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Melhor horário para contato</label>
                     <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message (Optional)</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem (Opcional)</label>
                     <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
                 <div style="display:flex; gap:15px;">
-                    <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.3);">Request Contact</button>
+                    <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);">Solicitar Contato</button>
                     <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
                         <i class="fab fa-whatsapp" style="margin-right:8px;"></i> WhatsApp
                     </a>
@@ -2156,7 +2181,7 @@
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => {
                 input.addEventListener('focus', function() {
-                    this.style.borderColor = 'var(--sicredi-green)';
+                    this.style.borderColor = 'var(--primary-blue)';
                 });
                 input.addEventListener('blur', function() {
                     this.style.borderColor = '#e5e7eb';

@@ -1,32 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedro Henrique Marconato - CV</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
-            /* O Boticário Inspired Colors */
-            --boticario-navy: #1B2B4A;
-            --boticario-dark-blue: #0D1829;
-            --boticario-purple: #8A4FFF;
-            --boticario-light-purple: #B47EFF;
-            --boticario-orange: #FF6B35;
-            --boticario-coral: #FF8C69;
-            --boticario-white: #FFFFFF;
-            --boticario-light-gray: #F8F9FA;
-            
-            /* Applied Colors */
-            --primary-color: #1B2B4A;
-            --secondary-color: #8A4FFF;
-            --accent-color: #FF6B35;
-            --light-accent: #F8F9FA;
-            --dark-accent: #0D1829;
+            /* Conta Azul CV Colors */
+            --primary-color: #1AC2FF;
+            --secondary-color: #007BB8;
+            --accent-color: #6A4FFF;
+            --light-accent: #ecf0f1;
+            --dark-accent: #0056A0;
             --text-color: #2c3e50;
-            --border-color: rgba(27, 43, 74, 0.2);
-            --background-gradient: linear-gradient(135deg, #1B2B4A 0%, #0D1829 50%, #8A4FFF 100%);
+            --border-color: rgba(26, 194, 255, 0.2);
+            --background-gradient: linear-gradient(135deg, #1AC2FF 0%, #007BB8 100%);
         }
         
         * {
@@ -69,21 +59,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(138, 79, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.2), transparent);
             animation: shimmer 8s infinite;
-        }
-
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            right: 30px;
-            width: 150px;
-            height: 150px;
-            background: url('../assets/images/boticario.svg') no-repeat center bottom;
-            background-size: contain;
-            opacity: 0.1;
-            z-index: 1;
         }
 
         @keyframes shimmer {
@@ -95,43 +72,10 @@
             position: relative;
             z-index: 1;
         }
-
-        .boticario-logo {
-            position: absolute;
-            bottom: 20px;
-            right: 40px;
-            width: 160px;
-            height: auto;
-            filter: brightness(0) invert(1);
-            opacity: 0.9;
-            z-index: 2;
-        }
-        
-        /* Logo size variations */
-        .boticario-logo.extra-small {
-            width: 80px;
-        }
-        
-        .boticario-logo.small {
-            width: 120px;
-        }
-        
-        .boticario-logo.medium {
-            width: 160px; /* default size */
-        }
-        
-        .boticario-logo.large {
-            width: 200px;
-        }
-        
-        .boticario-logo.extra-large {
-            width: 240px;
-        }
         
         .header h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 36px;
-            font-weight: 800;
+            font-size: 32px;
+            font-weight: 700;
             color: white;
             margin-bottom: 8px;
             letter-spacing: -0.5px;
@@ -199,7 +143,7 @@
             padding: 8px 16px;
             border-radius: 12px;
             letter-spacing: 0.3px;
-            box-shadow: 0 4px 12px rgba(27, 43, 74, 0.2);
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
             display: inline-block;
             position: relative;
             overflow: hidden;
@@ -213,7 +157,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(138, 79, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.3), transparent);
             animation: titleShimmer 6s infinite;
         }
 
@@ -224,17 +168,17 @@
 
         /* Área de Atuação Section */
         .area-section {
-            background: linear-gradient(135deg, rgba(240, 248, 255, 0.8), rgba(220, 240, 250, 0.5));
+            background: linear-gradient(135deg, rgba(236, 240, 241, 0.8), rgba(189, 195, 199, 0.5));
             padding: 20px;
             border-radius: 16px;
-            border: 1px solid rgba(27, 43, 74, 0.1);
+            border: 1px solid rgba(52, 73, 94, 0.1);
             margin-bottom: 20px;
         }
 
         .area-title {
             font-size: 20px;
             font-weight: 700;
-            color: var(--dark-accent);
+            color: var(--primary-color);
             text-align: center;
             margin-bottom: 12px;
             text-transform: uppercase;
@@ -266,7 +210,7 @@
             content: '"';
             position: absolute;
             left: 0;
-            color: var(--boticario-secondary-green);
+            color: var(--accent-color);
             font-weight: bold;
             font-size: 20px;
             top: -2px;
@@ -280,15 +224,15 @@
         }
 
         .skills-section {
-            background: linear-gradient(135deg, rgba(240, 248, 255, 0.8), rgba(220, 240, 250, 0.5));
+            background: linear-gradient(135deg, rgba(236, 240, 241, 0.8), rgba(189, 195, 199, 0.5));
             padding: 16px;
             border-radius: 14px;
-            border: 1px solid rgba(27, 43, 74, 0.1);
+            border: 1px solid rgba(52, 73, 94, 0.1);
         }
 
         .skills-section h3 {
             font-size: 12px;
-            color: var(--dark-accent);
+            color: var(--primary-color);
             margin-bottom: 10px;
             font-weight: 600;
             text-transform: uppercase;
@@ -301,13 +245,13 @@
         }
 
         .skill-tag {
-            background: rgba(138, 79, 255, 0.15);
-            color: var(--dark-accent);
+            background: rgba(52, 152, 219, 0.15);
+            color: var(--primary-color);
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 10.5px;
             font-weight: 500;
-            border: 1px solid rgba(138, 79, 255, 0.3);
+            border: 1px solid rgba(52, 152, 219, 0.3);
         }
 
         /* Cursos Complementares */
@@ -317,7 +261,7 @@
 
         .course-item {
             padding: 8px 0;
-            border-bottom: 1px solid rgba(27, 43, 74, 0.1);
+            border-bottom: 1px solid rgba(52, 73, 94, 0.1);
             font-size: 11px;
         }
 
@@ -333,7 +277,7 @@
         }
 
         .course-info {
-            color: var(--boticario-primary-blue);
+            color: var(--accent-color);
             font-size: 10px;
             font-style: italic;
         }
@@ -352,7 +296,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, var(--boticario-primary-blue), var(--boticario-secondary-green));
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
             border-radius: 3px;
         }
         
@@ -363,14 +307,14 @@
             border-radius: 14px;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(27, 43, 74, 0.1);
+            border: 1px solid rgba(52, 73, 94, 0.1);
             transition: all 0.3s ease;
         }
 
         .experience-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 4px 20px rgba(27, 43, 74, 0.08);
-            border-color: rgba(138, 79, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(52, 73, 94, 0.08);
+            border-color: rgba(52, 152, 219, 0.2);
         }
         
         .experience-item::before {
@@ -381,9 +325,9 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--boticario-secondary-green);
+            background: var(--accent-color);
             border: 3px solid white;
-            box-shadow: 0 0 0 3px rgba(138, 79, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
             z-index: 1;
         }
         
@@ -397,19 +341,19 @@
         .job-title {
             font-weight: 600;
             font-size: 16px;
-            color: var(--dark-accent);
+            color: var(--primary-color);
             margin-bottom: 4px;
         }
         
         .company {
             font-weight: 500;
             font-size: 13px;
-            color: var(--boticario-primary-blue);
+            color: var(--accent-color);
         }
         
         .period {
             font-size: 12px;
-            color: var(--boticario-dark-gray);
+            color: var(--secondary-color);
             font-weight: 600;
             text-align: right;
         }
@@ -439,7 +383,7 @@
             content: '"';
             position: absolute;
             left: 0;
-            color: var(--boticario-secondary-green);
+            color: var(--accent-color);
             font-weight: bold;
         }
         
@@ -451,16 +395,16 @@
         }
         
         .education-section {
-            background: linear-gradient(135deg, rgba(240, 248, 255, 0.8), rgba(220, 240, 250, 0.5));
+            background: linear-gradient(135deg, rgba(236, 240, 241, 0.8), rgba(189, 195, 199, 0.5));
             padding: 20px;
             border-radius: 14px;
-            border: 1px solid rgba(27, 43, 74, 0.1);
+            border: 1px solid rgba(52, 73, 94, 0.1);
         }
 
         .education-item {
             margin-bottom: 12px;
             padding-bottom: 12px;
-            border-bottom: 1px solid rgba(27, 43, 74, 0.1);
+            border-bottom: 1px solid rgba(52, 73, 94, 0.1);
         }
 
         .education-item:last-child {
@@ -472,7 +416,7 @@
         .degree {
             font-weight: 600;
             font-size: 13px;
-            color: var(--dark-accent);
+            color: var(--primary-color);
             margin-bottom: 3px;
         }
         
@@ -484,7 +428,7 @@
         
         .edu-period {
             font-size: 10px;
-            color: var(--boticario-dark-gray);
+            color: var(--secondary-color);
             font-style: italic;
         }
 
@@ -507,7 +451,7 @@
 
         .language-name {
             font-weight: 600;
-            color: var(--dark-accent);
+            color: var(--primary-color);
             font-size: 13px;
             margin-bottom: 2px;
         }
@@ -518,20 +462,6 @@
         }
 
         /* Print Styles */
-        /* Forçar cores para impressão */
-        .header {
-            background: #1B2B4A !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-        
-        .section-title {
-            background: #1B2B4A !important;
-            color: #FFFFFF !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-        
         @media print {
             body {
                 background: white;
@@ -548,20 +478,15 @@
             }
 
             .header {
-                background: #1B2B4A !important;
+                background: var(--background-gradient) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 padding: 25px 35px !important;
                 page-break-after: avoid;
             }
-            
-            .header::before,
-            .header::after {
-                display: none !important;
-            }
 
             .section-title {
-                background: #1B2B4A !important;
+                background: var(--primary-color) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 color: white !important;
@@ -673,18 +598,17 @@
     <div class="cv-container">
         <header class="header">
             <div class="header-content">
-                <img src="../assets/images/boticario.svg" alt="O Boticário" class="boticario-logo">
                 <h1>PEDRO HENRIQUE MARCONATO</h1>
                 
                 <div class="header-tagline">CRM | ANALYTICS | BUSINESS INTELLIGENCE | LTV | SQL</div>
                 
                 <div class="contact-info">
                     <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i> Brazilian, Married, 33 years old
+                        <i class="fas fa-map-marker-alt"></i> Brasileira, Casado e 33 anos
                     </div>
                     
                     <div class="contact-item">
-                        <i class="fas fa-phone"></i> +55 (55) 98114-7758
+                        <i class="fas fa-phone"></i> (55) 98114-7758
                     </div>
                     
                     <div class="contact-item">
@@ -699,40 +623,40 @@
         </header>
         
         <section class="section" style="padding-top: 35px;">
-            <h2 class="section-title">PROFESSIONAL SUMMARY</h2>
+            <h2 class="section-title">RESUMO DE QUALIFICAÇÕES</h2>
             <ul class="qualifications-list">
-                <li>Master's degree in Business Administration, with an Analytics track, combining data intelligence, CRM, analytical visualization, and automation to generate business value</li>
-                <li>Experience in large and highly complex companies, such as Grupo RBS, Realize CFI (Lojas Renner S.A. Group), and Rede Globo, leading strategic projects in CRM, business intelligence, and marketing performance</li>
-                <li>Experience with data applied to marketing, channels, credit, control, and operations, connecting areas and translating technical needs into high-impact analytical solutions</li>
-                <li>Highlights in visualization, segmentation, and consumer behavior projects, with mastery of tools such as Databricks, SQL, Responsys, Power BI, Python, Salesforce, Mailchimp, Tableau, SAS, Mix Agents, and Kanbanize</li>
-                <li>Knowledge in agile methodologies (Scrum, Kanban), working on backlog prioritization, squad structuring, and accelerating delivery with a focus on the customer</li>
-                <li>Experience with data integration from multiple sources, building pipelines, predictive analytics, and behavior mapping to support strategic decisions</li>
-                <li>Differentiator in combining analytical capacity, strategic thinking, and technical knowledge, with recognized performance as leadership even in consultative structures</li>
-                <li>People management, leading multidisciplinary teams with a focus on development, autonomy, and generating consistent results</li>
+                <li>Mestre em Administração de Empresas, com ênfase Trajetória na área de Analytics, unindo inteligência de dados, CRM, visualização analítica e automação para gerar valor ao negócio</li>
+                <li>Atuação em empresas de grande porte e alta complexidade, como Grupo RBS, Realize CFI (Grupo Lojas Renner S.A.) e Rede Globo, liderando projetos estratégicos nas frentes de CRM, inteligência comercial e performance de marketing</li>
+                <li>Vivência com dados aplicados a marketing, canais, crédito, controle e operações, conectando áreas e traduzindo necessidades técnicas em soluções analíticas de alto impacto</li>
+                <li>Destaques em projetos de visualização, segmentação e comportamento de consumo, com domínio de ferramentas como Databricks, SQL, Responsys, Power BI, Python, Salesforce, Mailchimp, Tableau, SAS, Mix Agents e Kanbanize</li>
+                <li>Conhecimento em metodologias ágeis (Scrum, Kanban), com atuação na priorização de backlog, estruturação de squads e aceleração de entrega com foco no cliente</li>
+                <li>Experiência com integração de dados de múltiplas fontes, construção de pipelines, análises preditivas e mapeamento de comportamento para suportar decisões estratégicas</li>
+                <li>Diferencial na combinação entre capacidade analítica, pensamento estratégico e conhecimento técnico, com atuação reconhecida como liderança mesmo em estruturas consultivas</li>
+                <li>Gestão de pessoas, liderando times multidisciplinares com foco em desenvolvimento, autonomia e geração de resultados consistentes</li>
             </ul>
         </section>
         
         <section class="section">
-            <h2 class="section-title">EDUCATION & TECHNOLOGY</h2>
+            <h2 class="section-title">FORMAÇÃO ACADÊMICA & TECNOLOGIA</h2>
             <div class="education-tech-container">
                 <div class="education-section">
-                    <h3 style="font-size: 12px; color: var(--dark-accent); margin-bottom: 12px; font-weight: 600;">EDUCATION</h3>
+                    <h3 style="font-size: 12px; color: var(--primary-color); margin-bottom: 12px; font-weight: 600;">FORMAÇÃO</h3>
                     <div class="education-item">
-                        <div class="degree">Master's in Business Administration</div>
-                        <div class="university">Federal University of Santa Maria - UFSM</div>
-                        <div class="edu-period">Completed: 2019</div>
+                        <div class="degree">Mestrado em Administração de Empresas</div>
+                        <div class="university">Universidade Federal de Santa Maria - UFSM</div>
+                        <div class="edu-period">Conclusão: 2019</div>
                     </div>
                     
                     <div class="education-item">
-                        <div class="degree">Bachelor's in Business Administration</div>
-                        <div class="university">Federal University of Santa Maria - UFSM</div>
-                        <div class="edu-period">Completed: 2015</div>
+                        <div class="degree">Bacharelado em Administração</div>
+                        <div class="university">Universidade Federal de Santa Maria - UFSM</div>
+                        <div class="edu-period">Conclusão: 2015</div>
                     </div>
                 </div>
                 
                 <div class="tech-skills-container">
                     <div class="skills-section">
-                        <h3>TOOLS & PLATFORMS</h3>
+                        <h3>FERRAMENTAS & PLATAFORMAS</h3>
                         <div class="skill-items">
                             <span class="skill-tag">Databricks</span>
                             <span class="skill-tag">SQL</span>
@@ -749,18 +673,18 @@
                     </div>
                     
                     <div class="skills-section">
-                        <h3>CERTIFICATIONS & COURSES</h3>
+                        <h3>CERTIFICAÇÕES & CURSOS</h3>
                         <div class="courses-section">
                             <div class="course-item">
                                 <span class="course-name">Statement of Accomplishment - Intermediate R Course</span>
                                 <span class="course-info">Marketing Analytics In Practice - Coursera</span>
                             </div>
                             <div class="course-item">
-                                <span class="course-name">Marketing Analytics in R</span>
-                                <span class="course-info">PPGA - Graduate Program in Business Administration</span>
+                                <span class="course-name">Marketing Analytics em R</span>
+                                <span class="course-info">PPGA - Programa de Pós-Graduação em Administração</span>
                             </div>
                             <div class="course-item">
-                                <span class="course-name">Fundamentals of Problem Solving</span>
+                                <span class="course-name">Fundamentos de Solução de Problemas</span>
                                 <span class="course-info">Marketing in a Digital World - Illinois University</span>
                             </div>
                         </div>
@@ -770,57 +694,57 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
+            <h2 class="section-title">EXPERIÊNCIA PROFISSIONAL</h2>
             
             <div class="experience-timeline">
                 <div class="experience-item">
                     <div class="job-header">
                         <div>
-                            <div class="company">LOJAS RENNER | REALIZE CFI (National Financial Services Company)</div>
+                            <div class="company">LOJAS RENNER | REALIZE CFI (Empresa Nacional do segmento Financeiro)</div>
                         </div>
                         <div class="period">2020-2025</div>
                     </div>
                     
                     <div class="job-title" style="margin-top: 10px; margin-bottom: 8px;">CRM Manager</div>
-                    <div class="period" style="font-size: 11px; color: var(--boticario-dark-gray); margin-bottom: 10px;">2021-2025</div>
+                    <div class="period" style="font-size: 11px; color: var(--secondary-color); margin-bottom: 10px;">2021-2025</div>
                     
                     <ul class="job-bullets">
-                        <li>Responsible for leading the strategic CRM front, focusing on area evolution, customer base growth, and business value generation</li>
-                        <li>Definition and monitoring of area OKRs, connecting business goals to relationship indicators</li>
-                        <li>Planning, execution, and optimization of multichannel relationship campaigns (email, SMS, push, among others), applying intelligent segmentations and automations to increase usage frequency and sales</li>
-                        <li>Building personalized journeys based on customer behavior and profile, promoting lifecycle evolution and loyalty in financial products (cards, loans, insurance, and consumption in the Renner ecosystem)</li>
-                        <li>Management of agile management rhythm (daily, planning, reviews, and retrospectives), using frameworks such as Scrum and Kanban to maintain delivery pace, priority visibility, and impact focus</li>
-                        <li>Area backlog management, with mapping, prioritization, and organization of demands according to incremental value and alignment with the commercial team</li>
-                        <li>Strategic management of suppliers and technology partners, including CRM platforms, automation, and data enrichment, ensuring delivery quality and alignment with area guidelines</li>
-                        <li>Continuous interface with key areas (IT, Products, Analytics, Marketing, Stores, and Commercial), promoting alignment between CRM initiatives and corporate objectives</li>
-                        <li>Technical and operational management of tools such as Oracle Responsys, Databricks, and Power BI, enabling automated segmentations, data processing, and performance dashboards</li>
-                        <li>Monitoring and analysis of KPIs and campaign indicators, using data to guide decisions, validate hypotheses, and promote continuous improvement</li>
-                        <li>Leadership of strategic projects and initiatives to expand the active customer base and activate new communication channels</li>
+                        <li>Responsável pela liderança da frente estratégica de CRM, com foco na evolução da área, crescimento da base de clientes e geração de valor ao negócio</li>
+                        <li>Definição e acompanhamento dos OKRs da área, conectando metas do negócio a indicadores de relacionamento</li>
+                        <li>Planejamento, execução e otimização de campanhas de relacionamento multicanal (e-mail, SMS, push, entre outros), aplicando segmentações inteligentes e automações para aumentar frequência de uso e vendas</li>
+                        <li>Construção de jornadas personalizadas com base em comportamento e perfil dos clientes, promovendo a evolução do ciclo de vida e fidelização em produtos financeiros (cartões, empréstimos, seguros e consumo no ecossistema Renner)</li>
+                        <li>Gestão do ritmo de gestão ágil (daily, planning, reviews e retrospectives), utilizando frameworks como Scrum e Kanban para manter ritmo de entrega, visibilidade de prioridades e foco em impacto</li>
+                        <li>Gestão do backlog da área, com mapeamento, priorização e organização das demandas de acordo com o valor incremental e alinhamento com o time comercial</li>
+                        <li>Gestão estratégica de fornecedores e parceiros de tecnologia, incluindo plataformas de CRM, automação e enriquecimento de dados, garantindo qualidade das entregas e alinhamento às diretrizes da área</li>
+                        <li>Interface contínua com áreas-chave (TI, Produtos, Analytics, Marketing, Lojas e Comercial), promovendo alinhamento entre as iniciativas de CRM e os objetivos corporativos</li>
+                        <li>Gestão técnica e operacional de ferramentas como Oracle Responsys, Databricks e Power BI, viabilizando segmentações automatizadas, tratamento de dados e dashboards de performance</li>
+                        <li>Monitoramento e análise de KPIs e indicadores de campanhas, utilizando dados para orientar decisões, validar hipóteses e promover a melhoria contínua</li>
+                        <li>Liderança de projetos e iniciativas estratégicas de expansão da base ativa de clientes e ativação de novos canais de comunicação</li>
                     </ul>
                     
-                    <div class="job-title" style="margin-top: 15px; margin-bottom: 8px;">Analytics Specialist</div>
-                    <div class="period" style="font-size: 11px; color: var(--boticario-dark-gray); margin-bottom: 10px;">2020-2021</div>
+                    <div class="job-title" style="margin-top: 15px; margin-bottom: 8px;">Especialista de Analytics</div>
+                    <div class="period" style="font-size: 11px; color: var(--secondary-color); margin-bottom: 10px;">2020-2021</div>
                     
                     <ul class="job-bullets">
-                        <li>Responsible for creating dashboards and strategic indicators for areas such as Marketing, CRM, Credit, and Channels, delivering an integrated real-time view to support business decisions</li>
-                        <li>Development of segmented databases and automated reports focused on the CRM team, with a focus on efficiency gains, agility in analyses, and revenue generation through more precise actions</li>
-                        <li>Organization and integration of operational, behavioral, and transactional data, consolidating multiple sources into a reliable base for comprehensive customer lifecycle analyses</li>
-                        <li>Practical use of tools such as SQL, BigQuery, Python, and Power BI for exploratory analyses, routine automations, and development of predictive models applied to the business</li>
-                        <li>Close collaboration with Marketing, Products, Risk, and Operations areas, translating strategic needs into applicable analyses, focusing on action direction and decision-making</li>
+                        <li>Responsável por criar dashboards e indicadores estratégicos para áreas como Marketing, CRM, Crédito e Canais, entregando uma visão integrada e em tempo real para apoiar decisões de negócio</li>
+                        <li>Desenvolvimento de bases segmentadas e relatórios automatizados voltados ao time de CRM, com foco em ganho de eficiência, agilidade nas análises e geração de receita por meio de ações mais precisas</li>
+                        <li>Organização e integração de dados operacionais, comportamentais e transacionais, consolidando múltiplas fontes em uma base confiável para análises completas do ciclo de vida do cliente</li>
+                        <li>Utilização prática de ferramentas como SQL, BigQuery, Python e Power BI para análises exploratórias, automações de rotinas e desenvolvimento de modelos preditivos aplicados ao negócio</li>
+                        <li>Atuação próxima às áreas de Marketing, Produtos, Riscos e Operações, traduzindo necessidades estratégicas em análises aplicáveis, com foco em direcionamento de ações e tomada de decisão</li>
                     </ul>
                 </div>
                 
                 <div class="experience-item">
                     <div class="job-header">
                         <div>
-                            <div class="job-title">Analytics Specialist</div>
-                            <div class="company">DBC COMPANY (National IT Consulting Company)</div>
+                            <div class="job-title">Especialista de Analytics</div>
+                            <div class="company">DBC COMPANY (Empresa Nacional do segmento de Consultoria em TI)</div>
                         </div>
                         <div class="period">2020-2021</div>
                     </div>
                     
                     <ul class="job-bullets">
-                        <li>Responsible for supporting the strategic restructuring of the CRM area at client Realize, implementing agile methodologies (Kanban) and defining processes that reduced campaign time-to-market and increased operational efficiency</li>
+                        <li>Responsável por apoiar a reestruturação estratégica da área de CRM no cliente Realize, implementando metodologias ágeis (Kanban) e definindo processos que reduziram o time-to-market das campanhas e aumentaram a eficiência operacional</li>
                     </ul>
                 </div>
                 
@@ -828,18 +752,18 @@
                 <div class="experience-item">
                     <div class="job-header">
                         <div>
-                            <div class="job-title">Business Intelligence Analyst</div>
-                            <div class="company">GRUPO RBS (National Media Company)</div>
+                            <div class="job-title">Analista de Inteligência Comercial</div>
+                            <div class="company">GRUPO RBS (Empresa Nacional do segmento de Mídia)</div>
                         </div>
                         <div class="period">2019 - 2020</div>
                     </div>
                     
                     <ul class="job-bullets">
-                        <li>Responsible for structuring and analyzing commercial performance, audience, and market behavior data, supporting leadership in strategic decision-making for client Rede Globo</li>
-                        <li>Development of segmentation studies and consumption potential mapping, using data to guide decisions, validate hypotheses, and promote sales and prospecting actions</li>
-                        <li>Creation of real-time analytical reports and dashboards to support business decisions</li>
-                        <li>Direct interface with leadership, translating market data into action plans and growth opportunities</li>
-                        <li>Analysis of KPIs and campaign indicators, using data to guide decisions, validate hypotheses, and promote continuous improvement</li>
+                        <li>Responsável pela estruturação e análise dados de desempenho comercial, audiência e comportamento de mercado, apoiando a liderança na tomada de decisões estratégicas do cliente Rede Globo</li>
+                        <li>Desenvolvimento de estudos de segmentação e mapeamento de potencial de consumo, utilizando dados para orientar decisões, validar hipóteses e promover ações de vendas e prospecção</li>
+                        <li>Criação de relatórios e dashboards analíticos em tempo real para apoiar decisões do negócio</li>
+                        <li>Interface direta com a liderança, traduzindo dados de mercado em planos de ação e oportunidades de crescimento</li>
+                        <li>Análise de KPIs e indicadores de campanhas, utilizando dados para orientar decisões, validar hipóteses e promover a melhoria contínua</li>
                     </ul>
                 </div>
             </div>
