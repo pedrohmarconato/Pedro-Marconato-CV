@@ -20,7 +20,7 @@
             min-height: 100vh;
             overflow: hidden;
             position: relative;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
         /* Animated gradient background */
@@ -90,7 +90,7 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 252, 255, 0.98) 100%);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
-            padding: 50px 45px;
+            padding: 40px 45px;
             border-radius: 28px;
             box-shadow: 
                 0 20px 50px rgba(6, 28, 50, 0.3),
@@ -102,7 +102,7 @@
             z-index: 999;
             width: 90%;
             max-width: 480px;
-            max-height: calc(100vh - 80px);
+            max-height: calc(100vh - 60px);
             transform: translateY(0) perspective(1000px);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
@@ -110,7 +110,7 @@
             justify-content: center;
             margin: auto;
             animation: dynamicGlow 20s ease infinite;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .container::before {
@@ -688,7 +688,8 @@
                 'templates/companies/sicredi.html': ['sicredi', 'sic', 'sicred'],
                 'templates/companies/boticario.html': ['boticario', 'gb', 'grupoboticario', 'grupo boticario', 'grupo boticário', 'grupoboticário'],
                 'templates/companies/completebari.html': ['completebari', 'complete bari', 'bari', 'cb', 'complete'],
-                'templates/companies/allos.html': ['allos', 'allo', 'all', 'consultoria', 'consulting']
+                'templates/companies/allos.html': ['allos', 'allo', 'all', 'consultoria', 'consulting'],
+                'templates/companies/contaazul.html': ['contazul', 'contaazul', 'ca', 'azulconta', 'azul']
             };
             
             // Find matching target
