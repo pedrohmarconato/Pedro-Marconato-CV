@@ -18,6 +18,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            height: 100vh;
             overflow: hidden;
             position: relative;
             padding: 20px;
@@ -90,8 +91,8 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 252, 255, 0.98) 100%);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
-            padding: 40px 45px;
-            border-radius: 28px;
+            padding: 30px 35px;
+            border-radius: 24px;
             box-shadow: 
                 0 20px 50px rgba(6, 28, 50, 0.3),
                 0 15px 30px rgba(0, 0, 0, 0.15),
@@ -100,9 +101,9 @@
             border: 1px solid rgba(190, 226, 240, 0.5);
             position: relative;
             z-index: 999;
-            width: 90%;
-            max-width: 480px;
-            max-height: calc(100vh - 60px);
+            width: 75%;
+            max-width: 360px;
+            max-height: calc(100vh - 40px);
             transform: translateY(0) perspective(1000px);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
@@ -198,20 +199,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+            position: relative;
         }
 
         .profile-img {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid transparent;
             background: linear-gradient(white, white) padding-box,
                         linear-gradient(135deg, #0560a9, #083b62) border-box;
-            box-shadow: 0 6px 24px rgba(5, 96, 169, 0.35),
-                        0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(5, 96, 169, 0.4),
+                        0 4px 16px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
@@ -220,6 +223,8 @@
             backface-visibility: hidden;
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
+            margin-top: -45px;
+            z-index: 1001;
         }
 
         .profile-img:hover {
@@ -234,7 +239,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 6px;
-            font-size: 34px;
+            font-size: 30px;
             font-weight: 700;
             letter-spacing: -0.5px;
             text-align: center;
@@ -242,7 +247,7 @@
 
         .subtitle {
             color: #052a46;
-            font-size: 17px;
+            font-size: 15px;
             margin-bottom: 0;
             font-weight: 500;
             text-align: center;
@@ -256,7 +261,7 @@
 
         label {
             display: block;
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 500;
             color: #031b2f;
             line-height: 1.3;
@@ -265,7 +270,7 @@
 
         .label-pt {
             display: block;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 400;
             color: #083b62;
             font-style: italic;
@@ -290,10 +295,10 @@
 
         input[type="text"] {
             width: 100%;
-            padding: 20px 20px 20px 52px;
+            padding: 16px 16px 16px 44px;
             border: 2px solid transparent;
-            border-radius: 14px;
-            font-size: 18px;
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: 400;
             color: #031b2f;
             background: linear-gradient(white, white) padding-box,
@@ -317,12 +322,12 @@
 
         button {
             width: 100%;
-            padding: 18px 24px 22px 24px;
+            padding: 14px 20px 16px 20px;
             background: linear-gradient(135deg, #07508b 0%, #0560a9 100%);
             color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -333,14 +338,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 3px;
-            min-height: 70px;
+            gap: 2px;
+            min-height: 56px;
             justify-content: center;
             line-height: 1.3;
         }
 
         .button-text-pt {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 400;
             opacity: 0.95;
             line-height: 1.2;
@@ -373,14 +378,15 @@
         }
 
         .disclaimer-wrapper {
-            margin-top: 20px;
-            padding: 16px;
+            margin-top: 15px;
+            padding: 12px;
             background: linear-gradient(135deg, rgba(190, 226, 240, 0.4), rgba(190, 226, 240, 0.25));
             border-radius: 12px;
             border: 1px solid rgba(190, 226, 240, 0.6);
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .disclaimer-wrapper::before {
@@ -400,9 +406,9 @@
         }
 
         .disclaimer-text {
-            font-size: 12px;
+            font-size: 11px;
             color: #031b2f;
-            line-height: 1.5;
+            line-height: 1.4;
             text-align: center;
             margin: 0;
             font-weight: 500;
@@ -416,11 +422,11 @@
         }
 
         .disclaimer-text-pt {
-            font-size: 11px;
+            font-size: 10px;
             color: #052a46;
             font-style: italic;
             display: block;
-            margin-top: 3px;
+            margin-top: 2px;
             font-weight: 400;
         }
 
@@ -483,26 +489,29 @@
         /* Responsive design */
         @media (max-width: 480px) {
             body {
-                padding: 20px 10px;
+                padding: 15px;
             }
 
             .container {
-                padding: 60px 30px;
-                max-height: calc(100vh - 40px);
+                padding: 25px;
+                width: 85%;
+                max-width: none;
+            }
+
+            .profile-img {
+                width: 90px;
+                height: 90px;
+                margin-top: -35px;
             }
             
             h1 {
-                font-size: 32px;
+                font-size: 30px;
             }
             
             .subtitle {
                 font-size: 16px;
             }
 
-            .profile-img {
-                width: 100px;
-                height: 100px;
-            }
         }
         /* Door animation styles */
         .door-wrapper {
