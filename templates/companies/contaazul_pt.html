@@ -437,6 +437,7 @@
             font-size: 16px;
         }
         
+        
         .contact-item {
             display: flex;
             flex-direction: column;
@@ -529,7 +530,7 @@
         .skills-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 20px;
         }
         
         @media (max-width: 1000px) {
@@ -546,9 +547,9 @@
         
         .skills-column {
             background: linear-gradient(135deg, rgba(224, 224, 224, 0.3), rgba(224, 224, 224, 0.1));
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid rgba(74, 144, 226, 0.15);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(74, 144, 226, 0.1);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
@@ -579,72 +580,106 @@
         }
         
         .tool-item {
-            margin-bottom: 18px;
+            margin-bottom: 14px;
+            padding: 8px 0;
         }
         
         .tool-name {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 6px;
             font-weight: 500;
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 13px;
+            margin-bottom: 6px;
             color: var(--text-color);
         }
 
-        .tool-percentage {
-            font-size: 13px;
-            color: var(--accent-color);
+        .tool-skill-name {
+            color: var(--text-color);
             font-weight: 600;
         }
         
-        .progress-bar {
-            height: 8px;
-            background: rgba(74, 144, 226, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        /* Modern 5-point rating system - ContaAzul colors */
+        .skill-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            align-self: flex-start;
         }
         
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
-            border-radius: 10px;
+        .skill-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .skill-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(74, 144, 226, 0.2);
+            border: 1.5px solid rgba(74, 144, 226, 0.3);
+            transition: all 0.4s ease;
             position: relative;
-            animation: progressGrow 1.5s ease-out;
+            overflow: hidden;
+            flex-shrink: 0;
         }
         
-        /* Subtle colored progress bars */
-        .tool-item:nth-child(3n+1) .progress {
-            background: linear-gradient(90deg, #4A90E2 0%, #5BA0F2 100%);
+        .skill-dot.active {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            border-color: var(--primary-blue);
+            box-shadow: 
+                0 0 8px rgba(74, 144, 226, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
         }
         
-        .tool-item:nth-child(3n+2) .progress {
-            background: linear-gradient(90deg, #2C5AA0 0%, #3D6AB0 100%);
-        }
-        
-        .tool-item:nth-child(3n) .progress {
-            background: linear-gradient(90deg, #6BA3E5 0%, #7BB3F5 100%);
-        }
-
-        @keyframes progressGrow {
-            from { width: 0; }
-        }
-
-        .progress::after {
+        .skill-dot.active::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: progressShimmer 2s infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: dotShimmer 2s infinite;
         }
-
-        @keyframes progressShimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        
+        @keyframes dotShimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .skill-level-text {
+            font-size: 10px;
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-left: 2px;
+            white-space: nowrap;
+        }
+        
+        /* Dots container for skills from cv-texts.js - ContaAzul colors */
+        .dots-container {
+            display: flex;
+            gap: 3px;
+            margin-top: 8px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(74, 144, 226, 0.2);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .dot.filled {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 6px rgba(74, 144, 226, 0.4);
         }
         
         /* Tooltip styles */
@@ -1482,6 +1517,11 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../cv-texts.js"></script>
+    <!-- Favicon Meta Tags -->
+    <meta name="theme-color" content="#1a4b84">
+    <meta name="msapplication-TileColor" content="#1a4b84">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
 </head>
 <body>
     <div class="animated-bg"></div>
@@ -1533,6 +1573,14 @@
                             </a>
                             <span class="contact-cta">Clique para visitar o LinkedIn</span>
                         </div>
+                        
+                        <div class="contact-item">
+                            <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
+                                <i class="fab fa-github"></i> Repositório
+                            </a>
+                            <span class="contact-cta">Ver código fonte</span>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -1546,165 +1594,15 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">HABILIDADES E FERRAMENTAS</h2>
+            <h2 class="section-title" id="cv-skills-title"></h2>
             <div class="skills-container">
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--secondary-blue); margin-bottom: 20px; font-weight: 600;">Habilidades Estratégicas</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Gestão de CRM</span>
-                            <span class="tool-percentage">98%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 98%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Customer Equity</span>
-                            <span class="tool-percentage">92%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 92%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Business Intelligence</span>
-                            <span class="tool-percentage">88%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 88%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Liderança Estratégica</span>
-                            <span class="tool-percentage">85%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Brand Equity</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Gestão de Marca</span>
-                            <span class="tool-percentage">78%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 78%"></div>
-                        </div>
-                    </div>
+                <div class="skills-column" id="skills-strategic">
                 </div>
                 
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--secondary-blue); margin-bottom: 20px; font-weight: 600;">Ferramentas e Tecnologias</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>PowerBI</span>
-                            <span class="tool-percentage">95%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Oracle/Databricks</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Python/SQL</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Kanbanize</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
+                <div class="skills-column" id="skills-tools">
                 </div>
                 
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--secondary-blue); margin-bottom: 20px; font-weight: 600;">Tecnologias Emergentes</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>LLM e Agentes IA</span>
-                            <span class="tool-percentage">82%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 82%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>IA para CRM</span>
-                            <span class="tool-percentage">86%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 86%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>APIs IA/LLM</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Análise de Dados</span>
-                            <span class="tool-percentage">91%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 91%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Machine Learning</span>
-                            <span class="tool-percentage">77%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 77%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Responsys</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
+                <div class="skills-column" id="skills-emerging">
                 </div>
             </div>
         </section>
@@ -2149,6 +2047,7 @@
         </div>
     </div>
     
+    
     <script>
         function openEmailForm() {
             document.getElementById('emailModal').style.display = 'flex';
@@ -2165,6 +2064,7 @@
         function closePhoneModal() {
             document.getElementById('phoneModal').style.display = 'none';
         }
+        
         
         // Close modal when clicking outside
         window.onclick = function(event) {
@@ -2214,5 +2114,7 @@
             });
         });
     </script>
+    <!-- Dynamic Favicon System -->
+    <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
 </html>

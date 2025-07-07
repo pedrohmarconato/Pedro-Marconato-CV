@@ -242,6 +242,8 @@
             font-size: 16px;
         }
         
+        
+        
         .contact-item {
             display: flex;
             flex-direction: column;
@@ -384,72 +386,124 @@
         }
         
         .tool-item {
-            margin-bottom: 18px;
+            margin-bottom: 14px;
+            padding: 8px 0;
         }
         
         .tool-name {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 6px;
             font-weight: 500;
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 13px;
+            margin-bottom: 6px;
             color: var(--text-color);
         }
 
-        .tool-percentage {
-            font-size: 13px;
-            color: var(--accent-color);
+        .tool-skill-name {
+            color: var(--text-color);
             font-weight: 600;
         }
         
-        .progress-bar {
-            height: 8px;
-            background: rgba(74, 144, 226, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        /* Modern 5-point rating system - Neutral colors */
+        .skill-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            align-self: flex-start;
         }
         
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
-            border-radius: 10px;
+        .skill-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .skill-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(74, 144, 226, 0.2);
+            border: 1.5px solid rgba(74, 144, 226, 0.3);
+            transition: all 0.4s ease;
             position: relative;
-            animation: progressGrow 1.5s ease-out;
+            overflow: hidden;
+            flex-shrink: 0;
         }
         
-        /* Subtle colored progress bars */
-        .tool-item:nth-child(3n+1) .progress {
-            background: linear-gradient(90deg, #4A90E2 0%, #5BA0F2 100%);
+        .skill-dot.active {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-color: var(--primary-color);
+            box-shadow: 
+                0 0 8px rgba(74, 144, 226, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
         }
         
-        .tool-item:nth-child(3n+2) .progress {
-            background: linear-gradient(90deg, #2C5AA0 0%, #3D6AB0 100%);
-        }
-        
-        .tool-item:nth-child(3n) .progress {
-            background: linear-gradient(90deg, #6BA3E5 0%, #7BB3F5 100%);
-        }
-
-        @keyframes progressGrow {
-            from { width: 0; }
-        }
-
-        .progress::after {
+        .skill-dot.active::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: progressShimmer 2s infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: dotShimmer 2s infinite;
         }
-
-        @keyframes progressShimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        
+        @keyframes dotShimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .skill-level-text {
+            font-size: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-left: 2px;
+            white-space: nowrap;
+        }
+        
+        /* Dots container for skills from cv-texts.js - Neutral colors */
+        .dots-container {
+            display: flex;
+            gap: 3px;
+            margin-top: 8px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(74, 144, 226, 0.2);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .dot.filled {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-color: var(--primary-color);
+            box-shadow: 
+                0 0 6px rgba(74, 144, 226, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .tool-item:hover .dot.filled {
+            box-shadow: 
+                0 0 10px rgba(74, 144, 226, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: scale(1.2);
+        }
+        
+        /* Hover effects */
+        .tool-item:hover .skill-dot.active {
+            box-shadow: 
+                0 0 15px rgba(74, 144, 226, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
         }
         
         /* Tooltip styles */
@@ -1267,6 +1321,11 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../cv-texts.js"></script>
+    <!-- Favicon Meta Tags -->
+    <meta name="theme-color" content="#1a4b84">
+    <meta name="msapplication-TileColor" content="#1a4b84">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
 </head>
 <body>
     <div class="animated-bg"></div>
@@ -1280,570 +1339,74 @@
         <header class="header">
             <div class="header-content">
                 <div class="header-text">
-                    <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
-                    <div class="role">Gestão de CRM e Inteligência de Dados</div>
+                    <h1 id="cv-name"></h1>
+                    <div class="role" id="cv-role"></div>
                     
                     <div class="contact-info">
                         <div class="contact-item">
                             <button class="contact-button" onclick="openEmailForm()">
-                                <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
+                                <i class="fas fa-envelope"></i> <span id="cv-email"></span>
                             </button>
-                            <span class="contact-cta">Clique para enviar um e-mail</span>
+                            <span class="contact-cta" id="cv-cta-email"></span>
                         </div>
                         
                         <div class="contact-item">
                             <button class="contact-button" onclick="openPhoneForm()">
-                                <i class="fas fa-phone"></i> +55 (55) 981147758
+                                <i class="fas fa-phone"></i> <span id="cv-phone"></span>
                             </button>
-                            <span class="contact-cta">Clique para enviar uma mensagem</span>
+                            <span class="contact-cta" id="cv-cta-phone"></span>
                         </div>
                         
-                        <div class="location">
-                            <i class="fas fa-map-marker-alt"></i> Cachoeira do Sul, RS
+                        <div class="location" id="cv-location">
+                            <i class="fas fa-map-marker-alt"></i> <span></span>
                         </div>
                         
                         <div class="contact-item">
                             <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
-                                <i class="fab fa-linkedin"></i> LinkedIn
+                                <i class="fab fa-linkedin"></i> <span id="cv-linkedin"></span>
                             </a>
-                            <span class="contact-cta">Clique para visitar o LinkedIn</span>
+                            <span class="contact-cta" id="cv-cta-linkedin"></span>
                         </div>
+                        
+                        <div class="contact-item">
+                            <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
+                                <i class="fab fa-github"></i> <span id="cv-repository"></span>
+                            </a>
+                            <span class="contact-cta" id="cv-cta-repository"></span>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
         </header>
         
         <section class="section">
-            <h2 class="section-title">PERFIL PROFISSIONAL</h2>
-            <p class="profile-text">
-                Profissional em Gestão de CRM e Inteligência de Dados focado em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa Brand Equity que suportou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos. Como Coordenador de CRM na Lojas Renner, otimizei orçamento gerando 10% de economia anual, implementei 80% de comunicações automatizadas e estratégias que resultaram em aumento de consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.
-            </p>
+            <h2 class="section-title" id="section-profile"></h2>
+            <p class="profile-text" id="cv-profile"></p>
         </section>
         
         <section class="section">
-            <h2 class="section-title">HABILIDADES E FERRAMENTAS</h2>
+            <h2 class="section-title" id="section-skills"></h2>
             <div class="skills-container">
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--secondary-blue); margin-bottom: 20px; font-weight: 600;">Habilidades Estratégicas</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Gestão de CRM</span>
-                            <span class="tool-percentage">98%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 98%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Customer Equity</span>
-                            <span class="tool-percentage">92%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 92%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Business Intelligence</span>
-                            <span class="tool-percentage">88%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 88%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Liderança Estratégica</span>
-                            <span class="tool-percentage">85%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Brand Equity</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Gestão de Marca</span>
-                            <span class="tool-percentage">78%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 78%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--secondary-blue); margin-bottom: 20px; font-weight: 600;">Ferramentas e Tecnologias</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>PowerBI</span>
-                            <span class="tool-percentage">95%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Oracle/Databricks</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Python/SQL</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Kanbanize</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--secondary-blue); margin-bottom: 20px; font-weight: 600;">Tecnologias Emergentes</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>LLM e Agentes IA</span>
-                            <span class="tool-percentage">82%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 82%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>IA para CRM</span>
-                            <span class="tool-percentage">86%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 86%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>APIs IA/LLM</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Análise de Dados</span>
-                            <span class="tool-percentage">91%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 91%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Machine Learning</span>
-                            <span class="tool-percentage">77%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 77%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Responsys</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
+                <div class="skills-column" id="skills-strategic"></div>
+                <div class="skills-column" id="skills-tools"></div>
+                <div class="skills-column" id="skills-emerging"></div>
             </div>
         </section>
         
         <section class="section">
-            <h2 class="section-title">EXPERIÊNCIA PROFISSIONAL</h2>
-            
-            <div class="experience-timeline">
-                <div class="experience-item">
-                    <div class="job-title">
-                        <div class="job-number">1</div>
-                        COORDENADOR DE CRM
-                        <div class="tooltip">
-                            <i class="fas fa-info-circle tooltip-icon"></i>
-                            <span class="tooltip-text">
-                                <div class="tooltip-header">
-                                    Detalhes da Posição: Coordenador de CRM
-                                </div>
-                                <div class="tooltip-content">
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
-                                            <i class="fas fa-users"></i> Gestão de Equipe e Orçamento
-                                        </div>
-                                        <ul class="tooltip-list">
-                                            <li>Liderança de equipe multidisciplinar com 8 profissionais</li>
-                                            <li>Gestão de orçamento anual de R$ 25 milhões</li>
-                                            <li>Economia de R$ 2,5M/ano em contratos terceirizados</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
-                                            <i class="fas fa-chart-line"></i> Métricas de Performance
-                                        </div>
-                                        <ul class="tooltip-list">
-                                            <li>R$ 180M de consumo incremental via CRM (+7 p.p YoY)</li>
-                                            <li>+450M em volume OFF-Us (aumento de 8%)</li>
-                                            <li>350K clientes retidos (redução de 23% no churn)</li>
-                                            <li>+R$ 1.2K ticket médio (aumento de 28%)</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
-                                            <i class="fas fa-rocket"></i> Inovações Implementadas
-                                        </div>
-                                        <ul class="tooltip-list">
-                                            <li>80% de comunicações automatizadas</li>
-                                            <li>Segmentação avançada com Machine Learning</li>
-                                            <li>Dashboard em tempo real para tomada de decisão</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="company">Realize CFI</div>
-                    <div class="period">Set/2022 - Fev/2025</div>
-                    
-                    <div class="job-description">
-                        Responsável por estratégias de CRM, gestão de orçamento e contratos, liderança de equipe e implementação de métricas de performance para maximizar resultados. Gerencio comunicação com mais de 7 milhões de clientes mensalmente, otimizando canais e mensagens para aumentar engajamento e conversão.
-                    </div>
-                    
-                    <div class="achievements-container">
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-money-bill-wave"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-title">Otimização de Contratos</div>
-                                <div class="achievement-description">
-                                    Economia de 10% em contratos terceirizados mantendo qualidade de serviço.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-title">Incremental CRM</div>
-                                <div class="achievement-description">
-                                    Crescimento de +7 p.p YoY no consumo incremental oriundo do CRM.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-title">Aumento Consumo OFF-Us</div>
-                                <div class="achievement-description">
-                                    Crescimento de 8% no consumo OFF-Us através de estratégias data-driven.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-title">Redução de Churn</div>
-                                <div class="achievement-description">
-                                    Redução de 23% na taxa de churn e 28% de aumento no consumo.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="experience-item">
-                    <div class="job-title">
-                        <div class="job-number">2</div>
-                        ESPECIALISTA DE DADOS
-                        <div class="tooltip">
-                            <i class="fas fa-info-circle tooltip-icon"></i>
-                            <span class="tooltip-text">
-                                <div class="tooltip-header">
-                                    Detalhes da Posição: Especialista de Dados
-                                </div>
-                                <div class="tooltip-content">
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
-                                            <i class="fas fa-database"></i> Transformação de Plataforma
-                                        </div>
-                                        <ul class="tooltip-list">
-                                            <li>Pioneiro na migração de Oracle para Databricks</li>
-                                            <li>Aumento de 300% na capacidade de processamento (de 2TB para 8TB/dia)</li>
-                                            <li>Implementação de arquitetura de dados moderna</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
-                                            <i class="fas fa-tachometer-alt"></i> Performance e Inovação
-                                        </div>
-                                        <ul class="tooltip-list">
-                                            <li>Insights em tempo real com latência < 2 segundos</li>
-                                            <li>Modelo de segmentação para 7M+ clientes em 15 clusters</li>
-                                            <li>Aumento de 35% na conversão (CTR: 2.1% → 2.8%)</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
-                                            <i class="fas fa-users-cog"></i> Framework Customer Centricity
-                                        </div>
-                                        <ul class="tooltip-list">
-                                            <li>Desenvolvimento de modelo de ciclo de vida do cliente</li>
-                                            <li>Algoritmos avançados de clusterização</li>
-                                            <li>Dashboards estratégicos para tomada de decisão</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="company">Realize CFI</div>
-                    <div class="period">Jul/2021 - Set/2022</div>
-                    
-                    <div class="job-description">
-                        Liderei a transformação digital e migração para plataforma Databricks, desenvolvendo soluções analíticas avançadas e implementando framework de Customer Centricity. Produzi dashboards estratégicos e criei modelos de segmentação para otimizar estratégias de comunicação.
-                    </div>
-                    
-                    <div class="achievements-container">
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-title">Transformação Digital</div>
-                                <div class="achievement-description">
-                                    Pioneiro na migração Oracle para Databricks, aumentando capacidade de processamento em 300%.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-tachometer-alt"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-title">Democratização de Dados</div>
-                                <div class="achievement-description">
-                                    Habilitei insights em tempo real para decisões estratégicas.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-users-cog"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-title">Framework Customer Centricity</div>
-                                <div class="achievement-description">
-                                    Desenvolvi modelo de ciclo de vida e algoritmos de clusterização para 7M+ clientes.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-bullseye"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-title">Aumento de Conversão</div>
-                                <div class="achievement-description">
-                                    Criei base de segmentação eficiente aumentando conversão em +35%.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="experience-item">
-                    <div class="job-title">
-                        <div class="job-number">3</div>
-                        ANALISTA DE INTELIGÊNCIA DE MERCADO
-                        <div class="tooltip">
-                            <i class="fas fa-info-circle tooltip-icon"></i>
-                            <span class="tooltip-text">
-                                <div class="tooltip-header">
-                                    Detalhes da Posição: Analista de Inteligência de Mercado
-                                </div>
-                                <div class="tooltip-content">
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
-                                            <i class="fas fa-trophy"></i> Auditoria Brand Equity
-                                        </div>
-                                        <ul class="tooltip-list">
-                                            <li>Auditoria de pesquisa de R$ 300k</li>
-                                            <li>Análise de 3.000+ respondentes</li>
-                                            <li>Fundação para decisões estratégicas de marca</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
-                                            <i class="fas fa-clock"></i> Automação e Eficiência
-                                        </div>
-                                        <ul class="tooltip-list">
-                                            <li>Redução de 12h semanais em processos manuais</li>
-                                            <li>600h/ano economizadas através de automação</li>
-                                            <li>Migração completa para PowerBI</li>
-                                        </ul>
-                                    </div>
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
-                                            <i class="fas fa-comments-dollar"></i> Otimização Tributária
-                                        </div>
-                                        <ul class="tooltip-list">
-                                            <li>Economia de R$ 1,5 milhão em impostos</li>
-                                            <li>Redução de 18% na carga tributária</li>
-                                            <li>Análise aprofundada de oportunidades fiscais</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="company">Grupo RBS</div>
-                    <div class="period">Mar/2019 - Jul/2020</div>
-                    
-                    <div class="job-description">
-                        Conduzi análises de Brand Equity, automatizei relatórios estratégicos e identifiquei oportunidades tributárias significativas. Transformei processos manuais em soluções automatizadas, liberando horas semanais para análises de maior valor agregado.
-                    </div>
-                    
-                    <div class="achievements-container">
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-title">Auditoria Brand Equity</div>
-                                <div class="achievement-description">
-                                    Auditoria de pesquisa de R$300k, suportando decisões estratégicas.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-title">Automação de Relatórios</div>
-                                <div class="achievement-description">
-                                    Redução de 12h semanais através de migração para PowerBI.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <i class="fas fa-comments-dollar"></i>
-                            </div>
-                            <div class="achievement-content">
-                                <div class="achievement-title">Otimização Tributária</div>
-                                <div class="achievement-description">
-                                    Economia de R$ 1,5 milhão em impostos através de análise aprofundada.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h2 class="section-title" id="section-experience"></h2>
+            <div class="experience-timeline" id="cv-experience"></div>
         </section>
         
         <section class="section">
-            <h2 class="section-title">FORMAÇÃO ACADÊMICA</h2>
-            <div class="education-container">
-                <div class="education-item">
-                    <div class="degree">Mestrado em Administração</div>
-                    <div class="university">Universidade Federal de Santa Maria</div>
-                    <div class="thesis">Dissertação: Customer Equity</div>
-                </div>
-                
-                <div class="education-item">
-                    <div class="degree">Bacharelado em Administração</div>
-                    <div class="university">Universidade Federal de Santa Maria</div>
-                    <div class="thesis">TCC: Brand Equity</div>
-                </div>
-            </div>
+            <h2 class="section-title" id="section-education"></h2>
+            <div class="education-container" id="cv-education"></div>
         </section>
         
         <section class="section">
-            <h2 class="section-title">PROJETOS E INOVAÇÃO</h2>
-            <div class="projects-container">
-                <div class="project-item">
-                    <div class="project-title">REPO NEWS</div>
-                    <div class="project-description">
-                        Insights semanais selecionados com curadoria humana e resumidos por inteligência artificial — direto ao ponto, sem ruído.
-                    </div>
-                    <div style="margin-top: 15px;">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">Tailwind CSS</span>
-                    </div>
-                </div>
-                
-                <div class="project-item">
-                    <div class="project-title">RECONHECIMENTO VISUAL</div>
-                    <div class="project-description">
-                        Sistema de reconhecimento de equipamentos de academia via câmera com recomendações personalizadas de treino.
-                    </div>
-                    <div style="margin-top: 15px;">
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">Computer Vision</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                </div>
-                
-                <div class="project-item">
-                    <div class="project-title">MIELKE</div>
-                    <div class="project-description">
-                        Sistema de gestão para consultórios odontológicos com fluxo automatizado de faturamento e agendamento.
-                    </div>
-                    <div style="margin-top: 15px;">
-                        <span class="tech-tag">Next.js</span>
-                        <span class="tech-tag">OpenAI API</span>
-                        <span class="tech-tag">Firebase</span>
-                    </div>
-                </div>
-            </div>
+            <h2 class="section-title" id="section-projects"></h2>
+            <div class="projects-container" id="cv-projects"></div>
         </section>
     </div>
     
@@ -1868,25 +1431,25 @@
     <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
-            <h3 style="margin-bottom:25px; color: var(--secondary-blue); font-size: 24px;">Enviar E-mail</h3>
+            <h3 style="margin-bottom:25px; color: var(--secondary-blue); font-size: 24px;">Send Email</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu E-mail</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Email</label>
                     <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Assunto</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Subject</label>
                     <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message</label>
                     <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
-                <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);">Enviar</button>
+                <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);">Send</button>
             </form>
         </div>
     </div>
@@ -1895,27 +1458,27 @@
     <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
-            <h3 style="margin-bottom:25px; color: var(--secondary-blue); font-size: 24px;">Entre em Contato</h3>
+            <h3 style="margin-bottom:25px; color: var(--secondary-blue); font-size: 24px;">Get in Touch</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <input type="hidden" name="contact_type" value="phone_request">
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Telefone</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Phone</label>
                     <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Melhor horário para contato</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Best time to contact</label>
                     <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem (Opcional)</label>
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message (Optional)</label>
                     <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
                 <div style="display:flex; gap:15px;">
-                    <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);">Solicitar Contato</button>
+                    <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);">Request Contact</button>
                     <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
                         <i class="fab fa-whatsapp" style="margin-right:8px;"></i> WhatsApp
                     </a>
@@ -1923,6 +1486,7 @@
             </form>
         </div>
     </div>
+    
     
     <script>
         function openEmailForm() {
@@ -1941,6 +1505,7 @@
             document.getElementById('phoneModal').style.display = 'none';
         }
         
+        
         // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target == document.getElementById('emailModal')) {
@@ -1951,8 +1516,12 @@
             }
         }
 
-        // Style form inputs on focus
+        // Initialize CV content when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize CV with Portuguese content
+            initializeBasicContent('pt');
+            
+            // Style form inputs on focus
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => {
                 input.addEventListener('focus', function() {
@@ -1988,6 +1557,156 @@
                 });
             });
         });
+
+        // Initialize basic CV content
+        function initializeBasicContent(lang = 'en') {
+            // Basic header information
+            const nameEl = document.getElementById('cv-name');
+            if (nameEl) nameEl.textContent = getText('name', lang);
+            
+            const roleEl = document.getElementById('cv-role');
+            if (roleEl) roleEl.textContent = getText('role', lang);
+            
+            // Contact information
+            const emailEl = document.getElementById('cv-email');
+            if (emailEl) emailEl.textContent = getText('contact.email', lang);
+            
+            const phoneEl = document.getElementById('cv-phone');
+            if (phoneEl) phoneEl.textContent = getText('contact.phone', lang);
+            
+            const locationEl = document.querySelector('#cv-location span');
+            if (locationEl) locationEl.textContent = getText('contact.location', lang);
+            
+            const linkedinEl = document.getElementById('cv-linkedin');
+            if (linkedinEl) linkedinEl.textContent = getText('contact.linkedin', lang);
+            
+            const repositoryEl = document.getElementById('cv-repository');
+            if (repositoryEl) repositoryEl.textContent = getText('contact.repository', lang);
+            
+            
+            // Contact CTAs
+            const emailCTAEl = document.getElementById('cv-cta-email');
+            if (emailCTAEl) emailCTAEl.textContent = getText('contactCTA.email', lang);
+            
+            const phoneCTAEl = document.getElementById('cv-cta-phone');
+            if (phoneCTAEl) phoneCTAEl.textContent = getText('contactCTA.phone', lang);
+            
+            const linkedinCTAEl = document.getElementById('cv-cta-linkedin');
+            if (linkedinCTAEl) linkedinCTAEl.textContent = getText('contactCTA.linkedin', lang);
+            
+            const repositoryCTAEl = document.getElementById('cv-cta-repository');
+            if (repositoryCTAEl) repositoryCTAEl.textContent = getText('contactCTA.repository', lang);
+            
+            
+            // Section titles
+            const profileTitleEl = document.getElementById('section-profile');
+            if (profileTitleEl) profileTitleEl.textContent = getText('sections.profile', lang);
+            
+            const skillsTitleEl = document.getElementById('section-skills');
+            if (skillsTitleEl) skillsTitleEl.textContent = getText('sections.skills', lang);
+            
+            const experienceTitleEl = document.getElementById('section-experience');
+            if (experienceTitleEl) experienceTitleEl.textContent = getText('sections.experience', lang);
+            
+            const educationTitleEl = document.getElementById('section-education');
+            if (educationTitleEl) educationTitleEl.textContent = getText('sections.education', lang);
+            
+            const projectsTitleEl = document.getElementById('section-projects');
+            if (projectsTitleEl) projectsTitleEl.textContent = getText('sections.projects', lang);
+            
+            // Professional profile
+            const profileEl = document.getElementById('cv-profile');
+            if (profileEl) profileEl.textContent = getText('professionalProfile', lang);
+            
+            // Skills sections
+            renderSkills('skills-strategic', 'strategic', lang);
+            renderSkills('skills-tools', 'tools', lang);
+            renderSkills('skills-emerging', 'emerging', lang);
+            
+            // Experience section
+            renderExperience(lang);
+            
+            // Education section
+            renderEducation(lang);
+            
+            // Projects section
+            renderProjects(lang);
+        }
+        
+        // Render experience section
+        function renderExperience(lang = 'en') {
+            const container = document.getElementById('cv-experience');
+            if (!container) return;
+            
+            const experiences = getText('experience', lang);
+            let html = '';
+            
+            experiences.forEach((exp, index) => {
+                html += `
+                    <div class="experience-item">
+                        <div class="job-title">
+                            <div class="job-number">${index + 1}</div>
+                            ${exp.title}
+                            ${renderTooltip(exp.tooltip)}
+                        </div>
+                        <div class="company">${exp.company}</div>
+                        <div class="period">${exp.period}</div>
+                        <div class="job-description">${exp.description}</div>
+                        <div class="achievements-container">
+                            ${renderAchievements(exp.achievements)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render education section
+        function renderEducation(lang = 'en') {
+            const container = document.getElementById('cv-education');
+            if (!container) return;
+            
+            const education = getText('education', lang);
+            let html = '';
+            
+            education.forEach(edu => {
+                html += `
+                    <div class="education-item">
+                        <div class="degree">${edu.degree}</div>
+                        <div class="university">${edu.university}</div>
+                        <div class="thesis">${edu.thesis}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render projects section
+        function renderProjects(lang = 'en') {
+            const container = document.getElementById('cv-projects');
+            if (!container) return;
+            
+            const projects = getText('projects', lang);
+            let html = '';
+            
+            projects.forEach(project => {
+                html += `
+                    <div class="project-item">
+                        <div class="project-title">${project.title}</div>
+                        <div class="project-description">${project.description}</div>
+                        <div style="margin-top: 15px;">
+                            ${renderTechTags(project.techs)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
     </script>
+    <!-- Dynamic Favicon System -->
+    <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
 </html>

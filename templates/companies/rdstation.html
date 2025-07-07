@@ -8,21 +8,24 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
-            /* RD Station Official Colors */
-            --sicredi-green: #00C9FF;
-            --sicredi-dark-green: #222222;
-            --sicredi-light-neutral: #33E5FF;
-            --sicredi-dark-neutral: #333333;
+            /* RD Station Colors from Reference */
+            --rd-teal: #4A9DC4;
+            --rd-blue-main: #2E7CB8;
+            --rd-blue-dark: #1B4B73;
+            --rd-navy: #0D1E2F;
+            --rd-black: #000000;
             
             /* Applied Colors */
-            --primary-color: #00C9FF;
-            --secondary-color: #222222;
-            --accent-color: #00C9FF;
-            --light-accent: #33E5FF;
-            --dark-accent: #222222;
+            --primary-color: #2E7CB8;
+            --secondary-color: #1B4B73;
+            --accent-color: #4A9DC4;
+            --light-accent: #E8F4F9;
+            --dark-accent: #0D1E2F;
+            --rd-blue-accent: #4A9DC4;
+            --rd-blue-deep: #0D1E2F;
             --text-color: #2c3e50;
-            --border-color: rgba(0, 201, 255, 0.2);
-            --background-gradient: linear-gradient(135deg, #00C9FF 0%, #222222 100%);
+            --border-color: rgba(46, 124, 184, 0.2);
+            --background-gradient: linear-gradient(135deg, #2E7CB8 0%, #1B4B73 50%, #0D1E2F 100%);
         }
         
         * {
@@ -48,7 +51,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #f0faff 0%, #e6f7ff 25%, #f0faff 50%, #e6f7ff 75%, #f0faff 100%);
+            background: linear-gradient(135deg, #f0f6fb 0%, #e8f2f8 25%, #dfeaf5 50%, #d6e3f0 75%, #f0f6fb 100%);
             background-size: 400% 400%;
             animation: gradientShift 20s ease infinite;
             z-index: -2;
@@ -68,9 +71,9 @@
         }
 
         .shape:nth-child(1) {
-            width: 100px;
-            height: 100px;
-            background: var(--sicredi-green);
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, var(--rd-blue-main), var(--rd-blue-accent));
             border-radius: 50%;
             top: 10%;
             left: 5%;
@@ -78,9 +81,9 @@
         }
 
         .shape:nth-child(2) {
-            width: 150px;
-            height: 150px;
-            background: var(--sicredi-dark-green);
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(45deg, var(--rd-blue-dark), var(--rd-blue-deep));
             transform: rotate(45deg);
             top: 60%;
             right: 10%;
@@ -88,9 +91,9 @@
         }
 
         .shape:nth-child(3) {
-            width: 80px;
-            height: 80px;
-            background: var(--sicredi-green);
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--rd-blue-accent), var(--rd-blue-main));
             border-radius: 50%;
             bottom: 20%;
             left: 25%;
@@ -155,21 +158,216 @@
         }
         
         .header {
-            background: var(--background-gradient);
-            padding: 60px 60px 80px 60px;
+            background: #054464;
+            padding: 50px 40px 60px 40px;
             position: relative;
             overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        /* Abstract 3D ribbon/band shape */
         .header::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
+            left: -10%;
+            width: 120%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shimmer 8s infinite;
+            background: linear-gradient(135deg, 
+                #043a56 0%, 
+                #054464 25%, 
+                #032e42 50%, 
+                #021e2d 75%, 
+                #011419 100%);
+            clip-path: polygon(
+                0% 30%, 
+                25% 10%, 
+                50% 25%, 
+                75% 5%, 
+                100% 20%, 
+                100% 80%, 
+                75% 95%, 
+                50% 75%, 
+                25% 90%, 
+                0% 70%
+            );
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -5%;
+            width: 110%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(5, 68, 100, 0.8) 0%, 
+                rgba(3, 46, 66, 0.6) 50%, 
+                rgba(1, 20, 25, 0.4) 100%);
+            clip-path: polygon(
+                0% 40%, 
+                30% 20%, 
+                60% 35%, 
+                90% 15%, 
+                100% 30%, 
+                100% 70%, 
+                90% 85%, 
+                60% 65%, 
+                30% 80%, 
+                0% 60%
+            );
+            opacity: 0.4;
+            z-index: 2;
+        }
+
+        /* RD Station hexagon-based static shapes */
+        .rd-hexagon-shape {
+            position: absolute;
+            opacity: 0.15;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+        }
+
+        .rd-hexagon-shape:nth-child(1) {
+            width: 200px;
+            height: 230px;
+            background: linear-gradient(135deg, var(--rd-teal), var(--rd-blue-main));
+            top: 10%;
+            left: 5%;
+            transform: rotate(15deg);
+        }
+
+        .rd-hexagon-shape:nth-child(2) {
+            width: 150px;
+            height: 170px;
+            background: linear-gradient(45deg, var(--rd-blue-dark), var(--rd-navy));
+            top: 60%;
+            right: 10%;
+            transform: rotate(-20deg);
+        }
+
+        .rd-hexagon-shape:nth-child(3) {
+            width: 120px;
+            height: 140px;
+            background: linear-gradient(90deg, var(--rd-blue-main), var(--rd-teal));
+            bottom: 20%;
+            left: 30%;
+            transform: rotate(45deg);
+        }
+
+        .rd-hexagon-shape:nth-child(4) {
+            width: 80px;
+            height: 90px;
+            background: linear-gradient(180deg, var(--rd-navy), var(--rd-black));
+            top: 30%;
+            right: 30%;
+            transform: rotate(-10deg);
+        }
+
+        @keyframes organicFlow1 {
+            0%, 100% { 
+                transform: rotate(0deg) scale(1) translate(0, 0);
+                border-radius: 50% 30% 70% 40%;
+            }
+            25% { 
+                transform: rotate(5deg) scale(1.1) translate(20px, -10px);
+                border-radius: 40% 60% 50% 30%;
+            }
+            50% { 
+                transform: rotate(-3deg) scale(0.95) translate(-15px, 15px);
+                border-radius: 60% 40% 30% 70%;
+            }
+            75% { 
+                transform: rotate(2deg) scale(1.05) translate(10px, -5px);
+                border-radius: 30% 70% 60% 40%;
+            }
+        }
+
+        @keyframes organicFlow2 {
+            0%, 100% { 
+                transform: rotate(0deg) scale(1) translate(0, 0);
+                border-radius: 40% 60% 30% 70%;
+            }
+            30% { 
+                transform: rotate(-4deg) scale(1.08) translate(-25px, 20px);
+                border-radius: 70% 30% 60% 40%;
+            }
+            60% { 
+                transform: rotate(6deg) scale(0.92) translate(30px, -25px);
+                border-radius: 30% 70% 40% 60%;
+            }
+            90% { 
+                transform: rotate(-2deg) scale(1.03) translate(-10px, 10px);
+                border-radius: 60% 40% 70% 30%;
+            }
+        }
+
+        @keyframes organicFloat {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg) scale(1);
+                border-radius: 60% 40% 30% 70%;
+            }
+            33% { 
+                transform: translateY(-30px) rotate(8deg) scale(1.1);
+                border-radius: 40% 60% 70% 30%;
+            }
+            66% { 
+                transform: translateY(20px) rotate(-5deg) scale(0.9);
+                border-radius: 70% 30% 40% 60%;
+            }
+        }
+
+        /* Floating energy particles */
+        .energy-particle {
+            position: absolute;
+            background: rgba(46, 124, 184, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .energy-particle:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            top: 15%;
+            left: 15%;
+            animation: energyFloat 6s infinite ease-in-out;
+        }
+
+        .energy-particle:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            top: 30%;
+            right: 25%;
+            animation: energyFloat 8s infinite ease-in-out 1s;
+            background: rgba(27, 75, 115, 0.5);
+        }
+
+        .energy-particle:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 25%;
+            left: 35%;
+            animation: energyFloat 10s infinite ease-in-out 2s;
+            background: rgba(74, 157, 196, 0.4);
+        }
+
+        @keyframes energyFloat {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 0.6;
+            }
+            33% { 
+                transform: translateY(-40px) rotate(120deg) scale(1.2);
+                opacity: 0.9;
+            }
+            66% { 
+                transform: translateY(20px) rotate(240deg) scale(0.8);
+                opacity: 0.7;
+            }
         }
 
         @keyframes shimmer {
@@ -179,39 +377,133 @@
 
         .header-content {
             position: relative;
-            z-index: 1;
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Logo container - clean without background */
+        .logo-container {
+            margin-bottom: 30px;
+            animation: logoMegaEntrance 2s ease-out;
+            position: relative;
+        }
+
+        @keyframes logoMegaEntrance {
+            0% {
+                transform: scale(0.8) translateY(-20px);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
         }
 
         .rdstation-logo {
-            position: absolute;
-            bottom: 20px;
-            right: 40px;
-            width: 140px;
+            width: 250px;
             height: auto;
-            filter: brightness(0) invert(1);
-            opacity: 0.9;
+            filter: brightness(0) invert(1)
+                    drop-shadow(0 15px 40px rgba(0, 0, 0, 0.2))
+                    drop-shadow(0 8px 20px rgba(0, 0, 0, 0.15))
+                    drop-shadow(0 0 30px rgba(255, 255, 255, 0.5))
+                    drop-shadow(0 0 60px rgba(255, 255, 255, 0.3));
+            transition: all 0.6s ease;
+            animation: logoMegaPulse 4s ease-in-out infinite;
+            position: relative;
             z-index: 2;
+        }
+
+        @keyframes logoMegaPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .rdstation-logo:hover {
+            transform: scale(1.05);
+            filter: brightness(0) invert(1)
+                    drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3))
+                    drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2))
+                    drop-shadow(0 0 50px rgba(255, 255, 255, 0.7))
+                    drop-shadow(0 0 90px rgba(255, 255, 255, 0.5));
+        }
+
+        /* Animated tagline */
+        .company-tagline {
+            font-size: 22px;
+            font-weight: 700;
             color: white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            animation: taglineMegaGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes taglineMegaGlow {
+            from { 
+                text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+                transform: scale(1);
+            }
+            to { 
+                text-shadow: 3px 3px 25px rgba(255, 255, 255, 1), 
+                           0 0 40px rgba(255, 105, 0, 0.8),
+                           0 0 60px rgba(255, 105, 0, 0.6);
+                transform: scale(1.02);
+            }
         }
 
         .header-text {
-            max-width: 850px;
-            padding-right: 180px;
+            max-width: 950px;
+            margin: 0 auto;
         }
         
         .header h1 {
             font-size: 36px;
             font-weight: 700;
             color: white;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
             letter-spacing: -0.5px;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+            animation: nameMegaSlide 1.5s ease-out 0.5s both;
+        }
+
+        @keyframes nameMegaSlide {
+            from {
+                transform: translateX(-150px) rotateY(-90deg);
+                opacity: 0;
+                filter: blur(10px);
+            }
+            to {
+                transform: translateX(0) rotateY(0deg);
+                opacity: 1;
+                filter: blur(0px);
+            }
         }
         
         .role {
-            font-size: 20px;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: roleMegaSlide 1.5s ease-out 0.8s both;
+        }
+
+        @keyframes roleMegaSlide {
+            from {
+                transform: translateX(150px) rotateY(90deg);
+                opacity: 0;
+                filter: blur(10px);
+            }
+            to {
+                transform: translateX(0) rotateY(0deg);
+                opacity: 1;
+                filter: blur(0px);
+            }
         }
         
         .contact-info {
@@ -247,6 +539,8 @@
             margin-right: 8px;
             font-size: 16px;
         }
+        
+        
         
         .location {
             display: flex;
@@ -340,7 +634,7 @@
         .skills-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 20px;
         }
         
         @media (max-width: 1000px) {
@@ -357,8 +651,8 @@
         
         .skills-column {
             background: linear-gradient(135deg, rgba(215, 230, 200, 0.3), rgba(215, 230, 200, 0.1));
-            padding: 25px;
-            border-radius: 16px;
+            padding: 18px;
+            border-radius: 12px;
             border: 1px solid rgba(0, 201, 255, 0.1);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
@@ -390,59 +684,97 @@
         }
         
         .tool-item {
-            margin-bottom: 18px;
+            margin-bottom: 14px;
+            padding: 8px 0;
         }
         
         .tool-name {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 6px;
             font-weight: 500;
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 13px;
+            margin-bottom: 6px;
             color: var(--text-color);
         }
-
-        .tool-percentage {
-            font-size: 13px;
-            color: var(--sicredi-green);
+        
+        .tool-skill-name {
+            color: var(--text-color);
             font-weight: 600;
         }
         
-        .progress-bar {
-            height: 8px;
-            background: rgba(63, 161, 16, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        /* Modern 5-point rating system */
+        .skill-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            align-self: flex-start;
         }
         
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--sicredi-green), var(--sicredi-dark-green));
-            border-radius: 10px;
+        .skill-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .skill-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(46, 124, 184, 0.2);
+            border: 1.5px solid rgba(46, 124, 184, 0.3);
+            transition: all 0.4s ease;
             position: relative;
-            animation: progressGrow 1.5s ease-out;
+            overflow: hidden;
+            flex-shrink: 0;
         }
-
-        @keyframes progressGrow {
-            from { width: 0; }
+        
+        .skill-dot.active {
+            background: linear-gradient(135deg, var(--rd-blue-main) 0%, var(--rd-teal) 100%);
+            border-color: var(--rd-blue-main);
+            box-shadow: 
+                0 0 8px rgba(46, 124, 184, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
         }
-
-        .progress::after {
+        
+        .skill-dot.active::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: progressShimmer 2s infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: dotShimmer 2s infinite;
         }
-
-        @keyframes progressShimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        
+        @keyframes dotShimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .skill-level-text {
+            font-size: 10px;
+            color: var(--rd-blue-main);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-left: 2px;
+            white-space: nowrap;
+        }
+        
+        /* Hover effects */
+        .tool-item:hover .skill-dot.active {
+            box-shadow: 
+                0 0 16px rgba(46, 124, 184, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transform: scale(1.15);
+        }
+        
+        .tool-item:hover .skill-dot:not(.active) {
+            background: rgba(46, 124, 184, 0.3);
+            border-color: rgba(46, 124, 184, 0.4);
         }
         
         /* Tooltip styles */
@@ -1144,6 +1476,10 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Favicon Meta Tags -->
+    <meta name="theme-color" content="#1a4b84">
+    <meta name="msapplication-TileColor" content="#1a4b84">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
 </head>
 <body>
     <div class="animated-bg"></div>
@@ -1156,10 +1492,15 @@
     <div class="cv-container">
         <header class="header">
             <div class="header-content">
-                <img src="../../assets/images/rd-station-default.svg" alt="RD Station" class="rdstation-logo">
+                <div class="logo-container">
+                    <img src="../../assets/images/rd-station-default.svg" alt="RD Station" class="rdstation-logo">
+                </div>
+                
+                <div class="company-tagline">Digital Marketing Automation</div>
+                
                 <div class="header-text">
                     <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
-                    <div class="role">CRM Management and Data Intelligence</div>
+                    <div class="role">CRM Management & Data Intelligence</div>
                     
                     <div class="contact-info">
                         <div class="contact-item">
@@ -1186,6 +1527,15 @@
                             </a>
                             <span class="contact-cta">Click to visit LinkedIn</span>
                         </div>
+                        
+                        <div class="contact-item">
+                            <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
+                                <i class="fab fa-github"></i> Repository
+                            </a>
+                            <span class="contact-cta">View source code</span>
+                        </div>
+                        
+                        <div class="contact-item">
                     </div>
                 </div>
             </div>
@@ -1202,160 +1552,256 @@
             <h2 class="section-title">SKILLS & TOOLS</h2>
             <div class="skills-container">
                 <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Strategic Skills</h3>
+                    <h3 style="font-size: 15px; color: var(--sicredi-dark-green); margin-bottom: 14px; font-weight: 600;">Strategic Skills</h3>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>CRM Management</span>
-                            <span class="tool-percentage">98%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 98%"></div>
+                            <span class="tool-skill-name">CRM Management</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                </div>
+                                <span class="skill-level-text">Expert</span>
+                            </div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>Customer Equity</span>
-                            <span class="tool-percentage">92%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 92%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Business Intelligence</span>
-                            <span class="tool-percentage">88%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 88%"></div>
+                            <span class="tool-skill-name">Customer Equity</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                </div>
+                                <span class="skill-level-text">Expert</span>
+                            </div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>Strategic Leadership</span>
-                            <span class="tool-percentage">85%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Brand Equity</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
+                            <span class="tool-skill-name">Business Intelligence</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-level-text">Advanced</span>
+                            </div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>Brand Management</span>
-                            <span class="tool-percentage">78%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 78%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Tools & Technologies</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>PowerBI</span>
-                            <span class="tool-percentage">95%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 95%"></div>
+                            <span class="tool-skill-name">Strategic Leadership</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-level-text">Advanced</span>
+                            </div>
                         </div>
                     </div>
-                    
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>Oracle/Databricks</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
+                            <span class="tool-skill-name">Brand Equity</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-level-text">Advanced</span>
+                            </div>
                         </div>
                     </div>
-                    
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>Python/SQL</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Kanbanize</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
+                            <span class="tool-skill-name">Brand Management</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-level-text">Intermediate</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Emerging Technologies</h3>
+                    <h3 style="font-size: 15px; color: var(--sicredi-dark-green); margin-bottom: 14px; font-weight: 600;">Tools & Technologies</h3>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>LLM & AI Agents</span>
-                            <span class="tool-percentage">82%</span>
+                            <span class="tool-skill-name">PowerBI</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                </div>
+                                <span class="skill-level-text">Expert</span>
+                            </div>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 82%"></div>
+                    </div>
+                    
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span class="tool-skill-name">Oracle/Databricks</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                </div>
+                                <span class="skill-level-text">Expert</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span class="tool-skill-name">Python/SQL</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-level-text">Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span class="tool-skill-name">Kanbanize</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                </div>
+                                <span class="skill-level-text">Expert</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-column">
+                    <h3 style="font-size: 15px; color: var(--sicredi-dark-green); margin-bottom: 14px; font-weight: 600;">Emerging Technologies</h3>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span class="tool-skill-name">LLM & AI Agents</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-level-text">Advanced</span>
+                            </div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>AI for CRM</span>
-                            <span class="tool-percentage">86%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 86%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>AI/LLM APIs</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
+                            <span class="tool-skill-name">AI for CRM</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-level-text">Advanced</span>
+                            </div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>Data Analytics</span>
-                            <span class="tool-percentage">91%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 91%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Machine Learning</span>
-                            <span class="tool-percentage">77%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 77%"></div>
+                            <span class="tool-skill-name">AI/LLM APIs</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-level-text">Advanced</span>
+                            </div>
                         </div>
                     </div>
                     <div class="tool-item">
                         <div class="tool-name">
-                            <span>Responsys</span>
-                            <span class="tool-percentage">75%</span>
+                            <span class="tool-skill-name">Data Analytics</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                </div>
+                                <span class="skill-level-text">Expert</span>
+                            </div>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span class="tool-skill-name">Machine Learning</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-level-text">Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-name">
+                            <span class="tool-skill-name">Responsys</span>
+                            <div class="skill-rating">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-level-text">Intermediate</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1735,11 +2181,11 @@
     <div class="language-toggle">
         <a href="rdstation.html" class="language-option active">
             <i class="fas fa-check-circle"></i>
-            <span>EN</span>
+            <span id="lang-en">EN</span>
         </a>
         <div class="language-divider"></div>
         <a href="rdstation_pt.html" class="language-option">
-            <span>PT</span>
+            <span id="lang-pt">PT</span>
         </a>
     </div>
     
@@ -1752,25 +2198,25 @@
     <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
-            <h3 style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Send Email</h3>
+            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Send Email</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
+                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Email</label>
+                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Email</label>
                     <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Subject</label>
+                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Subject</label>
                     <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message</label>
+                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message</label>
                     <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
-                <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.3);">Send</button>
+                <button id="email-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.3);">Send</button>
             </form>
         </div>
     </div>
@@ -1779,29 +2225,55 @@
     <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
-            <h3 style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Get in Touch</h3>
+            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Get in Touch</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <input type="hidden" name="contact_type" value="phone_request">
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
+                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Phone</label>
+                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Phone</label>
                     <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Best time to contact</label>
+                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Best time to contact</label>
                     <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message (Optional)</label>
+                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message (Optional)</label>
                     <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
                 <div style="display:flex; gap:15px;">
-                    <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.3);">Request Contact</button>
+                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.3);">Request Contact</button>
                     <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
-                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> WhatsApp
+                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> <span id="whatsapp-text">WhatsApp</span>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Company/Organization</label>
+                    <input type="text" name="company" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Role</label>
+                    <input type="text" name="role" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Email</label>
+                    <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:25px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Opportunity Details</label>
+                    <textarea name="opportunity" rows="4" placeholder="Describe the role, project, or collaboration opportunity..." required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
+                </div>
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <button type="submit" style="background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">Send Message</button>
+                    <a href="https://linkedin.com/in/pedrohmarconato" target="_blank" style="display:inline-flex; align-items:center; background-color:#0077B5; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);">
+                        <i class="fab fa-linkedin" style="margin-right:8px;"></i> LinkedIn
                     </a>
                 </div>
             </form>
@@ -1825,6 +2297,8 @@
             document.getElementById('phoneModal').style.display = 'none';
         }
         
+        
+        
         // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target == document.getElementById('emailModal')) {
@@ -1833,10 +2307,14 @@
             if (event.target == document.getElementById('phoneModal')) {
                 closePhoneModal();
             }
+            }
         }
 
         // Style form inputs on focus
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize modal texts
+            initializeModalTexts('en');
+            
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => {
                 input.addEventListener('focus', function() {
@@ -1873,5 +2351,7 @@
             });
         });
     </script>
+    <!-- Dynamic Favicon System -->
+    <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
 </html>

@@ -1,0 +1,21 @@
+{
+    "name": "Pedro Marconato CV",
+    "short_name": "Pedro CV",
+    "description": "Pedro Henrique Lima Marconato - CRM Management and Data Intelligence Professional",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1a4b84",
+    "theme_color": "#1a4b84",
+    "icons": [
+        {
+            "src": "assets/favicons/general-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/favicons/general-180x180.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ]
+}

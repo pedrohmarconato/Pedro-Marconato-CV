@@ -56,16 +56,47 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(169, 220, 141, 0.2), transparent);
-            animation: shimmer 8s infinite;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(169, 220, 141, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(169, 220, 141, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            animation: floatingLights 12s ease-in-out infinite;
+            z-index: 0;
         }
 
-        @keyframes shimmer {
-            0% { left: -100%; }
-            50%, 100% { left: 100%; }
+        @keyframes floatingLights {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                opacity: 0.6;
+            }
+            33% { 
+                transform: translateY(-15px) scale(1.05);
+                opacity: 0.8;
+            }
+            66% { 
+                transform: translateY(8px) scale(0.95);
+                opacity: 0.4;
+            }
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(169, 220, 141, 0.03) 50%, transparent 70%);
+            animation: rotate 25s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .header-content {
@@ -80,6 +111,23 @@
             margin-bottom: 8px;
             letter-spacing: -0.5px;
             text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: titleGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 
+                    2px 2px 4px rgba(0, 0, 0, 0.3),
+                    0 0 20px rgba(169, 220, 141, 0.2);
+            }
+            50% {
+                text-shadow: 
+                    2px 2px 4px rgba(0, 0, 0, 0.3),
+                    0 0 30px rgba(169, 220, 141, 0.4),
+                    0 0 40px rgba(169, 220, 141, 0.2);
+                transform: scale(1.02);
+            }
         }
 
         .header-tagline {
@@ -90,6 +138,19 @@
             margin-bottom: 28px;
             font-style: italic;
             letter-spacing: 0.5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            animation: subtleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+                color: rgba(255, 255, 255, 0.95);
+            }
+            50% {
+                transform: translateY(-3px);
+                color: rgba(255, 255, 255, 1);
+            }
         }
         
         .contact-info {
@@ -111,11 +172,48 @@
             font-size: 12.5px;
             font-weight: 500;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(169, 220, 141, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(169, 220, 141, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item:hover::before {
+            left: 100%;
         }
         
         .contact-item i {
             margin-right: 6px;
             font-size: 12px;
+            filter: drop-shadow(0 0 4px rgba(169, 220, 141, 0.4));
+            animation: iconGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes iconGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 4px rgba(169, 220, 141, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 8px rgba(169, 220, 141, 0.6));
+                transform: scale(1.05);
+            }
         }
         
         /* Section Styles */
@@ -593,6 +691,10 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Favicon Meta Tags -->
+    <meta name="theme-color" content="#1a4b84">
+    <meta name="msapplication-TileColor" content="#1a4b84">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
 </head>
 <body>
     <div class="cv-container">
@@ -769,5 +871,7 @@
             </div>
         </section>
     </div>
+    <!-- Dynamic Favicon System -->
+    <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
 </html>

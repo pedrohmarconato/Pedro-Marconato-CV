@@ -8,21 +8,24 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
-            /* RD Station Official Colors */
-            --sicredi-green: #00C9FF;
-            --sicredi-dark-green: #222222;
-            --sicredi-light-neutral: #33E5FF;
-            --sicredi-dark-neutral: #333333;
+            /* RD Station Colors from Reference */
+            --rd-teal: #4A9DC4;
+            --rd-blue-main: #2E7CB8;
+            --rd-blue-dark: #1B4B73;
+            --rd-navy: #0D1E2F;
+            --rd-black: #000000;
             
             /* Applied Colors */
-            --primary-color: #00C9FF;
-            --secondary-color: #222222;
-            --accent-color: #00C9FF;
-            --light-accent: #33E5FF;
-            --dark-accent: #222222;
+            --primary-color: #2E7CB8;
+            --secondary-color: #1B4B73;
+            --accent-color: #4A9DC4;
+            --light-accent: #E8F4F9;
+            --dark-accent: #0D1E2F;
+            --rd-blue-accent: #4A9DC4;
+            --rd-blue-deep: #0D1E2F;
             --text-color: #2c3e50;
-            --border-color: rgba(0, 201, 255, 0.2);
-            --background-gradient: linear-gradient(135deg, #00C9FF 0%, #222222 100%);
+            --border-color: rgba(46, 124, 184, 0.2);
+            --background-gradient: linear-gradient(135deg, #2E7CB8 0%, #1B4B73 50%, #0D1E2F 100%);
         }
         
         * {
@@ -48,7 +51,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #f0faff 0%, #e6f7ff 25%, #f0faff 50%, #e6f7ff 75%, #f0faff 100%);
+            background: linear-gradient(135deg, #f0f6fb 0%, #e8f2f8 25%, #dfeaf5 50%, #d6e3f0 75%, #f0f6fb 100%);
             background-size: 400% 400%;
             animation: gradientShift 20s ease infinite;
             z-index: -2;
@@ -155,21 +158,83 @@
         }
         
         .header {
-            background: var(--background-gradient);
-            padding: 60px 60px 80px 60px;
+            background: #054464;
+            padding: 50px 40px 60px 40px;
             position: relative;
             overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        /* Abstract 3D ribbon/band shape */
         .header::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
+            left: -10%;
+            width: 120%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shimmer 8s infinite;
+            background: linear-gradient(135deg, 
+                #043a56 0%, 
+                #054464 25%, 
+                #032e42 50%, 
+                #021e2d 75%, 
+                #011419 100%);
+            clip-path: polygon(
+                0% 30%, 
+                25% 10%, 
+                50% 25%, 
+                75% 5%, 
+                100% 20%, 
+                100% 80%, 
+                75% 95%, 
+                50% 75%, 
+                25% 90%, 
+                0% 70%
+            );
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -5%;
+            width: 110%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(5, 68, 100, 0.8) 0%, 
+                rgba(3, 46, 66, 0.6) 50%, 
+                rgba(1, 20, 25, 0.4) 100%);
+            clip-path: polygon(
+                0% 40%, 
+                30% 20%, 
+                60% 35%, 
+                90% 15%, 
+                100% 30%, 
+                100% 70%, 
+                90% 85%, 
+                60% 65%, 
+                30% 80%, 
+                0% 60%
+            );
+            opacity: 0.4;
+            z-index: 2;
+        }
+
+        @keyframes waveMotion {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(2deg) scale(1.1); }
+            50% { transform: rotate(-2deg) scale(0.95); }
+            75% { transform: rotate(1deg) scale(1.05); }
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-1440px); }
         }
 
         @keyframes shimmer {
@@ -183,13 +248,16 @@
         }
 
         .rdstation-logo {
-            position: absolute;
-            bottom: 20px;
-            right: 40px;
-            width: 140px;
+            width: 250px;
             height: auto;
-            filter: brightness(0) invert(1);
-            opacity: 0.9;
+            filter: brightness(0) invert(1)
+                    drop-shadow(0 15px 40px rgba(0, 0, 0, 0.2))
+                    drop-shadow(0 8px 20px rgba(0, 0, 0, 0.15))
+                    drop-shadow(0 0 30px rgba(255, 255, 255, 0.5))
+                    drop-shadow(0 0 60px rgba(255, 255, 255, 0.3));
+            transition: all 0.6s ease;
+            animation: logoMegaPulse 4s ease-in-out infinite;
+            position: relative;
             z-index: 2;
         }
 
@@ -246,6 +314,8 @@
             margin-right: 8px;
             font-size: 16px;
         }
+        
+        
         
         .location {
             display: flex;
@@ -339,7 +409,7 @@
         .skills-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 20px;
         }
         
         @media (max-width: 1000px) {
@@ -356,17 +426,17 @@
         
         .skills-column {
             background: linear-gradient(135deg, rgba(215, 230, 200, 0.3), rgba(215, 230, 200, 0.1));
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 201, 255, 0.1);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(46, 124, 184, 0.1);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
         .skills-column:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(63, 161, 16, 0.1);
-            border-color: rgba(63, 161, 16, 0.2);
+            box-shadow: 0 8px 24px rgba(46, 124, 184, 0.1);
+            border-color: rgba(46, 124, 184, 0.2);
         }
         
         .skill-item {
@@ -383,65 +453,130 @@
         }
         
         .skill-item i {
-            color: var(--sicredi-green);
+            color: var(--rd-blue-main);
             margin-right: 12px;
             font-size: 18px;
         }
         
         .tool-item {
-            margin-bottom: 18px;
+            margin-bottom: 14px;
+            padding: 8px 0;
         }
         
         .tool-name {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 6px;
             font-weight: 500;
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 13px;
+            margin-bottom: 6px;
             color: var(--text-color);
         }
 
-        .tool-percentage {
-            font-size: 13px;
-            color: var(--sicredi-green);
+        .tool-skill-name {
+            color: var(--text-color);
             font-weight: 600;
         }
         
-        .progress-bar {
-            height: 8px;
-            background: rgba(63, 161, 16, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        /* Modern 5-point rating system - RD Station colors */
+        .skill-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            align-self: flex-start;
         }
         
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--sicredi-green), var(--sicredi-dark-green));
-            border-radius: 10px;
+        .skill-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .skill-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(46, 124, 184, 0.2);
+            border: 1.5px solid rgba(46, 124, 184, 0.3);
+            transition: all 0.4s ease;
             position: relative;
-            animation: progressGrow 1.5s ease-out;
+            overflow: hidden;
+            flex-shrink: 0;
         }
-
-        @keyframes progressGrow {
-            from { width: 0; }
+        
+        .skill-dot.active {
+            background: linear-gradient(135deg, var(--rd-blue-main) 0%, var(--rd-teal) 100%);
+            border-color: var(--rd-blue-main);
+            box-shadow: 
+                0 0 8px rgba(46, 124, 184, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
         }
-
-        .progress::after {
+        
+        .skill-dot.active::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: progressShimmer 2s infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: dotShimmer 2s infinite;
         }
-
-        @keyframes progressShimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        
+        @keyframes dotShimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .skill-level-text {
+            font-size: 10px;
+            color: var(--rd-blue-main);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-left: 2px;
+            white-space: nowrap;
+        }
+        
+        /* Dots container for skills from cv-texts.js - RD Station colors */
+        .dots-container {
+            display: flex;
+            gap: 3px;
+            margin-top: 8px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(46, 124, 184, 0.2);
+            border: 1px solid rgba(46, 124, 184, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .dot.filled {
+            background: linear-gradient(135deg, var(--rd-blue-main) 0%, var(--rd-teal) 100%);
+            border-color: var(--rd-blue-main);
+            box-shadow: 
+                0 0 6px rgba(46, 124, 184, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .tool-item:hover .dot.filled {
+            box-shadow: 
+                0 0 10px rgba(46, 124, 184, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: scale(1.2);
+        }
+        
+        /* Hover effects */
+        .tool-item:hover .skill-dot.active {
+            box-shadow: 
+                0 0 15px rgba(46, 124, 184, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
         }
         
         /* Tooltip styles */
@@ -452,7 +587,7 @@
         }
         
         .tooltip .tooltip-icon {
-            color: var(--sicredi-green);
+            color: var(--rd-blue-main);
             font-size: 14px;
             margin-left: 5px;
             transition: transform 0.2s, color 0.2s;
@@ -461,14 +596,14 @@
         .tooltip:hover .tooltip-icon,
         .tooltip:focus .tooltip-icon,
         .tooltip:active .tooltip-icon {
-            color: var(--sicredi-dark-green);
+            color: var(--rd-blue-dark);
             transform: scale(1.2);
         }
         
         .tooltip .tooltip-text {
             visibility: hidden;
             width: 380px;
-            background: linear-gradient(145deg, var(--sicredi-dark-green), var(--sicredi-green));
+            background: linear-gradient(145deg, var(--rd-blue-dark), var(--rd-blue-main));
             color: white;
             text-align: left;
             border-radius: 12px;
@@ -483,7 +618,7 @@
             transform: translateY(10px);
             font-size: 13px;
             line-height: 1.5;
-            box-shadow: 0 10px 30px rgba(20, 110, 55, 0.15);
+            box-shadow: 0 10px 30px rgba(46, 124, 184, 0.3);
             overflow: hidden;
             max-height: 85vh;
             overflow-y: auto;
@@ -497,7 +632,7 @@
             margin-left: -8px;
             border-width: 8px;
             border-style: solid;
-            border-color: var(--sicredi-green) transparent transparent transparent;
+            border-color: var(--rd-blue-main) transparent transparent transparent;
         }
         
         .tooltip:hover .tooltip-text,
@@ -1118,6 +1253,11 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../cv-texts.js"></script>
+    <!-- Favicon Meta Tags -->
+    <meta name="theme-color" content="#1a4b84">
+    <meta name="msapplication-TileColor" content="#1a4b84">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
 </head>
 <body>
     <div class="animated-bg"></div>
@@ -1130,10 +1270,15 @@
     <div class="cv-container">
         <header class="header">
             <div class="header-content">
-                <img src="../../assets/images/rd-station-default.svg" alt="RD Station" class="rdstation-logo">
+                <div class="logo-container">
+                    <img src="../../assets/images/rd-station-default.svg" alt="RD Station" class="rdstation-logo">
+                </div>
+                
+                <div class="company-tagline">Automação de Marketing Digital</div>
+                
                 <div class="header-text">
                     <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
-                    <div class="role">Gestão de CRM e Inteligência de Dados</div>
+                    <div class="role">Gestão de CRM & Inteligência de Dados</div>
                     
                     <div class="contact-info">
                         <div class="contact-item">
@@ -1160,6 +1305,15 @@
                             </a>
                             <span class="contact-cta">Clique para entrar no LinkedIn</span>
                         </div>
+                        
+                        <div class="contact-item">
+                            <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
+                                <i class="fab fa-github"></i> Repositório
+                            </a>
+                            <span class="contact-cta">Ver código fonte</span>
+                        </div>
+                        
+                        <div class="contact-item">
                     </div>
                 </div>
             </div>
@@ -1173,166 +1327,11 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">COMPETÊNCIAS & FERRAMENTAS</h2>
+            <h2 class="section-title" id="cv-skills-title"></h2>
             <div class="skills-container">
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Competências Estratégicas</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Gestão de CRM</span>
-                            <span class="tool-percentage">98%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 98%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Customer Equity</span>
-                            <span class="tool-percentage">92%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 92%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Business Intelligence</span>
-                            <span class="tool-percentage">88%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 88%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Liderança Estratégica</span>
-                            <span class="tool-percentage">85%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Brand Equity</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Gestão de Marcas</span>
-                            <span class="tool-percentage">78%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 78%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Ferramentas & Tecnologias</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>PowerBI</span>
-                            <span class="tool-percentage">95%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Oracle/Databricks</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Python/SQL</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Kanbanize</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Tecnologias Emergentes</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>LLM & Agentes IA</span>
-                            <span class="tool-percentage">82%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 82%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>IA para CRM</span>
-                            <span class="tool-percentage">86%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 86%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>IA/LLM APIs</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Data Analytics</span>
-                            <span class="tool-percentage">91%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 91%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Machine Learning</span>
-                            <span class="tool-percentage">77%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 77%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Responsys</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
+                <div class="skills-column" id="skills-strategic"></div>
+                <div class="skills-column" id="skills-tools"></div>
+                <div class="skills-column" id="skills-emerging"></div>
             </div>
         </section>
         
@@ -1782,6 +1781,32 @@
         </div>
     </div>
     
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Empresa/Organização</label>
+                    <input type="text" name="company" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Cargo</label>
+                    <input type="text" name="role" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Email</label>
+                    <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:25px;">
+                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Detalhes da Oportunidade</label>
+                    <textarea name="opportunity" rows="4" placeholder="Descreva o cargo, projeto ou oportunidade de colaboração..." required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
+                </div>
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <button type="submit" style="background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">Enviar Mensagem</button>
+                    <a href="https://linkedin.com/in/pedrohmarconato" target="_blank" style="display:inline-flex; align-items:center; background-color:#0077B5; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);">
+                        <i class="fab fa-linkedin" style="margin-right:8px;"></i> LinkedIn
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
     <script>
         function openEmailForm() {
             document.getElementById('emailModal').style.display = 'flex';
@@ -1799,6 +1824,8 @@
             document.getElementById('phoneModal').style.display = 'none';
         }
         
+        
+        
         // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target == document.getElementById('emailModal')) {
@@ -1807,10 +1834,17 @@
             if (event.target == document.getElementById('phoneModal')) {
                 closePhoneModal();
             }
+            }
         }
 
         // Style form inputs on focus
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize dynamic content
+            initializeBasicContent('pt');
+            renderSkills('skills-strategic', 'strategic', 'pt');
+            renderSkills('skills-tools', 'tools', 'pt');
+            renderSkills('skills-emerging', 'emerging', 'pt');
+            
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => {
                 input.addEventListener('focus', function() {
@@ -1847,5 +1881,7 @@
             });
         });
     </script>
+    <!-- Dynamic Favicon System -->
+    <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
 </html>

@@ -365,42 +365,327 @@
             margin-bottom: 8px;
         }
 
-        /* Skills section */
-        .skills-grid {
+        /* Skills section - iFood structure */
+        .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        @media (max-width: 1000px) {
+            .skills-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .skills-column {
+            background: linear-gradient(135deg, rgba(79, 158, 143, 0.1), rgba(79, 158, 143, 0.05));
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(79, 158, 143, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
-        .skill-category {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fbfa 100%);
-            padding: 25px;
-            border-radius: 15px;
-            border-top: 4px solid var(--primary-color);
-            box-shadow: 0 5px 20px rgba(79, 158, 143, 0.1);
+        .skills-column:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(79, 158, 143, 0.1);
+            border-color: rgba(79, 158, 143, 0.2);
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--text-color);
+            transition: transform 0.2s ease;
         }
 
-        .skill-category h4 {
+        .skill-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .skill-item i {
             color: var(--primary-color);
+            margin-right: 12px;
             font-size: 18px;
+        }
+        
+        .tool-item {
+            margin-bottom: 14px;
+            padding: 8px 0;
+        }
+        
+        .tool-name {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-weight: 500;
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: var(--text-color);
+        }
+
+        .tool-skill-name {
+            color: var(--text-color);
             font-weight: 600;
+        }
+        
+        /* Modern 5-point rating system - Complete Bari colors */
+        .skill-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            align-self: flex-start;
+        }
+        
+        .skill-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .skill-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(79, 158, 143, 0.2);
+            border: 1.5px solid rgba(79, 158, 143, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .skill-dot.active {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-color: var(--primary-color);
+            box-shadow: 
+                0 0 8px rgba(79, 158, 143, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .skill-dot.active::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: dotShimmer 2s infinite;
+        }
+        
+        @keyframes dotShimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .skill-level-text {
+            font-size: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-left: 2px;
+            white-space: nowrap;
+        }
+        
+        /* Dots container for skills from cv-texts.js - Complete Bari colors */
+        .dots-container {
+            display: flex;
+            gap: 3px;
+            margin-top: 8px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(79, 158, 143, 0.2);
+            border: 1px solid rgba(79, 158, 143, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .dot.filled {
+            background: linear-gradient(135deg, #4F9E8F 0%, #367C64 100%);
+            border-color: #4F9E8F;
+            box-shadow: 
+                0 0 6px rgba(79, 158, 143, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .tool-item:hover .dot.filled {
+            box-shadow: 
+                0 0 10px rgba(79, 158, 143, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: scale(1.2);
+        }
+        
+        /* Hover effects */
+        .tool-item:hover .skill-dot.active {
+            box-shadow: 
+                0 0 15px rgba(79, 158, 143, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+        
+        /* Tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .tooltip .tooltip-icon {
+            color: var(--primary-color);
+            font-size: 14px;
+            margin-left: 5px;
+            transition: transform 0.2s, color 0.2s;
+        }
+        
+        .tooltip:hover .tooltip-icon,
+        .tooltip:focus .tooltip-icon,
+        .tooltip:active .tooltip-icon {
+            color: var(--secondary-color);
+            transform: scale(1.2);
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 380px;
+            background: linear-gradient(145deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            text-align: left;
+            border-radius: 12px;
+            padding: 0;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -190px;
+            opacity: 0;
+            transition: opacity 0.4s, transform 0.3s;
+            transform: translateY(10px);
+            font-size: 13px;
+            line-height: 1.5;
+            box-shadow: 0 10px 30px rgba(79, 158, 143, 0.3);
+            overflow: hidden;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -8px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--primary-color) transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltip-text,
+        .tooltip:focus .tooltip-text,
+        .tooltip:active .tooltip-text,
+        .tooltip.tooltip-active .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            min-height: 330px;
+        }
+        
+        .tooltip-active .tooltip-text {
+            position: absolute;
+            z-index: 9999;
+            overflow-y: auto;
+        }
+        
+        .tooltip-header {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 12px 18px;
+            font-weight: 600;
+            font-size: 1.05em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+        
+        .tooltip-content {
+            padding: 18px;
+        }
+        
+        .tooltip-section {
             margin-bottom: 15px;
         }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+        
+        .tooltip-section:last-of-type {
+            margin-bottom: 0;
         }
-
-        .skill-tag {
-            background: rgba(79, 158, 143, 0.1);
-            color: var(--secondary-color);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 13px;
+        
+        .tooltip-section-title {
+            display: flex;
+            align-items: center;
             font-weight: 500;
-            border: 1px solid rgba(79, 158, 143, 0.2);
+            font-size: 1em;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        
+        .tooltip-section-title .fas {
+            margin-right: 12px;
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+            opacity: 1;
+            color: #f0f0f0;
+        }
+        
+        .tooltip-list {
+            list-style-position: outside;
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+        
+        .tooltip-list li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .tooltip-list li::marker {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Mobile responsiveness for tooltips */
+        @media (max-width: 768px) {
+            .tooltip .tooltip-text {
+                width: 90vw;
+                max-width: 320px;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-left: 0;
+                font-size: 12px;
+                max-height: 75vh;
+            }
+            
+            .tooltip-active .tooltip-text {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) !important;
+                width: 90vw;
+                max-width: 380px;
+                z-index: 10000;
+            }
         }
 
         /* Responsive design */
@@ -448,7 +733,7 @@
                 justify-content: center;
             }
 
-            .skills-grid {
+            .skills-container {
                 grid-template-columns: 1fr;
             }
         }
@@ -487,6 +772,12 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../cv-texts.js"></script>
+    <!-- Favicon Meta Tags -->
+    <meta name="theme-color" content="#1a4b84">
+    <meta name="msapplication-TileColor" content="#1a4b84">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
 </head>
 <body>
     <div class="animated-bg"></div>
@@ -516,26 +807,32 @@
             </div>
 
             <img src="../../assets/images/Pedro.jfif" alt="Pedro Marconato" class="profile-img">
-            <h1 class="name">Pedro Marconato</h1>
-            <p class="title">Analista de Dados | Especialista em BI | Python & SQL</p>
+            <h1 class="name" id="cv-name"></h1>
+            <p class="title" id="cv-role"></p>
             <div class="contact-info">
                 <div class="contact-item">
                     <svg fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                     </svg>
-                    pedro.marconato@outlook.com
+                    <span id="cv-email"></span>
                 </div>
                 <div class="contact-item">
                     <svg fill="currentColor" viewBox="0 0 24 24">
                         <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                     </svg>
-                    +55 11 99999-9999
+                    <span id="cv-phone"></span>
                 </div>
                 <div class="contact-item">
                     <svg fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.94 11c-.46-4.17-3.77-7.48-7.94-7.94V1h-2v2.06C6.83 3.52 3.52 6.83 3.06 11H1v2h2.06c.46 4.17 3.77 7.48 7.94 7.94V23h2v-2.06c4.17-.46 7.48-3.77 7.94-7.94H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
                     </svg>
-                    linkedin.com/in/pedrohmarconato
+                    <span id="cv-location"><span></span></span>
+                </div>
+                <div class="contact-item">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span id="cv-linkedin"></span>
                 </div>
             </div>
             <img src="../../assets/images/complete_bari.png" alt="Complete Bari" class="completebari-logo">
@@ -543,17 +840,12 @@
 
         <main class="content">
             <section class="section">
-                <h2 class="section-title">Resumo Profissional</h2>
-                <p class="item-description">
-                    Analista de Dados experiente com mais de 3 anos de experiência em Business Intelligence, 
-                    análise estatística e desenvolvimento de soluções em Python e SQL. Especialista em 
-                    transformar dados complexos em insights acionáveis que impulsionam decisões estratégicas 
-                    de negócio. Comprovada experiência em projetos de grande escala e liderança de equipes técnicas.
-                </p>
+                <h2 class="section-title" id="cv-profile-title"></h2>
+                <p class="item-description" id="cv-profile-text"></p>
             </section>
 
             <section class="section">
-                <h2 class="section-title">Experiência Profissional</h2>
+                <h2 class="section-title" id="cv-experience-title"></h2>
                 
                 <div class="experience-item">
                     <div class="item-header">
@@ -612,7 +904,7 @@
             </section>
 
             <section class="section">
-                <h2 class="section-title">Educação</h2>
+                <h2 class="section-title" id="cv-education-title"></h2>
                 
                 <div class="education-item">
                     <div class="item-header">
@@ -644,49 +936,16 @@
             </section>
 
             <section class="section">
-                <h2 class="section-title">Habilidades Técnicas</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h4>Linguagens de Programação</h4>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">SQL</span>
-                            <span class="skill-tag">R</span>
-                            <span class="skill-tag">JavaScript</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Ferramentas de BI</h4>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Power BI</span>
-                            <span class="skill-tag">Tableau</span>
-                            <span class="skill-tag">QlikView</span>
-                            <span class="skill-tag">Looker</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Bancos de Dados</h4>        
-                        <div class="skill-tags">
-                            <span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">MySQL</span>
-                            <span class="skill-tag">MongoDB</span>
-                            <span class="skill-tag">Oracle</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Cloud & Big Data</h4>
-                        <div class="skill-tags">
-                            <span class="skill-tag">AWS</span>
-                            <span class="skill-tag">Azure</span>
-                            <span class="skill-tag">Spark</span>
-                            <span class="skill-tag">Hadoop</span>
-                        </div>
-                    </div>
+                <h2 class="section-title" id="cv-skills-title"></h2>
+                <div class="skills-container">
+                    <div class="skills-column" id="skills-strategic"></div>
+                    <div class="skills-column" id="skills-tools"></div>
+                    <div class="skills-column" id="skills-emerging"></div>
                 </div>
             </section>
 
             <section class="section">
-                <h2 class="section-title">Projetos Destacados</h2>
+                <h2 class="section-title" id="cv-projects-title"></h2>
                 
                 <div class="project-item">
                     <div class="item-header">
@@ -714,5 +973,84 @@
             </section>
         </main>
     </div>
+    
+    <script>
+        // Initialize CV content for Portuguese
+        document.addEventListener('DOMContentLoaded', function() {
+            const lang = 'pt';
+            
+            // Update header texts
+            const nameElement = document.getElementById('cv-name');
+            if (nameElement) nameElement.textContent = getText('name', lang);
+            
+            const roleElement = document.getElementById('cv-role');
+            if (roleElement) roleElement.textContent = getText('role', lang);
+            
+            // Update contact information
+            const emailEl = document.getElementById('cv-email');
+            if (emailEl) emailEl.textContent = getText('contact.email', lang);
+            
+            const phoneEl = document.getElementById('cv-phone');
+            if (phoneEl) phoneEl.textContent = getText('contact.phone', lang);
+            
+            const locationEl = document.querySelector('#cv-location span');
+            if (locationEl) locationEl.textContent = getText('contact.location', lang);
+            
+            const linkedinEl = document.getElementById('cv-linkedin');
+            if (linkedinEl) linkedinEl.textContent = getText('contact.linkedin', lang);
+            
+            // Update section titles
+            const profileTitleEl = document.getElementById('cv-profile-title');
+            if (profileTitleEl) profileTitleEl.textContent = getText('sections.profile', lang);
+            
+            const skillsTitleEl = document.getElementById('cv-skills-title');
+            if (skillsTitleEl) skillsTitleEl.textContent = getText('sections.skills', lang);
+            
+            const experienceTitleEl = document.getElementById('cv-experience-title');
+            if (experienceTitleEl) experienceTitleEl.textContent = getText('sections.experience', lang);
+            
+            const educationTitleEl = document.getElementById('cv-education-title');
+            if (educationTitleEl) educationTitleEl.textContent = getText('sections.education', lang);
+            
+            const projectsTitleEl = document.getElementById('cv-projects-title');
+            if (projectsTitleEl) projectsTitleEl.textContent = getText('sections.projects', lang);
+            
+            // Update professional profile
+            const profileTextEl = document.getElementById('cv-profile-text');
+            if (profileTextEl) profileTextEl.textContent = getText('professionalProfile', lang);
+            
+            // Render skills
+            window.renderSkills('skills-strategic', 'strategic', lang);
+            window.renderSkills('skills-tools', 'tools', lang);
+            window.renderSkills('skills-emerging', 'emerging', lang);
+            
+            // Tooltip functionality for mobile
+            const tooltips = document.querySelectorAll('.tooltip');
+            tooltips.forEach(tooltip => {
+                tooltip.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // Close all other tooltips
+                    tooltips.forEach(t => {
+                        if (t !== this) {
+                            t.classList.remove('tooltip-active');
+                        }
+                    });
+                    
+                    // Toggle current tooltip
+                    this.classList.toggle('tooltip-active');
+                });
+            });
+            
+            // Close tooltips when clicking outside
+            document.addEventListener('click', function() {
+                tooltips.forEach(tooltip => {
+                    tooltip.classList.remove('tooltip-active');
+                });
+            });
+        });
+    </script>
+    <!-- Dynamic Favicon System -->
+    <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
 </html>

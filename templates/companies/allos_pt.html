@@ -158,41 +158,81 @@
         }
         
         .header {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafa 100%);
-            padding: 80px 60px 100px 60px;
+            background: var(--background-gradient);
+            padding: 60px 60px 80px 60px;
             position: relative;
             overflow: hidden;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
-        /* Organic brush strokes inspired by Allos design */
         .header::before {
             content: '';
             position: absolute;
-            top: -20%;
-            left: -10%;
-            width: 150%;
-            height: 60%;
-            background: var(--primary-color);
-            clip-path: polygon(0% 20%, 100% 0%, 85% 80%, 0% 100%);
-            opacity: 0.95;
-            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(169, 220, 141, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(169, 220, 141, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            animation: floatingLights 12s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes floatingLights {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                opacity: 0.6;
+            }
+            33% { 
+                transform: translateY(-15px) scale(1.05);
+                opacity: 0.8;
+            }
+            66% { 
+                transform: translateY(8px) scale(0.95);
+                opacity: 0.4;
+            }
         }
 
         .header::after {
             content: '';
             position: absolute;
-            bottom: -15%;
-            right: -15%;
-            width: 120%;
-            height: 50%;
-            background: var(--secondary-color);
-            clip-path: polygon(15% 0%, 100% 20%, 100% 100%, 0% 85%);
-            opacity: 0.9;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(169, 220, 141, 0.03) 50%, transparent 70%);
+            animation: rotate 25s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .allos-logo {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            width: 380px;
+            height: 380px;
+            background: url('../../assets/images/allos-enhanced.svg') no-repeat center;
+            background-size: contain;
+            filter: brightness(1.2) opacity(0.6);
             z-index: 1;
+            animation: logoFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+                filter: brightness(1.2) opacity(0.6);
+            }
+            50% {
+                transform: translateY(-12px) scale(1.03);
+                filter: brightness(1.4) opacity(0.8) drop-shadow(0 0 25px rgba(169, 220, 141, 0.4));
+            }
         }
 
         /* Organic paint splash effects */
@@ -235,10 +275,7 @@
 
         .header-content {
             position: relative;
-            z-index: 10;
-            text-align: center;
-            width: 100%;
-            max-width: 900px;
+            z-index: 2;
         }
 
         .allos-brand {
@@ -304,34 +341,52 @@
 
         .header-text {
             max-width: 850px;
-            margin: 0 auto;
+            padding-right: 220px;
         }
         
         .header h1 {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 12px;
+            color: white;
+            margin-bottom: 8px;
             letter-spacing: -0.5px;
-            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px 20px;
-            border-radius: 12px;
-            display: inline-block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: titleGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 
+                    2px 2px 4px rgba(0, 0, 0, 0.3),
+                    0 0 20px rgba(169, 220, 141, 0.2);
+            }
+            50% {
+                text-shadow: 
+                    2px 2px 4px rgba(0, 0, 0, 0.3),
+                    0 0 30px rgba(169, 220, 141, 0.4),
+                    0 0 40px rgba(169, 220, 141, 0.2);
+                transform: scale(1.02);
+            }
         }
         
         .role {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--secondary-color);
-            margin-bottom: 35px;
-            text-shadow: 0 2px 6px rgba(255, 255, 255, 0.8);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 8px 16px;
-            border-radius: 10px;
-            display: inline-block;
+            font-size: 20px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            animation: subtleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+                color: rgba(255, 255, 255, 0.95);
+            }
+            50% {
+                transform: translateY(-3px);
+                color: rgba(255, 255, 255, 1);
+            }
         }
         
         .contact-info {
@@ -352,11 +407,22 @@
             color: white;
             font-size: 14px;
             font-weight: 500;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
+            overflow: hidden;
+        }
+
+        .contact-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(169, 220, 141, 0.3), transparent);
+            transition: left 0.5s ease;
             overflow: visible;
         }
         
@@ -364,13 +430,31 @@
             background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
+            border-color: rgba(169, 220, 141, 0.5);
+        }
+
+        .contact-button:hover::before {
+            left: 100%;
         }
         
         .contact-button i {
             margin-right: 8px;
             font-size: 16px;
+            filter: drop-shadow(0 0 4px rgba(169, 220, 141, 0.4));
+            animation: iconGlow 4s ease-in-out infinite;
         }
+
+        @keyframes iconGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 4px rgba(169, 220, 141, 0.4));
+            }
+            50% {
+                filter: drop-shadow(0 0 8px rgba(169, 220, 141, 0.6));
+                transform: scale(1.05);
+            }
+        }
+        
+        
         
         .contact-item {
             display: flex;
@@ -464,7 +548,7 @@
         .skills-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 20px;
         }
         
         @media (max-width: 1000px) {
@@ -481,8 +565,8 @@
         
         .skills-column {
             background: linear-gradient(135deg, rgba(224, 224, 224, 0.3), rgba(224, 224, 224, 0.1));
-            padding: 25px;
-            border-radius: 16px;
+            padding: 18px;
+            border-radius: 12px;
             border: 1px solid rgba(74, 144, 226, 0.15);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
@@ -514,72 +598,124 @@
         }
         
         .tool-item {
-            margin-bottom: 18px;
+            margin-bottom: 14px;
+            padding: 8px 0;
         }
         
         .tool-name {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 6px;
             font-weight: 500;
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 13px;
+            margin-bottom: 6px;
             color: var(--text-color);
         }
 
-        .tool-percentage {
-            font-size: 13px;
-            color: var(--accent-color);
+        .tool-skill-name {
+            color: var(--text-color);
             font-weight: 600;
         }
         
-        .progress-bar {
-            height: 8px;
-            background: rgba(74, 144, 226, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        /* Modern 5-point rating system - Allos colors */
+        .skill-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            align-self: flex-start;
         }
         
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
-            border-radius: 10px;
+        .skill-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .skill-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0, 92, 102, 0.2);
+            border: 1.5px solid rgba(0, 92, 102, 0.3);
+            transition: all 0.4s ease;
             position: relative;
-            animation: progressGrow 1.5s ease-out;
+            overflow: hidden;
+            flex-shrink: 0;
         }
         
-        /* Subtle colored progress bars */
-        .tool-item:nth-child(3n+1) .progress {
-            background: linear-gradient(90deg, #4A90E2 0%, #5BA0F2 100%);
+        .skill-dot.active {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-color: var(--primary-color);
+            box-shadow: 
+                0 0 8px rgba(0, 92, 102, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
         }
         
-        .tool-item:nth-child(3n+2) .progress {
-            background: linear-gradient(90deg, #2C5AA0 0%, #3D6AB0 100%);
-        }
-        
-        .tool-item:nth-child(3n) .progress {
-            background: linear-gradient(90deg, #6BA3E5 0%, #7BB3F5 100%);
-        }
-
-        @keyframes progressGrow {
-            from { width: 0; }
-        }
-
-        .progress::after {
+        .skill-dot.active::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: progressShimmer 2s infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: dotShimmer 2s infinite;
         }
-
-        @keyframes progressShimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        
+        @keyframes dotShimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .skill-level-text {
+            font-size: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-left: 2px;
+            white-space: nowrap;
+        }
+        
+        /* Dots container for skills from cv-texts.js - Allos colors */
+        .dots-container {
+            display: flex;
+            gap: 3px;
+            margin-top: 8px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(0, 92, 102, 0.2);
+            border: 1px solid rgba(0, 92, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .dot.filled {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-color: var(--primary-color);
+            box-shadow: 
+                0 0 6px rgba(0, 92, 102, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .tool-item:hover .dot.filled {
+            box-shadow: 
+                0 0 10px rgba(0, 92, 102, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: scale(1.2);
+        }
+        
+        /* Hover effects */
+        .tool-item:hover .skill-dot.active {
+            box-shadow: 
+                0 0 15px rgba(0, 92, 102, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
         }
         
         /* Tooltip styles */
@@ -1456,6 +1592,11 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../cv-texts.js"></script>
+    <!-- Favicon Meta Tags -->
+    <meta name="theme-color" content="#1a4b84">
+    <meta name="msapplication-TileColor" content="#1a4b84">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
 </head>
 <body>
     <div class="animated-bg"></div>
@@ -1467,48 +1608,48 @@
     
     <div class="cv-container">
         <header class="header">
-            <div class="paint-splash"></div>
-            <div class="paint-splash"></div>
-            <div class="paint-splash"></div>
-            
             <div class="header-content">
-                <div class="allos-brand">
-                    <img src="../../assets/images/allos.svg" alt="Allos" class="allos-logo-main">
-                    <div class="brand-tagline">Excelência em Consultoria</div>
-                </div>
-                
                 <div class="header-text">
-                    <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
-                    <div class="role">Gestão de CRM e Inteligência de Dados</div>
+                    <h1 id="cv-name"></h1>
+                    <div class="role" id="cv-role"></div>
                     
                     <div class="contact-info">
-                        <div class="contact-item">
-                            <button class="contact-button" onclick="openEmailForm()">
-                                <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
-                            </button>
-                            <span class="contact-cta">Clique para enviar um e-mail</span>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <button class="contact-button" onclick="openPhoneForm()">
-                                <i class="fas fa-phone"></i> +55 (55) 981147758
-                            </button>
-                            <span class="contact-cta">Clique para enviar uma mensagem</span>
-                        </div>
-                        
-                        <div class="location">
-                            <i class="fas fa-map-marker-alt"></i> Cachoeira do Sul, RS
-                        </div>
-                        
-                        <div class="contact-item">
-                            <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
-                                <i class="fab fa-linkedin"></i> LinkedIn
-                            </a>
-                            <span class="contact-cta">Clique para visitar o LinkedIn</span>
-                        </div>
+                    <div class="contact-item">
+                        <button class="contact-button" onclick="openEmailForm()">
+                            <i class="fas fa-envelope"></i> <span id="cv-email"></span>
+                        </button>
+                        <span class="contact-cta" id="cv-cta-email"></span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <button class="contact-button" onclick="openPhoneForm()">
+                            <i class="fas fa-phone"></i> <span id="cv-phone"></span>
+                        </button>
+                        <span class="contact-cta" id="cv-cta-phone"></span>
+                    </div>
+                    
+                    <div class="location" id="cv-location">
+                        <i class="fas fa-map-marker-alt"></i> <span></span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
+                            <i class="fab fa-linkedin"></i> <span id="cv-linkedin"></span>
+                        </a>
+                        <span class="contact-cta" id="cv-cta-linkedin"></span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
+                            <i class="fab fa-github"></i> <span id="cv-repository"></span>
+                        </a>
+                        <span class="contact-cta" id="cv-cta-repository"></span>
+                    </div>
+                    
                     </div>
                 </div>
             </div>
+            <div class="allos-logo"></div>
         </header>
         
         <section class="section">
@@ -1521,163 +1662,16 @@
         <section class="section">
             <h2 class="section-title">HABILIDADES E FERRAMENTAS</h2>
             <div class="skills-container">
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--secondary-blue); margin-bottom: 20px; font-weight: 600;">Habilidades Estratégicas</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Gestão de CRM</span>
-                            <span class="tool-percentage">98%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 98%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Customer Equity</span>
-                            <span class="tool-percentage">92%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 92%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Business Intelligence</span>
-                            <span class="tool-percentage">88%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 88%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Liderança Estratégica</span>
-                            <span class="tool-percentage">85%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Brand Equity</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Gestão de Marca</span>
-                            <span class="tool-percentage">78%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 78%"></div>
-                        </div>
-                    </div>
+                <div class="skills-column" id="skills-strategic">
+                    <!-- Strategic skills will be populated by JavaScript -->
                 </div>
                 
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--secondary-blue); margin-bottom: 20px; font-weight: 600;">Ferramentas e Tecnologias</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>PowerBI</span>
-                            <span class="tool-percentage">95%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Oracle/Databricks</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Python/SQL</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Kanbanize</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
+                <div class="skills-column" id="skills-tools">
+                    <!-- Tools and technologies will be populated by JavaScript -->
                 </div>
                 
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--secondary-blue); margin-bottom: 20px; font-weight: 600;">Tecnologias Emergentes</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>LLM e Agentes IA</span>
-                            <span class="tool-percentage">82%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 82%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>IA para CRM</span>
-                            <span class="tool-percentage">86%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 86%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>APIs IA/LLM</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Análise de Dados</span>
-                            <span class="tool-percentage">91%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 91%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Machine Learning</span>
-                            <span class="tool-percentage">77%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 77%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Responsys</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
+                <div class="skills-column" id="skills-emerging">
+                    <!-- Emerging technologies will be populated by JavaScript -->
                 </div>
             </div>
         </section>
@@ -2122,6 +2116,7 @@
         </div>
     </div>
     
+    
     <script>
         function openEmailForm() {
             document.getElementById('emailModal').style.display = 'flex';
@@ -2138,6 +2133,7 @@
         function closePhoneModal() {
             document.getElementById('phoneModal').style.display = 'none';
         }
+        
         
         // Close modal when clicking outside
         window.onclick = function(event) {
@@ -2185,7 +2181,17 @@
                     tooltip.classList.remove('tooltip-active');
                 });
             });
+            
+            // Initialize basic content
+            initializeBasicContent('pt');
+            
+            // Initialize skills with dots format
+            renderSkills('skills-strategic', 'strategic', 'pt');
+            renderSkills('skills-tools', 'tools', 'pt');
+            renderSkills('skills-emerging', 'emerging', 'pt');
         });
     </script>
+    <!-- Dynamic Favicon System -->
+    <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
 </html>

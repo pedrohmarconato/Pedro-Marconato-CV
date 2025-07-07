@@ -264,6 +264,8 @@
             font-size: 16px;
         }
         
+        
+        
         .location {
             display: flex;
             align-items: center;
@@ -356,7 +358,7 @@
         .skills-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 20px;
         }
         
         @media (max-width: 1000px) {
@@ -373,8 +375,8 @@
         
         .skills-column {
             background: linear-gradient(135deg, rgba(215, 230, 200, 0.3), rgba(215, 230, 200, 0.1));
-            padding: 25px;
-            border-radius: 16px;
+            padding: 18px;
+            border-radius: 12px;
             border: 1px solid rgba(234, 29, 44, 0.1);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
@@ -406,60 +408,26 @@
         }
         
         .tool-item {
-            margin-bottom: 18px;
+            margin-bottom: 14px;
+            padding: 8px 0;
         }
         
         .tool-name {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 6px;
             font-weight: 500;
-            font-size: 14px;
-            margin-bottom: 8px;
+            font-size: 13px;
+            margin-bottom: 6px;
             color: var(--text-color);
         }
 
-        .tool-percentage {
-            font-size: 13px;
-            color: var(--sicredi-green);
+        .tool-skill-name {
+            color: var(--text-color);
             font-weight: 600;
         }
-        
-        .progress-bar {
-            height: 8px;
-            background: rgba(63, 161, 16, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--sicredi-green), var(--sicredi-dark-green));
-            border-radius: 10px;
-            position: relative;
-            animation: progressGrow 1.5s ease-out;
-        }
 
-        @keyframes progressGrow {
-            from { width: 0; }
-        }
 
-        .progress::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: progressShimmer 2s infinite;
-        }
-
-        @keyframes progressShimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
         
         /* Tooltip styles */
         .tooltip {
@@ -950,6 +918,103 @@
             box-shadow: 0 2px 8px rgba(63, 161, 16, 0.3);
         }
 
+        /* Dots for Skills Progress Bars */
+        /* Modern 5-point rating system - iFood colors */
+        .skill-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            align-self: flex-start;
+        }
+        
+        .skill-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .skill-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(234, 29, 44, 0.2);
+            border: 1.5px solid rgba(234, 29, 44, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .skill-dot.active {
+            background: linear-gradient(135deg, var(--sicredi-green) 0%, var(--sicredi-dark-green) 100%);
+            border-color: var(--sicredi-green);
+            box-shadow: 
+                0 0 8px rgba(234, 29, 44, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .skill-dot.active::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: dotShimmer 2s infinite;
+        }
+        
+        @keyframes dotShimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .skill-level-text {
+            font-size: 10px;
+            color: var(--sicredi-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-left: 2px;
+            white-space: nowrap;
+        }
+
+        .skill-item {
+            margin-bottom: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(234, 29, 44, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(234, 29, 44, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(234, 29, 44, 0.1);
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: var(--sicredi-dark-green);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .skills-column h3 {
+            font-size: 16px;
+            color: var(--sicredi-dark-green);
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-align: center;
+            padding: 12px;
+            background: rgba(234, 29, 44, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(234, 29, 44, 0.2);
+        }
+
         /* Print button */
         .print-button {
             position: fixed;
@@ -1171,6 +1236,11 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../cv-texts.js"></script>
+    <!-- Favicon Meta Tags -->
+    <meta name="theme-color" content="#1a4b84">
+    <meta name="msapplication-TileColor" content="#1a4b84">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
 </head>
 <body>
     <div class="animated-bg"></div>
@@ -1185,214 +1255,67 @@
             <div class="header-content">
                 <img src="../../assets/images/IFood_logo_c.svg" alt="iFood" class="ifood-logo">
                 <div class="header-text">
-                    <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
-                    <div class="role">Gestão de CRM e Inteligência de Dados</div>
+                    <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
+                    <div class="role" id="cv-role">Gestão de CRM e Inteligência de Dados</div>
                     
                     <div class="contact-info">
                         <div class="contact-item">
                             <button class="contact-button" onclick="openEmailForm()">
-                                <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
+                                <i class="fas fa-envelope"></i> <span id="cv-email">pedrohmarconato@gmail.com</span>
                             </button>
-                            <span class="contact-cta">Clique para enviar um e-mail</span>
+                            <span class="contact-cta" id="cv-cta-email">Clique para enviar um e-mail</span>
                         </div>
                         
                         <div class="contact-item">
                             <button class="contact-button" onclick="openPhoneForm()">
-                                <i class="fas fa-phone"></i> +55 (55) 981147758
+                                <i class="fas fa-phone"></i> <span id="cv-phone">+55 (55) 981147758</span>
                             </button>
-                            <span class="contact-cta">Clique para enviar uma mensagem</span>
+                            <span class="contact-cta" id="cv-cta-phone">Clique para enviar uma mensagem</span>
                         </div>
                         
-                        <div class="location">
-                            <i class="fas fa-map-marker-alt"></i> Cachoeira do Sul, RS
+                        <div class="location" id="cv-location">
+                            <i class="fas fa-map-marker-alt"></i> <span>Cachoeira do Sul, RS</span>
                         </div>
                         
                         <div class="contact-item">
                             <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
-                                <i class="fab fa-linkedin"></i> LinkedIn
+                                <i class="fab fa-linkedin"></i> <span id="cv-linkedin">LinkedIn</span>
                             </a>
-                            <span class="contact-cta">Clique para entrar no LinkedIn</span>
+                            <span class="contact-cta" id="cv-cta-linkedin">Clique para entrar no LinkedIn</span>
                         </div>
+                        
+                        <div class="contact-item">
+                            <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
+                                <i class="fab fa-github"></i> <span id="cv-repository">Repositório</span>
+                            </a>
+                            <span class="contact-cta" id="cv-cta-repository">Ver código fonte</span>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
         </header>
         
         <section class="section">
-            <h2 class="section-title">PERFIL PROFISSIONAL</h2>
-            <p class="profile-text">
+            <h2 class="section-title" id="section-profile">PERFIL PROFISSIONAL</h2>
+            <p class="profile-text" id="cv-profile">
                 Profissional em Gestão de CRM e Inteligência de Dados com foco em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa de Brand Equity que fundamentou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos. Como Coordenador de CRM nas Lojas Renner, otimizei orçamento gerando economia de 10% ao ano, implementei 80% de comunicações automatizadas e estratégias que resultaram em incremento no consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.
             </p>
         </section>
         
         <section class="section">
-            <h2 class="section-title">COMPETÊNCIAS & FERRAMENTAS</h2>
+            <h2 class="section-title" id="section-skills"></h2>
             <div class="skills-container">
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Competências Estratégicas</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Gestão de CRM</span>
-                            <span class="tool-percentage">98%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 98%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Customer Equity</span>
-                            <span class="tool-percentage">92%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 92%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Business Intelligence</span>
-                            <span class="tool-percentage">88%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 88%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Liderança Estratégica</span>
-                            <span class="tool-percentage">85%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Brand Equity</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Gestão de Marcas</span>
-                            <span class="tool-percentage">78%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 78%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Ferramentas & Tecnologias</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>PowerBI</span>
-                            <span class="tool-percentage">95%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Oracle/Databricks</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Python/SQL</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Kanbanize</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--sicredi-dark-green); margin-bottom: 20px; font-weight: 600;">Tecnologias Emergentes</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>LLM & Agentes IA</span>
-                            <span class="tool-percentage">82%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 82%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>IA para CRM</span>
-                            <span class="tool-percentage">86%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 86%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>IA/LLM APIs</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Data Analytics</span>
-                            <span class="tool-percentage">91%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 91%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Machine Learning</span>
-                            <span class="tool-percentage">77%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 77%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Responsys</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
+                <div class="skills-column" id="skills-strategic"></div>
+                <div class="skills-column" id="skills-tools"></div>
+                <div class="skills-column" id="skills-emerging"></div>
             </div>
         </section>
         
         <section class="section">
-            <h2 class="section-title">EXPERIÊNCIA PROFISSIONAL</h2>
+            <h2 class="section-title" id="section-experience">EXPERIÊNCIA PROFISSIONAL</h2>
             
-            <div class="experience-timeline">
+            <div id="experience-container" class="experience-timeline">
                 <div class="experience-item">
                     <div class="job-title">
                         <div class="job-number">1</div>
@@ -1694,8 +1617,8 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">FORMAÇÃO ACADÊMICA</h2>
-            <div class="education-container">
+            <h2 class="section-title" id="section-education">FORMAÇÃO ACADÊMICA</h2>
+            <div id="education-container" class="education-container">
                 <div class="education-item">
                     <div class="degree">Mestrado em Administração</div>
                     <div class="university">Universidade Federal de Santa Maria</div>
@@ -1714,8 +1637,8 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">PROJETOS & INOVAÇÃO</h2>
-            <div class="projects-container">
+            <h2 class="section-title" id="section-projects">PROJETOS &amp; INOVAÇÃO</h2>
+            <div id="projects-container" class="projects-container">
                 <div class="project-item">
                     <div class="project-title">REPO NEWS</div>
                     <div class="project-description">
@@ -1835,6 +1758,7 @@
         </div>
     </div>
     
+    
     <script>
         function openEmailForm() {
             document.getElementById('emailModal').style.display = 'flex';
@@ -1852,6 +1776,7 @@
             document.getElementById('phoneModal').style.display = 'none';
         }
         
+        
         // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target == document.getElementById('emailModal')) {
@@ -1864,6 +1789,25 @@
 
         // Style form inputs on focus
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize CV content
+            initializeBasicContent('pt');
+            // Set dynamic section title and render skills
+            const skillsTitle = document.getElementById('section-skills');
+            if (skillsTitle) skillsTitle.textContent = getText('sections.skills', 'pt');
+            renderSkills('skills-strategic', 'strategic', 'pt');
+            renderSkills('skills-tools', 'tools', 'pt');
+            renderSkills('skills-emerging', 'emerging', 'pt');
+            // Dynamic experience, education, projects
+            const expTitle = document.getElementById('section-experience');
+            if (expTitle) expTitle.textContent = getText('sections.experience', 'pt');
+            const eduTitle = document.getElementById('section-education');
+            if (eduTitle) eduTitle.textContent = getText('sections.education', 'pt');
+            const projTitle = document.getElementById('section-projects');
+            if (projTitle) projTitle.textContent = getText('sections.projects', 'pt');
+            renderExperienceTimeline('pt');
+            renderEducation('pt');
+            renderProjects('pt');
+            initializeModalTexts('pt');
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => {
                 input.addEventListener('focus', function() {
@@ -1900,5 +1844,7 @@
             });
         });
     </script>
+    <!-- Dynamic Favicon System -->
+    <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
 </html>

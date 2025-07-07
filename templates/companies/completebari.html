@@ -1141,6 +1141,40 @@
             }
         }
 
+        /* Dots styling for skills */
+        .dots-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: nowrap;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: rgba(0, 92, 102, 0.15);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .dot.filled {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 1px 3px rgba(0, 92, 102, 0.3);
+            animation: dotPulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes dotPulse {
+            from {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            to {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
         /* Print styles */
         @media print {
             body {
@@ -1185,6 +1219,11 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../cv-texts.js"></script>
+    <!-- Favicon Meta Tags -->
+    <meta name="theme-color" content="#1a4b84">
+    <meta name="msapplication-TileColor" content="#1a4b84">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
 </head>
 <body>
     <div class="animated-bg"></div>
@@ -1199,33 +1238,33 @@
             <img src="../../assets/images/complete_bari.png" alt="Complete Bari" class="completebari-logo">
             <div class="header-content">
                 <div class="header-text">
-                    <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
-                    <div class="role">CRM Management and Data Intelligence</div>
+                    <h1 id="cv-name"></h1>
+                    <div class="role" id="cv-role"></div>
                     
                     <div class="contact-info">
                         <div class="contact-item">
                             <button class="contact-button" onclick="openEmailForm()">
-                                <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
+                                <i class="fas fa-envelope"></i> <span id="cv-email"></span>
                             </button>
-                            <span class="contact-cta">Click to send an email</span>
+                            <span class="contact-cta" id="cv-email-cta"></span>
                         </div>
                         
                         <div class="contact-item">
                             <button class="contact-button" onclick="openPhoneForm()">
-                                <i class="fas fa-phone"></i> +55 (55) 981147758
+                                <i class="fas fa-phone"></i> <span id="cv-phone"></span>
                             </button>
-                            <span class="contact-cta">Click to send a message</span>
+                            <span class="contact-cta" id="cv-phone-cta"></span>
                         </div>
                         
                         <div class="location">
-                            <i class="fas fa-map-marker-alt"></i> Cachoeira do Sul, RS
+                            <i class="fas fa-map-marker-alt"></i> <span id="cv-location"></span>
                         </div>
                         
                         <div class="contact-item">
                             <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
-                                <i class="fab fa-linkedin"></i> LinkedIn
+                                <i class="fab fa-linkedin"></i> <span id="cv-linkedin"></span>
                             </a>
-                            <span class="contact-cta">Click to visit LinkedIn</span>
+                            <span class="contact-cta" id="cv-linkedin-cta"></span>
                         </div>
                     </div>
                 </div>
@@ -1233,178 +1272,26 @@
         </header>
         
         <section class="section">
-            <h2 class="section-title">PROFESSIONAL PROFILE</h2>
-            <p class="profile-text">
-                Professional in CRM Management and Data Intelligence focused on quantifiable results. At Grupo RBS, I led a Brand Equity research audit that supported strategic decisions. At DBC/Realize CFI, I developed a pipeline for competitor analysis generating insights on R$1B in transactions and automated critical reports. As CRM Coordinator at Lojas Renner, I optimized budget generating 10% annual savings, implemented 80% automated communications and strategies that resulted in consumption increase. My approach integrates data, technology and strategic vision for tangible results.
-            </p>
+            <h2 class="section-title" id="cv-profile-title"></h2>
+            <p class="profile-text" id="cv-profile-text"></p>
         </section>
         
         <section class="section">
-            <h2 class="section-title">SKILLS & TOOLS</h2>
+            <h2 class="section-title" id="cv-skills-title"></h2>
             <div class="skills-container">
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--secondary-color); margin-bottom: 20px; font-weight: 600;">Strategic Skills</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>CRM Management</span>
-                            <span class="tool-percentage">98%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 98%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Customer Equity</span>
-                            <span class="tool-percentage">92%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 92%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Business Intelligence</span>
-                            <span class="tool-percentage">88%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 88%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Strategic Leadership</span>
-                            <span class="tool-percentage">85%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Brand Equity</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Brand Management</span>
-                            <span class="tool-percentage">78%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 78%"></div>
-                        </div>
-                    </div>
+                <div class="skills-column" id="skills-strategic">
                 </div>
                 
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--secondary-color); margin-bottom: 20px; font-weight: 600;">Tools & Technologies</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>PowerBI</span>
-                            <span class="tool-percentage">95%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Oracle/Databricks</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Python/SQL</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Kanbanize</span>
-                            <span class="tool-percentage">90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                    </div>
+                <div class="skills-column" id="skills-tools">
                 </div>
                 
-                <div class="skills-column">
-                    <h3 style="font-size: 16px; color: var(--secondary-color); margin-bottom: 20px; font-weight: 600;">Emerging Technologies</h3>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>LLM & AI Agents</span>
-                            <span class="tool-percentage">82%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 82%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>AI for CRM</span>
-                            <span class="tool-percentage">86%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 86%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>AI/LLM APIs</span>
-                            <span class="tool-percentage">80%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Data Analytics</span>
-                            <span class="tool-percentage">91%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 91%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Machine Learning</span>
-                            <span class="tool-percentage">77%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 77%"></div>
-                        </div>
-                    </div>
-                    <div class="tool-item">
-                        <div class="tool-name">
-                            <span>Responsys</span>
-                            <span class="tool-percentage">75%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                    </div>
+                <div class="skills-column" id="skills-emerging">
                 </div>
             </div>
         </section>
         
         <section class="section">
-            <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
+            <h2 class="section-title" id="cv-experience-title"></h2>
             
             <div class="experience-timeline">
                 <div class="experience-item">
@@ -1708,7 +1595,7 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">EDUCATION</h2>
+            <h2 class="section-title" id="cv-education-title"></h2>
             <div class="education-container">
                 <div class="education-item">
                     <div class="degree">Master's in Business Administration</div>
@@ -1725,7 +1612,7 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">PROJECTS & INNOVATION</h2>
+            <h2 class="section-title" id="cv-projects-title"></h2>
             <div class="projects-container">
                 <div class="project-item">
                     <div class="project-title">REPO NEWS</div>
@@ -1770,11 +1657,11 @@
     <div class="language-toggle">
         <a href="completebari.html" class="language-option active">
             <i class="fas fa-check-circle"></i>
-            <span>EN</span>
+            <span id="lang-en">EN</span>
         </a>
         <div class="language-divider"></div>
         <a href="completebari_pt.html" class="language-option">
-            <span>PT</span>
+            <span id="lang-pt">PT</span>
         </a>
     </div>
     
@@ -1787,25 +1674,25 @@
     <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
-            <h3 style="margin-bottom:25px; color: var(--secondary-color); font-size: 24px;">Send Email</h3>
+            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--secondary-color); font-size: 24px;">Send Email</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
+                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Email</label>
+                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Email</label>
                     <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Subject</label>
+                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Subject</label>
                     <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message</label>
+                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message</label>
                     <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
-                <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(79, 158, 143, 0.3);">Send</button>
+                <button id="email-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(79, 158, 143, 0.3);">Send</button>
             </form>
         </div>
     </div>
@@ -1814,29 +1701,29 @@
     <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
-            <h3 style="margin-bottom:25px; color: var(--secondary-color); font-size: 24px;">Get in Touch</h3>
+            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--secondary-color); font-size: 24px;">Get in Touch</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <input type="hidden" name="contact_type" value="phone_request">
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
+                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Phone</label>
+                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Phone</label>
                     <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Best time to contact</label>
+                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Best time to contact</label>
                     <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message (Optional)</label>
+                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message (Optional)</label>
                     <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
                 <div style="display:flex; gap:15px;">
-                    <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(79, 158, 143, 0.3);">Request Contact</button>
+                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(79, 158, 143, 0.3);">Request Contact</button>
                     <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
-                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> WhatsApp
+                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> <span id="whatsapp-text">WhatsApp</span>
                     </a>
                 </div>
             </form>
@@ -1872,6 +1759,15 @@
 
         // Style form inputs on focus
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize modal texts
+            initializeModalTexts('en');
+            
+            // Initialize CV content
+            window.initializeBasicContent('en');
+            window.renderSkills('skills-strategic', 'strategic', 'en');
+            window.renderSkills('skills-tools', 'tools', 'en');
+            window.renderSkills('skills-emerging', 'emerging', 'en');
+            
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => {
                 input.addEventListener('focus', function() {
@@ -1908,5 +1804,7 @@
             });
         });
     </script>
+    <!-- Dynamic Favicon System -->
+    <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
 </html>
