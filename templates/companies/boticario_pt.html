@@ -1591,10 +1591,6 @@
                     <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Email</label>
                     <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
-                <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Detalhes da Oportunidade</label>
-                    <textarea name="opportunity" rows="4" placeholder="Descreva o cargo, projeto ou oportunidade de colaboração..." required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
-                </div>
                 <div style="display:flex; gap:15px; flex-wrap:wrap;">
                     <button type="submit" style="background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">Enviar Mensagem</button>
                     <a href="https://linkedin.com/in/pedrohmarconato" target="_blank" style="display:inline-flex; align-items:center; background-color:#0077B5; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);">
@@ -1642,6 +1638,21 @@
             renderSkills('skills-tools', 'tools', 'pt');
             renderSkills('skills-emerging', 'emerging', 'pt');
             
+            // Update section titles
+            const experienceTitleEl = document.getElementById('section-experience');
+            if (experienceTitleEl) experienceTitleEl.textContent = getText('sections.experience', 'pt');
+            
+            const educationTitleEl = document.getElementById('section-education');
+            if (educationTitleEl) educationTitleEl.textContent = getText('sections.education', 'pt');
+            
+            const projectsTitleEl = document.getElementById('section-projects');
+            if (projectsTitleEl) projectsTitleEl.textContent = getText('sections.projects', 'pt');
+            
+            // Render dynamic content
+            renderExperience('pt');
+            renderEducation('pt');
+            renderProjects('pt');
+            
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => {
                 input.addEventListener('focus', function() {
@@ -1677,6 +1688,79 @@
                 });
             });
         });
+        
+        // Render experience section
+        function renderExperience(lang = 'pt') {
+            const container = document.getElementById('cv-experience');
+            if (!container) return;
+            
+            const experiences = getText('experience', lang);
+            let html = '';
+            
+            experiences.forEach((exp, index) => {
+                html += `
+                    <div class="experience-item">
+                        <div class="job-title">
+                            <div class="job-number">${index + 1}</div>
+                            ${exp.title}
+                            ${renderTooltip(exp.tooltip)}
+                        </div>
+                        <div class="company">${exp.company}</div>
+                        <div class="period">${exp.period}</div>
+                        <div class="job-description">${exp.description}</div>
+                        <div class="achievements-container">
+                            ${renderAchievements(exp.achievements)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render education section
+        function renderEducation(lang = 'pt') {
+            const container = document.getElementById('cv-education');
+            if (!container) return;
+            
+            const education = getText('education', lang);
+            let html = '';
+            
+            education.forEach(edu => {
+                html += `
+                    <div class="education-item">
+                        <div class="degree">${edu.degree}</div>
+                        <div class="university">${edu.university}</div>
+                        <div class="thesis">${edu.thesis}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render projects section
+        function renderProjects(lang = 'pt') {
+            const container = document.getElementById('cv-projects');
+            if (!container) return;
+            
+            const projects = getText('projects', lang);
+            let html = '';
+            
+            projects.forEach(project => {
+                html += `
+                    <div class="project-item">
+                        <div class="project-title">${project.title}</div>
+                        <div class="project-description">${project.description}</div>
+                        <div style="margin-top: 15px;">
+                            ${renderTechTags(project.techs)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
     </script>
     <!-- Dynamic Favicon System -->
     <script src="../../assets/js/dynamic-favicon.js"></script>

@@ -1313,9 +1313,9 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title" id="section-experience">EXPERIÊNCIA PROFISSIONAL</h2>
+            <h2 class="section-title" id="section-experience"></h2>
             
-            <div id="experience-container" class="experience-timeline">
+            <div class="experience-timeline" id="cv-experience">
                 <div class="experience-item">
                     <div class="job-title">
                         <div class="job-number">1</div>
@@ -1804,7 +1804,7 @@
             if (eduTitle) eduTitle.textContent = getText('sections.education', 'pt');
             const projTitle = document.getElementById('section-projects');
             if (projTitle) projTitle.textContent = getText('sections.projects', 'pt');
-            renderExperienceTimeline('pt');
+            renderExperience('pt');
             renderEducation('pt');
             renderProjects('pt');
             initializeModalTexts('pt');
@@ -1843,6 +1843,89 @@
                 });
             });
         });
+        
+        // Render experience section
+        function renderExperience(lang = 'pt') {
+            const container = document.getElementById('cv-experience');
+            if (!container) return;
+            
+            const experiences = getText('experience', lang);
+            let html = '';
+            
+            experiences.forEach((exp, index) => {
+                html += `
+                    <div class="experience-item">
+                        <div class="job-title">
+                            <div class="job-number">${index + 1}</div>
+                            ${exp.title}
+                            ${renderTooltip(exp.tooltip)}
+                        </div>
+                        <div class="company">${exp.company}</div>
+                        <div class="period">${exp.period}</div>
+                        <div class="job-description">${exp.description}</div>
+                        <div class="achievements-container">
+                            ${renderAchievements(exp.achievements)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render education section
+        function renderEducation(lang = 'pt') {
+            const container = document.getElementById('cv-education');
+            if (!container) return;
+            
+            const education = getText('education', lang);
+            let html = '';
+            
+            education.forEach(edu => {
+                html += `
+                    <div class="education-item">
+                        <div class="degree">${edu.degree}</div>
+                        <div class="university">${edu.university}</div>
+                        <div class="thesis">${edu.thesis}</div>
+                        ${edu.link ? `
+                            <a href="${edu.link}" target="_blank" class="cta-button">
+                                <i class="fas fa-file-pdf"></i> ${edu.linkText || 'Ver dissertação completa'}
+                            </a>
+                        ` : ''}
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render projects section
+        function renderProjects(lang = 'pt') {
+            const container = document.getElementById('cv-projects');
+            if (!container) return;
+            
+            const projects = getText('projects', lang);
+            let html = '';
+            
+            projects.forEach(project => {
+                html += `
+                    <div class="project-item">
+                        <div class="project-title">${project.title}</div>
+                        <div class="project-description">${project.description}</div>
+                        ${project.link ? `
+                            <a href="${project.link}" target="_blank" class="cta-button">
+                                <i class="fas fa-external-link-alt"></i> ${project.linkText || 'Visitar Projeto'}
+                            </a>
+                        ` : ''}
+                        <div style="margin-top: 15px;">
+                            ${renderTechTags(project.techs)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
     </script>
     <!-- Dynamic Favicon System -->
     <script src="../../assets/js/dynamic-favicon.js"></script>

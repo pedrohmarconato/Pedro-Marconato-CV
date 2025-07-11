@@ -1291,9 +1291,9 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title" id="cv-experience-title"></h2>
+            <h2 class="section-title" id="section-experience"></h2>
             
-            <div class="experience-timeline">
+            <div class="experience-timeline" id="cv-experience">
                 <div class="experience-item">
                     <div class="job-title">
                         <div class="job-number">1</div>
@@ -1595,61 +1595,13 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title" id="cv-education-title"></h2>
-            <div class="education-container">
-                <div class="education-item">
-                    <div class="degree">Master's in Business Administration</div>
-                    <div class="university">Federal University of Santa Maria</div>
-                    <div class="thesis">Thesis: Customer Equity</div>
-                </div>
-                
-                <div class="education-item">
-                    <div class="degree">Bachelor's in Business Administration</div>
-                    <div class="university">Federal University of Santa Maria</div>
-                    <div class="thesis">Final Paper: Brand Equity</div>
-                </div>
-            </div>
+            <h2 class="section-title" id="section-education"></h2>
+            <div class="education-container" id="cv-education"></div>
         </section>
         
         <section class="section">
-            <h2 class="section-title" id="cv-projects-title"></h2>
-            <div class="projects-container">
-                <div class="project-item">
-                    <div class="project-title">REPO NEWS</div>
-                    <div class="project-description">
-                        Weekly insights selected with human curation and summarized by artificial intelligence — straight to the point, no noise.
-                    </div>
-                    <div style="margin-top: 15px;">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">Tailwind CSS</span>
-                    </div>
-                </div>
-                
-                <div class="project-item">
-                    <div class="project-title">VISUAL RECOGNITION</div>
-                    <div class="project-description">
-                        Gym equipment recognition system via camera with personalized workout recommendations.
-                    </div>
-                    <div style="margin-top: 15px;">
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">Computer Vision</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                </div>
-                
-                <div class="project-item">
-                    <div class="project-title">MIELKE</div>
-                    <div class="project-description">
-                        Management system for dental offices with automated billing and scheduling flow.
-                    </div>
-                    <div style="margin-top: 15px;">
-                        <span class="tech-tag">Next.js</span>
-                        <span class="tech-tag">OpenAI API</span>
-                        <span class="tech-tag">Firebase</span>
-                    </div>
-                </div>
-            </div>
+            <h2 class="section-title" id="section-projects"></h2>
+            <div class="projects-container" id="cv-projects"></div>
         </section>
     </div>
     
@@ -1762,11 +1714,32 @@
             // Initialize modal texts
             initializeModalTexts('en');
             
-            // Initialize CV content
-            window.initializeBasicContent('en');
-            window.renderSkills('skills-strategic', 'strategic', 'en');
-            window.renderSkills('skills-tools', 'tools', 'en');
-            window.renderSkills('skills-emerging', 'emerging', 'en');
+            // Initialize CV content from cv-texts.js
+            initializeBasicContent('en');
+            
+            // Update additional section titles
+            const experienceTitleEl = document.getElementById('section-experience');
+            if (experienceTitleEl) experienceTitleEl.textContent = getText('sections.experience', 'en');
+            
+            const educationTitleEl = document.getElementById('section-education');
+            if (educationTitleEl) educationTitleEl.textContent = getText('sections.education', 'en');
+            
+            const projectsTitleEl = document.getElementById('section-projects');
+            if (projectsTitleEl) projectsTitleEl.textContent = getText('sections.projects', 'en');
+            
+            // Skills sections
+            renderSkills('skills-strategic', 'strategic', 'en');
+            renderSkills('skills-tools', 'tools', 'en');
+            renderSkills('skills-emerging', 'emerging', 'en');
+            
+            // Experience section
+            renderExperience('en');
+            
+            // Education section
+            renderEducation('en');
+            
+            // Projects section
+            renderProjects('en');
             
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => {
@@ -1803,7 +1776,84 @@
                 });
             });
         });
+        
+        // Render experience section
+        function renderExperience(lang = 'en') {
+            const container = document.getElementById('cv-experience');
+            if (!container) return;
+            
+            const experiences = getText('experience', lang);
+            let html = '';
+            
+            experiences.forEach((exp, index) => {
+                html += `
+                    <div class="experience-item">
+                        <div class="job-title">
+                            <div class="job-number">${index + 1}</div>
+                            ${exp.title}
+                            ${renderTooltip(exp.tooltip)}
+                        </div>
+                        <div class="company">${exp.company}</div>
+                        <div class="period">${exp.period}</div>
+                        <div class="job-description">${exp.description}</div>
+                        <div class="achievements-container">
+                            ${renderAchievements(exp.achievements)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render education section
+        function renderEducation(lang = 'en') {
+            const container = document.getElementById('cv-education');
+            if (!container) return;
+            
+            const education = getText('education', lang);
+            let html = '';
+            
+            education.forEach(edu => {
+                html += `
+                    <div class="education-item">
+                        <div class="degree">${edu.degree}</div>
+                        <div class="university">${edu.university}</div>
+                        <div class="thesis">${edu.thesis}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render projects section
+        function renderProjects(lang = 'en') {
+            const container = document.getElementById('cv-projects');
+            if (!container) return;
+            
+            const projects = getText('projects', lang);
+            let html = '';
+            
+            projects.forEach(project => {
+                html += `
+                    <div class="project-item">
+                        <div class="project-title">${project.title}</div>
+                        <div class="project-description">${project.description}</div>
+                        <div style="margin-top: 15px;">
+                            ${renderTechTags(project.techs)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
     </script>
+    
+    <!-- CV Texts Script -->
+    <script src="../../cv-texts.js"></script>
+    
     <!-- Dynamic Favicon System -->
     <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>

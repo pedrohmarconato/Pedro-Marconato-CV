@@ -845,94 +845,13 @@
             </section>
 
             <section class="section">
-                <h2 class="section-title" id="cv-experience-title"></h2>
-                
-                <div class="experience-item">
-                    <div class="item-header">
-                        <div>
-                            <h3 class="item-title">Analista de Dados Sênior</h3>
-                            <p class="item-company">Complete Bari</p>
-                        </div>
-                        <span class="item-period">Jan 2022 - Presente</span>
-                    </div>
-                    <div class="item-description">
-                        <ul>
-                            <li>Lidero projetos de BI que resultaram em 25% de aumento na eficiência operacional</li>
-                            <li>Desenvolvo dashboards interativos em Power BI e Tableau para stakeholders executivos</li>
-                            <li>Implemento pipelines de dados automatizados usando Python e Apache Airflow</li>
-                            <li>Realizo análises preditivas que geraram R$ 2M+ em economia de custos</li>
-                            <li>Mentoro equipe de 3 analistas júnior em técnicas avançadas de análise</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="item-header">
-                        <div>
-                            <h3 class="item-title">Analista de BI</h3>
-                            <p class="item-company">TechCorp Solutions</p>
-                        </div>
-                        <span class="item-period">Mar 2020 - Dez 2021</span>
-                    </div>
-                    <div class="item-description">
-                        <ul>
-                            <li>Criação de relatórios automatizados que reduziram tempo de análise em 60%</li>
-                            <li>Desenvolvimento de modelos de machine learning para segmentação de clientes</li>
-                            <li>Otimização de consultas SQL complexas em bancos de dados de grande volume</li>
-                            <li>Colaboração com equipes de produto para definição de KPIs estratégicos</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="item-header">
-                        <div>
-                            <h3 class="item-title">Analista de Dados Júnior</h3>
-                            <p class="item-company">DataInsights</p>
-                        </div>
-                        <span class="item-period">Jun 2019 - Feb 2020</span>
-                    </div>
-                    <div class="item-description">
-                        <ul>
-                            <li>Análise exploratória de dados usando Python (Pandas, NumPy, Matplotlib)</li>
-                            <li>Criação de visualizações em Tableau e Power BI</li>
-                            <li>Suporte na implementação de projetos de data warehouse</li>
-                            <li>Documentação de processos e metodologias de análise</li>
-                        </ul>
-                    </div>
-                </div>
+                <h2 class="section-title" id="section-experience"></h2>
+                <div id="cv-experience"></div>
             </section>
 
             <section class="section">
-                <h2 class="section-title" id="cv-education-title"></h2>
-                
-                <div class="education-item">
-                    <div class="item-header">
-                        <div>
-                            <h3 class="item-title">MBA em Data Science & Analytics</h3>
-                            <p class="item-institution">FGV - Fundação Getúlio Vargas</p>
-                        </div>
-                        <span class="item-period">2021 - 2023</span>
-                    </div>
-                    <div class="item-description">
-                        Especialização em Machine Learning, Big Data, e Estratégias de Negócios Orientadas por Dados.
-                        Projeto final: Sistema de Recomendação para E-commerce com 94% de precisão.
-                    </div>
-                </div>
-
-                <div class="education-item">
-                    <div class="item-header">
-                        <div>
-                            <h3 class="item-title">Bacharelado em Estatística</h3>
-                            <p class="item-institution">Universidade de São Paulo (USP)</p>
-                        </div>
-                        <span class="item-period">2015 - 2018</span>
-                    </div>
-                    <div class="item-description">
-                        Formação sólida em métodos estatísticos, probabilidade, e análise quantitativa.
-                        TCC: "Modelos Preditivos para Análise de Risco de Crédito".
-                    </div>
-                </div>
+                <h2 class="section-title" id="section-education"></h2>
+                <div id="cv-education"></div>
             </section>
 
             <section class="section">
@@ -945,31 +864,8 @@
             </section>
 
             <section class="section">
-                <h2 class="section-title" id="cv-projects-title"></h2>
-                
-                <div class="project-item">
-                    <div class="item-header">
-                        <h3 class="item-title">Sistema de Analytics em Tempo Real</h3>
-                        <span class="item-period">2023</span>
-                    </div>
-                    <div class="item-description">
-                        Desenvolvimento de plataforma de analytics em tempo real usando Apache Kafka, 
-                        Python e Redis. Sistema processa 100K+ eventos por segundo e fornece insights 
-                        instantâneos para equipes de marketing e vendas.
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="item-header">
-                        <h3 class="item-title">Modelo de Churn Prediction</h3>
-                        <span class="item-period">2022</span>
-                    </div>
-                    <div class="item-description">
-                        Criação de modelo de machine learning para predição de churn de clientes 
-                        com 91% de precisão. Implementação resultou em 15% de redução na taxa de 
-                        cancelamento e R$ 800K em receita retida.
-                    </div>
-                </div>
+                <h2 class="section-title" id="section-projects"></h2>
+                <div id="cv-projects"></div>
             </section>
         </main>
     </div>
@@ -979,50 +875,32 @@
         document.addEventListener('DOMContentLoaded', function() {
             const lang = 'pt';
             
-            // Update header texts
-            const nameElement = document.getElementById('cv-name');
-            if (nameElement) nameElement.textContent = getText('name', lang);
+            // Initialize CV content from cv-texts.js
+            initializeBasicContent('pt');
             
-            const roleElement = document.getElementById('cv-role');
-            if (roleElement) roleElement.textContent = getText('role', lang);
+            // Update additional section titles
+            const experienceTitleEl = document.getElementById('section-experience');
+            if (experienceTitleEl) experienceTitleEl.textContent = getText('sections.experience', 'pt');
             
-            // Update contact information
-            const emailEl = document.getElementById('cv-email');
-            if (emailEl) emailEl.textContent = getText('contact.email', lang);
+            const educationTitleEl = document.getElementById('section-education');
+            if (educationTitleEl) educationTitleEl.textContent = getText('sections.education', 'pt');
             
-            const phoneEl = document.getElementById('cv-phone');
-            if (phoneEl) phoneEl.textContent = getText('contact.phone', lang);
+            const projectsTitleEl = document.getElementById('section-projects');
+            if (projectsTitleEl) projectsTitleEl.textContent = getText('sections.projects', 'pt');
             
-            const locationEl = document.querySelector('#cv-location span');
-            if (locationEl) locationEl.textContent = getText('contact.location', lang);
+            // Skills sections
+            renderSkills('skills-strategic', 'strategic', 'pt');
+            renderSkills('skills-tools', 'tools', 'pt');
+            renderSkills('skills-emerging', 'emerging', 'pt');
             
-            const linkedinEl = document.getElementById('cv-linkedin');
-            if (linkedinEl) linkedinEl.textContent = getText('contact.linkedin', lang);
+            // Experience section
+            renderExperience('pt');
             
-            // Update section titles
-            const profileTitleEl = document.getElementById('cv-profile-title');
-            if (profileTitleEl) profileTitleEl.textContent = getText('sections.profile', lang);
+            // Education section
+            renderEducation('pt');
             
-            const skillsTitleEl = document.getElementById('cv-skills-title');
-            if (skillsTitleEl) skillsTitleEl.textContent = getText('sections.skills', lang);
-            
-            const experienceTitleEl = document.getElementById('cv-experience-title');
-            if (experienceTitleEl) experienceTitleEl.textContent = getText('sections.experience', lang);
-            
-            const educationTitleEl = document.getElementById('cv-education-title');
-            if (educationTitleEl) educationTitleEl.textContent = getText('sections.education', lang);
-            
-            const projectsTitleEl = document.getElementById('cv-projects-title');
-            if (projectsTitleEl) projectsTitleEl.textContent = getText('sections.projects', lang);
-            
-            // Update professional profile
-            const profileTextEl = document.getElementById('cv-profile-text');
-            if (profileTextEl) profileTextEl.textContent = getText('professionalProfile', lang);
-            
-            // Render skills
-            window.renderSkills('skills-strategic', 'strategic', lang);
-            window.renderSkills('skills-tools', 'tools', lang);
-            window.renderSkills('skills-emerging', 'emerging', lang);
+            // Projects section
+            renderProjects('pt');
             
             // Tooltip functionality for mobile
             const tooltips = document.querySelectorAll('.tooltip');
@@ -1049,7 +927,84 @@
                 });
             });
         });
+        
+        // Render experience section
+        function renderExperience(lang = 'pt') {
+            const container = document.getElementById('cv-experience');
+            if (!container) return;
+            
+            const experiences = getText('experience', lang);
+            let html = '';
+            
+            experiences.forEach((exp, index) => {
+                html += `
+                    <div class="experience-item">
+                        <div class="job-title">
+                            <div class="job-number">${index + 1}</div>
+                            ${exp.title}
+                            ${renderTooltip(exp.tooltip)}
+                        </div>
+                        <div class="company">${exp.company}</div>
+                        <div class="period">${exp.period}</div>
+                        <div class="job-description">${exp.description}</div>
+                        <div class="achievements-container">
+                            ${renderAchievements(exp.achievements)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render education section
+        function renderEducation(lang = 'pt') {
+            const container = document.getElementById('cv-education');
+            if (!container) return;
+            
+            const education = getText('education', lang);
+            let html = '';
+            
+            education.forEach(edu => {
+                html += `
+                    <div class="education-item">
+                        <div class="degree">${edu.degree}</div>
+                        <div class="university">${edu.university}</div>
+                        <div class="thesis">${edu.thesis}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render projects section
+        function renderProjects(lang = 'pt') {
+            const container = document.getElementById('cv-projects');
+            if (!container) return;
+            
+            const projects = getText('projects', lang);
+            let html = '';
+            
+            projects.forEach(project => {
+                html += `
+                    <div class="project-item">
+                        <div class="project-title">${project.title}</div>
+                        <div class="project-description">${project.description}</div>
+                        <div style="margin-top: 15px;">
+                            ${renderTechTags(project.techs)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
     </script>
+    
+    <!-- CV Texts Script -->
+    <script src="../../cv-texts.js"></script>
+    
     <!-- Dynamic Favicon System -->
     <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
