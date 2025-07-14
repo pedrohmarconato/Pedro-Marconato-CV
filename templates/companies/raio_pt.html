@@ -392,6 +392,38 @@
             left: 80%;
             animation: floatO7 9s ease-in-out infinite 2.5s;
         }
+        
+        /* Floating Raio.webp element */
+        .floating-raio-element {
+            position: absolute;
+            top: 15%;
+            right: 10%;
+            width: 80px;
+            height: 80px;
+            opacity: 0.3;
+            animation: floatRaio 16s ease-in-out infinite;
+            z-index: 3;
+            filter: brightness(1.2);
+        }
+        
+        @keyframes floatRaio {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-15px) rotate(90deg) scale(1.1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg) scale(0.9);
+                opacity: 0.7;
+            }
+            75% {
+                transform: translateY(-15px) rotate(270deg) scale(1.05);
+                opacity: 0.4;
+            }
+        }
 
         @keyframes floatO5 {
             0%, 100% { transform: rotate(0deg) scale(1); }
@@ -1108,6 +1140,9 @@
             <div class="particle"></div>
             <div class="particle"></div>
             
+            <!-- Raio.webp floating element -->
+            <img src="../../assets/images/raio.webp" alt="Raiô Element" class="floating-raio-element">
+            
             <div class="header-content">
                 <div class="logo-container">
                     <img src="../../assets/images/raio.png" alt="Raiô Benefícios Logo" class="raio-logo-header">
@@ -1273,24 +1308,24 @@
                 
                 // Generate tooltip content if available
                 let tooltipHtml = '';
-                if (exp.tooltip) {
+                if (exp.tooltip && exp.tooltip.sections) {
                     tooltipHtml = `
                         <div class="tooltip">
                             <i class="fas fa-info-circle tooltip-icon"></i>
                             <div class="tooltip-text">
                                 <div class="tooltip-header">${exp.tooltip.header || exp.title}</div>
                                 <div class="tooltip-content">
-                                    ${exp.tooltip.sections ? exp.tooltip.sections.map(section => `
+                                    ${exp.tooltip.sections.map(section => `
                                         <div class="tooltip-section">
                                             <div class="tooltip-section-title">
-                                                <i class="${section.icon || 'fas fa-circle'}"></i>
+                                                <i class="fas ${section.icon || 'fa-circle'}"></i>
                                                 ${section.title}
                                             </div>
                                             <ul class="tooltip-list">
                                                 ${section.items.map(item => `<li>${item}</li>`).join('')}
                                             </ul>
                                         </div>
-                                    `).join('') : ''}
+                                    `).join('')}
                                 </div>
                             </div>
                         </div>
