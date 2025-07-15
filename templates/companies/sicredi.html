@@ -39,6 +39,39 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            
+            /* Safari mobile scroll optimization */
+            -webkit-overflow-scrolling: auto;
+            scroll-behavior: auto;
+            overscroll-behavior: contain;
+            -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+        }
+        
+        /* Mobile-specific optimizations */
+        @media (max-width: 768px) {
+            body {
+                scroll-snap-type: y proximity;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+            
+            /* Disable heavy animations on mobile */
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* iOS Safari specific */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                -webkit-overflow-scrolling: auto;
+                scroll-behavior: auto;
+                touch-action: pan-y;
+            }
         }
 
         /* Animated background */
