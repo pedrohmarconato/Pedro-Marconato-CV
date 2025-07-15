@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Henrique Marconato - CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            /* Macfor Colors */
+            --macfor-white: #FFFFFF;
+            --macfor-black: #1E1E1E;
+            --macfor-green: #00C9B4;
+            --macfor-magenta: #D42B7C;
+            --macfor-blue: #486BD7;
+            --macfor-gradient: linear-gradient(135deg, var(--macfor-green), var(--macfor-magenta), var(--macfor-blue));
+            
+            /* Applied Colors */
+            --primary-color: var(--macfor-green);
+            --secondary-color: var(--macfor-magenta);
+            --accent-color: var(--macfor-blue);
+            --text-color: var(--macfor-white);
+            --dark-text: var(--macfor-black);
+            --border-color: rgba(255, 255, 255, 0.2);
+            --background-gradient: var(--macfor-gradient);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            background: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Main container */
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Header Section */
+        .header {
+            background: var(--background-gradient);
+            padding: 50px 50px 55px 50px;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 100;
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo-container {
+            flex: 0 0 auto;
+        }
+
+        .macfor-logo-header {
+            width: 180px;
+            height: auto;
+            filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.2));
+        }
+
+        .header-text-content {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .company-tagline {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .role {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .contact-item i {
+            margin-right: 6px;
+            font-size: 12px;
+        }
+        
+        .section {
+            padding: 25px 50px;
+            position: relative;
+        }
+
+        .section:not(:last-child) {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            background: var(--background-gradient);
+            color: var(--text-color);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding: 8px 15px;
+            border-radius: 8px;
+            letter-spacing: 0.3px;
+            display: inline-block;
+        }
+        
+        .profile-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--dark-text);
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .skills-column {
+            background: rgba(0, 201, 180, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 201, 180, 0.1);
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+        
+        .skill-item i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            font-size: 14px;
+            width: 16px;
+        }
+        
+        .tool-item {
+            margin-bottom: 12px;
+        }
+        
+        .tool-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 6px;
+            color: var(--dark-text);
+        }
+
+        .tool-percentage {
+            font-size: 11px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: rgba(0, 201, 180, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--background-gradient);
+            border-radius: 6px;
+        }
+        
+        .experience-timeline {
+            position: relative;
+            margin-left: 20px;
+            padding-left: 25px;
+        }
+        
+        .experience-timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--background-gradient);
+            border-radius: 2px;
+        }
+        
+        .experience-item {
+            margin-bottom: 20px;
+            position: relative;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(0, 201, 180, 0.03);
+            border: 1px solid rgba(0, 201, 180, 0.1);
+        }
+        
+        .experience-item::before {
+            content: "";
+            position: absolute;
+            left: -31px;
+            top: 25px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px rgba(0, 201, 180, 0.3);
+        }
+        
+        .job-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--dark-text);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .job-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--background-gradient);
+            color: var(--text-color);
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .company {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+        
+        .period {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.6);
+            font-style: italic;
+            margin-bottom: 12px;
+            display: inline-block;
+            background: rgba(0, 201, 180, 0.1);
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+        
+        .job-description {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--dark-text);
+            margin-bottom: 15px;
+        }
+        
+        .achievements-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .achievement-item {
+            background: rgba(0, 201, 180, 0.05);
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid rgba(0, 201, 180, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .achievement-icon {
+            font-size: 16px;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .achievement-content {
+            flex: 1;
+        }
+        
+        .achievement-title {
+            font-weight: 600;
+            font-size: 12px;
+            color: var(--dark-text);
+            margin-bottom: 4px;
+        }
+        
+        .achievement-description {
+            font-size: 11px;
+            line-height: 1.4;
+            color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .education-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .education-item {
+            background: rgba(0, 201, 180, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 201, 180, 0.1);
+        }
+        
+        .degree {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--dark-text);
+            margin-bottom: 6px;
+        }
+        
+        .university {
+            font-size: 13px;
+            color: var(--primary-color);
+            margin-bottom: 6px;
+        }
+        
+        .thesis {
+            font-size: 12px;
+            font-style: italic;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .project-item {
+            background: rgba(0, 201, 180, 0.03);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(0, 201, 180, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--background-gradient);
+        }
+        
+        .project-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--dark-text);
+            margin-bottom: 8px;
+        }
+        
+        .project-description {
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--dark-text);
+            margin-bottom: 12px;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background: rgba(0, 201, 180, 0.1);
+            color: var(--dark-text);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 500;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            border: 1px solid rgba(0, 201, 180, 0.2);
+        }
+
+        /* Enhanced Print Styles for A4 */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0.5in 0.4in;
+                color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            body {
+                background: white !important;
+                font-size: 10px !important;
+                line-height: 1.4 !important;
+                color: #000 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .cv-container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white !important;
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+            }
+            
+            /* Header optimized for print */
+            .header {
+                background: var(--background-gradient) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                padding: 20px 25px !important;
+                margin-bottom: 15px !important;
+                page-break-inside: avoid !important;
+                min-height: auto !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 20px !important;
+            }
+
+            .header-content {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                width: 100% !important;
+                gap: 20px !important;
+            }
+            
+            .macfor-logo-header {
+                width: 100px !important;
+                height: auto !important;
+                flex-shrink: 0 !important;
+            }
+
+            .header-text-content {
+                flex: 1 !important;
+                text-align: left !important;
+            }
+            
+            .company-tagline {
+                font-size: 10px !important;
+                font-weight: 600 !important;
+                color: var(--text-color) !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.5px !important;
+                margin-bottom: 8px !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+            
+            .header h1 {
+                font-size: 18px !important;
+                font-weight: 700 !important;
+                color: var(--text-color) !important;
+                margin-bottom: 5px !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+            
+            .role {
+                font-size: 11px !important;
+                font-weight: 500 !important;
+                color: var(--text-color) !important;
+                margin-bottom: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+            
+            .contact-info {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 6px !important;
+                align-items: center !important;
+                justify-content: center !important;
+                margin-top: 12px !important;
+                font-size: 9px !important;
+            }
+            
+            .contact-item {
+                background: rgba(255, 255, 255, 0.2) !important;
+                -webkit-print-color-adjust: exact !important;
+                padding: 3px 8px !important;
+                border-radius: 4px !important;
+                color: var(--text-color) !important;
+                font-weight: 500 !important;
+            }
+            
+            /* Sections */
+            .section {
+                padding: 12px 25px !important;
+                page-break-inside: avoid !important;
+                margin-bottom: 8px !important;
+            }
+
+            .section:not(:last-child) {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
+                margin-bottom: 12px !important;
+                padding-bottom: 15px !important;
+            }
+            
+            .section-title {
+                background: var(--background-gradient) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color: var(--text-color) !important;
+                font-size: 12px !important;
+                font-weight: 600 !important;
+                margin-bottom: 10px !important;
+                padding: 5px 12px !important;
+                border-radius: 4px !important;
+                display: inline-block !important;
+                page-break-after: avoid !important;
+            }
+            
+            .profile-text {
+                font-size: 10px !important;
+                line-height: 1.5 !important;
+                color: #000 !important;
+                text-align: justify !important;
+                margin-bottom: 10px !important;
+            }
+            
+            /* Skills optimized for print */
+            .skills-container {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 12px !important;
+                page-break-inside: avoid !important;
+            }
+            
+            .skills-column {
+                background: rgba(0, 201, 180, 0.08) !important;
+                -webkit-print-color-adjust: exact !important;
+                padding: 12px !important;
+                border-radius: 6px !important;
+                border: 1px solid rgba(0, 201, 180, 0.2) !important;
+                page-break-inside: avoid !important;
+            }
+            
+            .skill-item {
+                font-size: 9px !important;
+                margin-bottom: 6px !important;
+                color: #000 !important;
+                display: flex !important;
+                align-items: center !important;
+            }
+            
+            .skill-item i {
+                color: var(--primary-color) !important;
+                -webkit-print-color-adjust: exact !important;
+                margin-right: 6px !important;
+                font-size: 10px !important;
+                width: 12px !important;
+            }
+            
+            /* Tools with progress bars */
+            .tool-item {
+                margin-bottom: 8px !important;
+                page-break-inside: avoid !important;
+            }
+            
+            .tool-name {
+                font-size: 9px !important;
+                margin-bottom: 3px !important;
+                color: #000 !important;
+                font-weight: 600 !important;
+            }
+
+            .tool-percentage {
+                font-size: 8px !important;
+                color: var(--primary-color) !important;
+                -webkit-print-color-adjust: exact !important;
+                font-weight: 700 !important;
+            }
+            
+            .progress-bar {
+                height: 4px !important;
+                background: rgba(0, 201, 180, 0.15) !important;
+                -webkit-print-color-adjust: exact !important;
+                border-radius: 2px !important;
+            }
+            
+            .progress {
+                background: var(--background-gradient) !important;
+                -webkit-print-color-adjust: exact !important;
+                border-radius: 2px !important;
+            }
+            
+            /* Experience timeline */
+            .experience-timeline {
+                margin-left: 15px !important;
+                padding-left: 20px !important;
+            }
+            
+            .experience-timeline::before {
+                width: 2px !important;
+                background: var(--background-gradient) !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+            
+            .experience-item {
+                margin-bottom: 15px !important;
+                padding: 15px !important;
+                border-radius: 6px !important;
+                background: rgba(0, 201, 180, 0.05) !important;
+                -webkit-print-color-adjust: exact !important;
+                border: 1px solid rgba(0, 201, 180, 0.15) !important;
+                page-break-inside: avoid !important;
+            }
+            
+            .experience-item::before {
+                left: -26px !important;
+                top: 20px !important;
+                width: 6px !important;
+                height: 6px !important;
+                background: var(--primary-color) !important;
+                -webkit-print-color-adjust: exact !important;
+                border: 2px solid white !important;
+                box-shadow: 0 0 0 2px rgba(0, 201, 180, 0.3) !important;
+            }
+            
+            .job-title {
+                font-size: 12px !important;
+                font-weight: 600 !important;
+                color: #000 !important;
+                margin-bottom: 5px !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 8px !important;
+            }
+            
+            .job-number {
+                width: 18px !important;
+                height: 18px !important;
+                background: var(--background-gradient) !important;
+                -webkit-print-color-adjust: exact !important;
+                color: var(--text-color) !important;
+                border-radius: 50% !important;
+                font-size: 9px !important;
+                font-weight: 600 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            
+            .company {
+                font-size: 10px !important;
+                color: var(--primary-color) !important;
+                -webkit-print-color-adjust: exact !important;
+                margin-bottom: 3px !important;
+                font-weight: 500 !important;
+            }
+            
+            .period {
+                font-size: 9px !important;
+                color: rgba(0, 0, 0, 0.7) !important;
+                margin-bottom: 8px !important;
+                background: rgba(0, 201, 180, 0.1) !important;
+                -webkit-print-color-adjust: exact !important;
+                padding: 2px 6px !important;
+                border-radius: 8px !important;
+                display: inline-block !important;
+            }
+            
+            .job-description {
+                font-size: 9px !important;
+                line-height: 1.4 !important;
+                color: #000 !important;
+                margin-bottom: 10px !important;
+            }
+            
+            .achievements-container {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                gap: 6px !important;
+            }
+            
+            .achievement-item {
+                background: rgba(0, 201, 180, 0.08) !important;
+                -webkit-print-color-adjust: exact !important;
+                padding: 8px !important;
+                border-radius: 4px !important;
+                border: 1px solid rgba(0, 201, 180, 0.15) !important;
+                display: flex !important;
+                align-items: flex-start !important;
+                gap: 6px !important;
+                page-break-inside: avoid !important;
+            }
+            
+            .achievement-icon {
+                font-size: 10px !important;
+                color: var(--primary-color) !important;
+                -webkit-print-color-adjust: exact !important;
+                flex-shrink: 0 !important;
+                margin-top: 1px !important;
+            }
+            
+            .achievement-title {
+                font-size: 9px !important;
+                font-weight: 600 !important;
+                color: #000 !important;
+                margin-bottom: 2px !important;
+            }
+            
+            .achievement-description {
+                font-size: 8px !important;
+                line-height: 1.3 !important;
+                color: rgba(0, 0, 0, 0.8) !important;
+            }
+            
+            /* Education */
+            .education-container {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 15px !important;
+                page-break-inside: avoid !important;
+            }
+            
+            .education-item {
+                background: rgba(0, 201, 180, 0.05) !important;
+                -webkit-print-color-adjust: exact !important;
+                padding: 15px !important;
+                border-radius: 6px !important;
+                border: 1px solid rgba(0, 201, 180, 0.15) !important;
+                page-break-inside: avoid !important;
+            }
+            
+            .degree {
+                font-size: 11px !important;
+                font-weight: 600 !important;
+                color: #000 !important;
+                margin-bottom: 5px !important;
+            }
+            
+            .university {
+                font-size: 10px !important;
+                color: var(--primary-color) !important;
+                -webkit-print-color-adjust: exact !important;
+                margin-bottom: 5px !important;
+            }
+            
+            .thesis {
+                font-size: 9px !important;
+                font-style: italic !important;
+                color: rgba(0, 0, 0, 0.7) !important;
+            }
+
+            /* Projects */
+            .projects-container {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 12px !important;
+                page-break-inside: avoid !important;
+            }
+            
+            .project-item {
+                background: rgba(0, 201, 180, 0.03) !important;
+                -webkit-print-color-adjust: exact !important;
+                padding: 15px !important;
+                border-radius: 6px !important;
+                border: 1px solid rgba(0, 201, 180, 0.15) !important;
+                page-break-inside: avoid !important;
+                position: relative !important;
+            }
+
+            .project-item::before {
+                background: var(--background-gradient) !important;
+                -webkit-print-color-adjust: exact !important;
+                height: 2px !important;
+            }
+            
+            .project-title {
+                font-size: 11px !important;
+                font-weight: 600 !important;
+                color: #000 !important;
+                margin-bottom: 6px !important;
+            }
+            
+            .project-description {
+                font-size: 9px !important;
+                line-height: 1.4 !important;
+                color: #000 !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .tech-tag {
+                background: rgba(0, 201, 180, 0.15) !important;
+                -webkit-print-color-adjust: exact !important;
+                color: #000 !important;
+                padding: 2px 6px !important;
+                border-radius: 8px !important;
+                font-size: 8px !important;
+                font-weight: 500 !important;
+                margin-right: 4px !important;
+                margin-bottom: 4px !important;
+                border: 1px solid rgba(0, 201, 180, 0.25) !important;
+                display: inline-block !important;
+            }
+
+            /* Force page breaks */
+            .section:nth-child(4) {
+                page-break-before: always !important;
+            }
+
+            /* Prevent orphans and widows */
+            h1, h2, h3, .section-title {
+                page-break-after: avoid !important;
+                orphans: 3 !important;
+                widows: 3 !important;
+            }
+
+            p, .job-description, .project-description {
+                orphans: 2 !important;
+                widows: 2 !important;
+            }
+        }
+
+        /* Dots container for skills */
+        .dots-container {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            flex-wrap: nowrap;
+        }
+
+        .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: rgba(0, 201, 180, 0.2);
+            flex-shrink: 0;
+        }
+
+        .dot.filled {
+            background: var(--background-gradient);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../cv-texts.js"></script>
+</head>
+<body>
+    <div class="cv-container" id="cv-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="../assets/images/Macfor_Inst-Branco.png" alt="Macfor" class="macfor-logo-header">
+                </div>
+                
+                <div class="header-text-content">
+                    <div class="company-tagline">Data-driven Insights, Powered by Creativity</div>
+                    <div class="header-text">
+                        <h1 id="cv-name"></h1>
+                        <div class="role" id="cv-role"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i> <span id="cv-email"></span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i> <span id="cv-phone"></span>
+                </div>
+                <div class="contact-item" id="cv-location">
+                    <i class="fas fa-map-marker-alt"></i> <span></span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i> <span id="cv-linkedin"></span>
+                </div>
+            </div>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title" id="section-profile"></h2>
+            <p class="profile-text" id="cv-profile"></p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title" id="section-skills"></h2>
+            <div class="skills-container">
+                <div class="skills-column" id="skills-strategic"></div>
+                <div class="skills-column" id="skills-tools"></div>
+                <div class="skills-column" id="skills-emerging"></div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title" id="section-experience"></h2>
+            <div class="experience-timeline" id="cv-experience"></div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title" id="section-education"></h2>
+            <div class="education-container" id="cv-education"></div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title" id="section-projects"></h2>
+            <div class="projects-container" id="cv-projects"></div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize CV content from cv-texts.js
+            initializeBasicContent('en');
+            
+            // Update section titles
+            const experienceTitleEl = document.getElementById('section-experience');
+            if (experienceTitleEl) experienceTitleEl.textContent = getText('sections.experience', 'en');
+            
+            const educationTitleEl = document.getElementById('section-education');
+            if (educationTitleEl) educationTitleEl.textContent = getText('sections.education', 'en');
+            
+            const projectsTitleEl = document.getElementById('section-projects');
+            if (projectsTitleEl) projectsTitleEl.textContent = getText('sections.projects', 'en');
+            
+            // Skills sections
+            renderSkills('skills-strategic', 'strategic', 'en');
+            renderSkills('skills-tools', 'tools', 'en');
+            renderSkills('skills-emerging', 'emerging', 'en');
+            
+            // Experience section
+            renderExperience('en');
+            
+            // Education section - with delay to ensure all scripts are loaded
+            setTimeout(() => {
+                console.log('Attempting to render education (EN print)...');
+                renderEducation('en');
+            }, 100);
+            
+            // Projects section - with delay to ensure all scripts are loaded
+            setTimeout(() => {
+                console.log('Attempting to render projects (EN print)...');
+                renderProjects('en');
+            }, 150);
+        });
+        
+        // Render experience section
+        function renderExperience(lang = 'en') {
+            const container = document.getElementById('cv-experience');
+            if (!container) return;
+            
+            const experiences = getText('experience', lang);
+            let html = '';
+            
+            experiences.forEach((exp, index) => {
+                // Render achievements
+                let achievementsHtml = '';
+                if (exp.achievements) {
+                    achievementsHtml = exp.achievements.map(achievement => `
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="fas ${achievement.icon}"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <div class="achievement-title">${achievement.title}</div>
+                                <div class="achievement-description">${achievement.description}</div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+                
+                html += `
+                    <div class="experience-item">
+                        <div class="job-title">
+                            <div class="job-number">${index + 1}</div>
+                            ${exp.title}
+                        </div>
+                        <div class="company">${exp.company}</div>
+                        <div class="period">${exp.period}</div>
+                        <div class="job-description">${exp.description}</div>
+                        <div class="achievements-container">
+                            ${achievementsHtml}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render education section
+        function renderEducation(lang = 'en') {
+            const container = document.getElementById('cv-education');
+            if (!container) {
+                console.error('Education container not found');
+                return;
+            }
+            
+            try {
+                const education = getText('education', lang);
+                console.log('Education data:', education);
+                
+                if (!education || !Array.isArray(education)) {
+                    console.error('Education data is not valid:', education);
+                    container.innerHTML = '<p>Education data not available</p>';
+                    return;
+                }
+                
+                let html = '';
+                
+                education.forEach(edu => {
+                    html += `
+                        <div class="education-item">
+                            <div class="degree">${edu.degree}</div>
+                            <div class="university">${edu.university}</div>
+                            <div class="thesis">${edu.thesis}</div>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+            } catch (error) {
+                console.error('Error rendering education:', error);
+                container.innerHTML = '<p>Error loading education data</p>';
+            }
+        }
+        
+        // Render projects section
+        function renderProjects(lang = 'en') {
+            const container = document.getElementById('cv-projects');
+            if (!container) {
+                console.error('Projects container not found');
+                return;
+            }
+            
+            try {
+                const projects = getText('projects', lang);
+                console.log('Projects data:', projects);
+                
+                if (!projects || !Array.isArray(projects)) {
+                    console.error('Projects data is not valid:', projects);
+                    container.innerHTML = '<p>Projects data not available</p>';
+                    return;
+                }
+                
+                let html = '';
+                
+                projects.forEach(project => {
+                    // Render tech tags
+                    let techsHtml = '';
+                    if (project.techs) {
+                        techsHtml = project.techs.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
+                    }
+                    
+                    html += `
+                        <div class="project-item">
+                            <div class="project-title">${project.title}</div>
+                            <div class="project-description">${project.description}</div>
+                            <div style="margin-top: 10px;">
+                                ${techsHtml}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+            } catch (error) {
+                console.error('Error rendering projects:', error);
+                container.innerHTML = '<p>Error loading projects data</p>';
+            }
+        }
+    </script>
+    
+    <!-- CV Texts Script -->
+    <script src="../cv-texts.js"></script>
+</body>
+</html>

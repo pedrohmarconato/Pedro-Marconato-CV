@@ -117,6 +117,7 @@
             overflow: hidden;
             position: relative;
             animation: containerGlow 20s ease infinite;
+            z-index: 2;
         }
 
         @keyframes containerGlow {
@@ -475,6 +476,682 @@
             50% {
                 opacity: 0.9;
                 transform: scale(1.02);
+            }
+        }
+
+        /* ========== ELEGANT VISUAL ELEMENTS ========== */
+        
+        /* MODERN - Subtle Ambient Overlay */
+        .visual-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.05) 0%, transparent 60%),
+                radial-gradient(circle at 75% 75%, rgba(63, 161, 16, 0.03) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 80%);
+            pointer-events: none;
+            z-index: 1;
+            animation: ambientGlow 20s ease-in-out infinite;
+        }
+
+        @keyframes ambientGlow {
+            0%, 100% { 
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.01);
+            }
+        }
+
+        /* MODERN - Floating Dot Particles */
+        .dot-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .dot-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: intenseDotFloat 12s ease-in-out infinite;
+            box-shadow: 
+                0 0 12px rgba(255, 255, 255, 0.6),
+                0 0 24px rgba(63, 161, 16, 0.3);
+        }
+
+        .dot-particle:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 30s;
+        }
+
+        .dot-particle:nth-child(2) {
+            top: 60%;
+            left: 85%;
+            animation-delay: 5s;
+            animation-duration: 35s;
+        }
+
+        .dot-particle:nth-child(3) {
+            top: 80%;
+            left: 20%;
+            animation-delay: 10s;
+            animation-duration: 25s;
+        }
+
+        .dot-particle:nth-child(4) {
+            top: 30%;
+            left: 70%;
+            animation-delay: 15s;
+            animation-duration: 40s;
+        }
+
+        .dot-particle:nth-child(5) {
+            top: 50%;
+            left: 40%;
+            animation-delay: 8s;
+            animation-duration: 28s;
+        }
+
+        .dot-particle:nth-child(6) {
+            top: 10%;
+            left: 60%;
+            animation-delay: 12s;
+            animation-duration: 32s;
+        }
+
+        .dot-particle:nth-child(7) {
+            top: 70%;
+            left: 80%;
+            animation-delay: 18s;
+            animation-duration: 38s;
+        }
+
+        .dot-particle:nth-child(8) {
+            top: 40%;
+            left: 15%;
+            animation-delay: 3s;
+            animation-duration: 33s;
+        }
+
+        @keyframes intenseDotFloat {
+            0% { 
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.4;
+                box-shadow: 
+                    0 0 12px rgba(255, 255, 255, 0.6),
+                    0 0 24px rgba(63, 161, 16, 0.3);
+            }
+            33% { 
+                transform: translateY(-30px) translateX(18px) scale(1.3);
+                opacity: 0.9;
+                box-shadow: 
+                    0 0 20px rgba(255, 255, 255, 0.8),
+                    0 0 40px rgba(63, 161, 16, 0.5);
+            }
+            66% { 
+                transform: translateY(-15px) translateX(-8px) scale(0.8);
+                opacity: 0.6;
+                box-shadow: 
+                    0 0 16px rgba(255, 255, 255, 0.7),
+                    0 0 32px rgba(63, 161, 16, 0.4);
+            }
+            100% { 
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.4;
+                box-shadow: 
+                    0 0 12px rgba(255, 255, 255, 0.6),
+                    0 0 24px rgba(63, 161, 16, 0.3);
+            }
+        }
+
+        /* Geometric Decoration */
+        .geometric-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .geometric-shape {
+            position: absolute;
+            opacity: 0.12;
+            animation: dynamicGeometry 12s ease-in-out infinite;
+            filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.3));
+            transition: all 0.3s ease;
+        }
+
+        .geometric-shape:hover {
+            opacity: 0.25;
+            transform: scale(1.2);
+            filter: drop-shadow(0 8px 25px rgba(255, 255, 255, 0.5));
+        }
+
+        .circle-1 {
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            top: 18%;
+            right: 12%;
+            animation-delay: 0s;
+        }
+
+        .circle-2 {
+            width: 90px;
+            height: 90px;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            bottom: 25%;
+            left: 18%;
+            animation-delay: 7s;
+        }
+
+        .triangle-1 {
+            width: 0;
+            height: 0;
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 50px solid rgba(255, 255, 255, 0.1);
+            top: 55%;
+            right: 20%;
+            animation-delay: 14s;
+        }
+
+        .hexagon-1 {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.08);
+            position: relative;
+            margin: 30px 0;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            top: 35%;
+            left: 8%;
+            animation-delay: 10s;
+        }
+
+        .diamond-1 {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.07);
+            transform: rotate(45deg);
+            top: 70%;
+            right: 35%;
+            animation-delay: 17s;
+        }
+
+        .star-1 {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 14px solid rgba(255, 255, 255, 0.08);
+            top: 28%;
+            left: 45%;
+            animation-delay: 3s;
+            position: relative;
+        }
+
+        .star-1::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 14px solid rgba(255, 255, 255, 0.08);
+            position: absolute;
+            top: 10px;
+            left: -20px;
+        }
+
+        @keyframes dynamicGeometry {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.12;
+                filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.3));
+            }
+            25% { 
+                transform: translateY(-20px) rotate(90deg) scale(1.15);
+                opacity: 0.18;
+                filter: drop-shadow(0 6px 20px rgba(255, 255, 255, 0.4));
+            }
+            50% { 
+                transform: translateY(-25px) rotate(180deg) scale(1.2);
+                opacity: 0.22;
+                filter: drop-shadow(0 8px 25px rgba(255, 255, 255, 0.5));
+            }
+            75% { 
+                transform: translateY(-20px) rotate(270deg) scale(1.15);
+                opacity: 0.18;
+                filter: drop-shadow(0 6px 20px rgba(255, 255, 255, 0.4));
+            }
+        }
+
+        /* SICREDI ILLUSTRATIONS - IMPROVED */
+        .section-illustration {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            width: 140px;
+            height: 140px;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 2;
+            animation: illustrationFloat 25s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .section-illustration img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: opacity(0.8);
+        }
+
+        .section:hover .section-illustration {
+            opacity: 0.25;
+            transform: scale(1.05);
+        }
+
+        @keyframes illustrationFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.15;
+            }
+            50% {
+                transform: translateY(-8px) rotate(2deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* Alternating positions for visual variety */
+        .section:nth-child(odd) .section-illustration {
+            right: auto;
+            left: 30px;
+            animation-delay: 3s;
+        }
+
+        /* Specific positioning adjustments */
+        .section:nth-child(1) .section-illustration {
+            top: 25px;
+            right: 40px;
+        }
+
+        .section:nth-child(2) .section-illustration {
+            top: 20px;
+            left: 40px;
+        }
+
+        .section:nth-child(3) .section-illustration {
+            top: 30px;
+            right: 35px;
+        }
+
+        .section:nth-child(4) .section-illustration {
+            top: 15px;
+            left: 35px;
+        }
+
+        .section:nth-child(5) .section-illustration {
+            top: 25px;
+            right: 45px;
+        }
+
+        /* BACKGROUND TEXT ELEMENTS - FULL PAGE */
+        .background-words {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .bg-word {
+            position: absolute;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: wordFloat 30s ease-in-out infinite;
+            user-select: none;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Valores */
+        .bg-word.cooperativismo {
+            font-size: 28px;
+            top: 12%;
+            left: 3%;
+            animation-delay: 0s;
+            animation-duration: 35s;
+        }
+
+        .bg-word.natureza {
+            font-size: 24px;
+            bottom: 15%;
+            left: 6%;
+            animation-delay: 8s;
+            animation-duration: 32s;
+        }
+
+        /* Inovação */
+        .bg-word.transformacao {
+            font-size: 26px;
+            top: 20%;
+            right: 8%;
+            animation-delay: 4s;
+            animation-duration: 38s;
+        }
+
+        .bg-word.crescimento {
+            font-size: 22px;
+            top: 75%;
+            right: 12%;
+            animation-delay: 12s;
+            animation-duration: 28s;
+        }
+
+        /* Produtos */
+        .bg-word.conta {
+            font-size: 20px;
+            top: 45%;
+            left: 12%;
+            animation-delay: 6s;
+            animation-duration: 34s;
+        }
+
+        .bg-word.previdencia {
+            font-size: 21px;
+            top: 85%;
+            right: 20%;
+            animation-delay: 10s;
+            animation-duration: 30s;
+        }
+
+        .bg-word.recebimento {
+            font-size: 19px;
+            bottom: 5%;
+            left: 20%;
+            animation-delay: 14s;
+            animation-duration: 36s;
+        }
+
+        /* Conectividade */
+        .bg-word.conectividade {
+            font-size: 23px;
+            top: 60%;
+            right: 3%;
+            animation-delay: 2s;
+            animation-duration: 33s;
+        }
+
+        @keyframes wordFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.12;
+            }
+            25% {
+                transform: translateY(-8px) translateX(3px);
+                opacity: 0.20;
+            }
+            50% {
+                transform: translateY(-5px) translateX(-2px);
+                opacity: 0.16;
+            }
+            75% {
+                transform: translateY(-10px) translateX(4px);
+                opacity: 0.22;
+            }
+        }
+
+        /* MODERN - Floating Media Particles */
+        .floating-media-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+            overflow: hidden;
+        }
+
+        /* Pulsing background effect for more drama */
+        .floating-media-particles::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            animation: backgroundPulse 8s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.6;
+            }
+        }
+
+        .media-particle {
+            position: absolute;
+            opacity: 0.18;
+            animation: dramaticFloat 15s ease-in-out infinite;
+            filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.4));
+            transition: all 0.3s ease;
+        }
+
+        .media-particle:hover {
+            opacity: 0.35;
+            transform: scale(1.2);
+            filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.6));
+        }
+
+        .media-particle img {
+            width: 100%;
+            height: 100%;
+            filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .media-particle:hover img {
+            filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+        }
+
+        /* Sicredi Icons - DRAMATIC sizes and positions */
+        .media-particle:nth-child(1) {
+            width: 65px;
+            height: 65px;
+            top: 10%;
+            left: 6%;
+            animation-duration: 18s;
+            animation-delay: 0s;
+        }
+
+        .media-particle:nth-child(2) {
+            width: 58px;
+            height: 58px;
+            top: 18%;
+            right: 8%;
+            animation-duration: 22s;
+            animation-delay: 3s;
+        }
+
+        .media-particle:nth-child(3) {
+            width: 62px;
+            height: 62px;
+            bottom: 25%;
+            left: 10%;
+            animation-duration: 16s;
+            animation-delay: 6s;
+        }
+
+        .media-particle:nth-child(4) {
+            width: 56px;
+            height: 56px;
+            bottom: 8%;
+            right: 12%;
+            animation-duration: 20s;
+            animation-delay: 9s;
+        }
+
+        .media-particle:nth-child(5) {
+            width: 70px;
+            height: 70px;
+            top: 30%;
+            left: 15%;
+            animation-duration: 14s;
+            animation-delay: 1s;
+        }
+
+        .media-particle:nth-child(6) {
+            width: 54px;
+            height: 54px;
+            top: 50%;
+            right: 18%;
+            animation-duration: 24s;
+            animation-delay: 4s;
+        }
+
+        .media-particle:nth-child(7) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            left: 30%;
+            animation-duration: 19s;
+            animation-delay: 7s;
+        }
+
+        .media-particle:nth-child(8) {
+            width: 57px;
+            height: 57px;
+            top: 40%;
+            right: 30%;
+            animation-duration: 17s;
+            animation-delay: 10s;
+        }
+
+        @keyframes dramaticFloat {
+            0% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg) scale(1); 
+                opacity: 0.15;
+                filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.4));
+            }
+            25% { 
+                transform: translateY(-25px) translateX(15px) rotate(90deg) scale(1.1); 
+                opacity: 0.25;
+                filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.6));
+            }
+            50% { 
+                transform: translateY(-15px) translateX(-10px) rotate(180deg) scale(0.9); 
+                opacity: 0.18;
+                filter: drop-shadow(0 6px 16px rgba(255, 255, 255, 0.5));
+            }
+            75% { 
+                transform: translateY(-35px) translateX(12px) rotate(270deg) scale(1.15); 
+                opacity: 0.28;
+                filter: drop-shadow(0 10px 25px rgba(255, 255, 255, 0.7));
+            }
+            100% { 
+                transform: translateY(0px) translateX(0px) rotate(360deg) scale(1); 
+                opacity: 0.15;
+                filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.4));
+            }
+        }
+
+        /* Enhanced Cooperative Elements */
+        .cooperative-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .tree-element {
+            position: absolute;
+            opacity: 0.15;
+            font-size: 28px;
+            animation: cooperativeFloat 25s ease-in-out infinite;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .tree-element:nth-child(1) {
+            top: 15%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .tree-element:nth-child(2) {
+            bottom: 30%;
+            left: 15%;
+            animation-delay: 5s;
+        }
+
+        .tree-element:nth-child(3) {
+            top: 40%;
+            right: 8%;
+            animation-delay: 10s;
+        }
+
+        .tree-element:nth-child(4) {
+            bottom: 15%;
+            right: 20%;
+            animation-delay: 15s;
+        }
+
+        .tree-element:nth-child(5) {
+            top: 25%;
+            left: 35%;
+            animation-delay: 20s;
+        }
+
+        @keyframes cooperativeFloat {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                opacity: 0.12;
+            }
+            25% { 
+                transform: translateY(-15px) scale(1.1);
+                opacity: 0.18;
+            }
+            50% { 
+                transform: translateY(-8px) scale(0.95);
+                opacity: 0.15;
+            }
+            75% { 
+                transform: translateY(-20px) scale(1.05);
+                opacity: 0.2;
             }
         }
         
@@ -1436,23 +2113,90 @@
     <div class="shape"></div>
     <div class="shape"></div>
     
+    <!-- Background Words Layer - Full Page -->
+    <div class="background-words">
+        <!-- Valores -->
+        <div class="bg-word cooperativismo">Cooperativismo</div>
+        <div class="bg-word natureza">Natureza</div>
+        
+        <!-- Inovação -->
+        <div class="bg-word transformacao">Transformação Digital</div>
+        <div class="bg-word crescimento">Crescimento</div>
+        
+        <!-- Produtos -->
+        <div class="bg-word conta">Conta Corrente</div>
+        <div class="bg-word previdencia">Previdência</div>
+        <div class="bg-word recebimento">Recebimento</div>
+        
+        <!-- Conectividade -->
+        <div class="bg-word conectividade">Conectividade Global</div>
+    </div>
+
     <div class="cv-container">
         <header class="header">
+            <!-- Elegant Visual Overlay -->
+            <div class="visual-overlay"></div>
+            
             <!-- Network pattern for cooperative theme -->
             <div class="network-pattern"></div>
             
-            <!-- Floating cooperative elements -->
+            <!-- MODERN - Floating Sicredi Icons -->
+            <div class="floating-media-particles">
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_113 - com web - globo.png" alt="Globo Web">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_151 - transformacao digital.png" alt="Transformação Digital">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_85 - cenceitos e objetos - cooperativismo.png" alt="Cooperativismo">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_88 - cenceitos e objetos - natureza.png" alt="Natureza">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_73 - graficos - graf linha crescimento.png" alt="Crescimento">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_23 - produtos - conta corrente.png" alt="Conta Corrente">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_28 - produtos - previdencia.png" alt="Previdência">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_30 - produtos - recebimento.png" alt="Recebimento">
+                </div>
+            </div>
+            
+            <!-- MODERN - Floating Dot Particles -->
+            <div class="dot-particles">
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+            </div>
+            
+            <!-- Enhanced Floating cooperative elements -->
             <div class="cooperative-elements">
                 <div class="tree-element">🌱</div>
                 <div class="tree-element">🌿</div>
                 <div class="tree-element">🍃</div>
+                <div class="tree-element">🌾</div>
+                <div class="tree-element">🍀</div>
             </div>
             
-            <!-- Cooperative icons -->
-            <div class="coop-icons">
-                <div class="coop-icon">🤝</div>
-                <div class="coop-icon">💚</div>
-                <div class="coop-icon">🏡</div>
+            <!-- MODERN - Subtle Geometric Elements -->
+            <div class="geometric-decoration">
+                <div class="geometric-shape circle-1"></div>
+                <div class="geometric-shape circle-2"></div>
+                <div class="geometric-shape triangle-1"></div>
+                <div class="geometric-shape hexagon-1"></div>
+                <div class="geometric-shape diamond-1"></div>
+                <div class="geometric-shape star-1"></div>
             </div>
             
             <div class="header-content">
@@ -1500,11 +2244,17 @@
         </header>
         
         <section class="section">
+            <div class="section-illustration">
+                <img src="../../assets/images/sicredi_ilustra/sicredi_coracao.png" alt="Valores Sicredi">
+            </div>
             <h2 class="section-title" id="section-profile"></h2>
             <p class="profile-text" id="cv-profile"></p>
         </section>
         
         <section class="section">
+            <div class="section-illustration">
+                <img src="../../assets/images/sicredi_ilustra/sicredi_evo.png" alt="Evolução Sicredi">
+            </div>
             <h2 class="section-title" id="section-skills"></h2>
             <div class="skills-container">
                 <div class="skills-column" id="skills-strategic"></div>
@@ -1514,17 +2264,26 @@
         </section>
         
         <section class="section">
+            <div class="section-illustration">
+                <img src="../../assets/images/sicredi_ilustra/sicredi_mao.png" alt="Cooperação Sicredi">
+            </div>
             <h2 class="section-title" id="section-experience"></h2>
             
             <div class="experience-timeline" id="cv-experience"></div>
         </section>
         
         <section class="section">
+            <div class="section-illustration">
+                <img src="../../assets/images/sicredi_ilustra/sicredi_dindin.png" alt="Produtos Sicredi">
+            </div>
             <h2 class="section-title" id="section-education"></h2>
             <div class="education-container" id="cv-education"></div>
         </section>
         
         <section class="section">
+            <div class="section-illustration">
+                <img src="../../assets/images/sicredi_ilustra/sicredi_note.png" alt="Tecnologia Sicredi">
+            </div>
             <h2 class="section-title" id="section-projects"></h2>
             <div class="projects-container" id="cv-projects"></div>
         </section>
@@ -1608,6 +2367,225 @@
     </div>
     
     <script>
+        // ========== ENHANCED INTERACTIVE FUNCTIONS ==========
+        
+        // Highlight specific achievements when stat cards are clicked
+        function highlightAchievement(type) {
+            // Remove any existing highlights
+            document.querySelectorAll('.achievement-highlight').forEach(el => {
+                el.classList.remove('achievement-highlight');
+            });
+            
+            // Add visual feedback to clicked stat card
+            event.target.closest('.stat-card').style.transform = 'scale(1.1) rotateY(15deg)';
+            setTimeout(() => {
+                event.target.closest('.stat-card').style.transform = '';
+            }, 300);
+            
+            // Highlight relevant content based on type
+            const highlightMap = {
+                'crm': ['CRM Manager', 'orçamento', 'budget'],
+                'automation': ['automação', 'automation', '80%'],
+                'data': ['R$1B', 'transações', 'BigQuery'],
+                'savings': ['R$ 1.5 milhão', 'tax', 'impostos']
+            };
+            
+            if (highlightMap[type]) {
+                highlightMap[type].forEach(keyword => {
+                    const elements = document.querySelectorAll('*');
+                    elements.forEach(el => {
+                        if (el.textContent && el.textContent.includes(keyword)) {
+                            el.style.background = 'rgba(63, 161, 16, 0.2)';
+                            el.style.borderRadius = '4px';
+                            el.style.padding = '2px 4px';
+                            el.classList.add('achievement-highlight');
+                            
+                            // Remove highlight after 3 seconds
+                            setTimeout(() => {
+                                el.style.background = '';
+                                el.style.borderRadius = '';
+                                el.style.padding = '';
+                                el.classList.remove('achievement-highlight');
+                            }, 3000);
+                        }
+                    });
+                });
+            }
+            
+            // Show notification
+            showNotification(`Destacando conquistas relacionadas a ${type.toUpperCase()}`, 'success');
+        }
+        
+        // Enhanced notification system
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
+            
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--background-gradient);
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 12px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                    animation: slideInRight 0.3s ease-out;
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255,255,255,0.2);
+                ">
+                    <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
+                    ${message}
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease-in';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        // Show skill details in a modal-like overlay
+        function showSkillDetails(skill) {
+            const skillData = {
+                'CRM': 'Customer Relationship Management - 5+ anos de experiência liderando estratégias de relacionamento e retenção de clientes.',
+                'Analytics': 'Business Intelligence e Data Analytics - Especialista em transformar dados em insights acionáveis para o negócio.',
+                'SQL': 'Structured Query Language - Proficiência avançada em consultas complexas e otimização de banco de dados.',
+                'Power BI': 'Microsoft Power BI - Criação de dashboards interativos e relatórios automatizados para tomada de decisão.',
+                'Python': 'Linguagem de programação - Desenvolvimento de scripts para automação e análises preditivas.',
+                'Scrum': 'Metodologia Ágil - Certificado em gestão de projetos ágeis e liderança de equipes multidisciplinares.'
+            };
+            
+            const overlay = document.createElement('div');
+            overlay.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.7);
+                    z-index: 2000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    animation: fadeIn 0.3s ease-out;
+                " onclick="this.remove()">
+                    <div style="
+                        background: var(--background-gradient);
+                        color: white;
+                        padding: 30px;
+                        border-radius: 16px;
+                        max-width: 500px;
+                        margin: 20px;
+                        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                        animation: scaleIn 0.3s ease-out;
+                        backdrop-filter: blur(20px);
+                        border: 1px solid rgba(255,255,255,0.2);
+                    " onclick="event.stopPropagation()">
+                        <h3 style="margin-bottom: 15px; font-size: 24px;">${skill}</h3>
+                        <p style="line-height: 1.6; margin-bottom: 20px;">${skillData[skill] || 'Habilidade essencial para o desenvolvimento profissional.'}</p>
+                        <button onclick="this.closest('[style*=\"position: fixed\"]').remove()" style="
+                            background: rgba(255,255,255,0.2);
+                            border: 1px solid rgba(255,255,255,0.3);
+                            color: white;
+                            padding: 10px 20px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-weight: 600;
+                        ">Fechar</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+        }
+        
+        // Animate progress rings with different percentages
+        function animateProgressRings() {
+            const rings = document.querySelectorAll('.progress-circle');
+            const percentages = [95, 90, 85]; // CRM, SQL, BI
+            
+            rings.forEach((ring, index) => {
+                const percentage = percentages[index];
+                const circumference = 2 * Math.PI * 25;
+                const offset = circumference - (percentage / 100) * circumference;
+                
+                setTimeout(() => {
+                    ring.style.strokeDashoffset = offset;
+                }, 500 + (index * 500));
+            });
+        }
+        
+        // Enhanced DOMContentLoaded with new interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click interactions to skill nodes
+            const skillNodes = document.querySelectorAll('.skill-node');
+            skillNodes.forEach(node => {
+                node.addEventListener('click', function() {
+                    // Stop orbit animation temporarily
+                    this.style.animationPlayState = 'paused';
+                    
+                    // Show skill details
+                    const skill = this.textContent;
+                    showSkillDetails(skill);
+                    
+                    // Resume animation after 2 seconds
+                    setTimeout(() => {
+                        this.style.animationPlayState = 'running';
+                    }, 2000);
+                });
+            });
+            
+            // Add progress ring animations
+            animateProgressRings();
+            
+            // Add floating icon interactions
+            const floatingIcons = document.querySelectorAll('.sicredi-floating-icon');
+            floatingIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.opacity = '0.3';
+                    this.style.transform = 'scale(1.2)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.opacity = '';
+                    this.style.transform = '';
+                });
+            });
+            
+            // Add CSS animations keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    0% { transform: translateX(100%); opacity: 0; }
+                    100% { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOutRight {
+                    0% { transform: translateX(0); opacity: 1; }
+                    100% { transform: translateX(100%); opacity: 0; }
+                }
+                @keyframes fadeIn {
+                    0% { opacity: 0; }
+                    100% { opacity: 1; }
+                }
+                @keyframes scaleIn {
+                    0% { transform: scale(0.8); opacity: 0; }
+                    100% { transform: scale(1); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+
         function openEmailForm() {
             document.getElementById('emailModal').style.display = 'flex';
         }
