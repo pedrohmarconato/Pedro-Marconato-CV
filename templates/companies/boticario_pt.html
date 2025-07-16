@@ -179,7 +179,7 @@
                 0 2px 8px rgba(1, 30, 56, 0.06),
                 inset 0 0 200px 0 rgba(245,241,235,0.05);
             border: 1px solid rgba(1, 30, 56, 0.06);
-            overflow: visible;
+            overflow: hidden;
             position: relative;
             transition: all 0.3s ease;
         }
@@ -191,69 +191,62 @@
         }
         
         .header {
-            padding: 0;
-            background: var(--background-gradient);
+            padding: 40px 30px 70px 30px;
+            background: linear-gradient(135deg, var(--boticario-navy), var(--boticario-royal));
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            animation: headerPulse 10s ease infinite;
             position: relative;
             overflow: hidden;
-            min-height: 70vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             border-bottom: none;
-            box-shadow: 
-                0 12px 50px rgba(1, 30, 56, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        /* Dynamic particle system */
+        /* Animações modernas de fundo no header */
         .header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, rgba(255, 188, 130, 0.4), transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(38, 79, 236, 0.3), transparent),
-                radial-gradient(1px 1px at 90px 40px, rgba(255, 188, 130, 0.5), transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(38, 79, 236, 0.4), transparent),
-                radial-gradient(2px 2px at 160px 30px, rgba(255, 188, 130, 0.3), transparent);
-            background-repeat: repeat;
-            background-size: 200px 100px;
-            animation: particleMove 25s linear infinite;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 188, 130, 0.15) 0%, transparent 50%);
+            animation: headerFlow1 30s ease-in-out infinite;
             z-index: 1;
         }
         
         .header::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(45deg, transparent 30%, rgba(255, 188, 130, 0.05) 50%, transparent 70%),
-                linear-gradient(-45deg, transparent 30%, rgba(38, 79, 236, 0.03) 50%, transparent 70%);
-            animation: waveMove 15s ease-in-out infinite;
-            z-index: 2;
+            bottom: -30%;
+            right: -30%;
+            width: 160%;
+            height: 160%;
+            background: radial-gradient(circle at 70% 30%, rgba(38, 79, 236, 0.12) 0%, transparent 60%);
+            animation: headerFlow2 25s ease-in-out infinite reverse;
+            z-index: 1;
         }
 
-        @keyframes particleMove {
-            0% { transform: translateX(0) translateY(0); }
-            25% { transform: translateX(-50px) translateY(-30px); }
-            50% { transform: translateX(-100px) translateY(20px); }
-            75% { transform: translateX(-150px) translateY(-10px); }
-            100% { transform: translateX(-200px) translateY(0); }
-        }
-
-        @keyframes waveMove {
+        @keyframes headerFlow1 {
             0%, 100% { 
-                transform: skewX(0deg) scaleY(1);
-                opacity: 0.4;
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.15;
             }
             50% { 
-                transform: skewX(2deg) scaleY(1.02);
-                opacity: 0.6;
+                transform: translate(-30px, -20px) rotate(15deg) scale(1.1);
+                opacity: 0.08;
+            }
+        }
+
+        @keyframes headerFlow2 {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.12;
+            }
+            50% { 
+                transform: translate(20px, 30px) rotate(-10deg) scale(0.9);
+                opacity: 0.18;
             }
         }
 
@@ -262,7 +255,7 @@
             position: absolute;
             bottom: 30px;
             right: 40px;
-            width: 280px;
+            width: 220px;
             height: auto;
             opacity: 0.95;
             z-index: 15;
@@ -277,127 +270,45 @@
 
         .header-content {
             position: relative;
-            z-index: 10;
+            z-index: 100;
             width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 80px;
+            padding: 0 80px;
         }
 
         .header-text {
-            max-width: 70%;
+            max-width: 65%;
             position: relative;
         }
 
-        /* Creative geometric shapes */
-        .header-content::before {
-            content: '';
-            position: absolute;
-            top: 5%;
-            right: 10%;
-            width: 0;
-            height: 0;
-            border-left: 40px solid transparent;
-            border-right: 40px solid transparent;
-            border-bottom: 70px solid rgba(255, 188, 130, 0.2);
-            animation: triangleFloat 12s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        .header-content::after {
-            content: '';
-            position: absolute;
-            bottom: 10%;
-            left: 5%;
-            width: 60px;
-            height: 60px;
-            background: rgba(38, 79, 236, 0.15);
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            animation: polygonSpin 20s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes triangleFloat {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.6;
-            }
-            33% { 
-                transform: translateY(-20px) rotate(120deg);
-                opacity: 0.9;
-            }
-            66% { 
-                transform: translateY(10px) rotate(240deg);
-                opacity: 0.4;
-            }
-        }
-
-        @keyframes polygonSpin {
-            0% { 
-                transform: rotate(0deg) scale(1);
-                opacity: 0.5;
-            }
-            50% { 
-                transform: rotate(180deg) scale(1.2);
-                opacity: 0.8;
-            }
-            100% { 
-                transform: rotate(360deg) scale(1);
-                opacity: 0.5;
-            }
-        }
         
         .header h1 {
             font-family: var(--font-primary);
-            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-size: clamp(2.8rem, 5.5vw, 4rem);
             font-weight: 700;
             color: white;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-            text-shadow: 
-                0 2px 8px rgba(0, 0, 0, 0.3),
-                0 0 30px rgba(255, 188, 130, 0.2);
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
             line-height: 1.1;
-            animation: titleReveal 1.5s ease-out;
+            animation: titleReveal 1.2s ease-out;
             position: relative;
             text-transform: uppercase;
-        }
-
-        .header h1::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: -10px;
-            right: -10px;
-            bottom: -15px;
-            background: linear-gradient(135deg, 
-                rgba(255, 188, 130, 0.08) 0%, 
-                transparent 30%, 
-                transparent 70%, 
-                rgba(38, 79, 236, 0.05) 100%);
-            border-radius: 8px;
-            z-index: -1;
-            animation: titleGlow 3s ease-in-out infinite;
         }
 
         .header h1::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -10px;
             left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), transparent);
             border-radius: 2px;
-            animation: underlineGrow 1.2s ease-out 0.8s both;
-            box-shadow: 0 0 15px rgba(255, 188, 130, 0.4);
-        }
-
-        @keyframes titleGlow {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
+            animation: underlineGrow 1s ease-out 0.6s both;
         }
 
         @keyframes titleReveal {
@@ -432,7 +343,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
-            align-items: stretch;
+            align-items: center;
             animation: contactReveal 1.2s ease-out 0.6s both;
         }
         
@@ -461,7 +372,6 @@
         .contact-button {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
             border-radius: 16px;
@@ -476,8 +386,7 @@
             border: 1px solid rgba(255, 255, 255, 0.25);
             cursor: pointer;
             position: relative;
-            overflow: visible;
-            min-height: 48px;
+            overflow: hidden;
             box-shadow: 
                 0 4px 20px rgba(0, 0, 0, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -519,7 +428,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             gap: 6px;
         }
         
@@ -774,6 +682,12 @@
         }
         
         .experience-item {
+            position: relative;
+        }
+        /* Quando o tooltip estiver visível, garantir que o card não corte */
+        .experience-item:hover, .experience-item:focus-within {
+            overflow: visible !important;
+        }
             margin-bottom: 35px;
             position: relative;
             padding: 32px;
@@ -782,7 +696,7 @@
             border: 1px solid rgba(1, 30, 56, 0.08);
             transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(1, 30, 56, 0.06);
-            overflow: visible;
+            overflow: hidden;
         }
 
         .experience-item::after {
@@ -1196,7 +1110,7 @@
             }
 
             .boticario-logo {
-                width: 90px;
+                width: 60px;
                 bottom: 20px;
                 right: 20px;
             }
@@ -1268,7 +1182,7 @@
                 position: static !important;
                 display: block !important;
                 margin: 20px auto 0 !important;
-                width: 160px !important;
+                width: 120px !important;
                 opacity: 1 !important;
             }
             
@@ -1278,190 +1192,167 @@
                 display: none !important;
             }
         }
-        /* Modern Tooltip System - Brand Book Compliant */
+            /* Correção dos tooltips */
+        /* Garantir que tooltips não sejam cortados por overflow dos pais */
+        .tooltip, .tooltip * {
+            overflow: visible !important;
+        }
+        /* Quando um tooltip estiver visível, tornar os containers ancestrais visíveis também */
+        .tooltip:hover, .tooltip:focus, .tooltip:active {
+            overflow: visible !important;
+        }
+        .tooltip:hover .tooltip-text, .tooltip:focus .tooltip-text, .tooltip:active .tooltip-text {
+            overflow: visible !important;
+        }
+        .cv-container:hover, .cv-container:focus, .cv-container:active,
+        .section:hover, .section:focus, .section:active {
+            overflow: visible !important;
+        }
         .tooltip {
             position: relative;
             display: inline-block;
-            margin-left: 8px;
+            cursor: help;
+            color: var(--text-color);
         }
         
-        .tooltip-icon {
-            font-size: 1.15em;
-            color: var(--secondary-color);
-            vertical-align: middle;
-            transition: color 0.15s, transform 0.15s;
-            cursor: help;
-            opacity: 0.85;
-        }
+        .tooltip .tooltip-icon {
+    font-size: 1.15em;
+    color: var(--secondary-color);
+    margin-left: 8px;
+    vertical-align: middle;
+    transition: color 0.15s, transform 0.15s;
+    cursor: pointer;
+    opacity: 0.85;
+}
         
         .tooltip:hover .tooltip-icon {
-            color: var(--boticario-royal);
-            opacity: 1;
-            transform: scale(1.12);
-        }
+    color: var(--boticario-royal);
+    opacity: 1;
+    transform: scale(1.12);
+}
         
         .tooltip .tooltip-text {
             visibility: hidden;
-            width: 420px;
-            background: linear-gradient(135deg, var(--boticario-white) 0%, var(--light-accent) 100%);
-            color: var(--text-color);
+            width: 320px;
+            background-color: var(--boticario-navy);
+            color: white;
             text-align: left;
-            border-radius: 16px;
-            padding: 0;
+            border-radius: 12px;
+            padding: 16px;
             position: absolute;
-            z-index: 1000;
-            bottom: 130%;
+            z-index: 2147483647; /* valor máximo para garantir que fique acima de tudo */
+            bottom: 140%;
             left: 50%;
-            margin-left: -210px;
+            transform: translateX(-50%);
             opacity: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(15px) scale(0.95);
-            font-family: var(--font-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(1, 30, 56, 0.3);
             font-size: 14px;
-            line-height: 1.6;
-            box-shadow: 
-                0 8px 32px rgba(1, 30, 56, 0.15),
-                0 2px 8px rgba(1, 30, 56, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(1, 30, 56, 0.1);
-            overflow: hidden;
-            pointer-events: none;
+            line-height: 1.5;
+            font-weight: var(--font-weight-regular);
         }
         
+        /* Seta do tooltip */
         .tooltip .tooltip-text::after {
             content: "";
             position: absolute;
             top: 100%;
             left: 50%;
-            margin-left: -10px;
-            border-width: 10px;
+            margin-left: -8px;
+            border-width: 8px;
             border-style: solid;
-            border-color: var(--boticario-white) transparent transparent transparent;
-            filter: drop-shadow(0 2px 4px rgba(1, 30, 56, 0.1));
+            border-color: var(--boticario-navy) transparent transparent transparent;
         }
         
         .tooltip:hover .tooltip-text {
             visibility: visible;
             opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
+            transform: translateX(-50%) translateY(-5px);
         }
         
-        .tooltip.tooltip-active .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
-        }
-        
+        /* Estilos internos do tooltip */
         .tooltip-header {
-            background: var(--background-gradient);
-            padding: var(--spacing-sm) var(--spacing-md);
-            font-family: var(--font-primary);
             font-weight: var(--font-weight-bold);
-            font-size: 15px;
-            border-bottom: 1px solid rgba(1, 30, 56, 0.08);
-            color: white;
-            position: relative;
-        }
-
-        .tooltip-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: headerShine 3s ease-in-out infinite;
-        }
-
-        @keyframes headerShine {
-            0% { left: -100%; }
-            50%, 100% { left: 100%; }
-        }
-        
-        .tooltip-content {
-            padding: var(--spacing-md);
-            background: var(--light-accent);
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: var(--boticario-salmon);
+            letter-spacing: 0.5px;
         }
         
         .tooltip-section {
-            margin-bottom: var(--spacing-md);
+            margin-bottom: 12px;
         }
         
-        .tooltip-section:last-of-type {
+        .tooltip-section:last-child {
             margin-bottom: 0;
         }
         
         .tooltip-section-title {
             display: flex;
             align-items: center;
-            font-family: var(--font-primary);
+            gap: 8px;
             font-weight: var(--font-weight-medium);
             font-size: 14px;
-            color: var(--primary-color);
-            margin-bottom: var(--spacing-sm);
-            padding-bottom: 8px;
-            border-bottom: 1px solid rgba(1, 30, 56, 0.05);
+            margin-bottom: 6px;
+            color: rgba(255, 255, 255, 0.9);
         }
         
-        .tooltip-section-title .fas {
-            margin-right: var(--spacing-sm);
-            font-size: 16px;
-            width: 20px;
-            text-align: center;
-            color: var(--secondary-color);
+        .tooltip-section-title i {
+            font-size: 14px;
+            color: var(--boticario-salmon);
         }
         
         .tooltip-list {
             list-style: none;
-            padding-left: 0;
-            margin-top: 8px;
+            margin: 0;
+            padding: 0;
+            padding-left: 22px;
         }
         
         .tooltip-list li {
-            margin-bottom: 8px;
-            line-height: 1.5;
-            padding-left: 20px;
             position: relative;
-            color: var(--text-color);
+            padding-left: 16px;
+            margin-bottom: 4px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
         }
-
-        .tooltip-list li::before {
-            content: '•';
+        
+        .tooltip-list li:before {
+            content: "•";
             position: absolute;
             left: 0;
-            color: var(--accent-color);
+            color: var(--boticario-salmon);
             font-weight: bold;
         }
         
-        /* Mobile responsiveness for tooltips */
+        /* Responsividade do tooltip */
         @media (max-width: 768px) {
             .tooltip .tooltip-text {
-                width: 90vw;
-                max-width: 350px;
-                left: 50%;
-                transform: translateX(-50%);
-                margin-left: 0;
-                font-size: 13px;
-                max-height: 75vh;
-                overflow-y: auto;
+                width: 280px;
+                left: auto;
+                right: -20px;
+                transform: none;
             }
             
             .tooltip:hover .tooltip-text {
-                transform: translateX(-50%) translateY(0);
+                transform: translateY(-5px);
             }
             
-            .tooltip.tooltip-active .tooltip-text {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) !important;
-                width: 90vw;
-                max-width: 380px;
-                z-index: 10000;
+            .tooltip .tooltip-text::after {
+                left: auto;
+                right: 30px;
             }
+        }
+
+@keyframes tooltipPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 6px var(--boticario-salmon)); }
+    50% { transform: scale(1.22); filter: drop-shadow(0 0 16px var(--boticario-salmon)); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 6px var(--boticario-salmon)); }
+}
+
+@keyframes headerPulse {
+            0%, 100% { background: linear-gradient(135deg, var(--boticario-navy), var(--boticario-royal)); }
+            50% { background: linear-gradient(135deg, var(--boticario-royal), var(--boticario-navy)); }
         }
 </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -1664,34 +1555,6 @@
             }
         }
 
-        // Render tooltip function
-        function renderTooltip(tooltip, jobTitle) {
-            if (!tooltip) return '';
-            // Se não houver título do tooltip, usa o título do cargo
-            const header = tooltip.title && tooltip.title !== 'undefined' ? tooltip.title : (jobTitle || '');
-            
-            return `
-                <span class="tooltip">
-                    <i class="fas fa-info-circle tooltip-icon"></i>
-                    <div class="tooltip-text">
-                        <div class="tooltip-header">${header}</div>
-                        <div class="tooltip-content">
-                            ${tooltip.sections.map(section => `
-                                <div class="tooltip-section">
-                                    <div class="tooltip-section-title">
-                                        <i class="fas ${section.icon}"></i>
-                                        ${section.title}
-                                    </div>
-                                    <ul class="tooltip-list">
-                                        ${section.items ? section.items.map(item => `<li>${item}</li>`).join('') : ''}
-                                    </ul>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </span>
-            `;
-        }
         
         // Render achievements function
         function renderAchievements(achievements) {
@@ -1724,7 +1587,7 @@
                         <div class="job-title">
                             <div class="job-number">${index + 1}</div>
                             ${exp.title}
-                            ${renderTooltip(exp.tooltip, exp.title)}
+                            ${exp.tooltip ? renderTooltip(exp.tooltip) : ''}
                         </div>
                         <div class="company">${exp.company}</div>
                         <div class="period">${exp.period}</div>
@@ -1826,30 +1689,6 @@
                 });
             });
             
-            // Enhanced tooltip functionality for mobile
-            const tooltips = document.querySelectorAll('.tooltip');
-            tooltips.forEach(tooltip => {
-                tooltip.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    
-                    // Close all other tooltips
-                    tooltips.forEach(t => {
-                        if (t !== this) {
-                            t.classList.remove('tooltip-active');
-                        }
-                    });
-                    
-                    // Toggle current tooltip
-                    this.classList.toggle('tooltip-active');
-                });
-            });
-            
-            // Close tooltips when clicking outside
-            document.addEventListener('click', function() {
-                tooltips.forEach(tooltip => {
-                    tooltip.classList.remove('tooltip-active');
-                });
-            });
         });
     </script>
     <!-- Dynamic Favicon System -->
