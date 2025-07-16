@@ -3,30 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedro Marconato - O Boticário</title>
+    <title>Pedro Marconato - CV | O Boticário</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
         
         :root {
-            /* O Boticário Inspired Colors */
-            --boticario-navy: #1B2B4A;
-            --boticario-dark-blue: #0D1829;
-            --boticario-purple: #8A4FFF;
-            --boticario-light-purple: #B47EFF;
-            --boticario-orange: #FF6B35;
-            --boticario-coral: #FF8C69;
+            /* O Boticário Brand Colors - Official Brand Book */
+            --boticario-navy: #011E38;           /* Azul Marinho Principal */
+            --boticario-off-white: #F5F1EB;      /* Off-white Neutro */
+            --boticario-royal: #264FEC;          /* Azul Royal Accent */
+            --boticario-salmon: #FFBC82;         /* Salmão Accent */
             --boticario-white: #FFFFFF;
-            --boticario-light-gray: #F8F9FA;
             
-            /* Applied Colors */
-            --primary-color: #1B2B4A;
-            --secondary-color: #8A4FFF;
-            --accent-color: #FF6B35;
-            --light-accent: #F8F9FA;
-            --dark-accent: #0D1829;
-            --text-color: #2c3e50;
-            --border-color: rgba(27, 43, 74, 0.2);
-            --background-gradient: linear-gradient(135deg, #1B2B4A 0%, #0D1829 50%, #8A4FFF 100%);
+            /* Applied Colors - Brand Compliant */
+            --primary-color: var(--boticario-navy);
+            --secondary-color: var(--boticario-royal);
+            --accent-color: var(--boticario-salmon);
+            --light-accent: var(--boticario-off-white);
+            --text-color: var(--boticario-navy);
+            --border-color: rgba(1, 30, 56, 0.15);
+            --background-gradient: linear-gradient(135deg, var(--boticario-navy) 0%, var(--boticario-royal) 100%);
+            
+            /* Tipografia IBM Plex Sans - Brand Book */
+            --font-primary: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-weight-regular: 400;
+            --font-weight-medium: 500;
+            --font-weight-bold: 600;
+            
+            /* Margens proporcionais - Brand Book Guidelines */
+            --margin-base: 32px;                 /* 1/32 da largura para margens justas */
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
         }
         
         * {
@@ -36,320 +46,443 @@
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: var(--font-primary);
+            font-weight: var(--font-weight-regular);
             color: var(--text-color);
             line-height: 1.6;
-            background: #f8faf7;
+            background: var(--light-accent);        /* Off-white do brand book */
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* Animated background */
+        /* Subtle brand-compliant background */
         .animated-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #f8fbff 0%, #f0f8ff 50%, #f8fbff 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
+            background: var(--light-accent);
             z-index: -2;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Logo.png como elementos discretos de fundo */
+        .logo-bg-element {
+            position: fixed;
+            background-image: url('../../docs/logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.015;
+            pointer-events: none;
+            z-index: -1;
         }
 
-        /* Floating shapes */
-        .shape {
-            position: absolute;
-            opacity: 0.05;
-            animation: float 25s infinite ease-in-out;
-        }
-
-        .shape:nth-child(1) {
-            width: 200px;
-            height: 100px;
-            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
-            border-radius: 50%;
+        .logo-bg-element:nth-child(1) {
+            width: 300px;
+            height: 300px;
             top: 10%;
-            left: 5%;
-            animation-delay: 0s;
+            right: 5%;
+            animation: logoFloat1 25s ease-in-out infinite;
         }
 
-        .shape:nth-child(2) {
+        .logo-bg-element:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            bottom: 15%;
+            left: 8%;
+            animation: logoFloat2 30s ease-in-out infinite reverse;
+        }
+
+        .logo-bg-element:nth-child(3) {
             width: 150px;
             height: 150px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            transform: rotate(45deg);
-            top: 60%;
-            right: 10%;
-            animation-delay: 8s;
+            top: 45%;
+            left: 50%;
+            animation: logoFloat3 20s ease-in-out infinite;
         }
 
-        .shape:nth-child(3) {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(90deg, var(--accent-color), var(--boticario-coral));
+        @keyframes logoFloat1 {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.01;
+            }
+            50% { 
+                transform: translate(-20px, -15px) rotate(5deg) scale(1.1);
+                opacity: 0.02;
+            }
+        }
+
+        @keyframes logoFloat2 {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.008;
+            }
+            50% { 
+                transform: translate(15px, 20px) rotate(-3deg) scale(0.9);
+                opacity: 0.015;
+            }
+        }
+
+        @keyframes logoFloat3 {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.012;
+            }
+            50% { 
+                transform: translate(-10px, 25px) rotate(2deg) scale(1.05);
+                opacity: 0.018;
+            }
+        }
+
+        /* Minimalist geometric elements - Brand Book inspired */
+        .brand-element {
+            position: fixed;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .brand-element:nth-child(4) {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, var(--secondary-color) 0%, transparent 70%);
             border-radius: 50%;
-            bottom: 20%;
-            left: 25%;
-            animation-delay: 15s;
+            top: -80px;
+            right: -80px;
+            animation: subtleFloat 20s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            33% { transform: translateY(-30px) rotate(120deg); }
-            66% { transform: translateY(30px) rotate(240deg); }
+        .brand-element:nth-child(5) {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            border-radius: 20px;
+            bottom: -60px;
+            left: -60px;
+            animation: subtleFloat 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(10px, -10px) scale(1.05); }
         }
         
         .cv-container {
             max-width: 1000px;
-            margin: 30px auto;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 28px;
+            margin: var(--margin-base) auto;
+            background: linear-gradient(135deg, var(--boticario-white) 0%, rgba(245, 241, 235, 0.3) 100%);
+            border-radius: 16px;
             box-shadow: 
-                0 20px 50px rgba(20, 110, 55, 0.15),
-                0 15px 30px rgba(0, 0, 0, 0.08),
-                inset 0 1px 2px rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(123, 194, 36, 0.15);
-            overflow: hidden;
+                0 8px 32px rgba(1, 30, 56, 0.12),
+                0 2px 8px rgba(1, 30, 56, 0.06),
+                inset 0 0 200px 0 rgba(245,241,235,0.05);
+            border: 1px solid rgba(1, 30, 56, 0.06);
+            overflow: visible;
             position: relative;
-            animation: containerGlow 20s ease infinite;
+            transition: all 0.3s ease;
         }
-
-        @keyframes containerGlow {
-            0%, 100% { 
-                box-shadow: 
-                    0 10px 40px rgba(0, 117, 177, 0.08),
-                    0 5px 20px rgba(0, 0, 0, 0.05),
-                    0 0 80px rgba(123, 194, 36, 0.03),
-                    inset 0 1px 2px rgba(255, 255, 255, 0.9);
-            }
-            50% { 
-                box-shadow: 
-                    0 10px 40px rgba(123, 194, 36, 0.08),
-                    0 5px 20px rgba(0, 0, 0, 0.05),
-                    0 0 100px rgba(255, 122, 0, 0.03),
-                    inset 0 1px 2px rgba(255, 255, 255, 0.9);
-            }
-        }
-
-        .cv-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(0, 117, 177, 0.02) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 30%, rgba(123, 194, 36, 0.02) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 80%, rgba(255, 122, 0, 0.02) 0%, transparent 50%);
-            animation: rotate 30s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        
+        .cv-container:hover {
+            box-shadow: 
+                0 12px 40px rgba(1, 30, 56, 0.15),
+                0 4px 12px rgba(1, 30, 56, 0.08);
         }
         
         .header {
+            padding: 0;
             background: var(--background-gradient);
-            padding: 80px 60px 100px 60px;
             position: relative;
             overflow: hidden;
-            min-height: 400px;
+            min-height: 70vh;
             display: flex;
             align-items: center;
+            border-bottom: none;
+            box-shadow: 
+                0 12px 50px rgba(1, 30, 56, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        /* Formas fluidas curvas inspiradas no Boticário */
+        /* Dynamic particle system */
         .header::before {
             content: '';
-            position: absolute;
-            top: -50%;
-            left: -30%;
-            width: 150%;
-            height: 200%;
-            background: radial-gradient(ellipse at center, var(--secondary-color) 0%, transparent 70%);
-            opacity: 0.15;
-            border-radius: 50%;
-            animation: floatCurve 20s ease-in-out infinite;
-        }
-
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: -40%;
-            right: -20%;
-            width: 120%;
-            height: 150%;
-            background: radial-gradient(ellipse at center, var(--accent-color) 0%, transparent 60%);
-            opacity: 0.1;
-            border-radius: 50%;
-            animation: floatCurve 25s ease-in-out infinite reverse;
-        }
-
-        @keyframes floatCurve {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            25% { transform: translate(-20px, -30px) rotate(90deg) scale(1.1); }
-            50% { transform: translate(30px, -20px) rotate(180deg) scale(0.9); }
-            75% { transform: translate(-10px, 20px) rotate(270deg) scale(1.05); }
-        }
-
-        /* Formas curvas adicionais */
-        .header-curves {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(255, 188, 130, 0.4), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(38, 79, 236, 0.3), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255, 188, 130, 0.5), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(38, 79, 236, 0.4), transparent),
+                radial-gradient(2px 2px at 160px 30px, rgba(255, 188, 130, 0.3), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: particleMove 25s linear infinite;
+            z-index: 1;
         }
-
-        .curve-shape {
+        
+        .header::after {
+            content: '';
             position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
-            opacity: 0.08;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(255, 188, 130, 0.05) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(38, 79, 236, 0.03) 50%, transparent 70%);
+            animation: waveMove 15s ease-in-out infinite;
+            z-index: 2;
         }
 
-        .curve-shape:nth-child(1) {
-            width: 300px;
-            height: 200px;
-            top: 10%;
-            left: 70%;
-            animation: slideReveal 15s ease-in-out infinite;
+        @keyframes particleMove {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-50px) translateY(-30px); }
+            50% { transform: translateX(-100px) translateY(20px); }
+            75% { transform: translateX(-150px) translateY(-10px); }
+            100% { transform: translateX(-200px) translateY(0); }
         }
 
-        .curve-shape:nth-child(2) {
-            width: 250px;
-            height: 180px;
-            bottom: 20%;
-            left: 10%;
-            animation: slideReveal 18s ease-in-out infinite 5s;
-        }
-
-        .curve-shape:nth-child(3) {
-            width: 180px;
-            height: 120px;
-            top: 50%;
-            right: 20%;
-            animation: slideReveal 12s ease-in-out infinite 3s;
-        }
-
-        @keyframes slideReveal {
+        @keyframes waveMove {
             0%, 100% { 
-                transform: translateX(-100px) scale(0.8);
-                opacity: 0;
-            }
-            25%, 75% { 
-                transform: translateX(0) scale(1);
-                opacity: 0.08;
+                transform: skewX(0deg) scaleY(1);
+                opacity: 0.4;
             }
             50% { 
-                transform: translateX(50px) scale(1.1);
-                opacity: 0.12;
+                transform: skewX(2deg) scaleY(1.02);
+                opacity: 0.6;
             }
+        }
+
+        /* LETRA_CLARA.PNG como marca principal - Posicionamento estratégico */
+        .boticario-logo {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            width: 280px;
+            height: auto;
+            opacity: 0.95;
+            z-index: 15;
+            filter: drop-shadow(0 4px 20px rgba(255, 255, 255, 0.3));
+            transition: all 0.3s ease;
+        }
+
+        .boticario-logo:hover {
+            transform: scale(1.02);
+            filter: drop-shadow(0 6px 25px rgba(255, 255, 255, 0.4));
         }
 
         .header-content {
             position: relative;
-            z-index: 1;
-        }
-
-        .boticario-logo {
-            position: absolute;
-            bottom: 30px;
-            right: 50px;
-            width: 250px;
-            height: auto;
-            opacity: 0.85;
-            z-index: 3;
-            filter: brightness(0) invert(1) drop-shadow(0 4px 15px rgba(255, 255, 255, 0.3));
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px;
         }
 
         .header-text {
-            max-width: 850px;
-            padding-right: 220px;
+            max-width: 70%;
+            position: relative;
+        }
+
+        /* Creative geometric shapes */
+        .header-content::before {
+            content: '';
+            position: absolute;
+            top: 5%;
+            right: 10%;
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 70px solid rgba(255, 188, 130, 0.2);
+            animation: triangleFloat 12s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .header-content::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            width: 60px;
+            height: 60px;
+            background: rgba(38, 79, 236, 0.15);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: polygonSpin 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes triangleFloat {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.6;
+            }
+            33% { 
+                transform: translateY(-20px) rotate(120deg);
+                opacity: 0.9;
+            }
+            66% { 
+                transform: translateY(10px) rotate(240deg);
+                opacity: 0.4;
+            }
+        }
+
+        @keyframes polygonSpin {
+            0% { 
+                transform: rotate(0deg) scale(1);
+                opacity: 0.5;
+            }
+            50% { 
+                transform: rotate(180deg) scale(1.2);
+                opacity: 0.8;
+            }
+            100% { 
+                transform: rotate(360deg) scale(1);
+                opacity: 0.5;
+            }
         }
         
         .header h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 42px;
-            font-weight: 800;
+            font-family: var(--font-primary);
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-weight: 700;
             color: white;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             letter-spacing: -1px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #FFFFFF 0%, var(--boticario-light-purple) 50%, #FFFFFF 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textShimmer 8s ease-in-out infinite;
+            text-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(255, 188, 130, 0.2);
             line-height: 1.1;
+            animation: titleReveal 1.5s ease-out;
+            position: relative;
+            text-transform: uppercase;
         }
 
-        @keyframes textShimmer {
-            0%, 100% { background-position: 200% center; }
-            50% { background-position: 0% center; }
+        .header h1::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -10px;
+            right: -10px;
+            bottom: -15px;
+            background: linear-gradient(135deg, 
+                rgba(255, 188, 130, 0.08) 0%, 
+                transparent 30%, 
+                transparent 70%, 
+                rgba(38, 79, 236, 0.05) 100%);
+            border-radius: 8px;
+            z-index: -1;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            border-radius: 2px;
+            animation: underlineGrow 1.2s ease-out 0.8s both;
+            box-shadow: 0 0 15px rgba(255, 188, 130, 0.4);
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes titleReveal {
+            0% { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.95); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+        
+        @keyframes underlineGrow {
+            0% { width: 0; opacity: 0; }
+            100% { width: 80px; opacity: 1; }
         }
         
         .role {
-            font-family: 'Inter', sans-serif;
-            font-size: 22px;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 25px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            letter-spacing: 0.5px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), var(--boticario-coral), rgba(255, 255, 255, 0.9));
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: roleGlow 6s ease-in-out infinite;
-        }
-
-        @keyframes roleGlow {
-            0%, 100% { background-position: 200% center; }
-            50% { background-position: 0% center; }
+            font-family: var(--font-primary);
+            font-size: clamp(1.1rem, 2.8vw, 1.6rem);
+            font-weight: var(--font-weight-regular);
+            color: rgba(255, 255, 255, 0.92);
+            margin-bottom: 35px;
+            letter-spacing: 0.8px;
+            animation: roleReveal 1.2s ease-out 0.3s both;
+            position: relative;
+            line-height: 1.4;
         }
         
         .contact-info {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
+            gap: 16px;
+            align-items: stretch;
+            animation: contactReveal 1.2s ease-out 0.6s both;
+        }
+        
+        @keyframes contactReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes roleReveal {
+            0% { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
         
         .contact-button {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
             border-radius: 16px;
-            padding: 12px 20px;
+            padding: 14px 22px;
             text-decoration: none;
             color: white;
+            font-family: var(--font-primary);
             font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-weight: var(--font-weight-medium);
+            letter-spacing: 0.3px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             cursor: pointer;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: visible;
+            min-height: 48px;
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
-
+        
         .contact-button::before {
             content: '';
             position: absolute;
@@ -357,33 +490,37 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 188, 130, 0.4), 
+                transparent);
             transition: left 0.6s ease;
         }
         
         .contact-button:hover {
             background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 30px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 188, 130, 0.5);
         }
-
+        
         .contact-button:hover::before {
             left: 100%;
         }
         
         .contact-button i {
-            margin-right: 8px;
+            margin-right: 10px;
             font-size: 16px;
         }
-        
-        
         
         .contact-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            justify-content: center;
+            gap: 6px;
         }
         
         .contact-cta {
@@ -412,12 +549,38 @@
         }
         
         .location i {
-            margin-right: 6px;
+            margin-right: 8px;
         }
         
         .section {
-            padding: 35px 80px;
+            padding: 60px 80px;
             position: relative;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: sectionReveal 0.8s ease-out forwards;
+            background: linear-gradient(135deg, rgba(1,30,56,0.05), rgba(38,79,236,0.05));
+        }
+        
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+        .section:nth-child(5) { animation-delay: 0.8s; }
+        .section:nth-child(6) { animation-delay: 1.0s; }
+        
+        @keyframes sectionReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .section:hover {
+            background: radial-gradient(ellipse at 100% 100%, rgba(245, 241, 235, 0.08) 0%, rgba(1,30,56,0.005) 70%, rgba(38, 79, 236, 0.003) 100%);
         }
 
         .section:not(:last-child)::after {
@@ -433,16 +596,19 @@
         .section-title {
             background: var(--background-gradient);
             color: white;
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            padding: 12px 20px;
+            font-family: var(--font-primary);
+            font-size: 15px;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: 35px;
+            padding: 14px 28px;
             border-radius: 14px;
-            letter-spacing: 0.3px;
-            box-shadow: 0 4px 12px rgba(63, 161, 16, 0.1);
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
             display: inline-block;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .section-title::before {
@@ -452,8 +618,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: titleShimmer 6s infinite;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            animation: titleShimmer 4s ease-in-out infinite;
         }
 
         @keyframes titleShimmer {
@@ -461,17 +627,25 @@
             50%, 100% { left: 100%; }
         }
         
+        .section-title:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(1, 30, 56, 0.2);
+        }
+
         .profile-text {
+            font-family: var(--font-primary);      /* IBM Plex Sans */
             font-size: 16px;
+            font-weight: var(--font-weight-regular);
             line-height: 1.8;
             color: var(--text-color);
             text-align: justify;
+            margin-bottom: var(--spacing-md);
         }
         
         .skills-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 24px;
         }
         
         @media (max-width: 1000px) {
@@ -487,313 +661,104 @@
         }
         
         .skills-column {
-            background: linear-gradient(135deg, rgba(215, 230, 200, 0.3), rgba(215, 230, 200, 0.1));
-            padding: 18px;
-            border-radius: 12px;
-            border: 1px solid rgba(27, 43, 74, 0.1);
-            backdrop-filter: blur(10px);
+            background: radial-gradient(ellipse at 60% 0%, rgba(245, 241, 235, 0.4) 0%, rgba(1,30,56,0.02) 48%, rgba(1, 30, 56, 0.008) 100%);
+            padding: 24px;
+            border-radius: 14px;
+            border: 1px solid rgba(1, 30, 56, 0.08);
             transition: all 0.3s ease;
+            box-shadow: inset 0 0 50px 0 rgba(245,241,235,0.04);
         }
 
         .skills-column:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(63, 161, 16, 0.1);
-            border-color: rgba(63, 161, 16, 0.2);
+            background: radial-gradient(ellipse at 60% 0%, rgba(245, 241, 235, 0.5) 0%, rgba(1,30,56,0.04) 48%, rgba(1, 30, 56, 0.015) 100%);
+            border-color: rgba(38, 79, 236, 0.12);
+            box-shadow: 0 6px 20px rgba(1, 30, 56, 0.08), inset 0 0 60px 0 rgba(245,241,235,0.06);
+            transform: translateY(-2px);
         }
         
         .skill-item {
             display: flex;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             font-size: 15px;
             color: var(--text-color);
-            transition: transform 0.2s ease;
+            transition: color 0.2s ease;
         }
 
         .skill-item:hover {
-            transform: translateX(5px);
+            color: var(--primary-color);
         }
         
         .skill-item i {
-            color: var(--primary-color);
-            margin-right: 12px;
+            color: var(--secondary-color);
+            margin-right: 14px;
             font-size: 18px;
         }
         
         .tool-item {
-            margin-bottom: 14px;
-            padding: 8px 0;
+            margin-bottom: 16px;
+            padding: 10px 0;
         }
         
         .tool-name {
             display: flex;
-            flex-direction: column;
-            gap: 6px;
-            font-weight: 500;
-            font-size: 13px;
-            margin-bottom: 6px;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: var(--font-weight-medium);
+            font-size: 14px;
+            margin-bottom: 8px;
             color: var(--text-color);
         }
 
-        .tool-skill-name {
-            color: var(--text-color);
-            font-weight: 600;
+        .tool-percentage {
+            font-size: 12px;
+            color: var(--secondary-color);
+            font-weight: var(--font-weight-bold);
         }
         
-        /* Modern 5-point rating system - Boticário colors */
-        .skill-rating {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-shrink: 0;
-            align-self: flex-start;
-        }
-        
-        .skill-dots {
-            display: flex;
-            gap: 4px;
-        }
-        
-        .skill-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(27, 43, 74, 0.2);
-            border: 1.5px solid rgba(27, 43, 74, 0.3);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-        
-        .skill-dot.active {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            border-color: var(--primary-color);
-            box-shadow: 
-                0 0 8px rgba(138, 79, 255, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-        
-        .skill-dot.active::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: dotShimmer 2s infinite;
-        }
-        
-        @keyframes dotShimmer {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .skill-level-text {
-            font-size: 10px;
-            color: var(--primary-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            margin-left: 2px;
-            white-space: nowrap;
-        }
-        
-        /* Dots container for skills from cv-texts.js - Boticário colors */
+        /* Sistema de dots otimizado */
         .dots-container {
             display: flex;
-            gap: 3px;
-            margin-top: 8px;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: nowrap;
         }
         
         .dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
-            background: rgba(27, 43, 74, 0.2);
-            border: 1px solid rgba(27, 43, 74, 0.3);
+            background-color: rgba(1, 30, 56, 0.15);
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
         
         .dot.filled {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            border-color: var(--primary-color);
-            box-shadow: 
-                0 0 6px rgba(138, 79, 255, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+            box-shadow: 0 1px 4px rgba(1, 30, 56, 0.3);
+            animation: dotPulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes dotPulse {
+            0% { 
+                transform: scale(1);
+                box-shadow: 0 1px 4px rgba(1, 30, 56, 0.3);
+            }
+            100% { 
+                transform: scale(1.15);
+                box-shadow: 0 2px 8px rgba(1, 30, 56, 0.4);
+            }
         }
         
         .tool-item:hover .dot.filled {
-            box-shadow: 
-                0 0 10px rgba(138, 79, 255, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
             transform: scale(1.2);
-        }
-        
-        /* Hover effects */
-        .tool-item:hover .skill-dot.active {
-            box-shadow: 
-                0 0 15px rgba(138, 79, 255, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            transform: scale(1.1);
-        }
-        
-        /* Tooltip styles */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: help;
-        }
-        
-        .tooltip .tooltip-icon {
-            color: var(--accent-color);
-            font-size: 14px;
-            margin-left: 5px;
-            transition: transform 0.2s, color 0.2s;
-        }
-        
-        .tooltip:hover .tooltip-icon,
-        .tooltip:focus .tooltip-icon,
-        .tooltip:active .tooltip-icon {
-            color: var(--dark-accent);
-            transform: scale(1.2);
-        }
-        
-        .tooltip .tooltip-text {
-            visibility: hidden;
-            width: 380px;
-            background: var(--background-gradient);
-            color: white;
-            text-align: left;
-            border-radius: 12px;
-            padding: 0;
-            position: absolute;
-            z-index: 100;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -190px;
-            opacity: 0;
-            transition: opacity 0.4s, transform 0.3s;
-            transform: translateY(10px);
-            font-size: 13px;
-            line-height: 1.5;
-            box-shadow: 0 10px 30px rgba(27, 43, 74, 0.15);
-            overflow: hidden;
-            max-height: 85vh;
-            overflow-y: auto;
-        }
-        
-        .tooltip .tooltip-text::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -8px;
-            border-width: 8px;
-            border-style: solid;
-            border-color: #1B2B4A transparent transparent transparent;
-        }
-        
-        .tooltip:hover .tooltip-text,
-        .tooltip:focus .tooltip-text,
-        .tooltip:active .tooltip-text,
-        .tooltip.tooltip-active .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-            min-height: 330px;
-        }
-        
-        .tooltip-active .tooltip-text {
-            position: absolute;
-            z-index: 9999;
-            overflow-y: auto;
-        }
-        
-        .tooltip-header {
-            background-color: rgba(255, 255, 255, 0.05);
-            padding: 12px 18px;
-            font-weight: 600;
-            font-size: 1.05em;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            color: white;
-        }
-        
-        .tooltip-content {
-            padding: 18px;
-        }
-        
-        .tooltip-section {
-            margin-bottom: 15px;
-        }
-        
-        .tooltip-section:last-of-type {
-            margin-bottom: 0;
-        }
-        
-        .tooltip-section-title {
-            display: flex;
-            align-items: center;
-            font-weight: 500;
-            font-size: 1em;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-        
-        .tooltip-section-title .fas {
-            margin-right: 12px;
-            font-size: 1.1em;
-            width: 20px;
-            text-align: center;
-            opacity: 1;
-            color: #f0f0f0;
-        }
-        
-        .tooltip-list {
-            list-style-position: outside;
-            padding-left: 20px;
-            margin-top: 5px;
-        }
-        
-        .tooltip-list li {
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
-        
-        .tooltip-list li::marker {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        /* Mobile responsiveness for tooltips */
-        @media (max-width: 768px) {
-            .tooltip .tooltip-text {
-                width: 90vw;
-                max-width: 320px;
-                left: 50%;
-                transform: translateX(-50%);
-                margin-left: 0;
-                font-size: 12px;
-                max-height: 75vh;
-            }
-            
-            .tooltip-active .tooltip-text {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) !important;
-                width: 90vw;
-                max-width: 380px;
-                z-index: 10000;
-            }
         }
         
         .experience-timeline {
             position: relative;
-            margin-left: 30px;
-            padding-left: 40px;
+            margin-left: 35px;
+            padding-left: 45px;
         }
         
         .experience-timeline::before {
@@ -802,96 +767,170 @@
             left: 0;
             top: 0;
             bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, var(--primary-color), var(--dark-accent));
-            border-radius: 3px;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color), var(--accent-color));
+            border-radius: 4px;
+            box-shadow: 0 0 12px rgba(1, 30, 56, 0.2);
         }
         
         .experience-item {
-            margin-bottom: 25px;
+            margin-bottom: 35px;
             position: relative;
-            padding: 25px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(123, 194, 36, 0.15);
+            padding: 32px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 241, 235, 0.4) 100%);
+            border: 1px solid rgba(1, 30, 56, 0.08);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(1, 30, 56, 0.06);
+            overflow: visible;
+        }
+
+        .experience-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .experience-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 20px rgba(0, 117, 177, 0.08);
-            border-color: rgba(0, 117, 177, 0.15);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(245, 241, 235, 0.6) 100%);
+            border-color: rgba(38, 79, 236, 0.15);
+            transform: translateY(-3px) translateX(8px);
+            box-shadow: 0 12px 40px rgba(1, 30, 56, 0.12);
         }
         
+        .experience-item:hover::after {
+            opacity: 1;
+        }
         
         .experience-item::before {
             content: "";
             position: absolute;
-            left: -46px;
-            top: 35px;
-            width: 12px;
-            height: 12px;
+            left: -52px;
+            top: 42px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            background: var(--primary-color);
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px rgba(63, 161, 16, 0.2);
-            z-index: 1;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px rgba(38, 79, 236, 0.2), 0 4px 12px rgba(1, 30, 56, 0.15);
+            z-index: 2;
+            transition: all 0.3s ease;
         }
         
         .job-title {
-            font-weight: 600;
-            font-size: 20px;
-            color: var(--dark-accent);
-            margin-bottom: 8px;
+            font-weight: var(--font-weight-bold);
+            font-size: 22px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
+            position: relative;
+        }
+        
+        .job-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            border-radius: 2px;
         }
         
         .job-number {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             background: var(--background-gradient);
             color: white;
             border-radius: 50%;
             font-size: 16px;
-            font-weight: 600;
-            box-shadow: 0 3px 10px rgba(63, 161, 16, 0.15);
+            font-weight: var(--font-weight-bold);
+            box-shadow: 0 4px 12px rgba(1, 30, 56, 0.15);
         }
         
         .company {
-            font-weight: 500;
-            font-size: 16px;
-            color: var(--primary-color);
-            margin-bottom: 5px;
+            font-weight: var(--font-weight-medium);
+            font-size: 17px;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
         }
         
         .period {
             font-size: 14px;
-            color: var(--text-color);
-            font-style: italic;
-            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: var(--font-weight-medium);
+            margin-bottom: 18px;
             display: inline-block;
-            background: rgba(215, 230, 200, 0.5);
-            padding: 4px 12px;
-            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 188, 130, 0.15), rgba(38, 79, 236, 0.1));
+            padding: 8px 18px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 188, 130, 0.3);
+            font-family: var(--font-primary);
         }
         
         .job-description {
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--text-color);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+        }
+        
+        /* Achievement Items */
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding: 14px;
+            border-radius: 10px;
+            background: rgba(245, 241, 235, 0.3);
+            border: 1px solid rgba(1, 30, 56, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-item:hover {
+            background: rgba(245, 241, 235, 0.45);
+            border-color: rgba(38, 79, 236, 0.12);
+            transform: translateY(-1px);
+        }
+        
+        .achievement-icon {
+            margin-right: 14px;
+            margin-top: 3px;
+        }
+        
+        .achievement-icon i {
+            color: var(--secondary-color);
+            font-size: 17px;
+        }
+        
+        .achievement-title {
+            font-weight: var(--font-weight-medium);
+            font-size: 15px;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .achievement-description {
+            font-size: 14px;
+            color: var(--text-color);
+            line-height: 1.6;
         }
         
         .achievements-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            gap: 18px;
         }
         
         @media (max-width: 900px) {
@@ -906,50 +945,10 @@
             }
         }
         
-        .achievement-item {
-            background: linear-gradient(135deg, rgba(63, 161, 16, 0.05), rgba(63, 161, 16, 0.02));
-            border-radius: 12px;
-            padding: 18px;
-            border: 1px solid rgba(123, 194, 36, 0.15);
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            transition: all 0.3s ease;
-        }
-        
-        .achievement-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(63, 161, 16, 0.15);
-            border-color: var(--primary-color);
-        }
-        
-        .achievement-icon {
-            font-size: 24px;
-            color: var(--primary-color);
-            flex-shrink: 0;
-        }
-        
-        .achievement-content {
-            flex: 1;
-        }
-        
-        .achievement-title {
-            font-weight: 600;
-            font-size: 15px;
-            color: var(--dark-accent);
-            margin-bottom: 6px;
-        }
-        
-        .achievement-description {
-            font-size: 14px;
-            line-height: 1.5;
-            color: var(--text-color);
-        }
-        
         .education-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+            gap: 28px;
         }
         
         @media (max-width: 700px) {
@@ -959,29 +958,32 @@
         }
         
         .education-item {
-            background: linear-gradient(135deg, rgba(215, 230, 200, 0.4), rgba(215, 230, 200, 0.2));
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid rgba(123, 194, 36, 0.15);
+            background: radial-gradient(ellipse at 30% 0%, rgba(245, 241, 235, 0.3) 0%, rgba(1,30,56,0.02) 48%, rgba(1, 30, 56, 0.008) 100%);
+            padding: 28px;
+            border-radius: 14px;
+            border: 1px solid rgba(1, 30, 56, 0.08);
             transition: all 0.3s ease;
+            box-shadow: inset 0 0 40px 0 rgba(245,241,235,0.04);
         }
 
         .education-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(63, 161, 16, 0.1);
+            background: radial-gradient(ellipse at 30% 0%, rgba(245, 241, 235, 0.4) 0%, rgba(1,30,56,0.03) 48%, rgba(38, 79, 236, 0.01) 100%);
+            border-color: rgba(38, 79, 236, 0.12);
+            box-shadow: 0 6px 20px rgba(1, 30, 56, 0.06), inset 0 0 50px 0 rgba(245,241,235,0.06);
+            transform: translateY(-2px);
         }
         
         .degree {
-            font-weight: 600;
-            font-size: 18px;
-            color: var(--dark-accent);
-            margin-bottom: 8px;
+            font-weight: var(--font-weight-bold);
+            font-size: 19px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
         
         .university {
-            font-size: 15px;
+            font-size: 16px;
             color: var(--text-color);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         
         .thesis {
@@ -990,51 +992,10 @@
             color: var(--text-color);
         }
 
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            background: var(--background-gradient);
-            color: white;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 12px;
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(63, 161, 16, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(63, 161, 16, 0.2);
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button i {
-            margin-right: 8px;
-        }
-        
         .projects-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 24px;
         }
         
         @media (max-width: 900px) {
@@ -1050,72 +1011,52 @@
         }
         
         .project-item {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(123, 194, 36, 0.15);
+            background: radial-gradient(ellipse at 50% 0%, rgba(245, 241, 235, 0.25) 0%, rgba(1,30,56,0.015) 48%, rgba(1, 30, 56, 0.005) 100%);
+            border-radius: 14px;
+            padding: 32px;
+            border: 1px solid rgba(1, 30, 56, 0.08);
             transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
+            box-shadow: inset 0 0 45px 0 rgba(245,241,235,0.03);
         }
 
-        .project-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--background-gradient);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .project-item:hover::before {
-            transform: scaleX(1);
-        }
-        
         .project-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(63, 161, 16, 0.15);
-            border-color: var(--primary-color);
+            background: radial-gradient(ellipse at 50% 0%, rgba(245, 241, 235, 0.35) 0%, rgba(1,30,56,0.025) 48%, rgba(255, 188, 130, 0.008) 100%);
+            border-color: rgba(255, 188, 130, 0.15);
+            box-shadow: 0 6px 20px rgba(1, 30, 56, 0.08), inset 0 0 55px 0 rgba(245,241,235,0.05);
+            transform: translateY(-3px);
         }
         
         .project-title {
-            font-weight: 600;
-            font-size: 18px;
-            color: var(--dark-accent);
-            margin-bottom: 12px;
+            font-weight: var(--font-weight-bold);
+            font-size: 19px;
+            color: var(--primary-color);
+            margin-bottom: 14px;
         }
         
         .project-description {
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 15px;
+            line-height: 1.7;
             color: var(--text-color);
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
         
         .tech-tag {
             display: inline-block;
-            background: rgba(63, 161, 16, 0.1);
-            color: var(--dark-accent);
-            padding: 5px 12px;
-            border-radius: 20px;
+            background: rgba(1, 30, 56, 0.06);
+            color: var(--text-color);
+            padding: 6px 12px;
+            border-radius: 6px;
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 400;
             margin-right: 8px;
             margin-bottom: 8px;
-            border: 1px solid rgba(0, 117, 177, 0.2);
             transition: all 0.2s ease;
         }
 
         .tech-tag:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(63, 161, 16, 0.3);
+            background: rgba(1, 30, 56, 0.12);
+            color: var(--primary-color);
         }
 
         /* Print button */
@@ -1127,13 +1068,13 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(63, 161, 16, 0.3);
+            box-shadow: 0 6px 25px rgba(1, 30, 56, 0.3);
             transition: all 0.3s ease;
             z-index: 100;
         }
@@ -1144,27 +1085,27 @@
             top: 30px;
             right: 30px;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 5px;
+            backdrop-filter: blur(15px);
+            border-radius: 35px;
+            padding: 6px;
             display: flex;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             z-index: 100;
-            border: 2px solid rgba(63, 161, 16, 0.2);
+            border: 2px solid rgba(1, 30, 56, 0.15);
         }
         
         .language-toggle:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(63, 161, 16, 0.3);
-            border-color: rgba(63, 161, 16, 0.4);
+            box-shadow: 0 8px 35px rgba(1, 30, 56, 0.2);
+            border-color: rgba(1, 30, 56, 0.25);
         }
         
         .language-option {
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: var(--font-weight-bold);
             font-size: 14px;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -1173,7 +1114,7 @@
             position: relative;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
         
         .language-option i {
@@ -1184,7 +1125,7 @@
         .language-option.active {
             background: var(--background-gradient);
             color: white;
-            box-shadow: 0 2px 10px rgba(0, 117, 177, 0.3);
+            box-shadow: 0 3px 12px rgba(1, 30, 56, 0.3);
             animation: pulseActive 2s ease-in-out infinite;
         }
         
@@ -1193,7 +1134,7 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.05);
+                transform: scale(1.02);
             }
         }
         
@@ -1214,24 +1155,24 @@
         }
         
         .language-option:not(.active):hover {
-            background: rgba(0, 117, 177, 0.05);
-            color: var(--primary-color);
+            background: rgba(1, 30, 56, 0.05);
+            color: var(--secondary-color);
         }
         
         .language-divider {
             width: 1px;
-            height: 20px;
-            background: rgba(63, 161, 16, 0.2);
-            margin: 0 5px;
+            height: 24px;
+            background: rgba(1, 30, 56, 0.2);
+            margin: 0 6px;
         }
 
         .print-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(63, 161, 16, 0.4);
+            box-shadow: 0 8px 35px rgba(1, 30, 56, 0.4);
         }
 
         .print-button i {
-            font-size: 24px;
+            font-size: 26px;
         }
 
         /* Responsive design */
@@ -1242,41 +1183,40 @@
             }
             
             .header {
-                padding: 40px 30px 60px 30px;
+                padding: 40px 30px 70px 30px;
             }
 
             .header-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
+                padding: 0 30px;
             }
             
             .header-text {
+                max-width: 100%;
                 padding-right: 0;
             }
 
             .boticario-logo {
-                width: 50px;
-                bottom: 15px;
-                right: 15px;
-            }
-
-            .header h1 {
-                font-size: 26px;
-            }
-
-            .section {
-                padding: 30px 20px;
-            }
-
-            .section:not(:last-child)::after {
-                left: 20px;
+                width: 90px;
+                bottom: 20px;
                 right: 20px;
             }
 
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .section {
+                padding: 35px 25px;
+            }
+
+            .section:not(:last-child)::after {
+                left: 25px;
+                right: 25px;
+            }
+
             .experience-timeline {
-                margin-left: 20px;
-                padding-left: 30px;
+                margin-left: 25px;
+                padding-left: 35px;
             }
 
             .achievements-container {
@@ -1291,7 +1231,8 @@
             }
 
             .animated-bg,
-            .shape,
+            .logo-bg-element,
+            .brand-element,
             .print-button,
             .language-toggle {
                 display: none !important;
@@ -1307,6 +1248,7 @@
                 background: var(--primary-color) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+                box-shadow: none !important;
             }
 
             .header {
@@ -1326,9 +1268,8 @@
                 position: static !important;
                 display: block !important;
                 margin: 20px auto 0 !important;
-                width: 120px !important;
+                width: 160px !important;
                 opacity: 1 !important;
-                filter: brightness(0) invert(1) !important;
             }
             
             /* Esconder elementos decorativos */
@@ -1337,83 +1278,261 @@
                 display: none !important;
             }
         }
-    </style>
+        /* Modern Tooltip System - Brand Book Compliant */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .tooltip .tooltip-icon {
+            color: var(--accent-color);
+            font-size: 14px;
+            margin-left: var(--spacing-xs);
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+        
+        .tooltip:hover .tooltip-icon {
+            color: var(--secondary-color);
+            transform: scale(1.1);
+            opacity: 1;
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 420px;
+            background: linear-gradient(135deg, var(--boticario-white) 0%, var(--light-accent) 100%);
+            color: var(--text-color);
+            text-align: left;
+            border-radius: 16px;
+            padding: 0;
+            position: absolute;
+            z-index: 1000;
+            bottom: 130%;
+            left: 50%;
+            margin-left: -210px;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(15px) scale(0.95);
+            font-family: var(--font-primary);
+            font-size: 14px;
+            line-height: 1.6;
+            box-shadow: 
+                0 8px 32px rgba(1, 30, 56, 0.15),
+                0 2px 8px rgba(1, 30, 56, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(1, 30, 56, 0.1);
+            overflow: hidden;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -10px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: var(--boticario-white) transparent transparent transparent;
+            filter: drop-shadow(0 2px 4px rgba(1, 30, 56, 0.1));
+        }
+        
+        .tooltip:hover .tooltip-text,
+        .tooltip:focus .tooltip-text,
+        .tooltip:active .tooltip-text,
+        .tooltip.tooltip-active .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            min-height: 300px;
+        }
+        
+        .tooltip-active .tooltip-text {
+            position: fixed;
+            z-index: 9999;
+            overflow-y: auto;
+        }
+        
+        .tooltip-header {
+            background: var(--background-gradient);
+            padding: var(--spacing-sm) var(--spacing-md);
+            font-family: var(--font-primary);
+            font-weight: var(--font-weight-bold);
+            font-size: 15px;
+            border-bottom: 1px solid rgba(1, 30, 56, 0.08);
+            color: white;
+            position: relative;
+        }
+
+        .tooltip-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: headerShine 3s ease-in-out infinite;
+        }
+
+        @keyframes headerShine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+        
+        .tooltip-content {
+            padding: var(--spacing-md);
+            background: var(--light-accent);
+        }
+        
+        .tooltip-section {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .tooltip-section:last-of-type {
+            margin-bottom: 0;
+        }
+        
+        .tooltip-section-title {
+            display: flex;
+            align-items: center;
+            font-family: var(--font-primary);
+            font-weight: var(--font-weight-medium);
+            font-size: 14px;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(1, 30, 56, 0.05);
+        }
+        
+        .tooltip-section-title .fas {
+            margin-right: var(--spacing-sm);
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+            color: var(--secondary-color);
+        }
+        
+        .tooltip-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 8px;
+        }
+        
+        .tooltip-list li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-color);
+        }
+
+        .tooltip-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        /* Mobile responsiveness for tooltips */
+        @media (max-width: 768px) {
+            .tooltip .tooltip-text {
+                width: 90vw;
+                max-width: 350px;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-left: 0;
+                font-size: 13px;
+                max-height: 75vh;
+            }
+            
+            .tooltip-active .tooltip-text {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) !important;
+                width: 90vw;
+                max-width: 380px;
+                z-index: 10000;
+            }
+        }
+</style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="../../cv-texts.js"></script>
-    <!-- Favicon Meta Tags -->
-    <meta name="theme-color" content="#1a4b84">
-    <meta name="msapplication-TileColor" content="#1a4b84">
-    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
+    <!-- O Boticário Favicon -->
+    <link rel="icon" type="image/png" href="../../docs/favicon.png">
+    <link rel="apple-touch-icon" href="../../docs/favicon.png">
+    <meta name="theme-color" content="#011E38">
+    <meta name="msapplication-TileColor" content="#011E38">
 </head>
 <body>
     <div class="animated-bg"></div>
     
-    <!-- Floating shapes -->
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
+    <!-- Logo.png como elementos discretos de fundo -->
+    <div class="logo-bg-element"></div>
+    <div class="logo-bg-element"></div>
+    <div class="logo-bg-element"></div>
+    
+    <!-- Minimalist brand elements -->
+    <div class="brand-element"></div>
+    <div class="brand-element"></div>
     
     <div class="cv-container">
         <header class="header">
-            <div class="header-curves">
-                <div class="curve-shape"></div>
-                <div class="curve-shape"></div>
-                <div class="curve-shape"></div>
-            </div>
             <div class="header-content">
-                <img src="../../assets/images/boticario.svg" alt="O Boticário" class="boticario-logo">
+                <img src="../../docs/letra_clara.png" alt="O Boticário" class="boticario-logo">
                 <div class="header-text">
-                    <h1 id="cv-name"></h1>
+                    <h1 id="cv-name" data-text="PEDRO HENRIQUE LIMA MARCONATO" style="font-size: 2.4rem;"></h1>
                     <div class="role" id="cv-role"></div>
                     
                     <div class="contact-info">
                         <div class="contact-item">
                             <button class="contact-button" onclick="openEmailForm()">
-                                <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
+                                <i class="fas fa-envelope"></i> <span id="cv-email"></span>
                             </button>
-                            <span class="contact-cta">Clique para enviar um e-mail</span>
+                            <span class="contact-cta" id="cv-cta-email"></span>
                         </div>
                         
                         <div class="contact-item">
                             <button class="contact-button" onclick="openPhoneForm()">
-                                <i class="fas fa-phone"></i> +55 (55) 981147758
+                                <i class="fas fa-phone"></i> <span id="cv-phone"></span>
                             </button>
-                            <span class="contact-cta">Clique para enviar uma mensagem</span>
+                            <span class="contact-cta" id="cv-cta-phone"></span>
                         </div>
                         
-                        <div class="location">
-                            <i class="fas fa-map-marker-alt"></i> Cachoeira do Sul, RS
+                        <div class="location" id="cv-location">
+                            <i class="fas fa-map-marker-alt"></i> <span></span>
                         </div>
                         
                         <div class="contact-item">
                             <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
-                                <i class="fab fa-linkedin"></i> LinkedIn
+                                <i class="fab fa-linkedin"></i> <span id="cv-linkedin"></span>
                             </a>
-                            <span class="contact-cta">Clique para entrar no LinkedIn</span>
+                            <span class="contact-cta" id="cv-cta-linkedin"></span>
                         </div>
                         
                         <div class="contact-item">
                             <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
-                                <i class="fab fa-github"></i> Repositório
+                                <i class="fab fa-github"></i> <span id="cv-repository"></span>
                             </a>
-                            <span class="contact-cta">Ver código fonte</span>
+                            <span class="contact-cta" id="cv-cta-repository"></span>
                         </div>
-                        
-                        <div class="contact-item">
                     </div>
                 </div>
             </div>
         </header>
         
         <section class="section">
-            <h2 class="section-title">PERFIL PROFISSIONAL</h2>
-            <p class="profile-text">
-                Profissional em Gestão de CRM e Inteligência de Dados com foco em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa de Brand Equity que fundamentou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos. Como Coordenador de CRM nas Lojas Renner, otimizei orçamento gerando economia de 10% ao ano, implementei 80% de comunicações automatizadas e estratégias que resultaram em incremento no consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.
-            </p>
+            <h2 class="section-title" id="section-profile">Perfil</h2>
+            <p class="profile-text" id="cv-profile"></p>
         </section>
         
         <section class="section">
-            <h2 class="section-title" id="section-skills"></h2>
+            <h2 class="section-title" id="section-skills">Competências</h2>
             <div class="skills-container">
                 <div class="skills-column" id="skills-strategic"></div>
                 <div class="skills-column" id="skills-tools"></div>
@@ -1422,95 +1541,31 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">EXPERIÊNCIA PROFISSIONAL</h2>
+            <h2 class="section-title" id="section-experience">Experiência Profissional</h2>
             
             <div class="experience-timeline" id="cv-experience"></div>
         </section>
         
         <section class="section">
-            <h2 class="section-title" id="section-education"></h2>
+            <h2 class="section-title" id="section-education">Formação Acadêmica</h2>
             <div class="education-container" id="cv-education"></div>
         </section>
         
         <section class="section">
-            <h2 class="section-title" id="section-projects"></h2>
+            <h2 class="section-title" id="section-projects">Projetos</h2>
             <div class="projects-container" id="cv-projects"></div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">FORMAÇÃO ACADÊMICA</h2>
-            <div class="education-container">
-                <div class="education-item">
-                    <div class="degree">Mestrado em Administração</div>
-                    <div class="university">Universidade Federal de Santa Maria</div>
-                    <div class="thesis">Dissertação: Customer Equity</div>
-                    <a href="https://repositorio.ufsm.br/bitstream/handle/1/18895/DIS_PPGADMINISTRACAO_2019_MARCONATO_PEDRO.pdf" target="_blank" class="cta-button">
-                        <i class="fas fa-file-pdf"></i> Ver dissertação completa
-                    </a>
-                </div>
-                
-                <div class="education-item">
-                    <div class="degree">Graduação em Administração</div>
-                    <div class="university">Universidade Federal de Santa Maria</div>
-                    <div class="thesis">TCC: Brand Equity</div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">PROJETOS & INOVAÇÃO</h2>
-            <div class="projects-container">
-                <div class="project-item">
-                    <div class="project-title">REPO NEWS</div>
-                    <div class="project-description">
-                        Insights semanais selecionados com curadoria humana e resumidos por inteligência artificial — direto ao ponto, sem ruído.
-                    </div>
-                    <a href="https://www.repo.news/" target="_blank" class="cta-button">
-                        <i class="fas fa-external-link-alt"></i> Visitar Repo News
-                    </a>
-                    <div style="margin-top: 15px;">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">Tailwind CSS</span>
-                    </div>
-                </div>
-                
-                <div class="project-item">
-                    <div class="project-title">RECONHECIMENTO VISUAL</div>
-                    <div class="project-description">
-                        Sistema de reconhecimento de aparelhos de academia via câmera com recomendação personalizada de treinos.
-                    </div>
-                    <div style="margin-top: 15px;">
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">Computer Vision</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                </div>
-                
-                <div class="project-item">
-                    <div class="project-title">MIELKE</div>
-                    <div class="project-description">
-                        Sistema de gestão para consultórios odontológicos com fluxo automatizado de cobrança e agendamento.
-                    </div>
-                    <div style="margin-top: 15px;">
-                        <span class="tech-tag">Next.js</span>
-                        <span class="tech-tag">OpenAI API</span>
-                        <span class="tech-tag">Firebase</span>
-                    </div>
-                </div>
-            </div>
         </section>
     </div>
     
     <!-- Language toggle button -->
     <div class="language-toggle">
         <a href="boticario.html" class="language-option">
-            <span>EN</span>
+            <span id="lang-en">EN</span>
         </a>
         <div class="language-divider"></div>
         <a href="boticario_pt.html" class="language-option active">
             <i class="fas fa-check-circle"></i>
-            <span>PT</span>
+            <span id="lang-pt">PT</span>
         </a>
     </div>
     
@@ -1523,25 +1578,25 @@
     <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--text-color);">×</button>
-            <h3 style="margin-bottom:25px; color: var(--dark-accent); font-size: 24px;">Enviar E-mail</h3>
+            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--primary-color); font-size: 24px;">Enviar E-mail</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu E-mail</label>
+                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu E-mail</label>
                     <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Assunto</label>
+                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Assunto</label>
                     <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem</label>
+                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem</label>
                     <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
-                <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.3);">Enviar</button>
+                <button id="email-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(1, 30, 56, 0.3);">Enviar</button>
             </form>
         </div>
     </div>
@@ -1550,51 +1605,29 @@
     <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--text-color);">×</button>
-            <h3 style="margin-bottom:25px; color: var(--dark-accent); font-size: 24px;">Entrar em Contato</h3>
+            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--primary-color); font-size: 24px;">Entre em Contato</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <input type="hidden" name="contact_type" value="phone_request">
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <label id="phone-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Telefone</label>
+                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Telefone</label>
                     <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Melhor horário para contato</label>
+                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Melhor Hora para Contato</label>
                     <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem (Opcional)</label>
+                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem (Opcional)</label>
                     <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
                 <div style="display:flex; gap:15px;">
-                    <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.3);">Solicitar Contato</button>
+                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(1, 30, 56, 0.3);">Solicitar Contato</button>
                     <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
-                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> WhatsApp
-                    </a>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-                <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Empresa/Organização</label>
-                    <input type="text" name="company" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
-                </div>
-                <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Cargo</label>
-                    <input type="text" name="role" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
-                </div>
-                <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Email</label>
-                    <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
-                </div>
-                <div style="display:flex; gap:15px; flex-wrap:wrap;">
-                    <button type="submit" style="background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);">Enviar Mensagem</button>
-                    <a href="https://linkedin.com/in/pedrohmarconato" target="_blank" style="display:inline-flex; align-items:center; background-color:#0077B5; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);">
-                        <i class="fab fa-linkedin" style="margin-right:8px;"></i> LinkedIn
+                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> <span id="whatsapp-text">WhatsApp</span>
                     </a>
                 </div>
             </form>
@@ -1618,8 +1651,6 @@
             document.getElementById('phoneModal').style.display = 'none';
         }
         
-        
-        
         // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target == document.getElementById('emailModal')) {
@@ -1630,67 +1661,52 @@
             }
         }
 
-        // Style form inputs on focus
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize centralized text system
-            initializeBasicContent('pt');
-            renderSkills('skills-strategic', 'strategic', 'pt');
-            renderSkills('skills-tools', 'tools', 'pt');
-            renderSkills('skills-emerging', 'emerging', 'pt');
+        // Render tooltip function
+        function renderTooltip(tooltip) {
+            if (!tooltip || !tooltip.header || !tooltip.sections) return '';
             
-            // Update section titles
-            const experienceTitleEl = document.getElementById('section-experience');
-            if (experienceTitleEl) experienceTitleEl.textContent = getText('sections.experience', 'pt');
-            
-            const educationTitleEl = document.getElementById('section-education');
-            if (educationTitleEl) educationTitleEl.textContent = getText('sections.education', 'pt');
-            
-            const projectsTitleEl = document.getElementById('section-projects');
-            if (projectsTitleEl) projectsTitleEl.textContent = getText('sections.projects', 'pt');
-            
-            // Render dynamic content
-            renderExperience('pt');
-            renderEducation('pt');
-            renderProjects('pt');
-            
-            const inputs = document.querySelectorAll('input, textarea');
-            inputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    this.style.borderColor = 'var(--primary-color)';
-                });
-                input.addEventListener('blur', function() {
-                    this.style.borderColor = '#e5e7eb';
-                });
-            });
-            
-            // Tooltip functionality for mobile
-            const tooltips = document.querySelectorAll('.tooltip');
-            tooltips.forEach(tooltip => {
-                tooltip.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    
-                    // Close all other tooltips
-                    tooltips.forEach(t => {
-                        if (t !== this) {
-                            t.classList.remove('tooltip-active');
-                        }
-                    });
-                    
-                    // Toggle current tooltip
-                    this.classList.toggle('tooltip-active');
-                });
-            });
-            
-            // Close tooltips when clicking outside
-            document.addEventListener('click', function() {
-                tooltips.forEach(tooltip => {
-                    tooltip.classList.remove('tooltip-active');
-                });
-            });
-        });
+            return `
+                <span class="tooltip">
+                    <i class="fas fa-info-circle tooltip-icon"></i>
+                    <div class="tooltip-text">
+                        <div class="tooltip-header">${tooltip.header}</div>
+                        <div class="tooltip-content">
+                            ${tooltip.sections.map(section => `
+                                <div class="tooltip-section">
+                                    <div class="tooltip-section-title">
+                                        <i class="fas ${section.icon}"></i>
+                                        ${section.title}
+                                    </div>
+                                    <ul class="tooltip-list">
+                                        ${section.items ? section.items.map(item => `<li>${item}</li>`).join('') : ''}
+                                    </ul>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </span>
+            `;
+        }
         
+        // Render achievements function
+        function renderAchievements(achievements) {
+            if (!achievements) return '';
+            
+            return achievements.map(achievement => `
+                <div class="achievement-item">
+                    <div class="achievement-icon">
+                        <i class="${achievement.icon}"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <div class="achievement-title">${achievement.title}</div>
+                        <div class="achievement-description">${achievement.description}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
         // Render experience section
-        function renderExperience(lang = 'pt') {
+        function renderExperience(lang = 'en') {
             const container = document.getElementById('cv-experience');
             if (!container) return;
             
@@ -1719,7 +1735,7 @@
         }
         
         // Render education section
-        function renderEducation(lang = 'pt') {
+        function renderEducation(lang = 'en') {
             const container = document.getElementById('cv-education');
             if (!container) return;
             
@@ -1740,7 +1756,7 @@
         }
         
         // Render projects section
-        function renderProjects(lang = 'pt') {
+        function renderProjects(lang = 'en') {
             const container = document.getElementById('cv-projects');
             if (!container) return;
             
@@ -1761,8 +1777,78 @@
             
             container.innerHTML = html;
         }
+
+        // Initialize CV content when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize CV with Portuguese content
+            initializeBasicContent('pt');
+            
+            // Update additional section titles
+            const experienceTitleEl = document.getElementById('section-experience');
+            if (experienceTitleEl) experienceTitleEl.textContent = getText('sections.experience', 'pt');
+            
+            const educationTitleEl = document.getElementById('section-education');
+            if (educationTitleEl) educationTitleEl.textContent = getText('sections.education', 'pt');
+            
+            const projectsTitleEl = document.getElementById('section-projects');
+            if (projectsTitleEl) projectsTitleEl.textContent = getText('sections.projects', 'pt');
+            
+            // Skills sections
+            renderSkills('skills-strategic', 'strategic', 'pt');
+            renderSkills('skills-tools', 'tools', 'pt');
+            renderSkills('skills-emerging', 'emerging', 'pt');
+            
+            // Experience section
+            renderExperience('pt');
+            
+            // Education section
+            renderEducation('pt');
+            
+            // Projects section
+            renderProjects('pt');
+            
+            // Initialize modal texts
+            initializeModalTexts('pt');
+            
+            // Style form inputs on focus
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(--primary-color)';
+                });
+                input.addEventListener('blur', function() {
+                    this.style.borderColor = '#e5e7eb';
+                });
+            });
+            
+            // Enhanced tooltip functionality for mobile
+            const tooltips = document.querySelectorAll('.tooltip');
+            tooltips.forEach(tooltip => {
+                tooltip.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // Close all other tooltips
+                    tooltips.forEach(t => {
+                        if (t !== this) {
+                            t.classList.remove('tooltip-active');
+                        }
+                    });
+                    
+                    // Toggle current tooltip
+                    this.classList.toggle('tooltip-active');
+                });
+            });
+            
+            // Close tooltips when clicking outside
+            document.addEventListener('click', function() {
+                tooltips.forEach(tooltip => {
+                    tooltip.classList.remove('tooltip-active');
+                });
+            });
+        });
     </script>
     <!-- Dynamic Favicon System -->
     <script src="../../assets/js/dynamic-favicon.js"></script>
+    <script src="../../fallback-script.js"></script>
 </body>
 </html>
