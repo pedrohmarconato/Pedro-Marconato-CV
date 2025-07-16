@@ -1286,6 +1286,14 @@
         }
         
         .tooltip .tooltip-icon {
+    font-size: 1.15em;
+    color: var(--secondary-color);
+    margin-left: 8px;
+    vertical-align: middle;
+    transition: color 0.15s, transform 0.15s;
+    cursor: pointer;
+    opacity: 0.85;
+}
             color: var(--accent-color);
             font-size: 14px;
             margin-left: var(--spacing-xs);
@@ -1294,6 +1302,10 @@
         }
         
         .tooltip:hover .tooltip-icon {
+    color: var(--boticario-royal);
+    opacity: 1;
+    transform: scale(1.12);
+}
             color: var(--secondary-color);
             transform: scale(1.1);
             opacity: 1;
@@ -1662,14 +1674,16 @@
         }
 
         // Render tooltip function
-        function renderTooltip(tooltip) {
-            if (!tooltip || !tooltip.header || !tooltip.sections) return '';
+        function renderTooltip(tooltip, jobTitle) {
+            if (!tooltip || !tooltip.sections) return '';
+    // Se não houver header do tooltip, usa o título do cargo
+    const header = tooltip.header && tooltip.header !== 'undefined' ? tooltip.header : (jobTitle || '');
             
             return `
                 <span class="tooltip">
                     <i class="fas fa-info-circle tooltip-icon"></i>
                     <div class="tooltip-text">
-                        <div class="tooltip-header">${tooltip.header}</div>
+                        <div class="tooltip-header">${header}</div>
                         <div class="tooltip-content">
                             ${tooltip.sections.map(section => `
                                 <div class="tooltip-section">
@@ -1719,7 +1733,7 @@
                         <div class="job-title">
                             <div class="job-number">${index + 1}</div>
                             ${exp.title}
-                            ${renderTooltip(exp.tooltip)}
+                            ${renderTooltip(exp.tooltip, exp.title)}
                         </div>
                         <div class="company">${exp.company}</div>
                         <div class="period">${exp.period}</div>

@@ -681,6 +681,12 @@
         }
         
         .experience-item {
+            position: relative;
+        }
+        /* Quando o tooltip estiver visível, garantir que o card não corte */
+        .experience-item:hover, .experience-item:focus-within {
+            overflow: visible !important;
+        }
             margin-bottom: 35px;
             position: relative;
             padding: 32px;
@@ -1186,36 +1192,162 @@
             }
         }
             /* Correção dos tooltips */
+        /* Garantir que tooltips não sejam cortados por overflow dos pais */
+        .tooltip, .tooltip * {
+            overflow: visible !important;
+        }
+        /* Quando um tooltip estiver visível, tornar os containers ancestrais visíveis também */
+        .tooltip:hover, .tooltip:focus, .tooltip:active {
+            overflow: visible !important;
+        }
+        .tooltip:hover .tooltip-text, .tooltip:focus .tooltip-text, .tooltip:active .tooltip-text {
+            overflow: visible !important;
+        }
+        .cv-container:hover, .cv-container:focus, .cv-container:active,
+        .section:hover, .section:focus, .section:active {
+            overflow: visible !important;
+        }
         .tooltip {
             position: relative;
             display: inline-block;
             cursor: help;
             color: var(--text-color);
         }
+        
         .tooltip .tooltip-icon {
-            color: var(--accent-color);
-            font-size: 16px;
-        }
+    font-size: 1.15em;
+    color: var(--secondary-color);
+    margin-left: 8px;
+    vertical-align: middle;
+    transition: color 0.15s, transform 0.15s;
+    cursor: pointer;
+    opacity: 0.85;
+}
+        
+        .tooltip:hover .tooltip-icon {
+    color: var(--boticario-royal);
+    opacity: 1;
+    transform: scale(1.12);
+}
+        
         .tooltip .tooltip-text {
             visibility: hidden;
-            width: 300px;
+            width: 320px;
             background-color: var(--boticario-navy);
             color: white;
             text-align: left;
-            border-radius: 8px;
-            padding: 10px;
+            border-radius: 12px;
+            padding: 16px;
             position: absolute;
-            z-index: 100;
-            bottom: 125%;
+            z-index: 2147483647; /* valor máximo para garantir que fique acima de tudo */
+            bottom: 140%;
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(1, 30, 56, 0.3);
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: var(--font-weight-regular);
         }
+        
+        /* Seta do tooltip */
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -8px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--boticario-navy) transparent transparent transparent;
+        }
+        
         .tooltip:hover .tooltip-text {
             visibility: visible;
             opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
         }
+        
+        /* Estilos internos do tooltip */
+        .tooltip-header {
+            font-weight: var(--font-weight-bold);
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: var(--boticario-salmon);
+            letter-spacing: 0.5px;
+        }
+        
+        .tooltip-section {
+            margin-bottom: 12px;
+        }
+        
+        .tooltip-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .tooltip-section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: var(--font-weight-medium);
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .tooltip-section-title i {
+            font-size: 14px;
+            color: var(--boticario-salmon);
+        }
+        
+        .tooltip-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            padding-left: 22px;
+        }
+        
+        .tooltip-list li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 4px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .tooltip-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--boticario-salmon);
+            font-weight: bold;
+        }
+        
+        /* Responsividade do tooltip */
+        @media (max-width: 768px) {
+            .tooltip .tooltip-text {
+                width: 280px;
+                left: auto;
+                right: -20px;
+                transform: none;
+            }
+            
+            .tooltip:hover .tooltip-text {
+                transform: translateY(-5px);
+            }
+            
+            .tooltip .tooltip-text::after {
+                left: auto;
+                right: 30px;
+            }
+        }
+
+@keyframes tooltipPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 6px var(--boticario-salmon)); }
+    50% { transform: scale(1.22); filter: drop-shadow(0 0 16px var(--boticario-salmon)); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 6px var(--boticario-salmon)); }
+}
 
 @keyframes headerPulse {
             0%, 100% { background: linear-gradient(135deg, var(--boticario-navy), var(--boticario-royal)); }
@@ -1423,14 +1555,16 @@
         }
 
         // Render tooltip function
-        function renderTooltip(tooltip) {
+        function renderTooltip(tooltip, jobTitle) {
             if (!tooltip) return '';
+            // Se não houver título do tooltip, usa o título do cargo
+            const header = tooltip.title && tooltip.title !== 'undefined' ? tooltip.title : (jobTitle || '');
             
             return `
                 <span class="tooltip">
                     <i class="fas fa-info-circle tooltip-icon"></i>
                     <div class="tooltip-text">
-                        <div class="tooltip-header">${tooltip.title}</div>
+                        <div class="tooltip-header">${header}</div>
                         <div class="tooltip-content">
                             ${tooltip.sections.map(section => `
                                 <div class="tooltip-section">
@@ -1480,7 +1614,7 @@
                         <div class="job-title">
                             <div class="job-number">${index + 1}</div>
                             ${exp.title}
-                            ${renderTooltip(exp.tooltip)}
+                            ${renderTooltip(exp.tooltip, exp.title)}
                         </div>
                         <div class="company">${exp.company}</div>
                         <div class="period">${exp.period}</div>
