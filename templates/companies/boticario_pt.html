@@ -1279,41 +1279,28 @@
             }
         }
         /* Modern Tooltip System - Brand Book Compliant */
-.tooltip-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0 0 0 2px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    box-shadow: none;
-    outline: none;
-}
-.tooltip-btn:focus .tooltip-icon,
-.tooltip-btn:hover .tooltip-icon {
-    color: var(--boticario-royal);
-    opacity: 1;
-    transform: scale(1.12);
-}
-
-        .tooltip-btn {
+        .tooltip {
             position: relative;
             display: inline-block;
-            cursor: help;
+            margin-left: 8px;
         }
         
         .tooltip-icon {
             font-size: 1.15em;
             color: var(--secondary-color);
-            margin-left: 8px;
             vertical-align: middle;
             transition: color 0.15s, transform 0.15s;
-            cursor: pointer;
+            cursor: help;
             opacity: 0.85;
         }
         
-        .tooltip-btn .tooltip-text {
+        .tooltip:hover .tooltip-icon {
+            color: var(--boticario-royal);
+            opacity: 1;
+            transform: scale(1.12);
+        }
+        
+        .tooltip .tooltip-text {
             visibility: hidden;
             width: 420px;
             background: linear-gradient(135deg, var(--boticario-white) 0%, var(--light-accent) 100%);
@@ -1338,11 +1325,10 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.9);
             border: 1px solid rgba(1, 30, 56, 0.1);
             overflow: hidden;
-            max-height: 85vh;
-            overflow-y: auto;
+            pointer-events: none;
         }
         
-        .tooltip-btn .tooltip-text::after {
+        .tooltip .tooltip-text::after {
             content: "";
             position: absolute;
             top: 100%;
@@ -1354,20 +1340,18 @@
             filter: drop-shadow(0 2px 4px rgba(1, 30, 56, 0.1));
         }
         
-        .tooltip-btn:hover .tooltip-text,
-        .tooltip-btn:focus .tooltip-text,
-        .tooltip-btn:active .tooltip-text,
-        .tooltip-btn.tooltip-active .tooltip-text {
+        .tooltip:hover .tooltip-text {
             visibility: visible;
             opacity: 1;
             transform: translateY(0) scale(1);
-            min-height: 300px;
+            pointer-events: auto;
         }
         
-        .tooltip-active .tooltip-text {
-            position: fixed;
-            z-index: 9999;
-            overflow-y: auto;
+        .tooltip.tooltip-active .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
         }
         
         .tooltip-header {
@@ -1454,7 +1438,7 @@
         
         /* Mobile responsiveness for tooltips */
         @media (max-width: 768px) {
-            .tooltip-btn .tooltip-text {
+            .tooltip .tooltip-text {
                 width: 90vw;
                 max-width: 350px;
                 left: 50%;
@@ -1462,9 +1446,14 @@
                 margin-left: 0;
                 font-size: 13px;
                 max-height: 75vh;
+                overflow-y: auto;
             }
             
-            .tooltip-active .tooltip-text {
+            .tooltip:hover .tooltip-text {
+                transform: translateX(-50%) translateY(0);
+            }
+            
+            .tooltip.tooltip-active .tooltip-text {
                 position: fixed;
                 top: 50%;
                 left: 50%;
