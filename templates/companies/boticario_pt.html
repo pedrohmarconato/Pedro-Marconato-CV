@@ -1279,6 +1279,24 @@
             }
         }
         /* Modern Tooltip System - Brand Book Compliant */
+.tooltip-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 0 0 2px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: none;
+    outline: none;
+}
+.tooltip-btn:focus .tooltip-icon,
+.tooltip-btn:hover .tooltip-icon {
+    color: var(--boticario-royal);
+    opacity: 1;
+    transform: scale(1.12);
+}
+
         .tooltip {
             position: relative;
             display: inline-block;
@@ -1733,7 +1751,9 @@
                         <div class="job-title">
                             <div class="job-number">${index + 1}</div>
                             ${exp.title}
-                            ${renderTooltip(exp.tooltip, exp.title)}
+                            <button class="tooltip-btn" aria-label="Mais informações sobre ${exp.title}">
+                                ${renderTooltip(exp.tooltip, exp.title)}
+                            </button>
                         </div>
                         <div class="company">${exp.company}</div>
                         <div class="period">${exp.period}</div>
