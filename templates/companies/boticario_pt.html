@@ -1089,52 +1089,327 @@
             font-size: 26px;
         }
 
-        /* Responsive design */
+        /* Enhanced Mobile Design */
         @media (max-width: 768px) {
             .cv-container {
                 max-width: 100%;
-                margin: 20px;
+                margin: 0;
+                border-radius: 0;
+                min-height: 100vh;
             }
             
             .header {
-                padding: 40px 30px 70px 30px;
+                padding: 40px 20px 60px 20px;
+                min-height: 65vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
             }
 
             .header-content {
-                padding: 0 30px;
+                padding: 0;
+                width: 100%;
+                max-width: 350px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 25px;
             }
             
             .header-text {
                 max-width: 100%;
                 padding-right: 0;
+                text-align: center;
             }
 
             .boticario-logo {
-                width: 60px;
-                bottom: 20px;
-                right: 20px;
+                width: 180px;
+                bottom: 25px;
+                right: 25px;
+                max-width: 40vw;
             }
 
             .header h1 {
-                font-size: 28px;
+                font-size: clamp(32px, 8vw, 42px);
+                text-align: center;
+                margin-bottom: 20px;
+                line-height: 1.2;
+            }
+
+            .role {
+                font-size: clamp(18px, 4vw, 22px);
+                text-align: center;
+                margin-bottom: 30px;
+                line-height: 1.4;
+            }
+
+            .contact-info {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 15px;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .contact-item {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .contact-button {
+                padding: 16px 20px;
+                font-size: 16px;
+                min-height: 52px;
+                width: 100%;
+                border-radius: 26px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .contact-button i {
+                font-size: 18px;
+            }
+
+            .contact-cta {
+                font-size: 12px;
+                text-align: center;
+                opacity: 0.8;
             }
 
             .section {
-                padding: 35px 25px;
+                padding: 35px 20px;
+            }
+
+            .section-title {
+                font-size: 18px;
+                margin-bottom: 25px;
+                padding: 12px 20px;
+                text-align: center;
+            }
+
+            .profile-text {
+                font-size: 16px;
+                line-height: 1.7;
+                text-align: left;
+                margin-bottom: 20px;
             }
 
             .section:not(:last-child)::after {
-                left: 25px;
-                right: 25px;
+                left: 20px;
+                right: 20px;
             }
 
+            /* Skills improvements */
+            .skills-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .skills-column {
+                padding: 20px;
+            }
+
+            .skill-item {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+
+            .skill-item i {
+                font-size: 16px;
+            }
+
+            /* Experience improvements */
             .experience-timeline {
-                margin-left: 25px;
-                padding-left: 35px;
+                margin-left: 15px;
+                padding-left: 25px;
+            }
+
+            .experience-item {
+                padding: 25px 20px;
+                margin-bottom: 25px;
+            }
+
+            .job-title {
+                font-size: 20px;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+
+            .job-number {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+
+            .company {
+                font-size: 18px;
+                margin-bottom: 12px;
+                text-align: center;
+            }
+
+            .period {
+                font-size: 14px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .job-description {
+                font-size: 15px;
+                line-height: 1.6;
+                text-align: left;
+                margin-bottom: 20px;
             }
 
             .achievements-container {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .achievement-item {
+                padding: 16px;
+                text-align: left;
+            }
+
+            .achievement-title {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+
+            .achievement-description {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            /* Education improvements */
+            .education-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .education-item {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .degree {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .university {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .thesis {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            /* Projects improvements */
+            .projects-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .project-item {
+                padding: 25px 20px;
+                text-align: center;
+            }
+
+            .project-title {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .project-description {
+                font-size: 15px;
+                line-height: 1.6;
+                margin-bottom: 20px;
+                text-align: left;
+            }
+
+            .tech-tag {
+                font-size: 13px;
+                padding: 8px 12px;
+                margin: 4px;
+                display: inline-block;
+            }
+
+            /* Navigation improvements */
+            .language-toggle {
+                top: 20px;
+                right: 20px;
+                padding: 4px;
+                border-radius: 25px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            }
+
+            .language-option {
+                padding: 10px 16px;
+                font-size: 14px;
+                font-weight: 600;
+                border-radius: 20px;
+            }
+
+            .print-button {
+                bottom: 20px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
+                border-radius: 28px;
+                box-shadow: 0 6px 20px rgba(1, 30, 56, 0.4);
+            }
+
+            .print-button i {
+                font-size: 22px;
+            }
+
+            /* Touch optimizations */
+            .contact-button:active {
+                transform: scale(0.98);
+            }
+
+            .language-option:active,
+            .print-button:active {
+                transform: scale(0.95);
+            }
+
+            /* Spacing improvements */
+            .section:first-of-type {
+                padding-top: 40px;
+            }
+
+            .section:last-of-type {
+                padding-bottom: 100px;
+            }
+
+            /* Tooltip mobile improvements */
+            .tooltip .tooltip-text {
+                width: 280px;
+                max-width: 90vw;
+                font-size: 13px;
+                padding: 12px;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-left: 0;
+            }
+
+            .tooltip .tooltip-text::after {
+                left: 50%;
+                margin-left: -8px;
             }
         }
 
