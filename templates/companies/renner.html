@@ -62,7 +62,8 @@
             z-index: -2;
         }
 
-        @keyframes gradientShift {
+        /* animação removida */
+/*@keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
@@ -72,7 +73,7 @@
         .shape {
             position: absolute;
             opacity: 0.08;
-            animation: float 25s infinite ease-in-out;
+
         }
 
         .shape:nth-child(1) {
@@ -106,7 +107,8 @@
             animation-delay: 8s;
         }
 
-        @keyframes float {
+        /* animação removida */
+/*@keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             33% { transform: translateY(-50px) rotate(120deg); }
             66% { transform: translateY(50px) rotate(240deg); }
@@ -231,7 +233,7 @@
             top: 15%;
             left: 8%;
             border-radius: 50%;
-            animation: floatUp 12s infinite ease-in-out;
+
         }
 
         .particle:nth-child(2) {
@@ -240,7 +242,7 @@
             top: 35%;
             right: 15%;
             border-radius: 8px;
-            animation: floatUp 14s infinite ease-in-out 3s;
+
             background: rgba(232, 90, 112, 0.2);
         }
 
@@ -250,11 +252,12 @@
             bottom: 25%;
             left: 25%;
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            animation: floatUp 16s infinite ease-in-out 6s;
+
             background: rgba(210, 0, 31, 0.2);
         }
 
-        @keyframes floatUp {
+        /* animação removida */
+/*@keyframes floatUp {
             0%, 100% { 
                 transform: translateY(0) rotate(0deg);
                 opacity: 0.2;
@@ -280,12 +283,13 @@
         /* Logo container with animation */
         .logo-container {
             flex: 0 0 auto;
-            animation: logoEntrance 1.5s ease-out;
+
             position: relative;
             z-index: 101;
         }
 
-        @keyframes logoEntrance {
+        /* animação removida */
+/*@keyframes logoEntrance {
             0% {
                 transform: scale(0) rotate(-180deg);
                 opacity: 0;
@@ -304,13 +308,14 @@
             height: auto;
             filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.4))
                     drop-shadow(0 2px 10px rgba(255, 255, 255, 0.3));
-            transition: all 0.5s ease;
-            animation: logoFloat 4s ease-in-out infinite;
+
+
             position: relative;
             z-index: 102;
         }
 
-        @keyframes logoFloat {
+        /* animação removida */
+/*@keyframes logoFloat {
             0%, 100% { transform: translateY(0px) scale(1); }
             50% { transform: translateY(-10px) scale(1.03); }
         }
@@ -357,10 +362,11 @@
             margin-bottom: 12px;
             letter-spacing: -0.5px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: nameSlide 1s ease-out 0.5s both;
+
         }
 
-        @keyframes nameSlide {
+        /* animação removida */
+/*@keyframes nameSlide {
             from {
                 transform: translateX(-100px);
                 opacity: 0;
@@ -379,11 +385,12 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             text-transform: uppercase;
             letter-spacing: 1px;
-            animation: roleSlide 1s ease-out 0.7s both;
+
             opacity: 0.9;
         }
 
-        @keyframes roleSlide {
+        /* animação removida */
+/*@keyframes roleSlide {
             from {
                 transform: translateX(100px);
                 opacity: 0;
@@ -423,7 +430,7 @@
             color: var(--white-text);
             font-size: 14px;
             font-weight: 500;
-            transition: all 0.3s ease;
+
             border: 1px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
             position: relative;
@@ -454,10 +461,11 @@
             font-size: 11px;
             color: rgba(255, 255, 255, 0.8);
             font-weight: 400;
-            animation: gentlePulse 3s ease-in-out infinite;
+
         }
         
-        @keyframes gentlePulse {
+        /* animação removida */
+/*@keyframes gentlePulse {
             0%, 100% {
                 opacity: 0.8;
                 transform: scale(1);
@@ -556,7 +564,7 @@
             border-radius: 16px;
             border: 1px solid rgba(210, 0, 31, 0.2);
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+
         }
 
         .skills-column:hover {
@@ -828,7 +836,7 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(210, 0, 31, 0.2);
-            transition: all 0.3s ease;
+
         }
 
         .experience-item:hover {
@@ -926,7 +934,7 @@
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            transition: all 0.3s ease;
+
         }
         
         .achievement-item:hover {
@@ -975,7 +983,7 @@
             padding: 25px;
             border-radius: 16px;
             border: 1px solid rgba(210, 0, 31, 0.2);
-            transition: all 0.3s ease;
+
         }
 
         .education-item:hover {
@@ -1026,7 +1034,7 @@
             padding: 30px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(210, 0, 31, 0.2);
-            transition: all 0.3s ease;
+
             position: relative;
 
         }
@@ -1041,7 +1049,6 @@
             background: var(--background-gradient);
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.3s ease;
         }
 
         .project-item:hover::before {
@@ -1105,7 +1112,7 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 4px 20px rgba(210, 0, 31, 0.4);
-            transition: all 0.3s ease;
+
             z-index: 100;
         }
         
@@ -1121,7 +1128,7 @@
             display: flex;
             align-items: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+
             z-index: 100;
             border: 2px solid rgba(210, 0, 31, 0.3);
         }
@@ -1137,7 +1144,7 @@
             border-radius: 25px;
             font-weight: 600;
             font-size: 14px;
-            transition: all 0.3s ease;
+
             cursor: pointer;
             text-decoration: none;
             color: var(--text-color);
@@ -1478,7 +1485,7 @@
             height: 6px;
             border-radius: 50%;
             background-color: rgba(210, 0, 31, 0.2);
-            transition: all 0.3s ease;
+
             flex-shrink: 0;
         }
 
