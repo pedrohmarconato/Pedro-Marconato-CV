@@ -1099,23 +1099,20 @@
             }
             
             .header {
-                padding: 40px 20px 60px 20px;
-                min-height: 65vh;
-                display: flex;
+                padding: 30px 15px;
+                min-height: 50vh;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 text-align: center;
             }
-
             .header-content {
                 padding: 0;
-                width: 100%;
                 max-width: 350px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 25px;
+                gap: 16px;
             }
             
             .header-text {
@@ -1123,114 +1120,131 @@
                 padding-right: 0;
                 text-align: center;
             }
-
             .boticario-logo {
-                width: 180px;
-                bottom: 25px;
-                right: 25px;
-                max-width: 40vw;
+                width: 130px;
+                bottom: 20px;
+                right: 20px;
+                max-width: 50vw;
             }
-
             .header h1 {
-                font-size: clamp(32px, 8vw, 42px);
+                font-size: 1.3rem;
                 text-align: center;
-                margin-bottom: 20px;
+                margin-bottom: 10px;
                 line-height: 1.2;
             }
-
             .role {
-                font-size: clamp(18px, 4vw, 22px);
+                font-size: 1rem;
                 text-align: center;
-                margin-bottom: 30px;
-                line-height: 1.4;
+                margin-bottom: 18px;
+                line-height: 1.3;
             }
-
             .contact-info {
                 display: grid;
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 10px;
                 width: 100%;
-                max-width: 300px;
+                max-width: 260px;
                 margin: 0 auto;
             }
-
             .contact-item {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 8px;
+                gap: 6px;
             }
-
             .contact-button {
-                padding: 16px 20px;
-                font-size: 16px;
-                min-height: 52px;
+                padding: 10px 14px;
+                font-size: 13px;
+                min-height: 36px;
                 width: 100%;
-                border-radius: 26px;
+                border-radius: 18px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 12px;
+                gap: 8px;
                 font-weight: 600;
                 letter-spacing: 0.5px;
                 touch-action: manipulation;
                 -webkit-tap-highlight-color: transparent;
             }
-
             .contact-button i {
-                font-size: 18px;
+                font-size: 14px;
             }
-
             .contact-cta {
-                font-size: 12px;
+                font-size: 10px;
                 text-align: center;
                 opacity: 0.8;
             }
-
             .section {
-                padding: 35px 20px;
+                padding: 18px 10px;
             }
-
             .section-title {
-                font-size: 18px;
-                margin-bottom: 25px;
-                padding: 12px 20px;
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+                padding: 6px 12px;
                 text-align: center;
             }
-
             .profile-text {
-                font-size: 16px;
-                line-height: 1.7;
+                font-size: 13px;
+                line-height: 1.5;
                 text-align: left;
-                margin-bottom: 20px;
-            }
-
-            .section:not(:last-child)::after {
-                left: 20px;
-                right: 20px;
-            }
-
-            /* Skills improvements */
-            .skills-container {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .skills-column {
-                padding: 20px;
-            }
-
-            .skill-item {
-                font-size: 15px;
                 margin-bottom: 12px;
             }
-
-            .skill-item i {
-                font-size: 16px;
+            .section:not(:last-child)::after {
+                left: 10px;
+                right: 10px;
             }
-
-            /* Experience improvements */
+            .skills-container {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .skills-column {
+                padding: 10px;
+            }
+            .skill-item {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+            .skill-item i {
+                font-size: 13px;
+            }
+            .experience-timeline {
+                margin-left: 0;
+                padding-left: 0;
+            }
+            .project-item {
+                min-width: 150px;
+                padding: 10px;
+            }
+            .projects-container {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .tooltip .tooltip-text {
+                width: 90vw;
+                max-width: 320px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 12px;
+                max-height: 75vh;
+            }
+            .tooltip-active .tooltip-text {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) !important;
+                width: 90vw;
+                max-width: 340px;
+                margin-left: 0;
+            }
+            .language-toggle {
+                top: 10px;
+                right: 8px;
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+        
             .experience-timeline {
                 margin-left: 15px;
                 padding-left: 25px;

@@ -137,19 +137,14 @@
         }
         
         .cv-container {
-            max-width: 1000px;
-            margin: 30px auto;
+            max-width: 100%;
+            margin: 0;
+            border-radius: 0;
+            min-height: 100vh;
             background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 28px;
-            box-shadow: 
-                0 10px 40px rgba(63, 161, 16, 0.1),
-                inset 0 1px 2px rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(63, 161, 16, 0.05);
+            box-shadow: none;
             overflow: hidden;
             position: relative;
-            animation: containerGlow 20s ease infinite;
             z-index: 2;
         }
 
@@ -1529,7 +1524,6 @@
                 max-width: 320px;
                 left: 50%;
                 transform: translateX(-50%);
-                margin-left: 0;
                 font-size: 12px;
                 max-height: 75vh;
             }
@@ -1540,7 +1534,8 @@
                 left: 50%;
                 transform: translate(-50%, -50%) !important;
                 width: 90vw;
-                max-width: 380px;
+                max-width: 340px;
+                margin-left: 0;
                 z-index: 10000;
             }
         }
