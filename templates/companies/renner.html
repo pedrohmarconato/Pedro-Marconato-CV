@@ -1211,28 +1211,38 @@
             }
             
             .header {
-                padding: 30px 10px 50px 10px;
-                min-height: 180px;
+                padding: 40px 15px 60px 15px;
+                min-height: 250px;
                 overflow: visible;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
             }
             
             .header h1 {
-                font-size: 22px;
+                font-size: 24px;
                 text-align: center;
                 position: relative;
                 z-index: 2;
+                margin-bottom: 10px;
             }
             .header-tagline,
             .role {
-                font-size: 14px;
+                font-size: 16px;
                 text-align: center;
                 position: relative;
                 z-index: 2;
+                margin-bottom: 10px;
+                padding: 0 5px;
             }
             .contact-info {
                 justify-content: center;
                 flex-direction: column;
-                gap: 6px;
+                gap: 10px;
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
             }
             .contact-item {
                 font-size: 12px;
@@ -1271,21 +1281,27 @@
             }
             /* Partículas e formas laterais no header */
             .shape, .particle {
-                opacity: 0.18 !important;
-                filter: blur(1.5px);
+                opacity: 0.15 !important;
+                filter: blur(1px);
                 z-index: 1;
             }
             .header .shape, .header .particle {
                 display: block !important;
                 position: absolute;
-                width: 60px !important;
-                height: 60px !important;
-                top: 10px;
-                left: 10px;
+                width: 40px !important;
+                height: 40px !important;
             }
-            .header .shape:last-child, .header .particle:last-child {
-                right: 10px;
-                left: auto;
+            .header .particle:nth-child(1) {
+                top: 15%;
+                left: 8%;
+            }
+            .header .particle:nth-child(2) {
+                top: 25%;
+                right: 8%;
+            }
+            .header .particle:nth-child(3) {
+                bottom: 20%;
+                left: 15%;
             }
             /* Projects */
             .projects-container {
@@ -1297,8 +1313,16 @@
             /* Header content adjustments */
             .header-content {
                 flex-direction: column;
+                gap: 25px;
+                align-items: center;
+                width: 100%;
+                padding: 0 10px;
+            }
+            
+            .header-text-content {
                 text-align: center;
-                gap: 15px;
+                width: 100%;
+                padding: 0 5px;
             }
             .header-text {
                 padding-right: 0;
@@ -1345,30 +1369,39 @@
                 right: auto;
                 left: 20px;
             }
+            .contact-section {
+                padding: 0 15px;
+                margin-top: 20px;
+                width: 100%;
+            }
         }    
             
         @media (max-width: 480px) {
-            .header {
-                padding: 40px 15px 60px 15px;
-                min-height: 350px;
+            .section {
+                padding: 25px 15px;
             }
             
-            .header h1 {
-                font-size: 18px;
-            }
-            
-            .role {
+            .section-title {
                 font-size: 16px;
-                letter-spacing: 1px;
+                padding: 10px 15px;
+            }
+            
+            .header {
+                padding: 30px 15px 50px 15px;
+                min-height: 280px;
             }
             
             .renner-logo-header {
-                width: 160px;
+                width: 120px;
+                margin-bottom: 15px;
+                animation: logoFloat 3s ease-in-out infinite;
             }
             
             .company-tagline {
-                font-size: 16px;
-                letter-spacing: 0.5px;
+                font-size: 15px;
+                margin-bottom: 12px;
+                letter-spacing: 1px;
+                padding: 0 10px;
             }
             
             .section {
