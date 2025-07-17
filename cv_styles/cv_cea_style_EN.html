@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Marconato - CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        /* C&A Professional CV Styles */
+        :root {
+            --primary-black: #000000;
+            --vibrant-blue: #0050A3;
+            --dark-blue: #003A7A;
+            --accent-red: #E30613;
+            --pure-white: #FFFFFF;
+            --light-gray: #F8F8F8;
+            --dark-gray: #333333;
+            --text-color: #000000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.5;
+            background: white;
+            font-size: 14px;
+        }
+        
+        .cv-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header with C&A branding */
+        .header {
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--vibrant-blue) 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red) 0%, var(--vibrant-blue) 50%, var(--primary-black) 100%);
+        }
+        
+        .logo-container {
+            margin-bottom: 20px;
+        }
+        
+        .cea-logo {
+            width: 120px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .role {
+            font-size: 18px;
+            font-weight: 500;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        /* Contact Information */
+        .contact-info {
+            background: var(--light-gray);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 2px solid var(--vibrant-blue);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: var(--dark-gray);
+        }
+        
+        .contact-item i {
+            color: var(--vibrant-blue);
+            margin-right: 8px;
+            width: 16px;
+            text-align: center;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 30px 40px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-black);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--vibrant-blue);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            width: 30px;
+            height: 3px;
+            background: var(--accent-red);
+        }
+        
+        /* Profile Section */
+        .profile-text {
+            font-size: 15px;
+            line-height: 1.7;
+            text-align: justify;
+            color: var(--dark-gray);
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .skills-category {
+            background: linear-gradient(135deg, rgba(0, 80, 163, 0.05), rgba(0, 0, 0, 0.02));
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--vibrant-blue);
+        }
+        
+        .skills-category h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-black);
+            margin-bottom: 15px;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .skill-item i {
+            color: var(--vibrant-blue);
+            margin-right: 10px;
+            width: 16px;
+            font-size: 14px;
+        }
+        
+        /* Tool proficiency with progress bars */
+        .tool-item {
+            margin-bottom: 15px;
+        }
+        
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .tool-name {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .tool-percentage {
+            font-size: 12px;
+            color: var(--vibrant-blue);
+            font-weight: 600;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-black), var(--vibrant-blue));
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--vibrant-blue);
+        }
+        
+        .experience-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 25px;
+            width: 10px;
+            height: 10px;
+            background: var(--vibrant-blue);
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px var(--vibrant-blue);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .job-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-black);
+            margin-bottom: 5px;
+        }
+        
+        .company {
+            font-size: 16px;
+            color: var(--vibrant-blue);
+            font-weight: 500;
+        }
+        
+        .job-period {
+            background: var(--accent-red);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .job-description {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+        
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .achievement {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px;
+            background: rgba(0, 80, 163, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid var(--vibrant-blue);
+        }
+        
+        .achievement-icon {
+            color: var(--vibrant-blue);
+            margin-top: 2px;
+            font-size: 16px;
+        }
+        
+        .achievement-text {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .achievement-title {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .education-item {
+            background: linear-gradient(135deg, rgba(0, 80, 163, 0.05), rgba(0, 0, 0, 0.02));
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 3px solid var(--vibrant-blue);
+        }
+        
+        .degree {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-black);
+            margin-bottom: 8px;
+        }
+        
+        .university {
+            font-size: 14px;
+            color: var(--vibrant-blue);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .thesis {
+            font-size: 13px;
+            color: var(--dark-gray);
+            font-style: italic;
+            line-height: 1.4;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .project-item {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-black), var(--vibrant-blue));
+        }
+        
+        .project-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-black);
+            margin-bottom: 10px;
+        }
+        
+        .project-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .tech-tag {
+            background: rgba(0, 80, 163, 0.1);
+            color: var(--vibrant-blue);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            border: 1px solid rgba(0, 80, 163, 0.2);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--primary-black);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+        
+        .footer::before {
+            content: '';
+            display: block;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red) 0%, var(--vibrant-blue) 50%, var(--primary-black) 100%);
+            margin-bottom: 15px;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                font-size: 12px;
+                background: white;
+            }
+            
+            .cv-container {
+                box-shadow: none;
+                max-width: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+                padding: 20px 30px;
+            }
+            
+            .header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .skills-grid,
+            .achievements,
+            .education-grid,
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .section {
+                padding: 25px 20px;
+            }
+            
+            .contact-info {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .skills-grid,
+            .achievements,
+            .education-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .job-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .experience-timeline {
+                padding-left: 20px;
+            }
+            
+            .experience-item::before {
+                left: -28px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../cv-texts.js"></script>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo-container">
+                <img src="../assets/images/cea.png" alt="C&A" class="cea-logo">
+            </div>
+            <h1 id="cv-name">Pedro Marconato</h1>
+            <div class="role" id="cv-role">Full Stack Developer</div>
+            <div class="tagline">Fashion Innovation & Excellence</div>
+        </header>
+        
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span id="cv-email">pedro@example.com</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span id="cv-phone">(11) 99999-9999</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span id="cv-location">São Paulo, SP</span>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <span>linkedin.com/in/pedrohmarconato</span>
+            </div>
+        </div>
+        
+        <!-- Profile Section -->
+        <section class="section">
+            <h2 class="section-title">Professional Profile</h2>
+            <p class="profile-text" id="cv-profile">
+                Full Stack Developer with extensive experience in modern technologies and agile methodologies. 
+                Specialized in React, Node.js and cloud computing, focused on delivering innovative solutions 
+                that drive business growth in the fashion and retail sector.
+            </p>
+        </section>
+        
+        <!-- Skills Section -->
+        <section class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skills-category">
+                    <h3>Strategic</h3>
+                    <div id="skills-strategic">
+                        <div class="skill-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Data Analysis</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-users"></i>
+                            <span>Technical Leadership</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Innovation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-category">
+                    <h3>Tools</h3>
+                    <div id="skills-tools">
+                        <div class="tool-item">
+                            <div class="tool-header">
+                                <span class="tool-name">React/Next.js</span>
+                                <span class="tool-percentage">95%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-header">
+                                <span class="tool-name">Node.js</span>
+                                <span class="tool-percentage">90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-header">
+                                <span class="tool-name">AWS</span>
+                                <span class="tool-percentage">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-category">
+                    <h3>Emerging</h3>
+                    <div id="skills-emerging">
+                        <div class="skill-item">
+                            <i class="fas fa-robot"></i>
+                            <span>AI & Machine Learning</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-cube"></i>
+                            <span>Blockchain</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>React Native</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Experience Section -->
+        <section class="section">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-timeline" id="cv-experience">
+                <!-- Experience items will be populated by JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Education Section -->
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid" id="cv-education">
+                <!-- Education items will be populated by JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Projects Section -->
+        <section class="section">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid" id="cv-projects">
+                <!-- Project items will be populated by JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>This resume was created especially for C&A, demonstrating passion for innovation in fashion and technology.</p>
+            <p>🤖 Generated with <a href="https://claude.ai/code" style="color: #0050A3;">Claude Code</a></p>
+        </footer>
+    </div>
+    
+    <script>
+        // Initialize CV content when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if cv-texts.js functions are available
+            if (typeof initializeBasicContent === 'function') {
+                initializeBasicContent('en');
+                
+                // Populate experience section
+                if (typeof getText === 'function') {
+                    renderExperience('en');
+                    renderEducation('en');
+                    renderProjects('en');
+                }
+            }
+        });
+        
+        function renderExperience(lang) {
+            const container = document.getElementById('cv-experience');
+            if (!container || typeof getText !== 'function') return;
+            
+            const experiences = getText('experience', lang);
+            let html = '';
+            
+            experiences.forEach((exp, index) => {
+                html += `
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">${exp.title}</div>
+                                <div class="company">${exp.company}</div>
+                            </div>
+                            <div class="job-period">${exp.period}</div>
+                        </div>
+                        <div class="job-description">${exp.description}</div>
+                        <div class="achievements">
+                            ${exp.achievements.map(achievement => `
+                                <div class="achievement">
+                                    <div class="achievement-icon">
+                                        <i class="${achievement.icon}"></i>
+                                    </div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">${achievement.title}</div>
+                                        <div>${achievement.description}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        function renderEducation(lang) {
+            const container = document.getElementById('cv-education');
+            if (!container || typeof getText !== 'function') return;
+            
+            const education = getText('education', lang);
+            let html = '';
+            
+            education.forEach(edu => {
+                html += `
+                    <div class="education-item">
+                        <div class="degree">${edu.degree}</div>
+                        <div class="university">${edu.university}</div>
+                        <div class="thesis">${edu.thesis}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        function renderProjects(lang) {
+            const container = document.getElementById('cv-projects');
+            if (!container || typeof getText !== 'function') return;
+            
+            const projects = getText('projects', lang);
+            let html = '';
+            
+            projects.forEach(project => {
+                html += `
+                    <div class="project-item">
+                        <div class="project-title">${project.title}</div>
+                        <div class="project-description">${project.description}</div>
+                        <div class="tech-tags">
+                            ${project.techs.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
