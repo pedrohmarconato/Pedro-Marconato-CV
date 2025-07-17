@@ -38,7 +38,6 @@
         
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 20px;
         }
         
         body {
@@ -1206,31 +1205,7 @@
             font-size: 24px;
         }
 
-        /* Controle de scroll para dispositivos móveis */
-        @media (pointer: coarse) {
-            html, body {
-                scroll-behavior: auto;
-                -webkit-overflow-scrolling: touch;
-                scroll-snap-type: none;
-            }
-            
-            .cv-container {
-                -webkit-overflow-scrolling: touch;
-                overflow-y: auto;
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-            
-            .cv-container::-webkit-scrollbar {
-                display: none;
-            }
-            
-            /* Reduz a velocidade de animações para evitar aceleração excessiva */
-            * {
-                transition-duration: 0.4s !important;
-                animation-duration: 1.5s !important;
-            }
-        }
+
         
         /* Responsive design */
         @media (max-width: 768px) {
@@ -1409,13 +1384,8 @@
         }    
             
         @media (max-width: 480px) {
-            html, body {
-                scroll-snap-type: none;
-            }
-            
             .section {
                 padding: 25px 15px;
-                scroll-margin-top: 20px;
             }
             
             .section-title {
@@ -1426,7 +1396,6 @@
             .header {
                 padding: 30px 15px 50px 15px;
                 min-height: 280px;
-                scroll-margin-top: 0;
             }
             
             .renner-logo-header {
