@@ -256,132 +256,50 @@
             }
             50% { 
                 transform: translateY(-70px) rotate(180deg);
-                opacity: 0.4;
+
+            .cv-container::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle at 30% 50%, rgba(210, 0, 31, 0.03) 0%, transparent 50%),
+                            radial-gradient(circle at 70% 30%, rgba(179, 0, 32, 0.03) 0%, transparent 50%),
+                            radial-gradient(circle at 50% 80%, rgba(232, 90, 112, 0.02) 0%, transparent 50%);
+                animation: rotate 30s linear infinite;
+                pointer-events: none;
             }
-        }
 
-        .header-content {
-            position: relative;
-            z-index: 100;
-            text-align: center;
-            width: 100%;
-            max-width: 1000px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        /* Logo container with animation */
-        .logo-container {
-            flex: 0 0 auto;
-            animation: logoEntrance 1.5s ease-out;
-            position: relative;
-            z-index: 101;
-        }
-
-        @keyframes logoEntrance {
-            0% {
-                transform: scale(0) rotate(-180deg);
-                opacity: 0;
+            @keyframes rotate {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
             }
-            50% {
-                transform: scale(1.2) rotate(90deg);
+            
+            .header {
+                background: var(--background-gradient);
+                padding: 40px 60px 60px 60px;
+                position: relative;
+                overflow: hidden;
+                min-height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
-            100% {
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
-            }
-        }
-
-        .renner-logo-header {
-            width: 180px;
-            height: auto;
-            filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.4))
-                    drop-shadow(0 2px 10px rgba(255, 255, 255, 0.3));
-            transition: all 0.5s ease;
-            animation: logoFloat 4s ease-in-out infinite;
-            position: relative;
-            z-index: 102;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-10px) scale(1.03); }
-        }
-
-        .renner-logo-header:hover {
-            transform: scale(1.1) rotate(2deg);
-            filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.5))
-                    drop-shadow(0 4px 15px rgba(210, 0, 31, 0.4));
-        }
-
-        /* Header text content */
-        .header-text-content {
-            flex: 1;
-            text-align: left;
-            position: relative;
-            z-index: 101;
-        }
-        
-        /* Animated tagline */
-        .company-tagline {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--white-text);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            opacity: 0.95;
-            background: linear-gradient(45deg, #ffffff, #E85A70);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header-text {
-            max-width: 100%;
-            margin: 0;
-        }
-        
-        .header h1 {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--white-text);
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: nameSlide 1s ease-out 0.5s both;
-        }
-
-        @keyframes nameSlide {
-            from {
-                transform: translateX(-100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        .role {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--white-text);
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            animation: roleSlide 1s ease-out 0.7s both;
-            opacity: 0.9;
-        }
-
-        @keyframes roleSlide {
-            from {
-                transform: translateX(100px);
-                opacity: 0;
+            
+            /* Animated wave backgrounds - Renner modern style */
+            .header::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle at 20% 50%, rgba(232, 90, 112, 0.15) 0%, transparent 50%),
+                            radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                            radial-gradient(circle at 40% 80%, rgba(210, 0, 31, 0.2) 0%, transparent 50%);
+                animation: waveMotion 22s ease-in-out infinite;
+                z-index: -1;
             }
             to {
                 transform: translateX(0);
@@ -1211,13 +1129,18 @@
             }
             
             .header {
-                padding: 30px 10px 50px 10px;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 24px 8px 32px 8px;
                 min-height: 180px;
                 overflow: visible;
             }
             
             .header h1 {
-                font-size: 22px;
+                font-size: 1.35rem;
+                margin-bottom: 6px;
+                word-break: break-word;
                 text-align: center;
                 position: relative;
                 z-index: 2;
@@ -1271,21 +1194,13 @@
             }
             /* Partículas e formas laterais no header */
             .shape, .particle {
-                opacity: 0.18 !important;
-                filter: blur(1.5px);
-                z-index: 1;
+                opacity: 0.13 !important;
+                width: 38px !important;
+                height: 38px !important;
+                filter: blur(1px);
             }
             .header .shape, .header .particle {
                 display: block !important;
-                position: absolute;
-                width: 60px !important;
-                height: 60px !important;
-                top: 10px;
-                left: 10px;
-            }
-            .header .shape:last-child, .header .particle:last-child {
-                right: 10px;
-                left: auto;
             }
             /* Projects */
             .projects-container {
