@@ -1206,20 +1206,28 @@
                 margin: 0;
                 border-radius: 0;
                 max-width: 100%;
+                min-height: 100vh;
+                box-shadow: none;
             }
             
             .header {
-                padding: 30px 20px;
+                padding: 30px 10px 50px 10px;
+                min-height: 180px;
+                overflow: visible;
             }
             
             .header h1 {
                 font-size: 22px;
                 text-align: center;
+                position: relative;
+                z-index: 2;
             }
             .header-tagline,
             .role {
                 font-size: 14px;
                 text-align: center;
+                position: relative;
+                z-index: 2;
             }
             .contact-info {
                 justify-content: center;
@@ -1260,6 +1268,24 @@
             .rd-logo,
             .rdstation-logo {
                 display: none;
+            }
+            /* Partículas e formas laterais no header */
+            .shape, .particle {
+                opacity: 0.18 !important;
+                filter: blur(1.5px);
+                z-index: 1;
+            }
+            .header .shape, .header .particle {
+                display: block !important;
+                position: absolute;
+                width: 60px !important;
+                height: 60px !important;
+                top: 10px;
+                left: 10px;
+            }
+            .header .shape:last-child, .header .particle:last-child {
+                right: 10px;
+                left: auto;
             }
             /* Projects */
             .projects-container {
