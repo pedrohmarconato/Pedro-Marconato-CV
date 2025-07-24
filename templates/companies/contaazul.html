@@ -8,22 +8,26 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
-            /* Neutral Colors */
-            --primary-blue: #1AC2FF;
-            --secondary-blue: #007BB8;
-            --light-gray: #F5F5F5;
-            --medium-gray: #E0E0E0;
-            --dark-gray: #333333;
+            /* Conta Azul Brand Colors - seguindo referências visuais */
+            --primary-blue: #4A90E2;
+            --secondary-blue: #2C5AA0;
+            --light-blue: #6BA3E5;
+            --accent-blue: #5BA0F2;
+            --light-gray: #F8FBFF;
+            --medium-gray: #E8F2FF;
+            --dark-gray: #2D3748;
             
-            /* Applied Colors */
-            --primary-color: #1AC2FF;
-            --secondary-color: #007BB8;
-            --accent-color: #6A4FFF;
-            --light-accent: #F5F5F5;
-            --dark-accent: #0056A0;
-            --text-color: #2c3e50;
-            --border-color: rgba(26, 194, 255, 0.2);
-            --background-gradient: linear-gradient(135deg, #1AC2FF 0%, #007BB8 100%);
+            /* Applied Colors - otimizados para contraste */
+            --primary-color: #4A90E2;
+            --secondary-color: #2C5AA0;
+            --accent-color: #5BA0F2;
+            --light-accent: #F8FBFF;
+            --dark-accent: #1A365D;
+            --text-color: #2D3748;
+            --border-color: rgba(74, 144, 226, 0.15);
+            --background-gradient: linear-gradient(135deg, #4A90E2 0%, #2C5AA0 50%, #5BA0F2 100%);
+            --card-shadow: 0 4px 20px rgba(74, 144, 226, 0.08);
+            --hover-shadow: 0 8px 30px rgba(74, 144, 226, 0.15);
         }
         
         * {
@@ -36,22 +40,22 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: var(--text-color);
             line-height: 1.6;
-            background: #f8faf7;
+            background: var(--light-gray);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* Animated background */
+        /* Animated background - seguindo estilo das referências */
         .animated-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #f8fbff 0%, #f0f8ff 50%, #f8fbff 100%);
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--medium-gray) 50%, var(--light-gray) 100%);
             background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
+            animation: gradientShift 25s ease infinite;
             z-index: -2;
         }
 
@@ -68,34 +72,39 @@
             animation: float 25s infinite ease-in-out;
         }
 
+        /* Formas geométricas inspiradas nas referências */
         .shape:nth-child(1) {
-            width: 200px;
-            height: 100px;
-            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
-            border-radius: 50%;
-            top: 10%;
-            left: 5%;
+            width: 180px;
+            height: 90px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border-radius: 45px;
+            top: 12%;
+            left: 8%;
             animation-delay: 0s;
+            opacity: 0.03;
         }
 
         .shape:nth-child(2) {
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-color));
-            transform: rotate(45deg);
-            top: 60%;
-            right: 10%;
-            animation-delay: 8s;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--light-blue));
+            border-radius: 16px;
+            transform: rotate(30deg);
+            top: 65%;
+            right: 12%;
+            animation-delay: 10s;
+            opacity: 0.04;
         }
 
         .shape:nth-child(3) {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(90deg, var(--secondary-blue), var(--primary-blue));
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
             border-radius: 50%;
-            bottom: 20%;
-            left: 25%;
-            animation-delay: 15s;
+            bottom: 25%;
+            left: 30%;
+            animation-delay: 18s;
+            opacity: 0.03;
         }
 
         @keyframes float {
@@ -104,37 +113,27 @@
             66% { transform: translateY(30px) rotate(240deg); }
         }
         
+        /* Container principal - estilo moderno inspirado nas referências */
         .cv-container {
             max-width: 1000px;
-            margin: 30px auto;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 28px;
-            box-shadow: 
-                0 20px 50px rgba(74, 144, 226, 0.15),
-                0 15px 30px rgba(0, 0, 0, 0.08),
-                inset 0 1px 2px rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(74, 144, 226, 0.15);
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(74, 144, 226, 0.1);
             overflow: hidden;
             position: relative;
-            animation: containerGlow 20s ease infinite;
+            animation: containerGlow 30s ease infinite;
         }
 
         @keyframes containerGlow {
             0%, 100% { 
-                box-shadow: 
-                    0 10px 40px rgba(74, 144, 226, 0.08),
-                    0 5px 20px rgba(0, 0, 0, 0.05),
-                    0 0 80px rgba(74, 144, 226, 0.03),
-                    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+                box-shadow: var(--card-shadow);
             }
             50% { 
-                box-shadow: 
-                    0 10px 40px rgba(44, 90, 160, 0.08),
-                    0 5px 20px rgba(0, 0, 0, 0.05),
-                    0 0 100px rgba(107, 163, 229, 0.03),
-                    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+                box-shadow: var(--hover-shadow);
             }
         }
 
@@ -157,279 +156,156 @@
             to { transform: rotate(360deg); }
         }
         
+        /* Header com cores do fundo da imagem cazul.png */
         .header {
-            background: linear-gradient(135deg, #1AC2FF 0%, #007BB8 50%, #6A4FFF 100%);
-            padding: 100px 60px 120px 60px;
+            background: linear-gradient(135deg, #E8F4FD 0%, #D1E9F9 50%, #B8DEF5 100%);
+            padding: 60px 40px 80px 40px;
             position: relative;
             overflow: hidden;
-            min-height: 500px;
+            min-height: 400px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-start;
+            justify-content: flex-start;
+            border-bottom: 3px solid var(--primary-color);
         }
         
-        /* Animated wave backgrounds */
+        /* Background pattern inspirado nas referências geométricas */
         .header::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 50%, rgba(106, 79, 255, 0.4) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 80%, rgba(26, 194, 255, 0.3) 0%, transparent 50%);
-            animation: waveMotion 15s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(74, 144, 226, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(91, 160, 242, 0.06) 0%, transparent 40%),
+                linear-gradient(45deg, transparent 30%, rgba(74, 144, 226, 0.02) 50%, transparent 70%);
+            z-index: 1;
         }
-
+        
+        /* Elementos geométricos decorativos inspirados nas referências */
         .header::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.2" d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,128C672,107,768,85,864,96C960,107,1056,149,1152,165.3C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
-            background-size: 1440px 320px;
-            animation: wave 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-            transform: translate3d(0, 0, 0);
+            top: 15%;
+            right: 8%;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, rgba(74, 144, 226, 0.1), rgba(91, 160, 242, 0.05));
+            border-radius: 16px;
+            transform: rotate(15deg);
+            z-index: 1;
         }
 
-        @keyframes waveMotion {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(3deg) scale(1.1); }
-            50% { transform: rotate(-3deg) scale(0.95); }
-            75% { transform: rotate(1deg) scale(1.05); }
-        }
-
-        @keyframes wave {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-1440px); }
-        }
-
-        /* Floating particles */
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .particle:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 10%;
-            animation: floatUp 8s infinite ease-in-out;
-        }
-
-        .particle:nth-child(2) {
-            width: 60px;
-            height: 60px;
-            top: 40%;
-            right: 20%;
-            animation: floatUp 10s infinite ease-in-out 1s;
-            background: rgba(106, 79, 255, 0.3);
-        }
-
-        .particle:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            bottom: 30%;
-            left: 30%;
-            animation: floatUp 12s infinite ease-in-out 2s;
-            background: rgba(26, 194, 255, 0.3);
-        }
-
-        @keyframes floatUp {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.5;
-            }
-            50% { 
-                transform: translateY(-50px) rotate(180deg);
-                opacity: 0.8;
-            }
-        }
-
+        /* Layout do header reorganizado */
         .header-content {
             position: relative;
             z-index: 10;
-            text-align: center;
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
         }
-
-        /* Logo container with animation */
+        
+        .header-left {
+            width: 100%;
+        }
+        
+        /* Logo container */
         .logo-container {
-            margin-bottom: 40px;
-            animation: logoEntrance 1.5s ease-out, logoContainerGlow 4s ease-in-out infinite 2s;
-            position: relative;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 
-                0 20px 60px rgba(255, 255, 255, 0.2),
-                0 0 80px rgba(255, 255, 255, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            margin-bottom: 25px;
+            display: inline-block;
         }
-
-        @keyframes logoContainerGlow {
-            0%, 100% { 
-                background: rgba(255, 255, 255, 0.15);
-                border: 2px solid rgba(255, 255, 255, 0.3);
-                box-shadow: 
-                    0 20px 60px rgba(255, 255, 255, 0.2),
-                    0 0 80px rgba(255, 255, 255, 0.1),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            }
-            50% { 
-                background: rgba(255, 255, 255, 0.25);
-                border: 2px solid rgba(255, 255, 255, 0.5);
-                box-shadow: 
-                    0 20px 60px rgba(255, 255, 255, 0.4),
-                    0 0 100px rgba(255, 255, 255, 0.3),
-                    0 0 150px rgba(255, 255, 255, 0.2),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            }
-        }
-
-        @keyframes logoEntrance {
-            0% {
-                transform: scale(0) rotate(-180deg);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.2) rotate(90deg);
-            }
-            100% {
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
-            }
-        }
-
+        
         .contaazul-logo-header {
+            width: 200px;
+            height: auto;
+            filter: none;
+            transition: none;
+        }
+
+        /* Imagem cazul.png posicionada no canto inferior direito */
+        .cazul-corner-image {
+            position: absolute;
+            bottom: 0;
+            right: 0;
             width: 300px;
             height: auto;
-            filter: drop-shadow(0 15px 40px rgba(255, 255, 255, 0.8))
-                    drop-shadow(0 5px 15px rgba(255, 255, 255, 0.6))
-                    drop-shadow(0 0 30px rgba(255, 255, 255, 0.4))
-                    drop-shadow(0 0 60px rgba(255, 255, 255, 0.3));
-            transition: all 0.5s ease;
-            animation: logoPulse 3s ease-in-out infinite;
-            position: relative;
-            z-index: 2;
+            border-radius: 16px 0 0 0;
+            box-shadow: -5px -5px 20px rgba(74, 144, 226, 0.15);
+            z-index: 3;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cazul-corner-image:hover {
+            opacity: 1;
         }
 
-        @keyframes logoPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .contaazul-logo-header:hover {
-            transform: scale(1.1) rotate(5deg);
-            filter: drop-shadow(0 20px 50px rgba(255, 255, 255, 1))
-                    drop-shadow(0 8px 20px rgba(255, 255, 255, 0.8))
-                    drop-shadow(0 0 40px rgba(255, 255, 255, 0.6))
-                    drop-shadow(0 0 80px rgba(255, 255, 255, 0.4));
-        }
-
-        /* Animated tagline */
+        /* Tagline redesenhada - mais clean */
         .company-tagline {
-            font-size: 24px;
-            font-weight: 700;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-            animation: taglineGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes taglineGlow {
-            from { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); }
-            to { text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(26, 194, 255, 0.6); }
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-transform: none;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+            text-shadow: none;
         }
 
         .header-text {
-            max-width: 850px;
-            margin: 0 auto;
+            max-width: 100%;
+            margin: 0;
+            text-align: left;
         }
         
         .header h1 {
-            font-size: 42px;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
-            animation: nameSlide 1s ease-out 0.5s both;
-        }
-
-        @keyframes nameSlide {
-            from {
-                transform: translateX(-100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            text-shadow: none;
         }
         
         .role {
-            font-size: 22px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: roleSlide 1s ease-out 0.7s both;
-        }
-
-        @keyframes roleSlide {
-            from {
-                transform: translateX(100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            text-shadow: none;
+            text-transform: none;
+            letter-spacing: 0;
         }
         
         .contact-info {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
+            gap: 10px;
+            align-items: flex-start;
         }
         
         .contact-button {
             display: inline-flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 10px 16px;
+            background: rgba(74, 144, 226, 0.1);
+            border-radius: 10px;
+            padding: 8px 14px;
             text-decoration: none;
-            color: white;
-            font-size: 14px;
+            color: var(--primary-color);
+            font-size: 13px;
             font-weight: 500;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(74, 144, 226, 0.2);
             cursor: pointer;
             position: relative;
             overflow: visible;
         }
         
         .contact-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: rgba(74, 144, 226, 0.15);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(74, 144, 226, 0.2);
+            border-color: rgba(74, 144, 226, 0.3);
         }
         
         .contact-button i {
@@ -446,28 +322,16 @@
         }
         
         .contact-cta {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.7);
+            font-size: 10px;
+            color: rgba(74, 144, 226, 0.7);
             font-weight: 400;
-            animation: gentlePulse 3s ease-in-out infinite;
-        }
-        
-        @keyframes gentlePulse {
-            0%, 100% {
-                opacity: 0.7;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.9;
-                transform: scale(1.02);
-            }
         }
         
         .location {
             display: flex;
             align-items: center;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+            color: var(--secondary-color);
         }
         
         .location i {
@@ -545,19 +409,22 @@
             }
         }
         
+        /* Cards de skills - design modular das referências */
         .skills-column {
-            background: linear-gradient(135deg, rgba(224, 224, 224, 0.3), rgba(224, 224, 224, 0.1));
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid rgba(74, 144, 226, 0.15);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(248, 251, 255, 0.9));
+            padding: 28px;
+            border-radius: 18px;
+            border: 1px solid rgba(74, 144, 226, 0.1);
+            backdrop-filter: blur(15px);
+            box-shadow: var(--card-shadow);
             transition: all 0.3s ease;
         }
 
         .skills-column:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(74, 144, 226, 0.1);
+            transform: translateY(-4px);
+            box-shadow: var(--hover-shadow);
             border-color: rgba(74, 144, 226, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 251, 255, 0.95));
         }
         
         .skill-item {
@@ -574,7 +441,7 @@
         }
         
         .skill-item i {
-            color: var(--primary-blue);
+            color: var(--primary-color);
             margin-right: 12px;
             font-size: 18px;
         }
@@ -609,23 +476,23 @@
         
         .progress {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             border-radius: 10px;
             position: relative;
             animation: progressGrow 1.5s ease-out;
         }
         
-        /* Subtle colored progress bars */
+        /* Progress bars com cores harmônicas das referências */
         .tool-item:nth-child(3n+1) .progress {
-            background: linear-gradient(90deg, #4A90E2 0%, #5BA0F2 100%);
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
         }
         
         .tool-item:nth-child(3n+2) .progress {
-            background: linear-gradient(90deg, #2C5AA0 0%, #3D6AB0 100%);
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
         }
         
         .tool-item:nth-child(3n) .progress {
-            background: linear-gradient(90deg, #6BA3E5 0%, #7BB3F5 100%);
+            background: linear-gradient(90deg, var(--light-blue) 0%, var(--accent-color) 100%);
         }
 
         @keyframes progressGrow {
@@ -814,21 +681,23 @@
             border-radius: 3px;
         }
         
+        /* Experience cards - layout modular inspirado nas referências */
         .experience-item {
-            margin-bottom: 25px;
+            margin-bottom: 28px;
             position: relative;
-            padding: 25px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(74, 144, 226, 0.15);
+            padding: 28px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), var(--light-gray));
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(74, 144, 226, 0.1);
             transition: all 0.3s ease;
         }
 
         .experience-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 20px rgba(74, 144, 226, 0.08);
-            border-color: rgba(74, 144, 226, 0.15);
+            transform: translateX(6px);
+            box-shadow: var(--hover-shadow);
+            border-color: rgba(74, 144, 226, 0.2);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 251, 255, 0.95));
         }
         
         .experience-item::before {
@@ -839,16 +708,16 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--primary-blue);
+            background: var(--primary-color);
             border: 3px solid white;
-            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
             z-index: 1;
         }
         
         .job-title {
             font-weight: 600;
             font-size: 20px;
-            color: var(--secondary-blue);
+            color: var(--secondary-color);
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -872,7 +741,7 @@
         .company {
             font-weight: 500;
             font-size: 16px;
-            color: var(--primary-blue);
+            color: var(--primary-color);
             margin-bottom: 5px;
         }
         
@@ -1200,7 +1069,7 @@
         }
 
 
-        /* Responsive design */
+        /* Responsive design - mobile first */
         @media (max-width: 768px) {
             .cv-container {
                 margin: 0;
@@ -1209,8 +1078,22 @@
             }
             
             .header {
-                padding: 60px 20px 80px 20px;
-                min-height: 400px;
+                padding: 40px 20px 50px 20px;
+                min-height: auto;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-left {
+                text-align: center;
+            }
+            
+            .logo-container {
+                text-align: center;
+            }
+            
+            .header-text {
+                text-align: center;
             }
             
             .header h1 {
@@ -1224,12 +1107,17 @@
             }
             
             .contaazul-logo-header {
-                width: 200px;
+                width: 160px;
+            }
+            
+            .cazul-corner-image {
+                width: 220px;
             }
             
             .company-tagline {
-                font-size: 18px;
-                letter-spacing: 1px;
+                font-size: 16px;
+                letter-spacing: 0.3px;
+                text-align: center;
             }
             
             .contact-info {
@@ -1414,7 +1302,11 @@
             }
             
             .contaazul-logo-header {
-                width: 150px;
+                width: 140px;
+            }
+            
+            .cazul-corner-image {
+                width: 180px;
             }
             
             .company-tagline {
@@ -1494,6 +1386,7 @@
         }
 
         /* Dots container for skills from cv-texts.js - ContaAzul colors */
+        /* Sistema de dots otimizado para contraste */
         .dots-container {
             display: flex;
             align-items: center;
@@ -1502,28 +1395,28 @@
         }
 
         .dot {
-            width: 6px;
-            height: 6px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
-            background-color: rgba(26, 194, 255, 0.15);
+            background-color: rgba(74, 144, 226, 0.2);
             transition: all 0.3s ease;
             flex-shrink: 0;
         }
 
         .dot.filled {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            box-shadow: 0 1px 3px rgba(26, 194, 255, 0.3);
+            box-shadow: 0 1px 4px rgba(74, 144, 226, 0.4);
             animation: dotPulse 2s ease-in-out infinite alternate;
         }
 
         @keyframes dotPulse {
             0% {
                 transform: scale(1);
-                box-shadow: 0 1px 3px rgba(26, 194, 255, 0.3);
+                box-shadow: 0 1px 4px rgba(74, 144, 226, 0.4);
             }
             100% {
-                transform: scale(1.1);
-                box-shadow: 0 2px 6px rgba(26, 194, 255, 0.5);
+                transform: scale(1.15);
+                box-shadow: 0 2px 8px rgba(74, 144, 226, 0.6);
             }
         }
 
@@ -1563,56 +1456,57 @@
     
     <div class="cv-container">
         <header class="header">
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            
             <div class="header-content">
-                <div class="logo-container">
-                    <img src="../../assets/images/logo_conta_azul.svg" alt="Conta Azul" class="contaazul-logo-header">
-                </div>
-                
-                <div class="company-tagline">Simplifying Business Management</div>
-                
-                <div class="header-text">
-                    <h1 id="cv-name"></h1>
-                    <div class="role" id="cv-role"></div>
+                <div class="header-left">
+                    <div class="logo-container">
+                        <img src="../../assets/images/logo_conta_azul.svg" alt="Conta Azul" class="contaazul-logo-header">
+                    </div>
                     
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <button class="contact-button" onclick="openEmailForm()">
-                                <i class="fas fa-envelope"></i> <span id="cv-email"></span>
-                            </button>
-                            <span class="contact-cta" id="cv-cta-email"></span>
-                        </div>
+                    <div class="company-tagline">Simplifying Business Management</div>
+                    
+                    <div class="header-text">
+                        <h1 id="cv-name"></h1>
+                        <div class="role" id="cv-role"></div>
                         
-                        <div class="contact-item">
-                            <button class="contact-button" onclick="openPhoneForm()">
-                                <i class="fas fa-phone"></i> <span id="cv-phone"></span>
-                            </button>
-                            <span class="contact-cta" id="cv-cta-phone"></span>
-                        </div>
-                        
-                        <div class="location" id="cv-location">
-                            <i class="fas fa-map-marker-alt"></i> <span></span>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
-                                <i class="fab fa-linkedin"></i> <span id="cv-linkedin"></span>
-                            </a>
-                            <span class="contact-cta" id="cv-cta-linkedin"></span>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
-                                <i class="fab fa-github"></i> <span id="cv-repository"></span>
-                            </a>
-                            <span class="contact-cta" id="cv-cta-repository"></span>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <button class="contact-button" onclick="openEmailForm()">
+                                    <i class="fas fa-envelope"></i> <span id="cv-email"></span>
+                                </button>
+                                <span class="contact-cta" id="cv-cta-email"></span>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <button class="contact-button" onclick="openPhoneForm()">
+                                    <i class="fas fa-phone"></i> <span id="cv-phone"></span>
+                                </button>
+                                <span class="contact-cta" id="cv-cta-phone"></span>
+                            </div>
+                            
+                            <div class="location" id="cv-location">
+                                <i class="fas fa-map-marker-alt"></i> <span></span>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
+                                    <i class="fab fa-linkedin"></i> <span id="cv-linkedin"></span>
+                                </a>
+                                <span class="contact-cta" id="cv-cta-linkedin"></span>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
+                                    <i class="fab fa-github"></i> <span id="cv-repository"></span>
+                                </a>
+                                <span class="contact-cta" id="cv-cta-repository"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- Imagem cazul.png posicionada no canto inferior direito -->
+            <img src="../../docs/cazul.png" alt="Conta Azul Team" class="cazul-corner-image">
         </header>
         
         <section class="section">
