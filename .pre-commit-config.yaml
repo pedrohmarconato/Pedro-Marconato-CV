@@ -1,0 +1,57 @@
+# 🛡️ PRE-COMMIT HOOKS - PEDRO MARCONATO CV
+# Validações automáticas antes de commits
+
+repos:
+  - repo: local
+    hooks:
+      - id: project-validator
+        name: 🔍 Validador do Projeto
+        entry: python validate-project.py
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [commit]
+        
+      - id: regras-reminder
+        name: 📋 Lembrete das Regras
+        entry: bash -c 'echo "⚠️  LEMBRE-SE: Consulte REGRAS_PROJETO.md antes de modificar código!"'
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [commit]
+        
+      - id: check-forbidden-files
+        name: 🚫 Verificar Arquivos Proibidos
+        entry: bash -c 'if find . -name "*_backup.html" -o -name "test-*.html" | grep -q .; then echo "❌ Arquivos proibidos encontrados!"; exit 1; fi'
+        language: system
+        pass_filenames: false
+        always_run: true
+        
+      - id: template-consistency
+        name: 🔄 Verificar Consistência PT/EN
+        entry: bash -c 'python -c "
+import os
+companies = set()
+for f in os.listdir(\"templates/companies\"):
+    if f.endswith(\".html\"):
+        if f.endswith(\"_pt.html\"):
+            companies.add(f[:-8])
+        else:
+            companies.add(f[:-5])
+            
+missing = []
+for c in companies:
+    if not os.path.exists(f\"templates/companies/{c}.html\"):
+        missing.append(f\"{c}.html\")
+    if not os.path.exists(f\"templates/companies/{c}_pt.html\"):
+        missing.append(f\"{c}_pt.html\")
+        
+if missing:
+    print(f\"❌ Templates faltando: {missing}\")
+    exit(1)
+else:
+    print(\"✅ Consistência PT/EN OK\")
+"'
+        language: system
+        pass_filenames: false
+        always_run: true

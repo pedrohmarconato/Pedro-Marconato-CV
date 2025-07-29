@@ -678,7 +678,7 @@
         }
         
         .skill-item i {
-            color: var(--sicredi-green);
+            color: var(--rdstation-green);
             margin-right: 12px;
             font-size: 18px;
         }
@@ -785,7 +785,7 @@
         }
         
         .tooltip .tooltip-icon {
-            color: var(--sicredi-green);
+            color: var(--rdstation-green);
             font-size: 14px;
             margin-left: 5px;
             transition: transform 0.2s, color 0.2s;
@@ -794,14 +794,14 @@
         .tooltip:hover .tooltip-icon,
         .tooltip:focus .tooltip-icon,
         .tooltip:active .tooltip-icon {
-            color: var(--sicredi-dark-green);
+            color: var(--rdstation-dark-green);
             transform: scale(1.2);
         }
         
         .tooltip .tooltip-text {
             visibility: hidden;
             width: 380px;
-            background: linear-gradient(145deg, var(--sicredi-dark-green), var(--sicredi-green));
+            background: linear-gradient(145deg, var(--rdstation-dark-green), var(--rdstation-green));
             color: white;
             text-align: left;
             border-radius: 12px;
@@ -830,7 +830,7 @@
             margin-left: -8px;
             border-width: 8px;
             border-style: solid;
-            border-color: var(--sicredi-green) transparent transparent transparent;
+            border-color: var(--rdstation-green) transparent transparent transparent;
         }
         
         .tooltip:hover .tooltip-text,
@@ -939,7 +939,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, var(--sicredi-green), var(--sicredi-dark-green));
+            background: linear-gradient(to bottom, var(--rdstation-green), var(--rdstation-dark-green));
             border-radius: 3px;
         }
         
@@ -968,7 +968,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--sicredi-green);
+            background: var(--rdstation-green);
             border: 3px solid white;
             box-shadow: 0 0 0 3px rgba(63, 161, 16, 0.1);
             z-index: 1;
@@ -977,7 +977,7 @@
         .job-title {
             font-weight: 600;
             font-size: 20px;
-            color: var(--sicredi-dark-green);
+            color: var(--rdstation-dark-green);
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -1001,7 +1001,7 @@
         .company {
             font-weight: 500;
             font-size: 16px;
-            color: var(--sicredi-green);
+            color: var(--rdstation-green);
             margin-bottom: 5px;
         }
         
@@ -1055,12 +1055,12 @@
         .achievement-item:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(63, 161, 16, 0.15);
-            border-color: var(--sicredi-green);
+            border-color: var(--rdstation-green);
         }
         
         .achievement-icon {
             font-size: 24px;
-            color: var(--sicredi-green);
+            color: var(--rdstation-green);
             flex-shrink: 0;
         }
         
@@ -1071,7 +1071,7 @@
         .achievement-title {
             font-weight: 600;
             font-size: 15px;
-            color: var(--sicredi-dark-green);
+            color: var(--rdstation-dark-green);
             margin-bottom: 6px;
         }
         
@@ -1109,7 +1109,7 @@
         .degree {
             font-weight: 600;
             font-size: 18px;
-            color: var(--sicredi-dark-green);
+            color: var(--rdstation-dark-green);
             margin-bottom: 8px;
         }
         
@@ -1215,13 +1215,13 @@
         .project-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 30px rgba(63, 161, 16, 0.15);
-            border-color: var(--sicredi-green);
+            border-color: var(--rdstation-green);
         }
         
         .project-title {
             font-weight: 600;
             font-size: 18px;
-            color: var(--sicredi-dark-green);
+            color: var(--rdstation-dark-green);
             margin-bottom: 12px;
         }
         
@@ -1235,7 +1235,7 @@
         .tech-tag {
             display: inline-block;
             background: rgba(63, 161, 16, 0.1);
-            color: var(--sicredi-dark-green);
+            color: var(--rdstation-dark-green);
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 12px;
@@ -1247,7 +1247,7 @@
         }
 
         .tech-tag:hover {
-            background: var(--sicredi-green);
+            background: var(--rdstation-green);
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 2px 8px rgba(63, 161, 16, 0.15);
@@ -1350,7 +1350,7 @@
         
         .language-option:not(.active):hover {
             background: rgba(63, 161, 16, 0.05);
-            color: var(--sicredi-green);
+            color: var(--rdstation-green);
         }
         
         .language-divider {
@@ -1499,38 +1499,38 @@
                 <div class="company-tagline">Digital Marketing Automation</div>
                 
                 <div class="header-text">
-                    <h1>PEDRO HENRIQUE LIMA MARCONATO</h1>
-                    <div class="role">CRM Management & Data Intelligence</div>
+                    <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
+                    <div class="role" id="cv-role">CRM Management & Data Intelligence</div>
                     
                     <div class="contact-info">
                         <div class="contact-item">
                             <button class="contact-button" onclick="openEmailForm()">
-                                <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
+                                <i class="fas fa-envelope"></i> <span id="cv-email">pedrohmarconato@gmail.com</span>
                             </button>
                             <span class="contact-cta">Click to send an email</span>
                         </div>
                         
                         <div class="contact-item">
                             <button class="contact-button" onclick="openPhoneForm()">
-                                <i class="fas fa-phone"></i> +55 (55) 981147758
+                                <i class="fas fa-phone"></i> <span id="cv-phone">+55 (55) 981147758</span>
                             </button>
                             <span class="contact-cta">Click to send a message</span>
                         </div>
                         
                         <div class="location">
-                            <i class="fas fa-map-marker-alt"></i> Cachoeira do Sul, RS
+                            <i class="fas fa-map-marker-alt"></i> <span id="cv-location">Cachoeira do Sul, RS</span>
                         </div>
                         
                         <div class="contact-item">
                             <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
-                                <i class="fab fa-linkedin"></i> LinkedIn
+                                <i class="fab fa-linkedin"></i> <span id="cv-linkedin">LinkedIn</span>
                             </a>
                             <span class="contact-cta">Click to visit LinkedIn</span>
                         </div>
                         
                         <div class="contact-item">
                             <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
-                                <i class="fab fa-github"></i> Repository
+                                <i class="fab fa-github"></i> <span id="cv-repository">Repository</span>
                             </a>
                             <span class="contact-cta">View source code</span>
                         </div>
@@ -1549,10 +1549,10 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">SKILLS & TOOLS</h2>
+            <h2 class="section-title" id="section-skills">SKILLS & TOOLS</h2>
             <div class="skills-container">
                 <div class="skills-column">
-                    <h3 style="font-size: 15px; color: var(--sicredi-dark-green); margin-bottom: 14px; font-weight: 600;">Strategic Skills</h3>
+                    <h3 style="font-size: 15px; color: var(--rdstation-dark-green); margin-bottom: 14px; font-weight: 600;">Strategic Skills</h3>
                     <div class="tool-item">
                         <div class="tool-name">
                             <span class="tool-skill-name">CRM Management</span>
@@ -1646,7 +1646,7 @@
                 </div>
                 
                 <div class="skills-column">
-                    <h3 style="font-size: 15px; color: var(--sicredi-dark-green); margin-bottom: 14px; font-weight: 600;">Tools & Technologies</h3>
+                    <h3 style="font-size: 15px; color: var(--rdstation-dark-green); margin-bottom: 14px; font-weight: 600;">Tools & Technologies</h3>
                     <div class="tool-item">
                         <div class="tool-name">
                             <span class="tool-skill-name">PowerBI</span>
@@ -1713,7 +1713,7 @@
                 </div>
                 
                 <div class="skills-column">
-                    <h3 style="font-size: 15px; color: var(--sicredi-dark-green); margin-bottom: 14px; font-weight: 600;">Emerging Technologies</h3>
+                    <h3 style="font-size: 15px; color: var(--rdstation-dark-green); margin-bottom: 14px; font-weight: 600;">Emerging Technologies</h3>
                     <div class="tool-item">
                         <div class="tool-name">
                             <span class="tool-skill-name">LLM & AI Agents</span>
@@ -1809,7 +1809,7 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
+            <h2 class="section-title" id="section-experience">PROFESSIONAL EXPERIENCE</h2>
             
             <div class="experience-timeline">
                 <div class="experience-item">
@@ -2113,7 +2113,7 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">EDUCATION</h2>
+            <h2 class="section-title" id="section-education">EDUCATION</h2>
             <div class="education-container">
                 <div class="education-item">
                     <div class="degree">Master's in Business Administration</div>
@@ -2133,7 +2133,7 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">PROJECTS & INNOVATION</h2>
+            <h2 class="section-title" id="section-projects">PROJECTS & INNOVATION</h2>
             <div class="projects-container">
                 <div class="project-item">
                     <div class="project-title">REPO NEWS</div>
@@ -2198,7 +2198,7 @@
     <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
-            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Send Email</h3>
+            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--rdstation-dark-green); font-size: 24px;">Send Email</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <div style="margin-bottom:20px;">
                     <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
@@ -2225,7 +2225,7 @@
     <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
-            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Get in Touch</h3>
+            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--rdstation-dark-green); font-size: 24px;">Get in Touch</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <input type="hidden" name="contact_type" value="phone_request">
                 <div style="margin-bottom:20px;">
@@ -2292,7 +2292,7 @@
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => {
                 input.addEventListener('focus', function() {
-                    this.style.borderColor = 'var(--sicredi-green)';
+                    this.style.borderColor = 'var(--rdstation-green)';
                 });
                 input.addEventListener('blur', function() {
                     this.style.borderColor = '#e5e7eb';
@@ -2325,6 +2325,15 @@
             });
         });
     </script>
+    <!-- CV Texts System -->
+    <script src="../../cv-texts.js"></script>
+    <script>
+        // Initialize content when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeContent('en');
+        });
+    </script>
+    
     <!-- Dynamic Favicon System -->
     <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
