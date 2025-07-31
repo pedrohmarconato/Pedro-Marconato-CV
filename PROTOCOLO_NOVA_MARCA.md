@@ -44,8 +44,10 @@ python add_new_brand.py
 1. ✅ Executar `python add_new_brand.py`
 2. ✅ Pedir os dados necessários
 3. ✅ Criar todos os 4 arquivos + atualizar index
-4. ✅ Confirmar URLs de teste
-5. ✅ Lembrar sobre logo (se aplicável)
+4. ✅ **VERIFICAR OBRIGATÓRIO**: Keywords funcionando no index.html
+5. ✅ Testar busca com todas as keywords
+6. ✅ Confirmar URLs de teste
+7. ✅ Lembrar sobre logo (se aplicável)
 
 ## 🔄 Resultado Final:
 ```
@@ -80,4 +82,29 @@ Após a automação, você pode solicitar:
 
 ---
 
+## 🚨 VERIFICAÇÃO OBRIGATÓRIA PÓS-CRIAÇÃO
+
+### ✅ **CHECKLIST CRÍTICO:**
+1. **Keywords funcionando**: Testar todas as keywords no index.html
+2. **Templates acessíveis**: Verificar se as URLs funcionam
+3. **CV-styles corretos**: Confirmar nomes PT/EN corretos
+4. **Mapeamento atualizado**: Verificar se a entrada foi adicionada ao companyMappings
+
+### 🔧 **TROUBLESHOOTING COMUM:**
+
+#### ❌ **Problema**: Keywords não funcionam
+- **Causa**: Script falhou em atualizar index.html
+- **Solução**: Adicionar manualmente no companyMappings
+- **Linha**: `'templates/companies/[marca].html': ['keyword1', 'keyword2'],`
+
+#### ❌ **Problema**: CV-style PT não funciona  
+- **Causa**: Nome incorreto do arquivo
+- **Solução**: Renomear de `cv_[marca]_style.html` para `cv_[marca]_style_PT.html`
+
+#### ❌ **Problema**: Template não aparece
+- **Causa**: Arquivo não criado ou com erro
+- **Solução**: Recriar template manualmente ou executar script novamente
+
 **🤖 AUTOMAÇÃO ATIVA:** Basta solicitar uma nova marca que o protocolo será executado automaticamente!
+
+**⚠️ IMPORTANTE:** Sempre verificar keywords após criação!

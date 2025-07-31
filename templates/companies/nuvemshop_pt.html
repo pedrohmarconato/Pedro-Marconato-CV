@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Marconato - CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&display=swap');
+        
+        :root {
+            /* Nuvemshop Brand Colors */
+            --nuvemshop-nimbus-blue: #4A90E2;
+            --nuvemshop-deep-blue: #1E40AF;
+            --nuvemshop-white: #FFFFFF;
+            --nuvemshop-light-blue: #EBF4FF;
+            --nuvemshop-gray: #F8F9FA;
+            
+            /* Applied Colors */
+            --primary-color: var(--nuvemshop-nimbus-blue);
+            --secondary-color: var(--nuvemshop-deep-blue);
+            --accent-color: var(--nuvemshop-white);
+            --light-accent: var(--nuvemshop-light-blue);
+            --text-color: #2c3e50;
+            --border-color: rgba(74, 144, 226, 0.15);
+            --background-gradient: linear-gradient(135deg, var(--nuvemshop-nimbus-blue) 0%, var(--nuvemshop-deep-blue) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: 
+                linear-gradient(135deg, rgba(74, 144, 226, 0.95) 0%, rgba(30, 64, 175, 0.9) 100%),
+                url('../../assets/images/nuvemshop (1).png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Background animation overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(30, 64, 175, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 50%, rgba(235, 244, 255, 0.05) 0%, transparent 50%);
+            animation: backgroundShift 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 0.8; transform: scale(1) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.1) rotate(5deg); }
+        }
+
+        /* Animated background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f8fbff 0%, #f0f8ff 50%, #f8fbff 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating shapes */
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 200px;
+            height: 100px;
+            background: linear-gradient(45deg, var(#4A90E2), var(#1E40AF));
+            border-radius: 50%;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(#4A90E2), var(#58acff));
+            transform: rotate(45deg);
+            top: 60%;
+            right: 10%;
+            animation-delay: 8s;
+        }
+
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(90deg, var(#1E40AF), var(#4A90E2));
+            border-radius: 50%;
+            bottom: 20%;
+            left: 25%;
+            animation-delay: 15s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(30px) rotate(240deg); }
+        }
+        
+        .cv-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 24px;
+            box-shadow: 
+                0 10px 60px rgba(74, 144, 226, 0.1),
+                0 4px 20px rgba(30, 64, 175, 0.05);
+            border: 1px solid rgba(74, 144, 226, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Clean Nuvemshop aesthetic - no excessive animations */
+        .cv-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--background-gradient);
+            z-index: 1;
+        }
+
+        @keyframes containerGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 10px 40px rgba(74, 144, 226, 0.08),
+                    0 5px 20px rgba(0, 0, 0, 0.05),
+                    0 0 80px rgba(74, 144, 226, 0.03),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+            }
+            50% { 
+                box-shadow: 
+                    0 10px 40px rgba(44, 90, 160, 0.08),
+                    0 5px 20px rgba(0, 0, 0, 0.05),
+                    0 0 100px rgba(107, 163, 229, 0.03),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+            }
+        }
+
+        .cv-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(74, 144, 226, 0.02) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(44, 90, 160, 0.02) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 80%, rgba(107, 163, 229, 0.02) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .header {
+            background: 
+                linear-gradient(135deg, 
+                    rgba(74, 144, 226, 0.95) 0%, 
+                    rgba(30, 64, 175, 0.9) 40%,
+                    rgba(74, 144, 226, 0.8) 100%),
+                radial-gradient(ellipse at top left, rgba(235, 244, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(74, 144, 226, 0.2) 0%, transparent 50%);
+            padding: 80px 60px 120px 60px;
+            position: relative;
+            overflow: hidden;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Header Dynamic Shapes */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(235, 244, 255, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 70% 80%, rgba(74, 144, 226, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 20% 70%, rgba(30, 64, 175, 0.08) 0%, transparent 35%);
+            animation: headerFlow 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+            pointer-events: none;
+        }
+        
+        @keyframes headerFlow {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-text {
+            max-width: 850px;
+        }
+        
+        .header h1 {
+            font-size: 54px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            position: relative;
+            z-index: 2;
+            line-height: 1.1;
+        }
+        
+        /* Nome sóbrio - versão simples */
+        .header h1 .name-part {
+            display: inline-block;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header h1 .name-part:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .header h1 .name-part:nth-child(2) {
+            animation-delay: 0.8s;
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            font-size: 0.9em;
+            margin: 0 12px;
+        }
+        
+        .header h1 .name-part:nth-child(3) {
+            animation-delay: 1.6s;
+        }
+        
+        @keyframes nameShimmer {
+            0%, 100% { 
+                background-position: 0% 50%;
+                transform: scale(1);
+            }
+            50% { 
+                background-position: 100% 50%;
+                transform: scale(1.05);
+            }
+        }
+        
+        .role {
+            font-size: 26px;
+            font-weight: 600;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0.95) 0%, 
+                rgba(235, 244, 255, 1) 50%, 
+                rgba(255, 255, 255, 0.95) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 30px rgba(235, 244, 255, 0.8);
+            animation: roleGlow 3s ease-in-out infinite alternate;
+        }
+        
+        .role::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(235, 244, 255, 0.8), transparent);
+            animation: lineExpand 2s ease-in-out infinite;
+        }
+        
+        .role::after {
+            content: '';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(235, 244, 255, 0.8), transparent);
+            animation: lineExpand 2s ease-in-out infinite reverse;
+        }
+        
+        @keyframes roleGlow {
+            0% { 
+                text-shadow: 0 0 30px rgba(235, 244, 255, 0.8);
+                filter: brightness(1);
+            }
+            100% { 
+                text-shadow: 0 0 50px rgba(255, 255, 255, 1);
+                filter: brightness(1.2);
+            }
+        }
+        
+        @keyframes lineExpand {
+            0%, 100% { width: 20px; opacity: 0.5; }
+            50% { width: 40px; opacity: 1; }
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        /* Nuvemshop Pill Buttons */
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 100px;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            min-width: 140px;
+        }
+        
+        .contact-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .contact-button:hover::before {
+            left: 100%;
+        }
+        
+        .contact-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .contact-button i {
+            margin-right: 8px;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-button span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* NUVEM Logo Container */
+        .nuvem-logo-container {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .nuvem-logo {
+            width: 250px;
+            height: auto;
+            opacity: 0.9;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+            animation: logoBreath 3s ease-in-out infinite;
+        }
+        
+        .nuvem-logo:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            filter: brightness(0) invert(1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+        }
+        
+        @keyframes logoBreath {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+        
+        /* Elementos flutuantes ultra dinâmicos */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+        
+        .floating-shape.shape-1 {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(235, 244, 255, 0.3) 0%, rgba(74, 144, 226, 0.1) 70%, transparent 100%);
+            top: 15%;
+            left: 10%;
+            animation: floatBig 25s ease-in-out infinite;
+        }
+        
+        .floating-shape.shape-2 {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.4) 0%, rgba(30, 64, 175, 0.1) 70%, transparent 100%);
+            top: 60%;
+            right: 15%;
+            animation: floatMedium 20s ease-in-out infinite;
+            animation-delay: 3s;
+        }
+        
+        .floating-shape.shape-3 {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(235, 244, 255, 0.5) 0%, rgba(74, 144, 226, 0.2) 60%, transparent 100%);
+            top: 25%;
+            right: 25%;
+            animation: floatSmall 15s ease-in-out infinite;
+            animation-delay: 7s;
+        }
+        
+        .floating-shape.shape-4 {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(30, 64, 175, 0.6) 0%, rgba(74, 144, 226, 0.2) 50%, transparent 100%);
+            bottom: 30%;
+            left: 20%;
+            animation: floatTiny 12s ease-in-out infinite;
+            animation-delay: 10s;
+        }
+        
+        .floating-shape.shape-5 {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(235, 244, 255, 0.2) 0%, rgba(30, 64, 175, 0.1) 80%, transparent 100%);
+            top: 40%;
+            left: 5%;
+            animation: floatBig 30s ease-in-out infinite;
+            animation-delay: 15s;
+        }
+        
+        @keyframes floatBig {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.3; }
+            25% { transform: translate(30px, -40px) rotate(90deg) scale(1.2); opacity: 0.6; }
+            50% { transform: translate(-20px, -60px) rotate(180deg) scale(0.8); opacity: 0.4; }
+            75% { transform: translate(-50px, 20px) rotate(270deg) scale(1.1); opacity: 0.7; }
+        }
+        
+        @keyframes floatMedium {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.4; }
+            33% { transform: translate(-25px, -30px) rotate(120deg) scale(1.3); opacity: 0.8; }
+            66% { transform: translate(40px, 25px) rotate(240deg) scale(0.7); opacity: 0.5; }
+        }
+        
+        @keyframes floatSmall {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.5; }
+            50% { transform: translate(20px, -35px) rotate(180deg) scale(1.4); opacity: 0.9; }
+        }
+        
+        @keyframes floatTiny {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.6; }
+            25% { transform: translate(15px, -20px) rotate(90deg) scale(1.5); opacity: 1; }
+            50% { transform: translate(-15px, -25px) rotate(180deg) scale(0.8); opacity: 0.4; }
+            75% { transform: translate(-25px, 10px) rotate(270deg) scale(1.2); opacity: 0.8; }
+        }
+        
+        /* Efeito de partículas no logo */
+        .logo-particle-effect {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(235, 244, 255, 0.3) 2px, transparent 2px),
+                radial-gradient(circle at 80% 80%, rgba(74, 144, 226, 0.2) 1px, transparent 1px),
+                radial-gradient(circle at 40% 70%, rgba(30, 64, 175, 0.2) 1px, transparent 1px);
+            background-size: 30px 30px, 25px 25px, 35px 35px;
+            animation: particleMove 8s linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes particleMove {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(10px, -10px) rotate(360deg); }
+        }
+        
+        
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .contact-cta {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+            animation: gentlePulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes gentlePulse {
+            0%, 100% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.02);
+            }
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .location i {
+            margin-right: 6px;
+        }
+        
+        .section {
+            padding: 35px 80px;
+            position: relative;
+        }
+
+        .section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 80px;
+            right: 80px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+        }
+        
+        .section-title {
+            background: var(--background-gradient);
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 12px 20px;
+            border-radius: 14px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.1);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: titleShimmer 6s infinite;
+        }
+
+        @keyframes titleShimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+        
+        .profile-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-color);
+            text-align: justify;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        @media (max-width: 1000px) {
+            .skills-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .skills-column {
+            background: linear-gradient(135deg, rgba(224, 224, 224, 0.3), rgba(224, 224, 224, 0.1));
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(74, 144, 226, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .skills-column:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(74, 144, 226, 0.1);
+            border-color: rgba(74, 144, 226, 0.2);
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--text-color);
+            transition: transform 0.2s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .skill-item i {
+            color: var(--nuvemshop-nimbus-blue);
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        
+        .tool-item {
+            margin-bottom: 14px;
+            padding: 8px 0;
+        }
+        
+        .tool-name {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-weight: 500;
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: var(--text-color);
+        }
+
+        .tool-skill-name {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        /* Modern 5-point rating system - Neutral colors */
+        .skill-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            align-self: flex-start;
+        }
+        
+        .skill-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .skill-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(74, 144, 226, 0.2);
+            border: 1.5px solid rgba(74, 144, 226, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .skill-dot.active {
+            background: linear-gradient(135deg, var(--nuvemshop-nimbus-blue) 0%, var(--nuvemshop-deep-blue) 100%);
+            border-color: var(--nuvemshop-nimbus-blue);
+            box-shadow: 
+                0 0 8px rgba(74, 144, 226, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .skill-dot.active::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: dotShimmer 2s infinite;
+        }
+        
+        @keyframes dotShimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .skill-level-text {
+            font-size: 10px;
+            color: var(--nuvemshop-nimbus-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-left: 2px;
+            white-space: nowrap;
+        }
+        
+        /* Dots container for skills from cv-texts.js - Neutral colors */
+        .dots-container {
+            display: flex;
+            gap: 3px;
+            margin-top: 8px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(74, 144, 226, 0.2);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .dot.filled {
+            background: linear-gradient(135deg, var(--nuvemshop-nimbus-blue) 0%, var(--nuvemshop-deep-blue) 100%);
+            border-color: var(--nuvemshop-nimbus-blue);
+            box-shadow: 
+                0 0 6px rgba(74, 144, 226, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .tool-item:hover .dot.filled {
+            box-shadow: 
+                0 0 10px rgba(74, 144, 226, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: scale(1.2);
+        }
+        
+        /* Hover effects */
+        .tool-item:hover .skill-dot.active {
+            box-shadow: 
+                0 0 15px rgba(74, 144, 226, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+        
+        /* Tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .tooltip .tooltip-icon {
+            color: var(--nuvemshop-nimbus-blue);
+            font-size: 14px;
+            margin-left: 5px;
+            transition: transform 0.2s, color 0.2s;
+        }
+        
+        .tooltip:hover .tooltip-icon,
+        .tooltip:focus .tooltip-icon,
+        .tooltip:active .tooltip-icon {
+            color: var(--nuvemshop-deep-blue);
+            transform: scale(1.2);
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 380px;
+            background: linear-gradient(145deg, var(--nuvemshop-deep-blue), var(--nuvemshop-nimbus-blue));
+            color: white;
+            text-align: left;
+            border-radius: 12px;
+            padding: 0;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -190px;
+            opacity: 0;
+            transition: opacity 0.4s, transform 0.3s;
+            transform: translateY(10px);
+            font-size: 13px;
+            line-height: 1.5;
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.15);
+            overflow: hidden;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -8px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--nuvemshop-nimbus-blue) transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltip-text,
+        .tooltip:focus .tooltip-text,
+        .tooltip:active .tooltip-text,
+        .tooltip.tooltip-active .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            min-height: 330px;
+        }
+        
+        .tooltip-active .tooltip-text {
+            position: absolute;
+            z-index: 9999;
+            overflow-y: auto;
+        }
+        
+        .tooltip-header {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 12px 18px;
+            font-weight: 600;
+            font-size: 1.05em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+        
+        .tooltip-content {
+            padding: 18px;
+        }
+        
+        .tooltip-section {
+            margin-bottom: 15px;
+        }
+        
+        .tooltip-section:last-of-type {
+            margin-bottom: 0;
+        }
+        
+        .tooltip-section-title {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 1em;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        
+        .tooltip-section-title .fas {
+            margin-right: 12px;
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+            opacity: 1;
+            color: #f0f0f0;
+        }
+        
+        .tooltip-list {
+            list-style-position: outside;
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+        
+        .tooltip-list li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .tooltip-list li::marker {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Mobile responsiveness for tooltips */
+        @media (max-width: 768px) {
+            .tooltip .tooltip-text {
+                width: 90vw;
+                max-width: 320px;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-left: 0;
+                font-size: 12px;
+                max-height: 75vh;
+            }
+            
+            .tooltip-active .tooltip-text {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) !important;
+                width: 90vw;
+                max-width: 380px;
+                z-index: 10000;
+            }
+        }
+        
+        .experience-timeline {
+            position: relative;
+            margin-left: 30px;
+            padding-left: 40px;
+        }
+        
+        .experience-timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--nuvemshop-nimbus-blue), var(--nuvemshop-deep-blue));
+            border-radius: 3px;
+        }
+        
+        .experience-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding: 25px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(74, 144, 226, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 20px rgba(74, 144, 226, 0.08);
+            border-color: rgba(74, 144, 226, 0.15);
+        }
+        
+        .experience-item::before {
+            content: "";
+            position: absolute;
+            left: -46px;
+            top: 35px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--nuvemshop-nimbus-blue);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+            z-index: 1;
+        }
+        
+        .job-title {
+            font-weight: 600;
+            font-size: 20px;
+            color: var(--nuvemshop-deep-blue);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .job-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--background-gradient);
+            color: white;
+            border-radius: 50%;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(74, 144, 226, 0.15);
+        }
+        
+        .company {
+            font-weight: 500;
+            font-size: 16px;
+            color: var(--nuvemshop-nimbus-blue);
+            margin-bottom: 5px;
+        }
+        
+        .period {
+            font-size: 14px;
+            color: var(--dark-gray);
+            font-style: italic;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: rgba(224, 224, 224, 0.5);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        
+        .job-description {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+        
+        .achievements-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        @media (max-width: 900px) {
+            .achievements-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .achievements-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .achievement-item {
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.05), rgba(74, 144, 226, 0.02));
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid rgba(74, 144, 226, 0.15);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.15);
+            border-color: var(--nuvemshop-nimbus-blue);
+        }
+        
+        .achievement-icon {
+            font-size: 24px;
+            color: var(--nuvemshop-nimbus-blue);
+            flex-shrink: 0;
+        }
+        
+        .achievement-content {
+            flex: 1;
+        }
+        
+        .achievement-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--nuvemshop-deep-blue);
+            margin-bottom: 6px;
+        }
+        
+        .achievement-description {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+        
+        .education-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        
+        @media (max-width: 700px) {
+            .education-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .education-item {
+            background: linear-gradient(135deg, rgba(224, 224, 224, 0.4), rgba(224, 224, 224, 0.2));
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(74, 144, 226, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(74, 144, 226, 0.1);
+        }
+        
+        .degree {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--nuvemshop-deep-blue);
+            margin-bottom: 8px;
+        }
+        
+        .university {
+            font-size: 15px;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+        
+        .thesis {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--dark-gray);
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        @media (max-width: 900px) {
+            .projects-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .project-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(74, 144, 226, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--background-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(74, 144, 226, 0.15);
+            border-color: var(--nuvemshop-nimbus-blue);
+        }
+        
+        .project-title {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--nuvemshop-deep-blue);
+            margin-bottom: 12px;
+        }
+        
+        .project-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background: rgba(74, 144, 226, 0.1);
+            color: var(--nuvemshop-deep-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--nuvemshop-nimbus-blue);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+        }
+
+        /* Print button */
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--background-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(74, 144, 226, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        /* Language toggle button */
+        .language-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: 2px solid rgba(74, 144, 226, 0.2);
+        }
+        
+        .language-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(74, 144, 226, 0.3);
+            border-color: rgba(74, 144, 226, 0.4);
+        }
+        
+        .language-option {
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-color);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .language-option i {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        .language-option.active {
+            background: var(--background-gradient);
+            color: white;
+            box-shadow: 0 2px 10px rgba(74, 144, 226, 0.3);
+            animation: pulseActive 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseActive {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .language-option.active i {
+            opacity: 1;
+            animation: checkRotate 0.5s ease-out;
+        }
+        
+        @keyframes checkRotate {
+            from {
+                transform: rotate(-180deg);
+                opacity: 0;
+            }
+            to {
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+        }
+        
+        .language-option:not(.active):hover {
+            background: rgba(74, 144, 226, 0.05);
+            color: var(--nuvemshop-nimbus-blue);
+        }
+        
+        .language-divider {
+            width: 1px;
+            height: 20px;
+            background: rgba(74, 144, 226, 0.2);
+            margin: 0 5px;
+        }
+
+        .print-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(74, 144, 226, 0.4);
+        }
+
+        .print-button i {
+            font-size: 24px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .cv-container {
+                margin: 0;
+                border-radius: 0;
+                max-width: 100%;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+                text-align: center;
+            }
+            
+            .header-tagline,
+            .role {
+                font-size: 14px;
+                text-align: center;
+            }
+            
+            .contact-info {
+                justify-content: center;
+                flex-direction: column;
+                gap: 6px;
+            }
+            
+            .contact-item {
+                font-size: 12px;
+                padding: 6px 10px;
+                width: 100%;
+            }
+            
+            .contact-button {
+                padding: 6px 10px;
+                font-size: 12px;
+                min-height: 36px;
+                width: 100%;
+            }
+            
+            .contact-cta {
+                font-size: 11px;
+            }
+            
+            .section {
+                padding: 20px 15px;
+            }
+            
+            .section-title {
+                font-size: 14px;
+                margin-bottom: 15px;
+                padding: 6px 12px;
+            }
+            
+            /* Education grid */
+            .education-tech-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .education-grid,
+            .education-container {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Skills */
+            .skills-grid,
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .skill-items {
+                font-size: 11px;
+            }
+            
+            /* Experience */
+            .experience-timeline {
+                padding-left: 15px;
+                margin-left: 0;
+            }
+            
+            .company-header {
+                flex-direction: column;
+                gap: 3px;
+                margin-bottom: 15px;
+            }
+            
+            .company-name {
+                font-size: 13px;
+            }
+            
+            .job-title {
+                font-size: 12px;
+            }
+            
+            .job-period {
+                font-size: 10px;
+            }
+            
+            .achievements li {
+                font-size: 11px;
+                padding-left: 15px;
+                margin-bottom: 8px;
+                line-height: 1.5;
+            }
+            
+            /* Remove logos */
+            .boticario-logo,
+            .sicredi-logo,
+            .ifood-logo,
+            .rd-logo,
+            .rdstation-logo {
+                display: none;
+            }
+            
+            /* Projects */
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-item {
+                padding: 15px;
+            }
+            
+            /* Header content adjustments */
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .header-text {
+                padding-right: 0;
+            }
+            
+            /* Achievement container mobile */
+            .achievements-container {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Section separator adjustments */
+            .section:not(:last-child)::after {
+                left: 15px;
+                right: 15px;
+            }
+            
+            /* Modals */
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                padding: 20px;
+            }
+            
+            .modal input,
+            .modal textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 12px;
+            }
+            
+            .modal button {
+                min-height: 44px;
+                font-size: 14px;
+            }
+            
+            /* Fixed buttons */
+            .print-button,
+            .language-toggle {
+                position: fixed;
+                bottom: 20px;
+                top: auto;
+                padding: 10px 16px;
+                font-size: 12px;
+                min-height: 40px;
+                z-index: 100;
+            }
+            
+            .print-button {
+                right: 20px;
+            }
+            
+            .language-toggle {
+                right: auto;
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 18px;
+            }
+            
+            .section {
+                padding: 15px 10px;
+            }
+            
+            .section-title {
+                font-size: 12px;
+            }
+            
+            .achievements li {
+                padding-left: 12px;
+                font-size: 10px;
+            }
+            
+            .company-name {
+                font-size: 12px;
+            }
+            
+            .job-title {
+                font-size: 11px;
+            }
+            
+            .job-period {
+                font-size: 9px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .animated-bg,
+            .shape,
+            .print-button,
+            .language-toggle {
+                display: none !important;
+            }
+
+            .cv-container {
+                box-shadow: none;
+                border: none;
+                margin: 0;
+            }
+
+            .section-title {
+                background: var(--nuvemshop-nimbus-blue) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .header {
+                background: var(--nuvemshop-nimbus-blue) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                page-break-inside: avoid;
+                padding: 30px !important;
+            }
+            
+            .header-text {
+                padding-right: 0 !important;
+            }
+            
+            /* Esconder elementos decorativos */
+            .header::after,
+            .header::before {
+                display: none !important;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../cv-texts.js"></script>
+    <!-- Favicon Meta Tags -->
+    <meta name="theme-color" content="#1a4b84">
+    <meta name="msapplication-TileColor" content="#1a4b84">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
+</head>
+<body>
+    <div class="animated-bg"></div>
+    
+    <!-- Floating shapes -->
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    
+    <div class="cv-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1 id="cv-name">
+                        <span class="name-part">PEDRO</span>
+                        <span class="name-part">HENRIQUE LIMA</span>
+                        <span class="name-part">MARCONATO</span>
+                    </h1>
+                    <div class="role" id="cv-role"></div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <button class="contact-button" onclick="openEmailForm()">
+                                <i class="fas fa-envelope"></i> <span id="cv-email"></span>
+                            </button>
+                            <span class="contact-cta" id="cv-cta-email"></span>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <button class="contact-button" onclick="openPhoneForm()">
+                                <i class="fas fa-phone"></i> <span id="cv-phone"></span>
+                            </button>
+                            <span class="contact-cta" id="cv-cta-phone"></span>
+                        </div>
+                        
+                        <div class="location" id="cv-location">
+                            <i class="fas fa-map-marker-alt"></i> <span></span>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
+                                <i class="fab fa-linkedin"></i> <span id="cv-linkedin"></span>
+                            </a>
+                            <span class="contact-cta" id="cv-cta-linkedin"></span>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
+                                <i class="fab fa-github"></i> <span id="cv-repository"></span>
+                            </a>
+                            <span class="contact-cta" id="cv-cta-repository"></span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Elementos geométricos flutuantes -->
+            <div class="floating-elements">
+                <div class="floating-shape shape-1"></div>
+                <div class="floating-shape shape-2"></div>
+                <div class="floating-shape shape-3"></div>
+                <div class="floating-shape shape-4"></div>
+                <div class="floating-shape shape-5"></div>
+            </div>
+            
+            <div class="nuvem-logo-container">
+                <img src="../../assets/images/NUVEM.png" 
+                     alt="NUVEM" 
+                     class="nuvem-logo">
+                <div class="logo-particle-effect"></div>
+            </div>
+            
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title" id="section-profile"></h2>
+            <p class="profile-text" id="cv-profile"></p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title" id="section-skills"></h2>
+            <div class="skills-container">
+                <div class="skills-column" id="skills-strategic"></div>
+                <div class="skills-column" id="skills-tools"></div>
+                <div class="skills-column" id="skills-emerging"></div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title" id="section-experience"></h2>
+            <div class="experience-timeline" id="cv-experience"></div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title" id="section-education"></h2>
+            <div class="education-container" id="cv-education"></div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title" id="section-projects"></h2>
+            <div class="projects-container" id="cv-projects"></div>
+        </section>
+    </div>
+    
+    <!-- Language toggle button -->
+    <div class="language-toggle">
+        <a href="nuvemshop.html" class="language-option">
+            <span>EN</span>
+        </a>
+        <div class="language-divider"></div>
+        <a href="nuvemshop_pt.html" class="language-option active">
+            <i class="fas fa-check-circle"></i>
+            <span>PT</span>
+        </a>
+    </div>
+    
+    <!-- Print button -->
+    <button class="print-button" onclick="var win = window.open('../../cv_styles/cv_nuvemshop_style_PT.html', '_blank'); win.onload = function() { win.print(); }">
+        <i class="fas fa-file-pdf"></i>
+    </button>
+    
+    <!-- Email Modal -->
+    <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+            <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
+            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--nuvemshop-deep-blue); font-size: 24px;">Enviar Email</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <div style="margin-bottom:20px;">
+                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Email</label>
+                    <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Assunto</label>
+                    <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:25px;">
+                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem</label>
+                    <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
+                </div>
+                <button id="email-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);">Enviar</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Phone Modal -->
+    <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+            <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
+            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--nuvemshop-deep-blue); font-size: 24px;">Entre em Contato</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <input type="hidden" name="contact_type" value="phone_request">
+                <div style="margin-bottom:20px;">
+                    <label id="phone-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Telefone</label>
+                    <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Melhor horário para contato</label>
+                    <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:25px;">
+                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem (Opcional)</label>
+                    <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
+                </div>
+                <div style="display:flex; gap:15px;">
+                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);">Solicitar Contato</button>
+                    <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
+                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> <span id="whatsapp-text">WhatsApp</span>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    
+    <script>
+        function openEmailForm() {
+            document.getElementById('emailModal').style.display = 'flex';
+        }
+        
+        function closeEmailModal() {
+            document.getElementById('emailModal').style.display = 'none';
+        }
+        
+        function openPhoneForm() {
+            document.getElementById('phoneModal').style.display = 'flex';
+        }
+        
+        function closePhoneModal() {
+            document.getElementById('phoneModal').style.display = 'none';
+        }
+        
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('emailModal')) {
+                closeEmailModal();
+            }
+            if (event.target == document.getElementById('phoneModal')) {
+                closePhoneModal();
+            }
+        }
+
+        // Initialize CV content when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize CV with Portuguese content
+            initializeBasicContent('pt');
+            
+            // Initialize modal texts
+            initializeModalTexts('pt');
+            
+            // Style form inputs on focus
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(#4A90E2)';
+                });
+                input.addEventListener('blur', function() {
+                    this.style.borderColor = '#e5e7eb';
+                });
+            });
+            
+            // Tooltip functionality for mobile
+            const tooltips = document.querySelectorAll('.tooltip');
+            tooltips.forEach(tooltip => {
+                tooltip.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // Close all other tooltips
+                    tooltips.forEach(t => {
+                        if (t !== this) {
+                            t.classList.remove('tooltip-active');
+                        }
+                    });
+                    
+                    // Toggle current tooltip
+                    this.classList.toggle('tooltip-active');
+                });
+            });
+            
+            // Close tooltips when clicking outside
+            document.addEventListener('click', function() {
+                tooltips.forEach(tooltip => {
+                    tooltip.classList.remove('tooltip-active');
+                });
+            });
+        });
+
+        // Initialize basic CV content
+        function initializeBasicContent(lang = 'en') {
+            // Basic header information
+            const nameEl = document.getElementById('cv-name');
+            if (nameEl && !nameEl.querySelector('.name-part')) {
+                // Se não tem a estrutura customizada, use o texto simples
+                nameEl.textContent = getText('name', lang);
+            }
+            
+            const roleEl = document.getElementById('cv-role');
+            if (roleEl) roleEl.textContent = getText('role', lang);
+            
+            // Contact information
+            const emailEl = document.getElementById('cv-email');
+            if (emailEl) emailEl.textContent = getText('contact.email', lang);
+            
+            const phoneEl = document.getElementById('cv-phone');
+            if (phoneEl) phoneEl.textContent = getText('contact.phone', lang);
+            
+            const locationEl = document.querySelector('#cv-location span');
+            if (locationEl) locationEl.textContent = getText('contact.location', lang);
+            
+            const linkedinEl = document.getElementById('cv-linkedin');
+            if (linkedinEl) linkedinEl.textContent = getText('contact.linkedin', lang);
+            
+            const repositoryEl = document.getElementById('cv-repository');
+            if (repositoryEl) repositoryEl.textContent = getText('contact.repository', lang);
+            
+            
+            // Contact CTAs
+            const emailCTAEl = document.getElementById('cv-cta-email');
+            if (emailCTAEl) emailCTAEl.textContent = getText('contactCTA.email', lang);
+            
+            const phoneCTAEl = document.getElementById('cv-cta-phone');
+            if (phoneCTAEl) phoneCTAEl.textContent = getText('contactCTA.phone', lang);
+            
+            const linkedinCTAEl = document.getElementById('cv-cta-linkedin');
+            if (linkedinCTAEl) linkedinCTAEl.textContent = getText('contactCTA.linkedin', lang);
+            
+            const repositoryCTAEl = document.getElementById('cv-cta-repository');
+            if (repositoryCTAEl) repositoryCTAEl.textContent = getText('contactCTA.repository', lang);
+            
+            
+            // Section titles
+            const profileTitleEl = document.getElementById('section-profile');
+            if (profileTitleEl) profileTitleEl.textContent = getText('sections.profile', lang);
+            
+            const skillsTitleEl = document.getElementById('section-skills');
+            if (skillsTitleEl) skillsTitleEl.textContent = getText('sections.skills', lang);
+            
+            const experienceTitleEl = document.getElementById('section-experience');
+            if (experienceTitleEl) experienceTitleEl.textContent = getText('sections.experience', lang);
+            
+            const educationTitleEl = document.getElementById('section-education');
+            if (educationTitleEl) educationTitleEl.textContent = getText('sections.education', lang);
+            
+            const projectsTitleEl = document.getElementById('section-projects');
+            if (projectsTitleEl) projectsTitleEl.textContent = getText('sections.projects', lang);
+            
+            // Professional profile
+            const profileEl = document.getElementById('cv-profile');
+            if (profileEl) profileEl.textContent = getText('professionalProfile', lang);
+            
+            // Skills sections
+            renderSkills('skills-strategic', 'strategic', lang);
+            renderSkills('skills-tools', 'tools', lang);
+            renderSkills('skills-emerging', 'emerging', lang);
+            
+            // Experience section
+            renderExperience(lang);
+            
+            // Education section
+            renderEducation(lang);
+            
+            // Projects section
+            renderProjects(lang);
+        }
+        
+        // Render experience section
+        function renderExperience(lang = 'en') {
+            const container = document.getElementById('cv-experience');
+            if (!container) return;
+            
+            const experiences = getText('experience', lang);
+            let html = '';
+            
+            experiences.forEach((exp, index) => {
+                html += `
+                    <div class="experience-item">
+                        <div class="job-title">
+                            <div class="job-number">${index + 1}</div>
+                            ${exp.title}
+                            ${renderTooltip(exp.tooltip)}
+                        </div>
+                        <div class="company">${exp.company}</div>
+                        <div class="period">${exp.period}</div>
+                        <div class="job-description">${exp.description}</div>
+                        <div class="achievements-container">
+                            ${renderAchievements(exp.achievements)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render education section
+        function renderEducation(lang = 'en') {
+            const container = document.getElementById('cv-education');
+            if (!container) return;
+            
+            const education = getText('education', lang);
+            let html = '';
+            
+            education.forEach(edu => {
+                html += `
+                    <div class="education-item">
+                        <div class="degree">${edu.degree}</div>
+                        <div class="university">${edu.university}</div>
+                        <div class="thesis">${edu.thesis}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Render projects section
+        function renderProjects(lang = 'en') {
+            const container = document.getElementById('cv-projects');
+            if (!container) return;
+            
+            const projects = getText('projects', lang);
+            let html = '';
+            
+            projects.forEach(project => {
+                html += `
+                    <div class="project-item">
+                        <div class="project-title">${project.title}</div>
+                        <div class="project-description">${project.description}</div>
+                        <div style="margin-top: 15px;">
+                            ${renderTechTags(project.techs)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+    </script>
+    <!-- Dynamic Favicon System -->
+    <script src="../../assets/js/dynamic-favicon.js"></script>
+</body>
+</html>
