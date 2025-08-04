@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +39,39 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            
+            /* Safari mobile scroll optimization */
+            -webkit-overflow-scrolling: auto;
+            scroll-behavior: auto;
+            overscroll-behavior: contain;
+            -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+        }
+        
+        /* Mobile-specific optimizations */
+        @media (max-width: 768px) {
+            body {
+                scroll-snap-type: y proximity;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+            
+            /* Disable heavy animations on mobile */
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* iOS Safari specific */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                -webkit-overflow-scrolling: auto;
+                scroll-behavior: auto;
+                touch-action: pan-y;
+            }
         }
 
         /* Animated background */
@@ -60,11 +93,12 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating shapes */
+        /* Floating shapes - mais visíveis */
         .shape {
             position: absolute;
-            opacity: 0.05;
+            opacity: 0.15;
             animation: float 25s infinite ease-in-out;
+            mix-blend-mode: multiply;
         }
 
         .shape:nth-child(1) {
@@ -106,35 +140,26 @@
         .cv-container {
             max-width: 1000px;
             margin: 30px auto;
+            border-radius: 0;
+            min-height: 100vh;
             background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 28px;
-            box-shadow: 
-                0 20px 50px rgba(20, 110, 55, 0.15),
-                0 15px 30px rgba(0, 0, 0, 0.08),
-                inset 0 1px 2px rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(63, 161, 16, 0.1);
+            box-shadow: none;
             overflow: hidden;
             position: relative;
-            animation: containerGlow 20s ease infinite;
+            z-index: 2;
         }
 
         @keyframes containerGlow {
             0%, 100% { 
                 box-shadow: 
-                    0 10px 40px rgba(63, 161, 16, 0.1),
-                    0 5px 20px rgba(0, 0, 0, 0.05),
-                    0 0 60px rgba(63, 161, 16, 0.08),
-                    0 0 150px rgba(63, 161, 16, 0.06),
+                    0 20px 50px rgba(63, 161, 16, 0.15),
+                    0 0 100px rgba(63, 161, 16, 0.05),
                     inset 0 1px 2px rgba(255, 255, 255, 0.9);
             }
             50% { 
                 box-shadow: 
-                    0 15px 45px rgba(63, 161, 16, 0.12),
-                    0 8px 25px rgba(0, 0, 0, 0.06),
-                    0 0 80px rgba(63, 161, 16, 0.1),
-                    0 0 180px rgba(63, 161, 16, 0.08),
+                    0 20px 50px rgba(63, 161, 16, 0.2),
+                    0 0 120px rgba(63, 161, 16, 0.1),
                     inset 0 1px 2px rgba(255, 255, 255, 0.95);
             }
         }
@@ -158,9 +183,13 @@
         
         .header {
             background: var(--background-gradient);
-            padding: 60px 60px 80px 60px;
+            padding: 80px 60px 100px 60px;
             position: relative;
             overflow: hidden;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(20, 110, 55, 0.2);
         }
 
         .header::before {
@@ -174,28 +203,86 @@
             animation: shimmer 8s infinite;
         }
         
-        /* Creative cooperative elements */
+        /* Creative cooperative elements - melhorados */
         .header::after {
             content: '';
             position: absolute;
             top: -50%;
             right: -20%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.2) 0%, 
+                rgba(255, 255, 255, 0.1) 30%,
+                transparent 70%);
             border-radius: 50%;
             animation: floatGlow 6s ease-in-out infinite;
         }
         
         @keyframes floatGlow {
             0%, 100% { 
-                transform: translateY(0px) scale(1);
-                opacity: 0.6;
+                transform: translateY(0px) scale(1) rotate(0deg);
+                opacity: 0.7;
             }
-            50% { 
-                transform: translateY(-20px) scale(1.1);
+            33% {
+                transform: translateY(-15px) scale(1.08) rotate(120deg);
+                opacity: 0.9;
+            }
+            66% { 
+                transform: translateY(-25px) scale(1.12) rotate(240deg);
                 opacity: 0.8;
             }
+        }
+        
+        /* Círculos cooperativos animados */
+        .cooperative-circles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            z-index: 0;
+        }
+        
+        .coop-circle {
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: circleRotate 20s linear infinite;
+        }
+        
+        .coop-circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 15s;
+        }
+        
+        .coop-circle:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 20s;
+            animation-direction: reverse;
+        }
+        
+        .coop-circle:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 25s;
+        }
+        
+        @keyframes circleRotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
         
         /* Growing trees/plants representing cooperation */
@@ -206,47 +293,53 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 0;
         }
         
         .tree-element {
             position: absolute;
-            opacity: 0.15;
-            animation: growTree 3s ease-out;
+            opacity: 0;
+            animation: growTree 3s ease-out forwards;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            z-index: 0;
+            pointer-events: none;
         }
         
         .tree-element:nth-child(1) {
-            top: 20%;
-            left: 15%;
-            font-size: 40px;
-            color: rgba(255, 255, 255, 0.3);
+            top: 5%;
+            right: 5%;
+            font-size: 50px;
+            color: rgba(255, 255, 255, 0.8);
             animation-delay: 0.5s;
         }
         
         .tree-element:nth-child(2) {
-            top: 60%;
-            left: 80%;
-            font-size: 35px;
-            color: rgba(255, 255, 255, 0.25);
+            bottom: 10%;
+            left: 5%;
+            font-size: 45px;
+            color: rgba(255, 255, 255, 0.7);
             animation-delay: 1s;
         }
         
         .tree-element:nth-child(3) {
-            top: 40%;
-            left: 5%;
-            font-size: 30px;
-            color: rgba(255, 255, 255, 0.2);
+            top: 10%;
+            left: 3%;
+            font-size: 40px;
+            color: rgba(255, 255, 255, 0.65);
             animation-delay: 1.5s;
         }
         
         @keyframes growTree {
             0% {
-                transform: scale(0) translateY(20px);
+                transform: scale(0) translateY(20px) rotate(-10deg);
                 opacity: 0;
             }
+            50% {
+                transform: scale(1.1) translateY(-5px) rotate(5deg);
+            }
             100% {
-                transform: scale(1) translateY(0);
-                opacity: 0.15;
+                transform: scale(1) translateY(0) rotate(0deg);
+                opacity: 0.7;
             }
         }
         
@@ -270,12 +363,20 @@
         
         @keyframes networkPulse {
             0%, 100% {
-                opacity: 0.5;
-                transform: scale(1);
+                opacity: 0.6;
+                transform: scale(1) rotate(0deg);
+            }
+            25% {
+                opacity: 0.8;
+                transform: scale(1.02) rotate(1deg);
             }
             50% {
+                opacity: 1;
+                transform: scale(1.05) rotate(-1deg);
+            }
+            75% {
                 opacity: 0.8;
-                transform: scale(1.02);
+                transform: scale(1.02) rotate(0.5deg);
             }
         }
         
@@ -292,9 +393,10 @@
         
         .coop-icon {
             position: absolute;
-            color: rgba(255, 255, 255, 0.2);
-            font-size: 24px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 30px;
             animation: floatIcon 8s ease-in-out infinite;
+            filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
         }
         
         .coop-icon:nth-child(1) {
@@ -317,20 +419,20 @@
         
         @keyframes floatIcon {
             0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-                opacity: 0.2;
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.5;
             }
             25% {
-                transform: translateY(-10px) rotate(90deg);
-                opacity: 0.4;
+                transform: translateY(-10px) rotate(90deg) scale(1.1);
+                opacity: 0.7;
             }
             50% {
-                transform: translateY(-5px) rotate(180deg);
-                opacity: 0.3;
+                transform: translateY(-5px) rotate(180deg) scale(1.05);
+                opacity: 0.6;
             }
             75% {
-                transform: translateY(-15px) rotate(270deg);
-                opacity: 0.4;
+                transform: translateY(-15px) rotate(270deg) scale(1.15);
+                opacity: 0.8;
             }
         }
 
@@ -346,14 +448,19 @@
 
         .sicredi-logo {
             position: absolute;
-            bottom: 20px;
-            right: 40px;
-            width: 140px;
+            bottom: 30px;
+            right: 50px;
+            width: 160px;
             height: auto;
             filter: brightness(0) invert(1);
-            opacity: 0.9;
+            opacity: 0.95;
             z-index: 15;
             animation: logoGlow 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+        
+        .sicredi-logo:hover {
+            transform: scale(1.05);
         }
         
         @keyframes logoGlow {
@@ -371,13 +478,14 @@
         }
         
         .header h1 {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 700;
             color: white;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
             animation: titleEntrance 1s ease-out;
+            line-height: 1.1;
         }
         
         @keyframes titleEntrance {
@@ -392,12 +500,13 @@
         }
         
         .role {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 400;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             animation: roleSlideIn 1s ease-out 0.3s both;
+            line-height: 1.3;
         }
         
         @keyframes roleSlideIn {
@@ -421,23 +530,43 @@
         .contact-button {
             display: inline-flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(10px);
             border-radius: 12px;
-            padding: 10px 16px;
+            padding: 12px 18px;
             text-decoration: none;
             color: white;
             font-size: 14px;
             font-weight: 500;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             cursor: pointer;
+            position: relative;
+            z-index: 10;
+            font-family: inherit;
+            outline: none;
+        }
+        
+        button.contact-button {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-family: inherit;
         }
         
         .contact-button:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.35);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .contact-button:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 2px;
+        }
+        
+        .contact-button:active {
+            transform: translateY(0);
+            background: rgba(255, 255, 255, 0.4);
         }
         
         .contact-button i {
@@ -482,6 +611,684 @@
                 transform: scale(1.02);
             }
         }
+
+        /* ========== ELEGANT VISUAL ELEMENTS ========== */
+        
+        /* MODERN - Subtle Ambient Overlay */
+        .visual-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.05) 0%, transparent 60%),
+                radial-gradient(circle at 75% 75%, rgba(63, 161, 16, 0.03) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 80%);
+            pointer-events: none;
+            z-index: 1;
+            animation: ambientGlow 20s ease-in-out infinite;
+        }
+
+        @keyframes ambientGlow {
+            0%, 100% { 
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.01);
+            }
+        }
+
+        /* MODERN - Floating Dot Particles */
+        .dot-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .dot-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: intenseDotFloat 12s ease-in-out infinite;
+            box-shadow: 
+                0 0 12px rgba(255, 255, 255, 0.6),
+                0 0 24px rgba(63, 161, 16, 0.3);
+        }
+
+        .dot-particle:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 30s;
+        }
+
+        .dot-particle:nth-child(2) {
+            top: 60%;
+            left: 85%;
+            animation-delay: 5s;
+            animation-duration: 35s;
+        }
+
+        .dot-particle:nth-child(3) {
+            top: 80%;
+            left: 20%;
+            animation-delay: 10s;
+            animation-duration: 25s;
+        }
+
+        .dot-particle:nth-child(4) {
+            top: 30%;
+            left: 70%;
+            animation-delay: 15s;
+            animation-duration: 40s;
+        }
+
+        .dot-particle:nth-child(5) {
+            top: 50%;
+            left: 40%;
+            animation-delay: 8s;
+            animation-duration: 28s;
+        }
+
+        .dot-particle:nth-child(6) {
+            top: 10%;
+            left: 60%;
+            animation-delay: 12s;
+            animation-duration: 32s;
+        }
+
+        .dot-particle:nth-child(7) {
+            top: 70%;
+            left: 80%;
+            animation-delay: 18s;
+            animation-duration: 38s;
+        }
+
+        .dot-particle:nth-child(8) {
+            top: 40%;
+            left: 15%;
+            animation-delay: 3s;
+            animation-duration: 33s;
+        }
+
+        @keyframes intenseDotFloat {
+            0% { 
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.4;
+                box-shadow: 
+                    0 0 12px rgba(255, 255, 255, 0.6),
+                    0 0 24px rgba(63, 161, 16, 0.3);
+            }
+            33% { 
+                transform: translateY(-30px) translateX(18px) scale(1.3);
+                opacity: 0.9;
+                box-shadow: 
+                    0 0 20px rgba(255, 255, 255, 0.8),
+                    0 0 40px rgba(63, 161, 16, 0.5);
+            }
+            66% { 
+                transform: translateY(-15px) translateX(-8px) scale(0.8);
+                opacity: 0.6;
+                box-shadow: 
+                    0 0 16px rgba(255, 255, 255, 0.7),
+                    0 0 32px rgba(63, 161, 16, 0.4);
+            }
+            100% { 
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.4;
+                box-shadow: 
+                    0 0 12px rgba(255, 255, 255, 0.6),
+                    0 0 24px rgba(63, 161, 16, 0.3);
+            }
+        }
+
+        /* Geometric Decoration */
+        .geometric-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .geometric-shape {
+            position: absolute;
+            opacity: 0.3;
+            animation: dynamicGeometry 12s ease-in-out infinite;
+            filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.3));
+            transition: all 0.3s ease;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .geometric-shape:hover {
+            opacity: 0.25;
+            transform: scale(1.2);
+            filter: drop-shadow(0 8px 25px rgba(255, 255, 255, 0.5));
+        }
+
+        .circle-1 {
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            top: 5%;
+            right: 2%;
+            animation-delay: 0s;
+        }
+
+        .circle-2 {
+            width: 90px;
+            height: 90px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            bottom: 5%;
+            left: 2%;
+            animation-delay: 7s;
+        }
+
+        .triangle-1 {
+            width: 0;
+            height: 0;
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 50px solid rgba(255, 255, 255, 0.25);
+            top: 60%;
+            left: 1%;
+            animation-delay: 14s;
+        }
+
+        .hexagon-1 {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.08);
+            position: relative;
+            margin: 30px 0;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            top: 35%;
+            left: 8%;
+            animation-delay: 10s;
+        }
+
+        .diamond-1 {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg);
+            top: 30%;
+            right: 4%;
+            animation-delay: 17s;
+        }
+
+        .star-1 {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 14px solid rgba(255, 255, 255, 0.08);
+            top: 28%;
+            left: 45%;
+            animation-delay: 3s;
+            position: relative;
+        }
+
+        .star-1::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 14px solid rgba(255, 255, 255, 0.08);
+            position: absolute;
+            top: 10px;
+            left: -20px;
+        }
+
+        @keyframes dynamicGeometry {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.12;
+                filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.3));
+            }
+            25% { 
+                transform: translateY(-20px) rotate(90deg) scale(1.15);
+                opacity: 0.18;
+                filter: drop-shadow(0 6px 20px rgba(255, 255, 255, 0.4));
+            }
+            50% { 
+                transform: translateY(-25px) rotate(180deg) scale(1.2);
+                opacity: 0.22;
+                filter: drop-shadow(0 8px 25px rgba(255, 255, 255, 0.5));
+            }
+            75% { 
+                transform: translateY(-20px) rotate(270deg) scale(1.15);
+                opacity: 0.18;
+                filter: drop-shadow(0 6px 20px rgba(255, 255, 255, 0.4));
+            }
+        }
+
+        /* SICREDI ILLUSTRATIONS - IMPROVED */
+        .section-illustration {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            width: 140px;
+            height: 140px;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 2;
+            animation: illustrationFloat 25s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .section-illustration img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: opacity(0.8);
+        }
+
+        .section:hover .section-illustration {
+            opacity: 0.25;
+            transform: scale(1.05);
+        }
+
+        @keyframes illustrationFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.15;
+            }
+            50% {
+                transform: translateY(-8px) rotate(2deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* Alternating positions for visual variety */
+        .section:nth-child(odd) .section-illustration {
+            right: auto;
+            left: 30px;
+            animation-delay: 3s;
+        }
+
+        /* Specific positioning adjustments */
+        .section:nth-child(1) .section-illustration {
+            top: 25px;
+            right: 40px;
+        }
+
+        .section:nth-child(2) .section-illustration {
+            top: 20px;
+            left: 40px;
+        }
+
+        .section:nth-child(3) .section-illustration {
+            top: 30px;
+            right: 35px;
+        }
+
+        .section:nth-child(4) .section-illustration {
+            top: 15px;
+            left: 35px;
+        }
+
+        .section:nth-child(5) .section-illustration {
+            top: 25px;
+            right: 45px;
+        }
+
+        /* BACKGROUND TEXT ELEMENTS - FULL PAGE */
+        .background-words {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .bg-word {
+            position: absolute;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: wordFloat 30s ease-in-out infinite;
+            user-select: none;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Valores */
+        .bg-word.cooperativismo {
+            font-size: 28px;
+            top: 12%;
+            left: 3%;
+            animation-delay: 0s;
+            animation-duration: 35s;
+        }
+
+        .bg-word.natureza {
+            font-size: 24px;
+            bottom: 15%;
+            left: 6%;
+            animation-delay: 8s;
+            animation-duration: 32s;
+        }
+
+        /* Inovação */
+        .bg-word.transformacao {
+            font-size: 26px;
+            top: 20%;
+            right: 8%;
+            animation-delay: 4s;
+            animation-duration: 38s;
+        }
+
+        .bg-word.crescimento {
+            font-size: 22px;
+            top: 75%;
+            right: 12%;
+            animation-delay: 12s;
+            animation-duration: 28s;
+        }
+
+        /* Produtos */
+        .bg-word.conta {
+            font-size: 20px;
+            top: 45%;
+            left: 12%;
+            animation-delay: 6s;
+            animation-duration: 34s;
+        }
+
+        .bg-word.previdencia {
+            font-size: 21px;
+            top: 85%;
+            right: 20%;
+            animation-delay: 10s;
+            animation-duration: 30s;
+        }
+
+        .bg-word.recebimento {
+            font-size: 19px;
+            bottom: 5%;
+            left: 20%;
+            animation-delay: 14s;
+            animation-duration: 36s;
+        }
+
+        /* Conectividade */
+        .bg-word.conectividade {
+            font-size: 23px;
+            top: 60%;
+            right: 3%;
+            animation-delay: 2s;
+            animation-duration: 33s;
+        }
+
+        @keyframes wordFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.12;
+            }
+            25% {
+                transform: translateY(-8px) translateX(3px);
+                opacity: 0.20;
+            }
+            50% {
+                transform: translateY(-5px) translateX(-2px);
+                opacity: 0.16;
+            }
+            75% {
+                transform: translateY(-10px) translateX(4px);
+                opacity: 0.22;
+            }
+        }
+
+        /* MODERN - Floating Media Particles */
+        .floating-media-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+            overflow: hidden;
+        }
+
+        /* Pulsing background effect for more drama */
+        .floating-media-particles::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            animation: backgroundPulse 8s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.6;
+            }
+        }
+
+        .media-particle {
+            position: absolute;
+            opacity: 0.18;
+            animation: dramaticFloat 15s ease-in-out infinite;
+            filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.4));
+            transition: all 0.3s ease;
+        }
+
+        .media-particle:hover {
+            opacity: 0.35;
+            transform: scale(1.2);
+            filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.6));
+        }
+
+        .media-particle img {
+            width: 100%;
+            height: 100%;
+            filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .media-particle:hover img {
+            filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+        }
+
+        /* Sicredi Icons - DRAMATIC sizes and positions */
+        .media-particle:nth-child(1) {
+            width: 65px;
+            height: 65px;
+            top: 10%;
+            left: 6%;
+            animation-duration: 18s;
+            animation-delay: 0s;
+        }
+
+        .media-particle:nth-child(2) {
+            width: 58px;
+            height: 58px;
+            top: 18%;
+            right: 8%;
+            animation-duration: 22s;
+            animation-delay: 3s;
+        }
+
+        .media-particle:nth-child(3) {
+            width: 62px;
+            height: 62px;
+            bottom: 25%;
+            left: 10%;
+            animation-duration: 16s;
+            animation-delay: 6s;
+        }
+
+        .media-particle:nth-child(4) {
+            width: 56px;
+            height: 56px;
+            bottom: 8%;
+            right: 12%;
+            animation-duration: 20s;
+            animation-delay: 9s;
+        }
+
+        .media-particle:nth-child(5) {
+            width: 70px;
+            height: 70px;
+            top: 30%;
+            left: 15%;
+            animation-duration: 14s;
+            animation-delay: 1s;
+        }
+
+        .media-particle:nth-child(6) {
+            width: 54px;
+            height: 54px;
+            top: 50%;
+            right: 18%;
+            animation-duration: 24s;
+            animation-delay: 4s;
+        }
+
+        .media-particle:nth-child(7) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            left: 30%;
+            animation-duration: 19s;
+            animation-delay: 7s;
+        }
+
+        .media-particle:nth-child(8) {
+            width: 57px;
+            height: 57px;
+            top: 40%;
+            right: 30%;
+            animation-duration: 17s;
+            animation-delay: 10s;
+        }
+
+        @keyframes dramaticFloat {
+            0% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg) scale(1); 
+                opacity: 0.5;
+                filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.6));
+            }
+            25% { 
+                transform: translateY(-25px) translateX(15px) rotate(90deg) scale(1.1); 
+                opacity: 0.7;
+                filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.8));
+            }
+            50% { 
+                transform: translateY(-15px) translateX(-10px) rotate(180deg) scale(0.9); 
+                opacity: 0.6;
+                filter: drop-shadow(0 6px 16px rgba(255, 255, 255, 0.7));
+            }
+            75% { 
+                transform: translateY(-35px) translateX(12px) rotate(270deg) scale(1.15); 
+                opacity: 0.8;
+                filter: drop-shadow(0 10px 25px rgba(255, 255, 255, 0.9));
+            }
+            100% { 
+                transform: translateY(0px) translateX(0px) rotate(360deg) scale(1); 
+                opacity: 0.5;
+                filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.6));
+            }
+        }
+
+        /* Enhanced Cooperative Elements */
+        .cooperative-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .tree-element {
+            position: absolute;
+            opacity: 0.15;
+            font-size: 28px;
+            animation: cooperativeFloat 25s ease-in-out infinite;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .tree-element:nth-child(1) {
+            top: 15%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .tree-element:nth-child(2) {
+            bottom: 30%;
+            left: 15%;
+            animation-delay: 5s;
+        }
+
+        .tree-element:nth-child(3) {
+            top: 40%;
+            right: 8%;
+            animation-delay: 10s;
+        }
+
+        .tree-element:nth-child(4) {
+            bottom: 15%;
+            right: 20%;
+            animation-delay: 15s;
+        }
+
+        .tree-element:nth-child(5) {
+            top: 25%;
+            left: 35%;
+            animation-delay: 20s;
+        }
+
+        @keyframes cooperativeFloat {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                opacity: 0.12;
+            }
+            25% { 
+                transform: translateY(-15px) scale(1.1);
+                opacity: 0.18;
+            }
+            50% { 
+                transform: translateY(-8px) scale(0.95);
+                opacity: 0.15;
+            }
+            75% { 
+                transform: translateY(-20px) scale(1.05);
+                opacity: 0.2;
+            }
+        }
         
         .section {
             padding: 35px 80px;
@@ -507,7 +1314,7 @@
             padding: 12px 20px;
             border-radius: 14px;
             letter-spacing: 0.3px;
-            box-shadow: 0 4px 12px rgba(63, 161, 16, 0.1);
+            box-shadow: 0 4px 12px rgba(63, 161, 16, 0.2);
             display: inline-block;
             position: relative;
             overflow: hidden;
@@ -539,7 +1346,7 @@
         .skills-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 20px;
         }
         
         @media (max-width: 1000px) {
@@ -556,7 +1363,7 @@
         
         .skills-column {
             background: linear-gradient(135deg, rgba(215, 230, 200, 0.3), rgba(215, 230, 200, 0.1));
-            padding: 25px;
+            padding: 18px;
             border-radius: 16px;
             border: 1px solid rgba(63, 161, 16, 0.1);
             backdrop-filter: blur(10px);
@@ -588,125 +1395,107 @@
             font-size: 18px;
         }
         
-        .tool-item {
+        .skill-item-strategic {
             margin-bottom: 14px;
-            padding: 8px 0;
         }
         
-        .tool-name {
+        .skill-name-strategic {
             display: flex;
-            flex-direction: column;
-            gap: 6px;
+            justify-content: space-between;
+            align-items: center;
             font-weight: 500;
-            font-size: 13px;
+            font-size: 14px;
             margin-bottom: 6px;
             color: var(--text-color);
         }
 
-        .tool-skill-name {
-            color: var(--text-color);
-            font-weight: 600;
-        }
-        
-        /* Modern 5-point rating system - Sicredi colors */
-        .skill-rating {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-shrink: 0;
-            align-self: flex-start;
-        }
-        
-        .skill-dots {
-            display: flex;
-            gap: 4px;
-        }
-        
-        .skill-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(63, 161, 16, 0.2);
-            border: 1.5px solid rgba(63, 161, 16, 0.3);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-        
-        .skill-dot.active {
-            background: linear-gradient(135deg, var(--sicredi-green) 0%, var(--sicredi-dark-green) 100%);
-            border-color: var(--sicredi-green);
-            box-shadow: 
-                0 0 8px rgba(63, 161, 16, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-        
-        .skill-dot.active::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: dotShimmer 2s infinite;
-        }
-        
-        @keyframes dotShimmer {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .skill-level-text {
-            font-size: 10px;
+        .skill-percentage {
+            font-size: 13px;
             color: var(--sicredi-green);
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            margin-left: 2px;
-            white-space: nowrap;
         }
         
-        /* Dots container for skills from cv-texts.js - Sicredi colors */
-        .dots-container {
-            display: flex;
-            gap: 3px;
-            margin-top: 8px;
-        }
-        
-        .dot {
-            width: 8px;
+        .progress-bar-strategic {
             height: 8px;
-            border-radius: 50%;
-            background: rgba(63, 161, 16, 0.2);
-            border: 1px solid rgba(63, 161, 16, 0.3);
-            transition: all 0.3s ease;
+            background: rgba(63, 161, 16, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
-        .dot.filled {
-            background: linear-gradient(135deg, #3FA110 0%, #146E37 100%);
-            border-color: #3FA110;
-            box-shadow: 
-                0 0 6px rgba(63, 161, 16, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+        .progress-strategic {
+            height: 100%;
+            background: linear-gradient(90deg, var(--sicredi-green), var(--sicredi-dark-green));
+            border-radius: 10px;
+            position: relative;
+            animation: progressGrow 1.5s ease-out;
+        }
+
+        .progress-strategic::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progressShimmer 2s infinite;
         }
         
-        .tool-item:hover .dot.filled {
-            box-shadow: 
-                0 0 10px rgba(63, 161, 16, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            transform: scale(1.2);
+        .tool-item {
+            margin-bottom: 18px;
         }
         
-        /* Hover effects */
-        .tool-item:hover .skill-dot.active {
-            box-shadow: 
-                0 0 15px rgba(63, 161, 16, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            transform: scale(1.1);
+        .tool-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .tool-percentage {
+            font-size: 13px;
+            color: var(--sicredi-green);
+            font-weight: 600;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: rgba(63, 161, 16, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--sicredi-green), var(--sicredi-dark-green));
+            border-radius: 10px;
+            position: relative;
+            animation: progressGrow 1.5s ease-out;
+        }
+
+        @keyframes progressGrow {
+            from { width: 0; }
+        }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progressShimmer 2s infinite;
+        }
+
+        @keyframes progressShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
         /* Tooltip styles */
@@ -748,7 +1537,7 @@
             transform: translateY(10px);
             font-size: 13px;
             line-height: 1.5;
-            box-shadow: 0 10px 30px rgba(20, 110, 55, 0.1);
+            box-shadow: 0 10px 30px rgba(20, 110, 55, 0.3);
             overflow: hidden;
             max-height: 85vh;
             overflow-y: auto;
@@ -892,6 +1681,45 @@
             border-color: rgba(63, 161, 16, 0.15);
         }
         
+        /* Dots styles for skills */
+        .dots-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: nowrap;
+        }
+        
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: rgba(63, 161, 16, 0.15);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .dot.filled {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 1px 3px rgba(63, 161, 16, 0.3);
+            animation: dotPulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes dotPulse {
+            0% { 
+                transform: scale(1);
+                box-shadow: 0 1px 3px rgba(63, 161, 16, 0.3);
+            }
+            100% { 
+                transform: scale(1.1);
+                box-shadow: 0 2px 6px rgba(63, 161, 16, 0.4);
+            }
+        }
+        
+        .tool-item:hover .dot.filled {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            transform: scale(1.15);
+        }
+        
         .experience-item::before {
             content: "";
             position: absolute;
@@ -902,7 +1730,7 @@
             border-radius: 50%;
             background: var(--sicredi-green);
             border: 3px solid white;
-            box-shadow: 0 0 0 3px rgba(63, 161, 16, 0.05);
+            box-shadow: 0 0 0 3px rgba(63, 161, 16, 0.2);
             z-index: 1;
         }
         
@@ -927,7 +1755,7 @@
             border-radius: 50%;
             font-size: 16px;
             font-weight: 600;
-            box-shadow: 0 3px 10px rgba(63, 161, 16, 0.1);
+            box-shadow: 0 3px 10px rgba(63, 161, 16, 0.3);
         }
         
         .company {
@@ -986,7 +1814,7 @@
         
         .achievement-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(63, 161, 16, 0.1);
+            box-shadow: 0 6px 20px rgba(63, 161, 16, 0.15);
             border-color: var(--sicredi-green);
         }
         
@@ -1069,7 +1897,7 @@
             font-size: 14px;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(63, 161, 16, 0.1);
+            box-shadow: 0 4px 15px rgba(63, 161, 16, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -1087,7 +1915,7 @@
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(63, 161, 16, 0.15);
+            box-shadow: 0 6px 20px rgba(63, 161, 16, 0.4);
         }
 
         .cta-button:hover::before {
@@ -1146,7 +1974,7 @@
         
         .project-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(63, 161, 16, 0.1);
+            box-shadow: 0 8px 30px rgba(63, 161, 16, 0.15);
             border-color: var(--sicredi-green);
         }
         
@@ -1182,7 +2010,7 @@
             background: var(--sicredi-green);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(63, 161, 16, 0.1);
+            box-shadow: 0 2px 8px rgba(63, 161, 16, 0.3);
         }
 
         /* Print button */
@@ -1200,7 +2028,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(63, 161, 16, 0.1);
+            box-shadow: 0 4px 20px rgba(63, 161, 16, 0.3);
             transition: all 0.3s ease;
             z-index: 100;
         }
@@ -1224,7 +2052,7 @@
         
         .language-toggle:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(63, 161, 16, 0.15);
+            box-shadow: 0 6px 30px rgba(63, 161, 16, 0.3);
             border-color: rgba(63, 161, 16, 0.4);
         }
         
@@ -1251,7 +2079,7 @@
         .language-option.active {
             background: var(--background-gradient);
             color: white;
-            box-shadow: 0 2px 10px rgba(63, 161, 16, 0.15);
+            box-shadow: 0 2px 10px rgba(63, 161, 16, 0.3);
             animation: pulseActive 2s ease-in-out infinite;
         }
         
@@ -1294,7 +2122,7 @@
 
         .print-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(63, 161, 16, 0.15);
+            box-shadow: 0 6px 30px rgba(63, 161, 16, 0.4);
         }
 
         .print-button i {
@@ -1351,46 +2179,70 @@
             }
         }
 
-        /* Dots styles for skills */
-        .dots-container {
+        /* Print styles */
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 20px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--sicredi-dark-neutral);
+            z-index: 10001;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
-            gap: 4px;
-            flex-wrap: nowrap;
-        }
-        
-        .dot {
-            width: 6px;
-            height: 6px;
+            justify-content: center;
             border-radius: 50%;
-            background-color: rgba(63, 161, 16, 0.15);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
+            transition: background 0.3s;
         }
         
-        .dot.filled {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            box-shadow: 0 1px 3px rgba(63, 161, 16, 0.3);
-            animation: dotPulse 2s ease-in-out infinite alternate;
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.1);
         }
         
-        @keyframes dotPulse {
-            0% { 
-                transform: scale(1);
-                box-shadow: 0 1px 3px rgba(63, 161, 16, 0.3);
-            }
-            100% { 
-                transform: scale(1.1);
-                box-shadow: 0 2px 6px rgba(63, 161, 16, 0.4);
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                padding: 30px 20px;
+                margin: 10px;
             }
         }
         
-        .tool-item:hover .dot.filled {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
-            transform: scale(1.15);
-        }
-
-        /* Print styles */
         @media print {
             body {
                 background: white;
@@ -1398,7 +2250,8 @@
 
             .animated-bg,
             .shape,
-            .print-button {
+            .print-button,
+            .language-toggle {
                 display: none !important;
             }
 
@@ -1418,6 +2271,28 @@
                 background: var(--sicredi-green) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+                page-break-inside: avoid;
+                padding: 30px !important;
+            }
+            
+            .header-text {
+                padding-right: 0 !important;
+            }
+            
+            /* Logo específico do Sicredi */
+            .sicredi-logo {
+                position: static !important;
+                display: block !important;
+                margin: 20px auto 0 !important;
+                width: 100px !important;
+                opacity: 1 !important;
+                filter: brightness(0) invert(1) !important;
+            }
+            
+            /* Esconder elementos decorativos */
+            .header::after,
+            .header::before {
+                display: none !important;
             }
         }
     </style>
@@ -1436,77 +2311,156 @@
     <div class="shape"></div>
     <div class="shape"></div>
     
+    <!-- Background Words Layer - Full Page -->
+    <div class="background-words">
+        <!-- Valores -->
+        <div class="bg-word cooperativismo">Cooperativismo</div>
+        <div class="bg-word natureza">Natureza</div>
+        
+        <!-- Inovação -->
+        <div class="bg-word transformacao">Transformação Digital</div>
+        <div class="bg-word crescimento">Crescimento</div>
+        
+        <!-- Produtos -->
+        <div class="bg-word conta">Conta Corrente</div>
+        <div class="bg-word previdencia">Previdência</div>
+        <div class="bg-word recebimento">Recebimento</div>
+        
+        <!-- Conectividade -->
+        <div class="bg-word conectividade">Conectividade Global</div>
+    </div>
+
     <div class="cv-container">
         <header class="header">
+            <!-- Círculos cooperativos animados -->
+            <div class="cooperative-circles">
+                <div class="coop-circle"></div>
+                <div class="coop-circle"></div>
+                <div class="coop-circle"></div>
+            </div>
+            
+            <!-- Elegant Visual Overlay -->
+            <div class="visual-overlay"></div>
+            
             <!-- Network pattern for cooperative theme -->
             <div class="network-pattern"></div>
             
-            <!-- Floating cooperative elements -->
+            <!-- MODERN - Floating Sicredi Icons -->
+            <div class="floating-media-particles">
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_113 - com web - globo.png" alt="Globo Web">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_151 - transformacao digital.png" alt="Transformação Digital">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_85 - cenceitos e objetos - cooperativismo.png" alt="Cooperativismo">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_88 - cenceitos e objetos - natureza.png" alt="Natureza">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_73 - graficos - graf linha crescimento.png" alt="Crescimento">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_23 - produtos - conta corrente.png" alt="Conta Corrente">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_28 - produtos - previdencia.png" alt="Previdência">
+                </div>
+                <div class="media-particle">
+                    <img src="../../assets/images/icones_sicredi/24px_30 - produtos - recebimento.png" alt="Recebimento">
+                </div>
+            </div>
+            
+            <!-- MODERN - Floating Dot Particles -->
+            <div class="dot-particles">
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+                <div class="dot-particle"></div>
+            </div>
+            
+            <!-- Enhanced Floating cooperative elements -->
             <div class="cooperative-elements">
                 <div class="tree-element">🌱</div>
                 <div class="tree-element">🌿</div>
                 <div class="tree-element">🍃</div>
+                <div class="tree-element">🌾</div>
+                <div class="tree-element">🍀</div>
             </div>
             
-            <!-- Cooperative icons -->
-            <div class="coop-icons">
-                <div class="coop-icon">🤝</div>
-                <div class="coop-icon">💚</div>
-                <div class="coop-icon">🏡</div>
+            <!-- MODERN - Subtle Geometric Elements -->
+            <div class="geometric-decoration">
+                <div class="geometric-shape circle-1"></div>
+                <div class="geometric-shape circle-2"></div>
+                <div class="geometric-shape triangle-1"></div>
+                <div class="geometric-shape hexagon-1"></div>
+                <div class="geometric-shape diamond-1"></div>
+                <div class="geometric-shape star-1"></div>
             </div>
             
             <div class="header-content">
                 <img src="../../assets/images/sicredi.svg" alt="Sicredi" class="sicredi-logo">
                 <div class="header-text">
-                    <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
-                    <div class="role" id="cv-role">Gestão de CRM e Inteligência de Dados</div>
+                    <h1 id="cv-name"></h1>
+                    <div class="role" id="cv-role"></div>
                     
                     <div class="contact-info">
                         <div class="contact-item">
                             <button class="contact-button" onclick="openEmailForm()">
-                                <i class="fas fa-envelope"></i> <span id="cv-email">pedrohmarconato@gmail.com</span>
+                                <i class="fas fa-envelope"></i> <span id="cv-email"></span>
                             </button>
-                            <span class="contact-cta" id="cv-cta-email">Clique para enviar um e-mail</span>
+                            <span class="contact-cta" id="cv-cta-email"></span>
                         </div>
                         
                         <div class="contact-item">
                             <button class="contact-button" onclick="openPhoneForm()">
-                                <i class="fas fa-phone"></i> <span id="cv-phone">+55 (55) 981147758</span>
+                                <i class="fas fa-phone"></i> <span id="cv-phone"></span>
                             </button>
-                            <span class="contact-cta" id="cv-cta-phone">Clique para enviar uma mensagem</span>
+                            <span class="contact-cta" id="cv-cta-phone"></span>
                         </div>
                         
                         <div class="location" id="cv-location">
-                            <i class="fas fa-map-marker-alt"></i> <span>Cachoeira do Sul, RS</span>
+                            <i class="fas fa-map-marker-alt"></i> <span></span>
                         </div>
                         
                         <div class="contact-item">
                             <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
-                                <i class="fab fa-linkedin"></i> <span id="cv-linkedin">LinkedIn</span>
+                                <i class="fab fa-linkedin"></i> <span id="cv-linkedin"></span>
                             </a>
-                            <span class="contact-cta" id="cv-cta-linkedin">Clique para entrar no LinkedIn</span>
+                            <span class="contact-cta" id="cv-cta-linkedin"></span>
                         </div>
                         
                         <div class="contact-item">
                             <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
-                                <i class="fab fa-github"></i> <span id="cv-repository">Repositório</span>
+                                <i class="fab fa-github"></i> <span id="cv-repository"></span>
                             </a>
-                            <span class="contact-cta" id="cv-cta-repository">Ver código fonte</span>
+                            <span class="contact-cta" id="cv-cta-repository"></span>
                         </div>
+                        
                     </div>
                 </div>
             </div>
         </header>
         
         <section class="section">
-            <h2 class="section-title" id="section-profile">PERFIL PROFISSIONAL</h2>
-            <p class="profile-text" id="cv-profile">
-                Profissional em Gestão de CRM e Inteligência de Dados com foco em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa de Brand Equity que fundamentou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos. Como Coordenador de CRM nas Lojas Renner, otimizei orçamento gerando economia de 10% ao ano, implementei 80% de comunicações automatizadas e estratégias que resultaram em incremento no consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.
-            </p>
+            <div class="section-illustration">
+                <img src="../../assets/images/sicredi_ilustra/sicredi_coracao.png" alt="Valores Sicredi">
+            </div>
+            <h2 class="section-title" id="section-profile"></h2>
+            <p class="profile-text" id="cv-profile"></p>
         </section>
         
         <section class="section">
-            <h2 class="section-title" id="section-skills">COMPETÊNCIAS & FERRAMENTAS</h2>
+            <div class="section-illustration">
+                <img src="../../assets/images/sicredi_ilustra/sicredi_evo.png" alt="Evolução Sicredi">
+            </div>
+            <h2 class="section-title" id="section-skills"></h2>
             <div class="skills-container">
                 <div class="skills-column" id="skills-strategic"></div>
                 <div class="skills-column" id="skills-tools"></div>
@@ -1515,17 +2469,26 @@
         </section>
         
         <section class="section">
+            <div class="section-illustration">
+                <img src="../../assets/images/sicredi_ilustra/sicredi_mao.png" alt="Cooperação Sicredi">
+            </div>
             <h2 class="section-title" id="section-experience"></h2>
             
             <div class="experience-timeline" id="cv-experience"></div>
         </section>
         
         <section class="section">
+            <div class="section-illustration">
+                <img src="../../assets/images/sicredi_ilustra/sicredi_dindin.png" alt="Produtos Sicredi">
+            </div>
             <h2 class="section-title" id="section-education"></h2>
             <div class="education-container" id="cv-education"></div>
         </section>
         
         <section class="section">
+            <div class="section-illustration">
+                <img src="../../assets/images/sicredi_ilustra/sicredi_note.png" alt="Tecnologia Sicredi">
+            </div>
             <h2 class="section-title" id="section-projects"></h2>
             <div class="projects-container" id="cv-projects"></div>
         </section>
@@ -1533,74 +2496,74 @@
     
     <!-- Language toggle button -->
     <div class="language-toggle">
-        <a href="sicredi.html" class="language-option">
+        <a href="sicredi.html" class="language-option active">
+            <i class="fas fa-check-circle"></i>
             <span id="lang-en">EN</span>
         </a>
         <div class="language-divider"></div>
-        <a href="sicredi_pt.html" class="language-option active">
-            <i class="fas fa-check-circle"></i>
+        <a href="sicredi_pt.html" class="language-option">
             <span id="lang-pt">PT</span>
         </a>
     </div>
     
     <!-- Print button -->
-    <button class="print-button" onclick="var win = window.open('../../cv_styles/cv_sicredi_style.html', '_blank'); win.onload = function() { win.print(); }">
+    <button class="print-button" onclick="var win = window.open('../../cv_styles/cv_sicredi_style_EN.html', '_blank'); win.onload = function() { win.print(); }">
         <i class="fas fa-file-pdf"></i>
     </button>
     
     <!-- Email Modal -->
-    <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
-        <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
-            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--text-color); font-size: 24px;">Enviar E-mail</h3>
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <button onclick="closeEmailModal()" class="modal-close">×</button>
+            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Send Email</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <div style="margin-bottom:20px;">
-                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu E-mail</label>
+                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Email</label>
                     <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Assunto</label>
+                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Subject</label>
                     <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem</label>
+                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message</label>
                     <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
-                <button id="email-button" type="submit" style="background: var(--background-gradient); color: white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.4);">Enviar</button>
+                <button id="email-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.15);">Send</button>
             </form>
         </div>
     </div>
     
     <!-- Phone Modal -->
-    <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
-        <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
-            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--text-color); font-size: 24px;">Entre em Contato</h3>
+    <div id="phoneModal" class="modal">
+        <div class="modal-content">
+            <button onclick="closePhoneModal()" class="modal-close">×</button>
+            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Get in Touch</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <input type="hidden" name="contact_type" value="phone_request">
                 <div style="margin-bottom:20px;">
-                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <label id="phone-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Telefone</label>
+                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Phone</label>
                     <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Melhor horário para contato</label>
+                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Best time to contact</label>
                     <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem (Opcional)</label>
+                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message (Optional)</label>
                     <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
                 <div style="display:flex; gap:15px;">
-                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color: white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.4);">Solicitar Contato</button>
-                    <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
+                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.15);">Request Contact</button>
+                    <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.15);">
                         <i class="fab fa-whatsapp" style="margin-right:8px;"></i> <span id="whatsapp-text">WhatsApp</span>
                     </a>
                 </div>
@@ -1608,32 +2571,260 @@
         </div>
     </div>
     
-    
     <script>
+        // ========== ENHANCED INTERACTIVE FUNCTIONS ==========
+        
+        // Highlight specific achievements when stat cards are clicked
+        function highlightAchievement(type) {
+            // Remove any existing highlights
+            document.querySelectorAll('.achievement-highlight').forEach(el => {
+                el.classList.remove('achievement-highlight');
+            });
+            
+            // Add visual feedback to clicked stat card
+            event.target.closest('.stat-card').style.transform = 'scale(1.1) rotateY(15deg)';
+            setTimeout(() => {
+                event.target.closest('.stat-card').style.transform = '';
+            }, 300);
+            
+            // Highlight relevant content based on type
+            const highlightMap = {
+                'crm': ['CRM Manager', 'orçamento', 'budget'],
+                'automation': ['automação', 'automation', '80%'],
+                'data': ['R$1B', 'transações', 'BigQuery'],
+                'savings': ['R$ 1.5 milhão', 'tax', 'impostos']
+            };
+            
+            if (highlightMap[type]) {
+                highlightMap[type].forEach(keyword => {
+                    const elements = document.querySelectorAll('*');
+                    elements.forEach(el => {
+                        if (el.textContent && el.textContent.includes(keyword)) {
+                            el.style.background = 'rgba(63, 161, 16, 0.2)';
+                            el.style.borderRadius = '4px';
+                            el.style.padding = '2px 4px';
+                            el.classList.add('achievement-highlight');
+                            
+                            // Remove highlight after 3 seconds
+                            setTimeout(() => {
+                                el.style.background = '';
+                                el.style.borderRadius = '';
+                                el.style.padding = '';
+                                el.classList.remove('achievement-highlight');
+                            }, 3000);
+                        }
+                    });
+                });
+            }
+            
+            // Show notification
+            showNotification(`Destacando conquistas relacionadas a ${type.toUpperCase()}`, 'success');
+        }
+        
+        // Enhanced notification system
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
+            
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--background-gradient);
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 12px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                    animation: slideInRight 0.3s ease-out;
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255,255,255,0.2);
+                ">
+                    <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
+                    ${message}
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease-in';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        // Show skill details in a modal-like overlay
+        function showSkillDetails(skill) {
+            const skillData = {
+                'CRM': 'Customer Relationship Management - 5+ anos de experiência liderando estratégias de relacionamento e retenção de clientes.',
+                'Analytics': 'Business Intelligence e Data Analytics - Especialista em transformar dados em insights acionáveis para o negócio.',
+                'SQL': 'Structured Query Language - Proficiência avançada em consultas complexas e otimização de banco de dados.',
+                'Power BI': 'Microsoft Power BI - Criação de dashboards interativos e relatórios automatizados para tomada de decisão.',
+                'Python': 'Linguagem de programação - Desenvolvimento de scripts para automação e análises preditivas.',
+                'Scrum': 'Metodologia Ágil - Certificado em gestão de projetos ágeis e liderança de equipes multidisciplinares.'
+            };
+            
+            const overlay = document.createElement('div');
+            overlay.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.7);
+                    z-index: 2000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    animation: fadeIn 0.3s ease-out;
+                " onclick="this.remove()">
+                    <div style="
+                        background: var(--background-gradient);
+                        color: white;
+                        padding: 30px;
+                        border-radius: 16px;
+                        max-width: 500px;
+                        margin: 20px;
+                        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                        animation: scaleIn 0.3s ease-out;
+                        backdrop-filter: blur(20px);
+                        border: 1px solid rgba(255,255,255,0.2);
+                    " onclick="event.stopPropagation()">
+                        <h3 style="margin-bottom: 15px; font-size: 24px;">${skill}</h3>
+                        <p style="line-height: 1.6; margin-bottom: 20px;">${skillData[skill] || 'Habilidade essencial para o desenvolvimento profissional.'}</p>
+                        <button onclick="this.closest('[style*=\"position: fixed\"]').remove()" style="
+                            background: rgba(255,255,255,0.2);
+                            border: 1px solid rgba(255,255,255,0.3);
+                            color: white;
+                            padding: 10px 20px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-weight: 600;
+                        ">Fechar</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+        }
+        
+        // Animate progress rings with different percentages
+        function animateProgressRings() {
+            const rings = document.querySelectorAll('.progress-circle');
+            const percentages = [95, 90, 85]; // CRM, SQL, BI
+            
+            rings.forEach((ring, index) => {
+                const percentage = percentages[index];
+                const circumference = 2 * Math.PI * 25;
+                const offset = circumference - (percentage / 100) * circumference;
+                
+                setTimeout(() => {
+                    ring.style.strokeDashoffset = offset;
+                }, 500 + (index * 500));
+            });
+        }
+        
+        // Enhanced DOMContentLoaded with new interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click interactions to skill nodes
+            const skillNodes = document.querySelectorAll('.skill-node');
+            skillNodes.forEach(node => {
+                node.addEventListener('click', function() {
+                    // Stop orbit animation temporarily
+                    this.style.animationPlayState = 'paused';
+                    
+                    // Show skill details
+                    const skill = this.textContent;
+                    showSkillDetails(skill);
+                    
+                    // Resume animation after 2 seconds
+                    setTimeout(() => {
+                        this.style.animationPlayState = 'running';
+                    }, 2000);
+                });
+            });
+            
+            // Add progress ring animations
+            animateProgressRings();
+            
+            // Add floating icon interactions
+            const floatingIcons = document.querySelectorAll('.sicredi-floating-icon');
+            floatingIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.opacity = '0.3';
+                    this.style.transform = 'scale(1.2)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.opacity = '';
+                    this.style.transform = '';
+                });
+            });
+            
+            // Add CSS animations keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    0% { transform: translateX(100%); opacity: 0; }
+                    100% { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOutRight {
+                    0% { transform: translateX(0); opacity: 1; }
+                    100% { transform: translateX(100%); opacity: 0; }
+                }
+                @keyframes fadeIn {
+                    0% { opacity: 0; }
+                    100% { opacity: 1; }
+                }
+                @keyframes scaleIn {
+                    0% { transform: scale(0.8); opacity: 0; }
+                    100% { transform: scale(1); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+
         function openEmailForm() {
-            document.getElementById('emailModal').style.display = 'flex';
+            const modal = document.getElementById('emailModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
         
         function closeEmailModal() {
-            document.getElementById('emailModal').style.display = 'none';
+            const modal = document.getElementById('emailModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
         }
         
         function openPhoneForm() {
-            document.getElementById('phoneModal').style.display = 'flex';
+            const modal = document.getElementById('phoneModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
         
         function closePhoneModal() {
-            document.getElementById('phoneModal').style.display = 'none';
+            const modal = document.getElementById('phoneModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
         }
+        
         
         
         // Close modal when clicking outside
         window.onclick = function(event) {
-            if (event.target == document.getElementById('emailModal')) {
-                closeEmailModal();
-            }
-            if (event.target == document.getElementById('phoneModal')) {
-                closePhoneModal();
+            if (event.target.classList && event.target.classList.contains('modal')) {
+                if (event.target.id === 'emailModal') {
+                    closeEmailModal();
+                } else if (event.target.id === 'phoneModal') {
+                    closePhoneModal();
+                }
             }
         }
 
@@ -1702,7 +2893,7 @@
         });
         
         // Render experience section
-        function renderExperience(lang = 'pt') {
+        function renderExperience(lang = 'en') {
             const container = document.getElementById('cv-experience');
             if (!container) return;
             
@@ -1731,7 +2922,7 @@
         }
         
         // Render education section
-        function renderEducation(lang = 'pt') {
+        function renderEducation(lang = 'en') {
             const container = document.getElementById('cv-education');
             if (!container) return;
             
@@ -1752,7 +2943,7 @@
         }
         
         // Render projects section
-        function renderProjects(lang = 'pt') {
+        function renderProjects(lang = 'en') {
             const container = document.getElementById('cv-projects');
             if (!container) return;
             
@@ -1774,10 +2965,6 @@
             container.innerHTML = html;
         }
     </script>
-    
-    <!-- CV Texts Script -->
-    <script src="../../cv-texts.js"></script>
-    
     <!-- Dynamic Favicon System -->
     <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>

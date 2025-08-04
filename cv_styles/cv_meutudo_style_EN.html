@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Henrique Marconato - CV | MeuTudo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            /* MeuTudo Brand Colors */
+            --meutudo-primary: #d80073;
+            --meutudo-white: #FFFFFF;
+            --meutudo-light-gray: #F5F5F5;
+            --meutudo-medium-gray: #808080;
+            --meutudo-dark-gray: #333333;
+            
+            /* Applied Colors */
+            --primary-color: #d80073;
+            --secondary-color: #ff1493;
+            --accent-color: #d80073;
+            --text-color: #333333;
+            --light-accent: #F5F5F5;
+            --border-color: rgba(216, 0, 115, 0.2);
+            --background-gradient: linear-gradient(135deg, #d80073 0%, #ff1493 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Main container */
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Header Section */
+        .header {
+            background: var(--background-gradient);
+            padding: 50px 50px 55px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .header-info {
+            flex: 1;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .role {
+            font-size: 17px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            margin-top: 22px;
+            margin-bottom: 28px;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-top: 12px;
+        }
+        
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 8px 14px;
+            color: white;
+            font-size: 12.5px;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact-item i {
+            margin-right: 6px;
+            font-size: 12px;
+        }
+
+        .logo-container {
+            position: relative;
+        }
+        
+        .logo {
+            height: 60px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 25px 50px;
+            position: relative;
+        }
+
+        .section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            right: 50px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+        }
+        
+        .section-title {
+            background: var(--background-gradient);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            padding: 8px 16px;
+            border-radius: 12px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(216, 0, 115, 0.2);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        /* Professional Profile */
+        .profile-content {
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: var(--text-color);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: var(--light-accent);
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(216, 0, 115, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 12px;
+            color: var(--meutudo-primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            color: var(--text-color);
+            font-size: 11px;
+        }
+
+        .skill-level {
+            display: flex;
+            gap: 3px;
+        }
+
+        .skill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #e0e0e0;
+        }
+
+        .skill-dot.filled {
+            background: var(--meutudo-primary);
+        }
+        
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            margin-left: 20px;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--background-gradient);
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding: 18px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(216, 0, 115, 0.1);
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -36px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--meutudo-primary);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(216, 0, 115, 0.2);
+            z-index: 1;
+        }
+        
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--meutudo-primary);
+            margin-bottom: 4px;
+        }
+        
+        .timeline-company {
+            font-weight: 500;
+            font-size: 13px;
+            color: var(--text-color);
+        }
+        
+        .timeline-date {
+            font-size: 12px;
+            color: var(--meutudo-medium-gray);
+            font-weight: 600;
+            text-align: right;
+        }
+        
+        .timeline-description {
+            font-size: 12px;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-top: 8px;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(216, 0, 115, 0.1);
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--background-gradient);
+        }
+
+        .project-content {
+            padding: 18px;
+        }
+
+        .project-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--meutudo-primary);
+            margin-bottom: 8px;
+        }
+
+        .project-description {
+            color: var(--text-color);
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tech-tag {
+            background: rgba(216, 0, 115, 0.1);
+            color: var(--text-color);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 500;
+            border: 1px solid rgba(216, 0, 115, 0.3);
+        }
+
+        /* Print Styles */
+        .header {
+            background: #d80073 !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        
+        .section-title {
+            background: #d80073 !important;
+            color: #FFFFFF !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .cv-container {
+                max-width: 100%;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            .header {
+                background: #d80073 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                padding: 25px 35px !important;
+                page-break-after: avoid;
+            }
+
+            .section-title {
+                background: #d80073 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color: white !important;
+                page-break-after: avoid;
+            }
+
+            .section {
+                padding: 15px 35px;
+                page-break-inside: avoid;
+            }
+
+            .timeline-item {
+                page-break-inside: avoid;
+            }
+
+            .header h1 {
+                font-size: 22px !important;
+            }
+
+            .contact-item {
+                font-size: 9px !important;
+                padding: 3px 6px !important;
+            }
+
+            .section-title {
+                font-size: 12px !important;
+                padding: 4px 10px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .timeline-title {
+                font-size: 13px !important;
+            }
+
+            .timeline-description {
+                font-size: 10px !important;
+                line-height: 1.4 !important;
+            }
+
+            .project-title {
+                font-size: 13px !important;
+            }
+
+            .tech-tag {
+                font-size: 8px !important;
+                padding: 2px 6px !important;
+            }
+
+            @page {
+                size: A4;
+                margin: 8mm;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="cv-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-info">
+                    <h1>PEDRO HENRIQUE MARCONATO</h1>
+                    <div class="role">CRM | ANALYTICS | BUSINESS INTELLIGENCE | LTV | SQL</div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i> Brazilian, Married, 33 years old
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i> +55 (55) 98114-7758
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i> linkedin.com/in/pedrohmarconato
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="logo-container">
+                    <img src="../assets/images/meutudo/logo1.png" alt="MeuTudo" class="logo">
+                </div>
+            </div>
+        </header>
+        
+        <section class="section" style="padding-top: 35px;">
+            <h2 class="section-title">PROFESSIONAL SUMMARY</h2>
+            <div class="profile-content">
+                Master's degree in Business Administration, with an Analytics track, combining data intelligence, CRM, analytical visualization, and automation to generate business value. Experience in large and highly complex companies, such as Grupo RBS, Realize CFI (Lojas Renner S.A. Group), and Rede Globo, leading strategic projects in CRM, business intelligence, and marketing performance. Experience with data applied to marketing, channels, credit, control, and operations, connecting areas and translating technical needs into high-impact analytical solutions.
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">SKILLS & TOOLS</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>DATA & ANALYTICS</h3>
+                    <div class="skill-item">
+                        <span class="skill-name">SQL</span>
+                        <div class="skill-level">
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Python</span>
+                        <div class="skill-level">
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot"></span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Power BI</span>
+                        <div class="skill-level">
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Databricks</span>
+                        <div class="skill-level">
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>CRM & MARKETING</h3>
+                    <div class="skill-item">
+                        <span class="skill-name">Oracle Responsys</span>
+                        <div class="skill-level">
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Salesforce CRM</span>
+                        <div class="skill-level">
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot"></span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Mailchimp</span>
+                        <div class="skill-level">
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot"></span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Kanbanize</span>
+                        <div class="skill-level">
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot filled"></span>
+                            <span class="skill-dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title">CRM Manager</div>
+                            <div class="timeline-company">Lojas Renner | Realize CFI</div>
+                        </div>
+                        <div class="timeline-date">2021-2025</div>
+                    </div>
+                    <div class="timeline-description">
+                        Responsible for leading the strategic CRM front, focusing on area evolution, customer base growth, and business value generation. Definition and monitoring of area OKRs, connecting business goals to relationship indicators. Planning, execution, and optimization of multichannel relationship campaigns (email, SMS, push, among others), applying intelligent segmentations and automations to increase usage frequency and sales.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title">Analytics Specialist</div>
+                            <div class="timeline-company">Lojas Renner | Realize CFI</div>
+                        </div>
+                        <div class="timeline-date">2020-2021</div>
+                    </div>
+                    <div class="timeline-description">
+                        Responsible for creating dashboards and strategic indicators for areas such as Marketing, CRM, Credit, and Channels, delivering an integrated real-time view to support business decisions. Development of segmented databases and automated reports focused on the CRM team, with a focus on efficiency gains, agility in analyses, and revenue generation through more precise actions.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title">Business Intelligence Analyst</div>
+                            <div class="timeline-company">Grupo RBS</div>
+                        </div>
+                        <div class="timeline-date">2019-2020</div>
+                    </div>
+                    <div class="timeline-description">
+                        Responsible for structuring and analyzing commercial performance, audience, and market behavior data, supporting leadership in strategic decision-making for client Rede Globo. Development of segmentation studies and consumption potential mapping, using data to guide decisions, validate hypotheses, and promote sales and prospecting actions.
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">EDUCATION</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title">Master's in Business Administration</div>
+                            <div class="timeline-company">Federal University of Santa Maria - UFSM</div>
+                        </div>
+                        <div class="timeline-date">2019</div>
+                    </div>
+                    <div class="timeline-description">
+                        Analytics track, focusing on data intelligence and business performance optimization.
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title">Bachelor's in Business Administration</div>
+                            <div class="timeline-company">Federal University of Santa Maria - UFSM</div>
+                        </div>
+                        <div class="timeline-date">2015</div>
+                    </div>
+                    <div class="timeline-description">
+                        Comprehensive business education with focus on strategic management and data analysis.
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">KEY PROJECTS</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">CRM Strategy Implementation</h3>
+                        <p class="project-description">
+                            Led the complete restructuring of CRM processes at Realize CFI, implementing agile methodologies and increasing campaign efficiency by 40%.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Oracle Responsys</span>
+                            <span class="tech-tag">Databricks</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Power BI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Customer Segmentation Platform</h3>
+                        <p class="project-description">
+                            Developed advanced segmentation models using behavioral and transactional data, improving targeting precision and ROI of marketing campaigns.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Business Intelligence Dashboard</h3>
+                        <p class="project-description">
+                            Created comprehensive BI dashboards for multiple business areas, providing real-time insights and supporting strategic decision-making.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Data Visualization</span>
+                            <span class="tech-tag">KPI Tracking</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Marketing Automation Framework</h3>
+                        <p class="project-description">
+                            Implemented automated marketing workflows and personalized customer journeys, resulting in increased engagement and conversion rates.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Marketing Automation</span>
+                            <span class="tech-tag">Email Marketing</span>
+                            <span class="tech-tag">Customer Journey</span>
+                            <span class="tech-tag">A/B Testing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Marconato - CV | MeuTudo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            /* MeuTudo Brand Colors */
+            --meutudo-primary: #d80073;
+            --meutudo-white: #FFFFFF;
+            --meutudo-light-gray: #F5F5F5;
+            --meutudo-medium-gray: #808080;
+            --meutudo-dark-gray: #333333;
+            
+            /* Applied Colors */
+            --primary-color: #d80073;
+            --secondary-color: #ff1493;
+            --accent-color: #d80073;
+            --text-color: #333333;
+            --light-accent: #F5F5F5;
+            --border-color: rgba(216, 0, 115, 0.2);
+            --background-gradient: linear-gradient(135deg, #d80073 0%, #ff1493 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: #f8faf7;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* MeuTudo Illustration Background */
+        .illustration-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .illustration-1 {
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 400px;
+            height: 400px;
+            background: url('../../assets/images/meutudo/meutudoilustracao.svg') no-repeat center;
+            background-size: contain;
+            opacity: 0.08;
+            transform: rotate(15deg);
+            animation: floatAnimation 15s ease-in-out infinite;
+        }
+        
+        .illustration-2 {
+            position: absolute;
+            bottom: -10%;
+            left: -5%;
+            width: 350px;
+            height: 350px;
+            background: url('../../assets/images/meutudo/meutudoilustracao2.webp') no-repeat center;
+            background-size: contain;
+            opacity: 0.06;
+            transform: rotate(-10deg);
+            animation: floatAnimation 20s ease-in-out infinite reverse;
+        }
+        
+        @keyframes floatAnimation {
+            0%, 100% {
+                transform: translateY(0) rotate(15deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+        
+        /* Gradient Orbs */
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--meutudo-primary), transparent);
+            filter: blur(40px);
+            opacity: 0.3;
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 250px;
+            height: 250px;
+            bottom: 20%;
+            right: -5%;
+            animation-delay: 10s;
+        }
+        
+        @keyframes orbFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+        
+        /* Container */
+        .cv-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header Section - MeuTudo Redesign */
+        .header {
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.98) 40%, rgba(216, 0, 115, 0.03) 100%);
+            padding: 70px 60px 50px;
+            position: relative;
+            overflow: visible;
+            border-top: 4px solid var(--meutudo-primary);
+            margin-top: 20px;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--meutudo-primary), transparent);
+        }
+        
+        @keyframes headerGlow {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(216, 0, 115, 0.2);
+            }
+            50% {
+                box-shadow: 0 25px 80px rgba(216, 0, 115, 0.35);
+            }
+        }
+        
+        /* Shimmer Effect */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .header-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .header-center {
+            display: none;
+        }
+        
+        .header-right {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .header-illustration {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            opacity: 0.08;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: floatAnimation 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .header-svg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .header-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: url('../../assets/images/meutudo/logo2.png') no-repeat;
+            background-position: right center;
+            background-size: 200px;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        
+        .header-info {
+            flex: 1;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .logo {
+            height: auto;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: absolute;
+        }
+        
+        .logo-main {
+            width: 280px;
+            height: auto;
+            filter: drop-shadow(0 6px 20px rgba(216, 0, 115, 0.3));
+            animation: logoFloat 4s ease-in-out infinite;
+            position: relative;
+        }
+        
+        
+        .logo-main:hover {
+            transform: scale(1.05) rotate(-2deg);
+            filter: drop-shadow(0 8px 30px rgba(216, 0, 115, 0.5));
+        }
+        
+        
+        .contact-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        
+        .header h1 {
+            font-size: 46px;
+            font-weight: 800;
+            color: var(--meutudo-primary);
+            margin-bottom: 15px;
+            letter-spacing: -1.5px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 120px;
+            height: 4px;
+            background: var(--background-gradient);
+            border-radius: 2px;
+        }
+        
+        .role {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--meutudo-dark-gray);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            padding-left: 35px;
+        }
+        
+        .role::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 2px;
+            background: var(--meutudo-primary);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            background: white;
+            border-radius: 50px;
+            padding: 10px 18px;
+            text-decoration: none;
+            color: var(--meutudo-primary);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--meutudo-primary);
+            cursor: pointer;
+            position: relative;
+            z-index: 10;
+            font-family: inherit;
+            outline: none;
+            box-shadow: 0 2px 8px rgba(216, 0, 115, 0.15);
+        }
+        
+        button.contact-button {
+            border: 2px solid var(--meutudo-primary);
+            font-family: inherit;
+        }
+        
+        .contact-button:hover {
+            background: var(--background-gradient);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(216, 0, 115, 0.3);
+            border-color: var(--meutudo-primary);
+        }
+        
+        .contact-button:focus {
+            outline: 2px solid var(--meutudo-primary);
+            outline-offset: 2px;
+        }
+        
+        .contact-button:active {
+            transform: translateY(0);
+            background: var(--meutudo-primary);
+            color: white;
+        }
+        
+        .contact-button i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: var(--meutudo-dark-gray);
+            margin-top: 10px;
+            justify-content: center;
+            font-weight: 500;
+        }
+        
+        .location i {
+            margin-right: 6px;
+        }
+        
+        /* Sections */
+        .section {
+            margin: 40px 0;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--background-gradient);
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            color: var(--meutudo-primary);
+            margin-right: 12px;
+            font-size: 24px;
+        }
+        
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .skill-category {
+            background: var(--light-accent);
+            padding: 25px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-3px);
+            border-color: var(--meutudo-primary);
+            box-shadow: 0 5px 20px rgba(216, 0, 115, 0.15);
+        }
+        
+        .skill-category h3 {
+            color: var(--meutudo-primary);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .skill-name {
+            font-weight: 500;
+            color: var(--text-color);
+            font-size: 14px;
+        }
+        
+        .skill-level {
+            display: flex;
+            gap: 3px;
+        }
+        
+        .skill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #e0e0e0;
+        }
+        
+        .skill-dot.filled {
+            background: var(--meutudo-primary);
+        }
+        
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--background-gradient);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--meutudo-primary);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(216, 0, 115, 0.2);
+        }
+        
+        .timeline-content {
+            background: var(--light-accent);
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .timeline-content:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(216, 0, 115, 0.15);
+            border: 1px solid rgba(216, 0, 115, 0.2);
+        }
+        
+        /* Tooltip styles - Willbank pattern */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .tooltip .tooltip-icon {
+            color: var(--meutudo-primary);
+            font-size: 14px;
+            margin-left: 8px;
+            transition: transform 0.2s, color 0.2s;
+        }
+        
+        .tooltip:hover .tooltip-icon,
+        .tooltip:focus .tooltip-icon,
+        .tooltip:active .tooltip-icon {
+            color: var(--secondary-color);
+            transform: scale(1.2);
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 380px;
+            background: linear-gradient(145deg, var(--text-color), var(--meutudo-dark-gray));
+            color: white;
+            text-align: left;
+            border-radius: 12px;
+            padding: 0;
+            position: fixed;
+            z-index: 10000;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateY(10px);
+            opacity: 0;
+            transition: opacity 0.4s, transform 0.3s, visibility 0.4s;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(216, 0, 115, 0.4);
+            backdrop-filter: blur(15px);
+            overflow: hidden;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .tooltip .tooltip-text::after {
+            display: none;
+        }
+        
+        .tooltip:hover .tooltip-text,
+        .tooltip:focus .tooltip-text,
+        .tooltip:active .tooltip-text,
+        .tooltip.tooltip-active .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translate(-50%, -50%);
+            min-height: 330px;
+        }
+        
+        .tooltip-active .tooltip-text {
+            position: fixed !important;
+            z-index: 10000 !important;
+        }
+        
+        .tooltip-header {
+            background-color: rgba(216, 0, 115, 0.1);
+            padding: 12px 18px;
+            font-weight: 600;
+            font-size: 1.05em;
+            border-bottom: 1px solid rgba(216, 0, 115, 0.2);
+            color: white;
+        }
+        
+        .tooltip-content {
+            padding: 18px;
+        }
+        
+        .tooltip-section {
+            margin-bottom: 15px;
+        }
+        
+        .tooltip-section:last-of-type {
+            margin-bottom: 0;
+        }
+        
+        .tooltip-section-title {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 1em;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        
+        .tooltip-section-title .fas {
+            margin-right: 12px;
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+            opacity: 1;
+            color: #f0f0f0;
+        }
+        
+        .tooltip-list {
+            list-style-position: outside;
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+        
+        .tooltip-list li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .tooltip-list li::marker {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Mobile responsiveness for tooltips */
+        @media (max-width: 768px) {
+            .tooltip .tooltip-text {
+                width: 90vw;
+                max-width: 320px;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-left: 0;
+                font-size: 12px;
+                max-height: 75vh;
+            }
+            
+            .tooltip-active .tooltip-text {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) !important;
+                width: 90vw;
+                max-width: 380px;
+                z-index: 10000;
+            }
+        }
+        
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .timeline-date {
+            font-size: 13px;
+            color: var(--meutudo-primary);
+            font-weight: 500;
+            background: rgba(216, 0, 115, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        
+        .timeline-company {
+            font-size: 14px;
+            color: var(--meutudo-medium-gray);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .timeline-description {
+            color: var(--meutudo-medium-gray);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* Achievements Quadrants */
+        .achievements-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            background: rgba(216, 0, 115, 0.05);
+            padding: 12px;
+            border-radius: 10px;
+            border-left: 3px solid var(--meutudo-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-item:hover {
+            background: rgba(216, 0, 115, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(216, 0, 115, 0.15);
+        }
+        
+        .achievement-icon {
+            background: var(--background-gradient);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .achievement-content {
+            flex: 1;
+        }
+        
+        .achievement-title {
+            font-weight: 600;
+            font-size: 12px;
+            color: var(--meutudo-primary);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        
+        .achievement-description {
+            font-size: 11px;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--background-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(216, 0, 115, 0.15);
+            border-color: var(--meutudo-primary);
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+        
+        .project-description {
+            color: var(--meutudo-medium-gray);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tech-tag {
+            background: rgba(216, 0, 115, 0.1);
+            color: var(--text-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-tag:hover {
+            background: var(--background-gradient);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* Print Button */
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--background-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            cursor: pointer;
+            box-shadow: 0 6px 25px rgba(216, 0, 115, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .print-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 35px rgba(216, 0, 115, 0.4);
+        }
+        
+        .print-button i {
+            font-size: 26px;
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 35px;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: 2px solid rgba(216, 0, 115, 0.15);
+        }
+        
+        .language-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 35px rgba(216, 0, 115, 0.2);
+            border-color: rgba(216, 0, 115, 0.25);
+        }
+        
+        .language-option {
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            color: var(--meutudo-medium-gray);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .language-option.active {
+            background: var(--background-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(216, 0, 115, 0.3);
+        }
+        
+        .language-option:not(.active):hover {
+            background: rgba(216, 0, 115, 0.1);
+            color: var(--meutudo-primary);
+        }
+        
+        .language-divider {
+            width: 1px;
+            height: 24px;
+            background: rgba(216, 0, 115, 0.2);
+            margin: 0 6px;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 20px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--meutudo-dark-gray);
+            z-index: 10001;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                padding: 30px 20px;
+                margin: 10px;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cv-container {
+                padding: 20px;
+            }
+            
+            .header {
+                padding: 40px 30px;
+            }
+            
+            .header h1 {
+                font-size: 32px;
+            }
+            
+            .role {
+                font-size: 20px;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                padding-left: 30px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                margin-top: 20px;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .particles-container,
+            .print-button {
+                display: none;
+            }
+            
+            .header {
+                background: none;
+                border: 2px solid var(--meutudo-primary);
+                color: var(--text-color);
+            }
+            
+            .header h1,
+            .role,
+            .contact-button {
+                color: var(--text-color) !important;
+            }
+            
+            .section {
+                box-shadow: none;
+                border: 1px solid #e0e0e0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../cv-texts.js"></script>
+    <script src="../../dynamic-favicon.js"></script>
+</head>
+<body>
+    <!-- MeuTudo Illustration Background -->
+    <div class="illustration-bg">
+        <div class="illustration-1"></div>
+        <div class="illustration-2"></div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+    
+    <div class="cv-container">
+        <!-- Header Section - MeuTudo Redesign -->
+        <header class="header">
+            <div class="header-pattern"></div>
+            <div class="header-illustration">
+                <img src="../../assets/images/meutudo/meutudoilustracao.svg" alt="MeuTudo Illustration" class="header-svg">
+            </div>
+            <div class="header-content">
+                <div class="header-left">
+                    <h1 id="cv-name"></h1>
+                    <div class="role" id="cv-role"></div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-row">
+                            <button class="contact-button" onclick="openEmailForm()">
+                                <i class="fas fa-envelope"></i> <span id="cv-email"></span>
+                            </button>
+                            <button class="contact-button" onclick="openPhoneForm()">
+                                <i class="fas fa-phone"></i> <span id="cv-phone"></span>
+                            </button>
+                        </div>
+                        
+                        <div class="contact-row">
+                            <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
+                                <i class="fab fa-linkedin"></i> <span id="cv-linkedin"></span>
+                            </a>
+                            <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
+                                <i class="fab fa-github"></i> <span id="cv-repository"></span>
+                            </a>
+                        </div>
+                        
+                        <div class="location" id="cv-location">
+                            <i class="fas fa-map-marker-alt"></i> <span></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="logo-container">
+                        <img src="../../assets/images/meutudo/logo1.png" alt="MeuTudo" class="logo logo-main">
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Professional Profile -->
+        <section class="section">
+            <h2 class="section-title">
+                <i class="fas fa-user"></i>
+                <span id="cv-profile-title"></span>
+            </h2>
+            <p id="cv-profile-content"></p>
+        </section>
+        
+        <!-- Skills & Tools -->
+        <section class="section">
+            <h2 class="section-title" id="section-skills">
+                <i class="fas fa-tools"></i>
+                <span id="cv-skills-title"></span>
+            </h2>
+            <div class="skills-grid" id="cv-skills-grid">
+                <!-- Skills will be populated by JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Professional Experience -->
+        <section class="section">
+            <h2 class="section-title" id="section-experience">
+                <i class="fas fa-briefcase"></i>
+                <span id="cv-experience-title"></span>
+            </h2>
+            <div class="timeline" id="cv-experience-timeline">
+                <!-- Experience will be populated by JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Education -->
+        <section class="section">
+            <h2 class="section-title" id="section-education">
+                <i class="fas fa-graduation-cap"></i>
+                <span id="cv-education-title"></span>
+            </h2>
+            <div class="timeline" id="cv-education-timeline">
+                <!-- Education will be populated by JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Projects -->
+        <section class="section">
+            <h2 class="section-title" id="section-projects">
+                <i class="fas fa-rocket"></i>
+                <span id="cv-projects-title"></span>
+            </h2>
+            <div class="projects-grid" id="cv-projects-grid">
+                <!-- Projects will be populated by JavaScript -->
+            </div>
+        </section>
+    </div>
+    
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <a href="meutudo.html" class="language-option active">
+            <i class="fas fa-check-circle"></i>
+            <span>EN</span>
+        </a>
+        <div class="language-divider"></div>
+        <a href="meutudo_pt.html" class="language-option">
+            <span>PT</span>
+        </a>
+    </div>
+    
+    <!-- Print Button -->
+    <button class="print-button" onclick="var win = window.open('../../cv_styles/cv_meutudo_style_EN.html', '_blank'); win.onload = function() { win.print(); }">
+        <i class="fas fa-file-pdf"></i>
+    </button>
+    
+    <!-- Email Modal -->
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <button onclick="closeEmailModal()" class="modal-close">×</button>
+            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--meutudo-primary); font-size: 24px;">Send Email</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <div style="margin-bottom:20px;">
+                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
+                    <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Email</label>
+                    <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Subject</label>
+                    <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:25px;">
+                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message</label>
+                    <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
+                </div>
+                <button id="email-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(216, 0, 115, 0.15);">Send</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Phone Modal -->
+    <div id="phoneModal" class="modal">
+        <div class="modal-content">
+            <button onclick="closePhoneModal()" class="modal-close">×</button>
+            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--meutudo-primary); font-size: 24px;">Get in Touch</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <input type="hidden" name="contact_type" value="phone_request">
+                <div style="margin-bottom:20px;">
+                    <label id="phone-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
+                    <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Phone</label>
+                    <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Best time to contact</label>
+                    <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:25px;">
+                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message (Optional)</label>
+                    <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
+                </div>
+                <div style="display:flex; gap:15px;">
+                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(216, 0, 115, 0.15);">Request Contact</button>
+                    <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.15);">
+                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> <span id="whatsapp-text">WhatsApp</span>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Fallback content in case cv-texts.js fails to load
+        const fallbackContent = {
+            name: "PEDRO HENRIQUE LIMA MARCONATO",
+            role: "CRM Management and Data Intelligence",
+            email: "pedrohmarconato@gmail.com",
+            phone: "+55 (55) 981147758",
+            location: "Cachoeira do Sul, RS",
+            linkedin: "LinkedIn",
+            repository: "Repository",
+            profileTitle: "PROFESSIONAL PROFILE",
+            skillsTitle: "SKILLS & TOOLS",
+            experienceTitle: "PROFESSIONAL EXPERIENCE",
+            educationTitle: "EDUCATION",
+            projectsTitle: "PROJECTS & INNOVATION",
+            professionalProfile: "Professional in CRM Management and Data Intelligence focused on quantifiable results. Experience in strategic leadership, budget management, and data-driven decision making."
+        };
+
+        // Enhanced content loading with proper error handling
+        function loadContent() {
+            console.log('Starting content loading...');
+            console.log('CVTexts available:', typeof CVTexts !== 'undefined');
+            console.log('getText available:', typeof getText !== 'undefined');
+            
+            try {
+                const currentLang = 'en'; // Default language
+                let content;
+                
+                // Check if cv-texts.js loaded properly
+                if (typeof CVTexts !== 'undefined' && CVTexts.common && CVTexts.common[currentLang]) {
+                    console.log('Using CVTexts data');
+                    content = CVTexts.common[currentLang];
+                } else {
+                    console.warn('CVTexts not available, using fallback content');
+                    // Use fallback content but still try to load what we can
+                    content = null;
+                }
+                
+                // Basic Information - with fallback
+                const nameEl = document.getElementById('cv-name');
+                if (nameEl) {
+                    nameEl.textContent = content ? content.name : fallbackContent.name;
+                }
+                
+                const roleEl = document.getElementById('cv-role');
+                if (roleEl) {
+                    roleEl.textContent = content ? content.role : fallbackContent.role;
+                }
+                
+                // Contact Information - with fallback
+                const emailEl = document.getElementById('cv-email');
+                if (emailEl) {
+                    emailEl.textContent = content ? content.contact.email : fallbackContent.email;
+                }
+                
+                const phoneEl = document.getElementById('cv-phone');
+                if (phoneEl) {
+                    phoneEl.textContent = content ? content.contact.phone : fallbackContent.phone;
+                }
+                
+                const locationEl = document.getElementById('cv-location');
+                if (locationEl) {
+                    locationEl.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${content ? content.contact.location : fallbackContent.location}`;
+                }
+                
+                const linkedinEl = document.getElementById('cv-linkedin');
+                if (linkedinEl) {
+                    linkedinEl.textContent = content ? content.contact.linkedin : fallbackContent.linkedin;
+                }
+                
+                const repositoryEl = document.getElementById('cv-repository');
+                if (repositoryEl) {
+                    repositoryEl.textContent = content ? content.contact.repository : fallbackContent.repository;
+                }
+                
+                // Section Titles - with fallback
+                const profileTitleEl = document.getElementById('cv-profile-title');
+                if (profileTitleEl) {
+                    profileTitleEl.textContent = content ? content.sections.profile : fallbackContent.profileTitle;
+                }
+                
+                const skillsTitleEl = document.getElementById('cv-skills-title');
+                if (skillsTitleEl) {
+                    skillsTitleEl.textContent = content ? content.sections.skills : fallbackContent.skillsTitle;
+                }
+                
+                const experienceTitleEl = document.getElementById('cv-experience-title');
+                if (experienceTitleEl) {
+                    experienceTitleEl.textContent = content ? content.sections.experience : fallbackContent.experienceTitle;
+                }
+                
+                const educationTitleEl = document.getElementById('cv-education-title');
+                if (educationTitleEl) {
+                    educationTitleEl.textContent = content ? content.sections.education : fallbackContent.educationTitle;
+                }
+                
+                const projectsTitleEl = document.getElementById('cv-projects-title');
+                if (projectsTitleEl) {
+                    projectsTitleEl.textContent = content ? content.sections.projects : fallbackContent.projectsTitle;
+                }
+                
+                // Professional Profile - with fallback
+                const profileContentEl = document.getElementById('cv-profile-content');
+                if (profileContentEl) {
+                    profileContentEl.textContent = content ? content.professionalProfile : fallbackContent.professionalProfile;
+                }
+                
+                // Only load advanced content if CVTexts is available
+                if (content) {
+                    loadSkills(content);
+                    loadExperience(content, currentLang);
+                    loadEducation(content);
+                    loadProjects(content);
+                    loadModalTexts(content);
+                } else {
+                    console.warn('Advanced content not loaded due to missing CVTexts');
+                }
+                
+                console.log('Content loading completed successfully');
+                
+            } catch (error) {
+                console.error('Error loading content:', error);
+                // In case of error, at least show basic fallback content
+                showFallbackContent();
+            }
+        }
+        
+        // Function to load skills
+        function loadSkills(content) {
+            try {
+                const skillsGrid = document.getElementById('cv-skills-grid');
+                if (!skillsGrid) return;
+                
+                skillsGrid.innerHTML = '';
+                
+                Object.entries(content.skills).forEach(([category, skills]) => {
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.className = 'skill-category';
+                    
+                    const categoryTitle = document.createElement('h3');
+                    categoryTitle.textContent = content.skillCategories[category];
+                    categoryDiv.appendChild(categoryTitle);
+                    
+                    skills.forEach(skill => {
+                        const skillDiv = document.createElement('div');
+                        skillDiv.className = 'skill-item';
+                        
+                        const skillName = document.createElement('span');
+                        skillName.className = 'skill-name';
+                        skillName.textContent = skill.name;
+                        
+                        const skillLevel = document.createElement('div');
+                        skillLevel.className = 'skill-level';
+                        
+                        for (let i = 1; i <= 5; i++) {
+                            const dot = document.createElement('span');
+                            dot.className = 'skill-dot';
+                            if (i <= skill.level) {
+                                dot.classList.add('filled');
+                            }
+                            skillLevel.appendChild(dot);
+                        }
+                        
+                        skillDiv.appendChild(skillName);
+                        skillDiv.appendChild(skillLevel);
+                        categoryDiv.appendChild(skillDiv);
+                    });
+                    
+                    skillsGrid.appendChild(categoryDiv);
+                });
+                
+                console.log('Skills loaded successfully');
+            } catch (error) {
+                console.error('Error loading skills:', error);
+            }
+        }
+        
+        // Function to load experience
+        function loadExperience(content, currentLang) {
+            try {
+                const experienceTimeline = document.getElementById('cv-experience-timeline');
+                if (!experienceTimeline) return;
+                
+                experienceTimeline.innerHTML = '';
+                
+                // Use the experience data directly from content
+                const experiences = content.experience;
+                
+                experiences.forEach((exp, index) => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = 'timeline-item';
+                    
+                    const timelineContent = document.createElement('div');
+                    timelineContent.className = 'timeline-content';
+                    
+                    const header = document.createElement('div');
+                    header.className = 'timeline-header';
+                    
+                    const titleContainer = document.createElement('div');
+                    const title = document.createElement('h3');
+                    title.className = 'timeline-title';
+                    title.textContent = exp.title;
+                    
+                    // Create tooltip if available
+                    if (exp.tooltip) {
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'tooltip';
+                        
+                        const tooltipIcon = document.createElement('i');
+                        tooltipIcon.className = 'fas fa-info-circle tooltip-icon';
+                        
+                        const tooltipText = document.createElement('span');
+                        tooltipText.className = 'tooltip-text';
+                        
+                        // Create tooltip content
+                        let tooltipContent = `<div class="tooltip-header">${exp.title} - ${exp.company}</div>`;
+                        
+                        if (exp.tooltip.sections && exp.tooltip.sections.length > 0) {
+                            tooltipContent += '<div class="tooltip-content">';
+                            exp.tooltip.sections.forEach(section => {
+                                tooltipContent += `
+                                    <div class="tooltip-section">
+                                        <div class="tooltip-section-title">
+                                            <i class="fas ${section.icon}"></i> ${section.title}
+                                        </div>
+                                        <ul class="tooltip-list">
+                                            ${section.items.map(item => `<li>${item}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                `;
+                            });
+                            tooltipContent += '</div>';
+                        }
+                        
+                        tooltipText.innerHTML = tooltipContent;
+                        tooltip.appendChild(tooltipIcon);
+                        tooltip.appendChild(tooltipText);
+                        titleContainer.appendChild(tooltip);
+                    }
+                    
+                    titleContainer.appendChild(title);
+                    
+                    const date = document.createElement('span');
+                    date.className = 'timeline-date';
+                    date.textContent = exp.period;
+                    
+                    header.appendChild(titleContainer);
+                    header.appendChild(date);
+                    
+                    const company = document.createElement('div');
+                    company.className = 'timeline-company';
+                    company.textContent = exp.company;
+                    
+                    const description = document.createElement('p');
+                    description.className = 'timeline-description';
+                    description.textContent = exp.description;
+                    
+                    // Add achievements if available
+                    if (exp.achievements && exp.achievements.length > 0) {
+                        const achievementsDiv = document.createElement('div');
+                        achievementsDiv.className = 'achievements-container';
+                        
+                        exp.achievements.forEach(achievement => {
+                            const achievementItem = document.createElement('div');
+                            achievementItem.className = 'achievement-item';
+                            
+                            const achievementIcon = document.createElement('div');
+                            achievementIcon.className = 'achievement-icon';
+                            achievementIcon.innerHTML = `<i class="fas ${achievement.icon}"></i>`;
+                            
+                            const achievementContent = document.createElement('div');
+                            achievementContent.className = 'achievement-content';
+                            
+                            const achievementTitle = document.createElement('div');
+                            achievementTitle.className = 'achievement-title';
+                            achievementTitle.textContent = achievement.title;
+                            
+                            const achievementDescription = document.createElement('div');
+                            achievementDescription.className = 'achievement-description';
+                            achievementDescription.textContent = achievement.description;
+                            
+                            achievementContent.appendChild(achievementTitle);
+                            achievementContent.appendChild(achievementDescription);
+                            achievementItem.appendChild(achievementIcon);
+                            achievementItem.appendChild(achievementContent);
+                            achievementsDiv.appendChild(achievementItem);
+                        });
+                        
+                        timelineContent.appendChild(achievementsDiv);
+                    }
+                    
+                    timelineContent.insertBefore(header, timelineContent.firstChild);
+                    timelineContent.insertBefore(company, timelineContent.children[1]);
+                    timelineContent.insertBefore(description, timelineContent.children[2]);
+                    
+                    timelineItem.appendChild(timelineContent);
+                    experienceTimeline.appendChild(timelineItem);
+                });
+                
+                console.log('Experience loaded successfully');
+            } catch (error) {
+                console.error('Error loading experience:', error);
+            }
+        }
+        
+        // Function to load education
+        function loadEducation(content) {
+            try {
+                const educationTimeline = document.getElementById('cv-education-timeline');
+                if (!educationTimeline) return;
+                
+                educationTimeline.innerHTML = '';
+                
+                content.education.forEach(edu => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = 'timeline-item';
+                    
+                    const timelineContent = document.createElement('div');
+                    timelineContent.className = 'timeline-content';
+                    
+                    const title = document.createElement('h3');
+                    title.className = 'timeline-title';
+                    title.textContent = edu.degree;
+                    
+                    const company = document.createElement('div');
+                    company.className = 'timeline-company';
+                    company.textContent = edu.university;
+                    
+                    const description = document.createElement('p');
+                    description.className = 'timeline-description';
+                    description.textContent = edu.thesis;
+                    
+                    timelineContent.appendChild(title);
+                    timelineContent.appendChild(company);
+                    timelineContent.appendChild(description);
+                    timelineItem.appendChild(timelineContent);
+                    educationTimeline.appendChild(timelineItem);
+                });
+                
+                console.log('Education loaded successfully');
+            } catch (error) {
+                console.error('Error loading education:', error);
+            }
+        }
+        
+        // Function to load projects
+        function loadProjects(content) {
+            try {
+                const projectsGrid = document.getElementById('cv-projects-grid');
+                if (!projectsGrid) return;
+                
+                projectsGrid.innerHTML = '';
+                
+                content.projects.forEach(project => {
+                    const projectCard = document.createElement('div');
+                    projectCard.className = 'project-card';
+                    
+                    const projectContent = document.createElement('div');
+                    projectContent.className = 'project-content';
+                    
+                    const title = document.createElement('h3');
+                    title.className = 'project-title';
+                    title.textContent = project.title;
+                    
+                    const description = document.createElement('p');
+                    description.className = 'project-description';
+                    description.textContent = project.description;
+                    
+                    const techDiv = document.createElement('div');
+                    techDiv.className = 'project-tech';
+                    
+                    project.techs.forEach(tech => {
+                        const techTag = document.createElement('span');
+                        techTag.className = 'tech-tag';
+                        techTag.textContent = tech;
+                        techDiv.appendChild(techTag);
+                    });
+                    
+                    projectContent.appendChild(title);
+                    projectContent.appendChild(description);
+                    projectContent.appendChild(techDiv);
+                    projectCard.appendChild(projectContent);
+                    projectsGrid.appendChild(projectCard);
+                });
+                
+                console.log('Projects loaded successfully');
+            } catch (error) {
+                console.error('Error loading projects:', error);
+            }
+        }
+        
+        // Function to load modal texts
+        function loadModalTexts(content) {
+            try {
+                // Email modal
+                const emailModalTitle = document.getElementById('email-modal-title');
+                if (emailModalTitle) emailModalTitle.textContent = content.modals.email.title;
+                
+                const emailLabelName = document.getElementById('email-label-name');
+                if (emailLabelName) emailLabelName.textContent = content.modals.email.fields.name;
+                
+                const emailLabelEmail = document.getElementById('email-label-email');
+                if (emailLabelEmail) emailLabelEmail.textContent = content.modals.email.fields.email;
+                
+                const emailLabelSubject = document.getElementById('email-label-subject');
+                if (emailLabelSubject) emailLabelSubject.textContent = content.modals.email.fields.subject;
+                
+                const emailLabelMessage = document.getElementById('email-label-message');
+                if (emailLabelMessage) emailLabelMessage.textContent = content.modals.email.fields.message;
+                
+                const emailButton = document.getElementById('email-button');
+                if (emailButton) emailButton.textContent = content.modals.email.button;
+                
+                // Phone modal
+                const phoneModalTitle = document.getElementById('phone-modal-title');
+                if (phoneModalTitle) phoneModalTitle.textContent = content.modals.phone.title;
+                
+                const phoneLabelName = document.getElementById('phone-label-name');
+                if (phoneLabelName) phoneLabelName.textContent = content.modals.phone.fields.name;
+                
+                const phoneLabelPhone = document.getElementById('phone-label-phone');
+                if (phoneLabelPhone) phoneLabelPhone.textContent = content.modals.phone.fields.phone;
+                
+                const phoneLabelBesttime = document.getElementById('phone-label-besttime');
+                if (phoneLabelBesttime) phoneLabelBesttime.textContent = content.modals.phone.fields.bestTime;
+                
+                const phoneLabelMessage = document.getElementById('phone-label-message');
+                if (phoneLabelMessage) phoneLabelMessage.textContent = content.modals.phone.fields.message;
+                
+                const phoneButton = document.getElementById('phone-button');
+                if (phoneButton) phoneButton.textContent = content.modals.phone.button;
+                
+                const whatsappText = document.getElementById('whatsapp-text');
+                if (whatsappText) whatsappText.textContent = content.modals.phone.whatsapp;
+                
+                console.log('Modal texts loaded successfully');
+            } catch (error) {
+                console.error('Error loading modal texts:', error);
+            }
+        }
+        
+        // Function to show basic fallback content
+        function showFallbackContent() {
+            console.log('Showing fallback content');
+            document.getElementById('cv-name').textContent = fallbackContent.name;
+            document.getElementById('cv-role').textContent = fallbackContent.role;
+            document.getElementById('cv-profile-content').textContent = fallbackContent.professionalProfile;
+        }
+
+        // Load CV content when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, starting content initialization...');
+            
+            // Add a small delay to ensure cv-texts.js has loaded
+            setTimeout(() => {
+                loadContent();
+            }, 100);
+        });
+        
+        // Modal functions
+        function openEmailForm() {
+            const modal = document.getElementById('emailModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeEmailModal() {
+            const modal = document.getElementById('emailModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function openPhoneForm() {
+            const modal = document.getElementById('phoneModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closePhoneModal() {
+            const modal = document.getElementById('phoneModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList && event.target.classList.contains('modal')) {
+                if (event.target.id === 'emailModal') {
+                    closeEmailModal();
+                } else if (event.target.id === 'phoneModal') {
+                    closePhoneModal();
+                }
+            }
+        }
+        
+        // Tooltip functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for tooltips to be created
+            setTimeout(() => {
+                const tooltips = document.querySelectorAll('.tooltip');
+                tooltips.forEach(tooltip => {
+                    tooltip.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        
+                        // Close all other tooltips
+                        tooltips.forEach(t => {
+                            if (t !== this) {
+                                t.classList.remove('tooltip-active');
+                            }
+                        });
+                        
+                        // Toggle current tooltip
+                        this.classList.toggle('tooltip-active');
+                    });
+                });
+                
+                // Close tooltips when clicking outside
+                document.addEventListener('click', function() {
+                    tooltips.forEach(tooltip => {
+                        tooltip.classList.remove('tooltip-active');
+                    });
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

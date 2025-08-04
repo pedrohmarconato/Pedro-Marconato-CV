@@ -93,11 +93,12 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating shapes */
+        /* Floating shapes - mais visíveis */
         .shape {
             position: absolute;
-            opacity: 0.05;
+            opacity: 0.15;
             animation: float 25s infinite ease-in-out;
+            mix-blend-mode: multiply;
         }
 
         .shape:nth-child(1) {
@@ -182,9 +183,13 @@
         
         .header {
             background: var(--background-gradient);
-            padding: 60px 60px 80px 60px;
+            padding: 80px 60px 100px 60px;
             position: relative;
             overflow: hidden;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(20, 110, 55, 0.2);
         }
 
         .header::before {
@@ -198,28 +203,86 @@
             animation: shimmer 8s infinite;
         }
         
-        /* Creative cooperative elements */
+        /* Creative cooperative elements - melhorados */
         .header::after {
             content: '';
             position: absolute;
             top: -50%;
             right: -20%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.2) 0%, 
+                rgba(255, 255, 255, 0.1) 30%,
+                transparent 70%);
             border-radius: 50%;
             animation: floatGlow 6s ease-in-out infinite;
         }
         
         @keyframes floatGlow {
             0%, 100% { 
-                transform: translateY(0px) scale(1);
-                opacity: 0.6;
+                transform: translateY(0px) scale(1) rotate(0deg);
+                opacity: 0.7;
             }
-            50% { 
-                transform: translateY(-20px) scale(1.1);
+            33% {
+                transform: translateY(-15px) scale(1.08) rotate(120deg);
+                opacity: 0.9;
+            }
+            66% { 
+                transform: translateY(-25px) scale(1.12) rotate(240deg);
                 opacity: 0.8;
             }
+        }
+        
+        /* Círculos cooperativos animados */
+        .cooperative-circles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            z-index: 0;
+        }
+        
+        .coop-circle {
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: circleRotate 20s linear infinite;
+        }
+        
+        .coop-circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 15s;
+        }
+        
+        .coop-circle:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 20s;
+            animation-direction: reverse;
+        }
+        
+        .coop-circle:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 25s;
+        }
+        
+        @keyframes circleRotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
         
         /* Growing trees/plants representing cooperation */
@@ -230,47 +293,53 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 0;
         }
         
         .tree-element {
             position: absolute;
-            opacity: 0.15;
-            animation: growTree 3s ease-out;
+            opacity: 0;
+            animation: growTree 3s ease-out forwards;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            z-index: 0;
+            pointer-events: none;
         }
         
         .tree-element:nth-child(1) {
-            top: 20%;
-            left: 15%;
-            font-size: 40px;
-            color: rgba(255, 255, 255, 0.3);
+            top: 5%;
+            right: 5%;
+            font-size: 50px;
+            color: rgba(255, 255, 255, 0.8);
             animation-delay: 0.5s;
         }
         
         .tree-element:nth-child(2) {
-            top: 60%;
-            left: 80%;
-            font-size: 35px;
-            color: rgba(255, 255, 255, 0.25);
+            bottom: 10%;
+            left: 5%;
+            font-size: 45px;
+            color: rgba(255, 255, 255, 0.7);
             animation-delay: 1s;
         }
         
         .tree-element:nth-child(3) {
-            top: 40%;
-            left: 5%;
-            font-size: 30px;
-            color: rgba(255, 255, 255, 0.2);
+            top: 10%;
+            left: 3%;
+            font-size: 40px;
+            color: rgba(255, 255, 255, 0.65);
             animation-delay: 1.5s;
         }
         
         @keyframes growTree {
             0% {
-                transform: scale(0) translateY(20px);
+                transform: scale(0) translateY(20px) rotate(-10deg);
                 opacity: 0;
             }
+            50% {
+                transform: scale(1.1) translateY(-5px) rotate(5deg);
+            }
             100% {
-                transform: scale(1) translateY(0);
-                opacity: 0.15;
+                transform: scale(1) translateY(0) rotate(0deg);
+                opacity: 0.7;
             }
         }
         
@@ -294,12 +363,20 @@
         
         @keyframes networkPulse {
             0%, 100% {
-                opacity: 0.5;
-                transform: scale(1);
+                opacity: 0.6;
+                transform: scale(1) rotate(0deg);
+            }
+            25% {
+                opacity: 0.8;
+                transform: scale(1.02) rotate(1deg);
             }
             50% {
+                opacity: 1;
+                transform: scale(1.05) rotate(-1deg);
+            }
+            75% {
                 opacity: 0.8;
-                transform: scale(1.02);
+                transform: scale(1.02) rotate(0.5deg);
             }
         }
         
@@ -316,9 +393,10 @@
         
         .coop-icon {
             position: absolute;
-            color: rgba(255, 255, 255, 0.2);
-            font-size: 24px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 30px;
             animation: floatIcon 8s ease-in-out infinite;
+            filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
         }
         
         .coop-icon:nth-child(1) {
@@ -341,20 +419,20 @@
         
         @keyframes floatIcon {
             0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-                opacity: 0.2;
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.5;
             }
             25% {
-                transform: translateY(-10px) rotate(90deg);
-                opacity: 0.4;
+                transform: translateY(-10px) rotate(90deg) scale(1.1);
+                opacity: 0.7;
             }
             50% {
-                transform: translateY(-5px) rotate(180deg);
-                opacity: 0.3;
+                transform: translateY(-5px) rotate(180deg) scale(1.05);
+                opacity: 0.6;
             }
             75% {
-                transform: translateY(-15px) rotate(270deg);
-                opacity: 0.4;
+                transform: translateY(-15px) rotate(270deg) scale(1.15);
+                opacity: 0.8;
             }
         }
 
@@ -370,14 +448,19 @@
 
         .sicredi-logo {
             position: absolute;
-            bottom: 20px;
-            right: 40px;
-            width: 140px;
+            bottom: 30px;
+            right: 50px;
+            width: 160px;
             height: auto;
             filter: brightness(0) invert(1);
-            opacity: 0.9;
+            opacity: 0.95;
             z-index: 15;
             animation: logoGlow 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+        
+        .sicredi-logo:hover {
+            transform: scale(1.05);
         }
         
         @keyframes logoGlow {
@@ -395,13 +478,14 @@
         }
         
         .header h1 {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 700;
             color: white;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
             animation: titleEntrance 1s ease-out;
+            line-height: 1.1;
         }
         
         @keyframes titleEntrance {
@@ -416,12 +500,13 @@
         }
         
         .role {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 400;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             animation: roleSlideIn 1s ease-out 0.3s both;
+            line-height: 1.3;
         }
         
         @keyframes roleSlideIn {
@@ -445,23 +530,43 @@
         .contact-button {
             display: inline-flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(10px);
             border-radius: 12px;
-            padding: 10px 16px;
+            padding: 12px 18px;
             text-decoration: none;
             color: white;
             font-size: 14px;
             font-weight: 500;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             cursor: pointer;
+            position: relative;
+            z-index: 10;
+            font-family: inherit;
+            outline: none;
+        }
+        
+        button.contact-button {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-family: inherit;
         }
         
         .contact-button:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.35);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .contact-button:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 2px;
+        }
+        
+        .contact-button:active {
+            transform: translateY(0);
+            background: rgba(255, 255, 255, 0.4);
         }
         
         .contact-button i {
@@ -659,10 +764,12 @@
 
         .geometric-shape {
             position: absolute;
-            opacity: 0.12;
+            opacity: 0.3;
             animation: dynamicGeometry 12s ease-in-out infinite;
             filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.3));
             transition: all 0.3s ease;
+            z-index: 0;
+            pointer-events: none;
         }
 
         .geometric-shape:hover {
@@ -674,20 +781,20 @@
         .circle-1 {
             width: 120px;
             height: 120px;
-            border: 2px solid rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            top: 18%;
-            right: 12%;
+            top: 5%;
+            right: 2%;
             animation-delay: 0s;
         }
 
         .circle-2 {
             width: 90px;
             height: 90px;
-            border: 2px solid rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.25);
             border-radius: 50%;
-            bottom: 25%;
-            left: 18%;
+            bottom: 5%;
+            left: 2%;
             animation-delay: 7s;
         }
 
@@ -1090,28 +1197,28 @@
         @keyframes dramaticFloat {
             0% { 
                 transform: translateY(0px) translateX(0px) rotate(0deg) scale(1); 
-                opacity: 0.15;
-                filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.4));
+                opacity: 0.5;
+                filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.6));
             }
             25% { 
                 transform: translateY(-25px) translateX(15px) rotate(90deg) scale(1.1); 
-                opacity: 0.25;
-                filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.6));
+                opacity: 0.7;
+                filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.8));
             }
             50% { 
                 transform: translateY(-15px) translateX(-10px) rotate(180deg) scale(0.9); 
-                opacity: 0.18;
-                filter: drop-shadow(0 6px 16px rgba(255, 255, 255, 0.5));
+                opacity: 0.6;
+                filter: drop-shadow(0 6px 16px rgba(255, 255, 255, 0.7));
             }
             75% { 
                 transform: translateY(-35px) translateX(12px) rotate(270deg) scale(1.15); 
-                opacity: 0.28;
-                filter: drop-shadow(0 10px 25px rgba(255, 255, 255, 0.7));
+                opacity: 0.8;
+                filter: drop-shadow(0 10px 25px rgba(255, 255, 255, 0.9));
             }
             100% { 
                 transform: translateY(0px) translateX(0px) rotate(360deg) scale(1); 
-                opacity: 0.15;
-                filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.4));
+                opacity: 0.5;
+                filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.6));
             }
         }
 
@@ -2073,6 +2180,69 @@
         }
 
         /* Print styles */
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 20px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--sicredi-dark-neutral);
+            z-index: 10001;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                padding: 30px 20px;
+                margin: 10px;
+            }
+        }
+        
         @media print {
             body {
                 background: white;
@@ -2162,6 +2332,13 @@
 
     <div class="cv-container">
         <header class="header">
+            <!-- Círculos cooperativos animados -->
+            <div class="cooperative-circles">
+                <div class="coop-circle"></div>
+                <div class="coop-circle"></div>
+                <div class="coop-circle"></div>
+            </div>
+            
             <!-- Elegant Visual Overlay -->
             <div class="visual-overlay"></div>
             
@@ -2335,9 +2512,9 @@
     </button>
     
     <!-- Email Modal -->
-    <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
-        <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <button onclick="closeEmailModal()" class="modal-close">×</button>
             <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Send Email</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <div style="margin-bottom:20px;">
@@ -2362,9 +2539,9 @@
     </div>
     
     <!-- Phone Modal -->
-    <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
-        <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
+    <div id="phoneModal" class="modal">
+        <div class="modal-content">
+            <button onclick="closePhoneModal()" class="modal-close">×</button>
             <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--sicredi-dark-green); font-size: 24px;">Get in Touch</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <input type="hidden" name="contact_type" value="phone_request">
@@ -2615,30 +2792,39 @@
         });
 
         function openEmailForm() {
-            document.getElementById('emailModal').style.display = 'flex';
+            const modal = document.getElementById('emailModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
         
         function closeEmailModal() {
-            document.getElementById('emailModal').style.display = 'none';
+            const modal = document.getElementById('emailModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
         }
         
         function openPhoneForm() {
-            document.getElementById('phoneModal').style.display = 'flex';
+            const modal = document.getElementById('phoneModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
         
         function closePhoneModal() {
-            document.getElementById('phoneModal').style.display = 'none';
+            const modal = document.getElementById('phoneModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
         }
         
         
         
         // Close modal when clicking outside
         window.onclick = function(event) {
-            if (event.target == document.getElementById('emailModal')) {
-                closeEmailModal();
-            }
-            if (event.target == document.getElementById('phoneModal')) {
-                closePhoneModal();
+            if (event.target.classList && event.target.classList.contains('modal')) {
+                if (event.target.id === 'emailModal') {
+                    closeEmailModal();
+                } else if (event.target.id === 'phoneModal') {
+                    closePhoneModal();
+                }
             }
         }
 
