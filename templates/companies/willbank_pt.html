@@ -106,6 +106,60 @@
             66% { transform: translateY(30px) rotate(240deg); }
         }
         
+        /* Gold Particles System */
+        .gold-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .gold-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, #FFD700, transparent);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 18s infinite ease-in-out;
+            box-shadow: 0 0 10px #FFD700;
+        }
+        
+        .gold-particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .gold-particle:nth-child(2) { left: 20%; animation-delay: 3s; }
+        .gold-particle:nth-child(3) { left: 30%; animation-delay: 6s; }
+        .gold-particle:nth-child(4) { left: 40%; animation-delay: 9s; }
+        .gold-particle:nth-child(5) { left: 50%; animation-delay: 12s; }
+        .gold-particle:nth-child(6) { left: 60%; animation-delay: 15s; }
+        .gold-particle:nth-child(7) { left: 70%; animation-delay: 2s; }
+        .gold-particle:nth-child(8) { left: 80%; animation-delay: 5s; }
+        .gold-particle:nth-child(9) { left: 90%; animation-delay: 8s; }
+        .gold-particle:nth-child(10) { left: 95%; animation-delay: 11s; }
+        
+        @keyframes particleFloat {
+            0% {
+                bottom: -10px;
+                opacity: 0;
+                transform: translateX(0) scale(0);
+            }
+            10% {
+                opacity: 0.7;
+                transform: translateX(20px) scale(1);
+            }
+            90% {
+                opacity: 0.7;
+                transform: translateX(-20px) scale(1);
+            }
+            100% {
+                bottom: 100%;
+                opacity: 0;
+                transform: translateX(30px) scale(0);
+            }
+        }
+        
         .cv-container {
             max-width: 1000px;
             margin: 30px auto;
@@ -402,6 +456,67 @@
             z-index: 101;
         }
         
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 10px 16px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 102;
+        }
+        
+        .contact-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+        
+        .contact-button:active::after {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .contact-button:hover {
+            background: rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-button span, .contact-button i {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-button i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        
         /* Willbank SVG Decorations */
         .willbank-decoration {
             position: absolute;
@@ -472,44 +587,6 @@
             }
         }
         
-        .contact-button {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 10px 16px;
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            position: relative;
-            overflow: visible;
-            z-index: 102;
-        }
-        
-        .contact-button:hover {
-            background: rgba(0, 0, 0, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-        
-        .contact-button i {
-            margin-right: 8px;
-            font-size: 16px;
-        }
-        
-        
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
-        
         .contact-cta {
             font-size: 11px;
             color: rgba(0, 0, 0, 0.7);
@@ -576,13 +653,13 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
-            animation: titleShimmer 6s infinite;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: titleShimmer 4s infinite;
         }
 
         @keyframes titleShimmer {
             0% { left: -100%; }
-            50%, 100% { left: 100%; }
+            100% { left: 100%; }
         }
         
         .profile-text {
@@ -617,12 +694,27 @@
             border: 1px solid rgba(255, 215, 0, 0.2);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .skills-column:nth-child(1) { animation-delay: 0.2s; }
+        .skills-column:nth-child(2) { animation-delay: 0.4s; }
+        .skills-column:nth-child(3) { animation-delay: 0.6s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .skills-column:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(255, 215, 0, 0.2);
-            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.25);
+            border-color: rgba(255, 215, 0, 0.4);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(247, 220, 0, 0.08));
         }
         
         .skill-item {
@@ -632,17 +724,42 @@
             font-size: 15px;
             color: var(--dark-black);
             font-weight: 500;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 0;
+        }
+        
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(to bottom, #FFD700, #F7DC00);
+            transition: height 0.3s ease;
+            border-radius: 3px;
         }
 
         .skill-item:hover {
-            transform: translateX(5px);
+            transform: translateX(10px);
+            color: #F7DC00;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .skill-item:hover::before {
+            height: 100%;
         }
         
         .skill-item i {
             color: var(--dark-black);
             margin-right: 12px;
             font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover i {
+            color: #FFD700;
+            transform: rotate(360deg) scale(1.2);
         }
         
         .tool-item {
@@ -678,8 +795,15 @@
             background: linear-gradient(90deg, var(--primary-yellow), var(--secondary-color));
             border-radius: 10px;
             position: relative;
-            animation: progressGrow 1.5s ease-out;
+            opacity: 0;
+            animation: progressGrow 1.5s ease-out forwards;
         }
+        
+        .tool-item:nth-child(1) .progress { animation-delay: 0.1s; }
+        .tool-item:nth-child(2) .progress { animation-delay: 0.2s; }
+        .tool-item:nth-child(3) .progress { animation-delay: 0.3s; }
+        .tool-item:nth-child(4) .progress { animation-delay: 0.4s; }
+        .tool-item:nth-child(5) .progress { animation-delay: 0.5s; }
         
         /* Subtle colored progress bars */
         .tool-item:nth-child(3n+1) .progress {
@@ -695,7 +819,13 @@
         }
 
         @keyframes progressGrow {
-            from { width: 0; }
+            from { 
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         .progress::after {
@@ -889,12 +1019,26 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 215, 0, 0.2);
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        
+        .experience-item.animate-in {
+            animation: slideInLeft 0.8s ease forwards;
+        }
+        
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .experience-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
-            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateX(8px);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.25);
+            border-color: rgba(255, 215, 0, 0.4);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 250, 230, 0.85));
         }
         
         .experience-item::before {
@@ -933,6 +1077,12 @@
             font-size: 16px;
             font-weight: 600;
             box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
+            animation: numberRotate 20s linear infinite;
+        }
+        
+        @keyframes numberRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         .company {
@@ -999,6 +1149,19 @@
             font-size: 24px;
             color: var(--primary-yellow);
             flex-shrink: 0;
+            animation: iconBounce 3s ease-in-out infinite;
+        }
+        
+        @keyframes iconBounce {
+            0%, 100% { 
+                transform: translateY(0) scale(1);
+            }
+            25% {
+                transform: translateY(-3px) scale(1.05);
+            }
+            75% {
+                transform: translateY(3px) scale(0.95);
+            }
         }
         
         .achievement-content {
@@ -1036,11 +1199,36 @@
             border-radius: 16px;
             border: 1px solid rgba(255, 215, 0, 0.2);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .education-item::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            animation: educationPulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes educationPulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
         }
 
         .education-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(255, 215, 0, 0.15);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+        
+        .education-item:hover::after {
+            opacity: 1;
         }
         
         .degree {
@@ -1089,6 +1277,23 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            animation: projectSlide 0.8s ease forwards;
+        }
+        
+        .project-item:nth-child(1) { animation-delay: 0.1s; }
+        .project-item:nth-child(2) { animation-delay: 0.2s; }
+        .project-item:nth-child(3) { animation-delay: 0.3s; }
+        
+        @keyframes projectSlide {
+            from {
+                opacity: 0;
+                transform: translateY(30px) rotateX(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
         }
 
         .project-item::before {
@@ -1139,7 +1344,25 @@
             margin-right: 8px;
             margin-bottom: 8px;
             border: 1px solid rgba(255, 215, 0, 0.3);
-            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            animation: techShimmer 3s infinite;
+        }
+        
+        @keyframes techShimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
         }
 
         .tech-tag:hover {
@@ -1386,124 +1609,220 @@
             /* Education grid */
             .education-tech-container {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 25px;
             }
             
             .education-grid,
             .education-container {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .education-item {
+                padding: 20px;
+                text-align: center;
+            }
+            
+            .degree {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+            
+            .university {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .thesis {
+                font-size: 14px;
+                line-height: 1.5;
             }
             
             /* Skills */
             .skills-grid,
             .skills-container {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .skills-column {
+                padding: 20px;
             }
             
             .skill-items {
-                font-size: 11px;
+                font-size: 15px;
+                line-height: 1.6;
+            }
+            
+            .skill-item {
+                margin-bottom: 12px;
+                font-size: 15px;
             }
             
             /* Experience */
             .experience-timeline {
-                padding-left: 15px;
-                margin-left: 0;
+                padding-left: 20px;
+                margin-left: 10px;
+            }
+            
+            .experience-item {
+                padding: 25px 20px;
+                margin-bottom: 25px;
             }
             
             .company-header {
                 flex-direction: column;
-                gap: 3px;
-                margin-bottom: 15px;
+                gap: 8px;
+                margin-bottom: 20px;
+                text-align: center;
             }
             
             .company-name {
-                font-size: 13px;
+                font-size: 20px;
+                font-weight: 700;
             }
             
             .job-title {
-                font-size: 12px;
+                font-size: 18px;
+                font-weight: 600;
             }
             
             .job-period {
-                font-size: 10px;
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            
+            .achievements {
+                text-align: left;
             }
             
             .achievements li {
-                font-size: 11px;
-                padding-left: 15px;
-                margin-bottom: 8px;
-                line-height: 1.5;
+                font-size: 15px;
+                padding-left: 20px;
+                margin-bottom: 12px;
+                line-height: 1.6;
             }
             
             /* Projects */
             .projects-container {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .project-item {
-                padding: 15px;
-            }
-            
-            /* Header content adjustments */
-            .header-content {
-                flex-direction: column;
+                padding: 25px 20px;
                 text-align: center;
-                gap: 15px;
             }
             
-            .header-text {
-                padding-right: 0;
+            .project-title {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .project-description {
+                font-size: 15px;
+                line-height: 1.6;
+                margin-bottom: 20px;
+                text-align: left;
+            }
+            
+            .tech-tag {
+                font-size: 13px;
+                padding: 8px 12px;
+                margin: 4px;
+                display: inline-block;
+            }
+            
+            /* Navigation improvements */
+            .language-toggle {
+                top: 20px;
+                right: 20px;
+                padding: 4px;
+                border-radius: 25px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+                z-index: 1000;
+            }
+            
+            .language-option {
+                padding: 10px 16px;
+                font-size: 14px;
+                font-weight: 600;
+                border-radius: 20px;
+            }
+            
+            .print-button {
+                bottom: 20px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
+                border-radius: 28px;
+                box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+                z-index: 1000;
+            }
+            
+            .print-button i {
+                font-size: 22px;
+            }
+            
+            /* Touch optimizations */
+            .contact-button:active {
+                transform: scale(0.98);
+            }
+            
+            .language-option:active,
+            .print-button:active {
+                transform: scale(0.95);
             }
             
             /* Achievement container mobile */
             .achievements-container {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
             
             /* Section separator adjustments */
             .section:not(:last-child)::after {
-                left: 15px;
-                right: 15px;
+                left: 20px;
+                right: 20px;
             }
-            
             
             /* Modals */
             .modal-content {
                 width: 95%;
                 margin: 5% auto;
-                padding: 20px;
+                padding: 25px;
+                border-radius: 12px;
             }
             
             .modal input,
             .modal textarea {
                 font-size: 16px; /* Prevents zoom on iOS */
-                padding: 12px;
+                padding: 14px;
+                border-radius: 8px;
+                border: 2px solid #e5e7eb;
+                transition: border-color 0.3s ease;
+            }
+            
+            .modal input:focus,
+            .modal textarea:focus {
+                border-color: var(--primary-yellow);
+                outline: none;
             }
             
             .modal button {
-                min-height: 44px;
-                font-size: 14px;
+                min-height: 48px;
+                font-size: 16px;
+                border-radius: 24px;
+                font-weight: 600;
             }
             
-            /* Fixed buttons */
-            .print-button,
-            .language-toggle {
-                position: fixed;
-                bottom: 20px;
-                top: auto;
-                padding: 10px 16px;
-                font-size: 12px;
-                min-height: 40px;
-                z-index: 100;
+            /* Spacing improvements */
+            .section:first-of-type {
+                padding-top: 40px;
             }
             
-            .print-button {
-                right: 20px;
-            }
-            
-            .language-toggle {
-                right: auto;
-                left: 20px;
+            .section:last-of-type {
+                padding-bottom: 100px;
             }
         }
 
@@ -1665,6 +1984,20 @@
 <body>
     <div class="animated-bg"></div>
     
+    <!-- Gold Particles System -->
+    <div class="gold-particles">
+        <div class="gold-particle"></div>
+        <div class="gold-particle"></div>
+        <div class="gold-particle"></div>
+        <div class="gold-particle"></div>
+        <div class="gold-particle"></div>
+        <div class="gold-particle"></div>
+        <div class="gold-particle"></div>
+        <div class="gold-particle"></div>
+        <div class="gold-particle"></div>
+        <div class="gold-particle"></div>
+    </div>
+    
     <!-- Floating shapes -->
     <div class="shape"></div>
     <div class="shape"></div>
@@ -1682,7 +2015,7 @@
                 </div>
                 
                 <div class="header-text-content">
-                    <div class="company-tagline">Revolução Digital Bancária</div>
+                    <div class="company-tagline">Revolução no Banking Digital</div>
                     <div class="header-text">
                         <h1 id="cv-name"></h1>
                         <div class="role" id="cv-role"></div>
@@ -1785,7 +2118,7 @@
     </div>
     
     <!-- Print button -->
-    <button class="print-button" onclick="var win = window.open('../../cv_styles/cv_willbank_style.html', '_blank'); win.onload = function() { win.print(); }">
+    <button class="print-button" onclick="var win = window.open('../../cv_styles/cv_willbank_style_PT.html', '_blank'); win.onload = function() { win.print(); }">
         <i class="fas fa-file-pdf"></i>
     </button>
     
@@ -1793,25 +2126,25 @@
     <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
-            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--text-color); font-size: 24px;">Enviar Email</h3>
+            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--text-color); font-size: 24px;">Send Email</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <div style="margin-bottom:20px;">
-                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Email</label>
+                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Email</label>
                     <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Assunto</label>
+                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Subject</label>
                     <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem</label>
+                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message</label>
                     <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
-                <button id="email-button" type="submit" style="background: var(--background-gradient); color: var(--text-color); border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);">Enviar</button>
+                <button id="email-button" type="submit" style="background: var(--background-gradient); color: var(--text-color); border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);">Send</button>
             </form>
         </div>
     </div>
@@ -1820,27 +2153,27 @@
     <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
-            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--text-color); font-size: 24px;">Entre em Contato</h3>
+            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--text-color); font-size: 24px;">Get in Touch</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <input type="hidden" name="contact_type" value="phone_request">
                 <div style="margin-bottom:20px;">
-                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Telefone</label>
+                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Phone</label>
                     <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Melhor horário para contato</label>
+                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Best time to contact</label>
                     <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem (Opcional)</label>
+                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message (Optional)</label>
                     <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
                 <div style="display:flex; gap:15px;">
-                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color: var(--text-color); border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);">Solicitar Contato</button>
+                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color: var(--text-color); border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);">Request Contact</button>
                     <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
                         <i class="fab fa-whatsapp" style="margin-right:8px;"></i> <span id="whatsapp-text">WhatsApp</span>
                     </a>
@@ -1944,6 +2277,27 @@
             
             // Projects section
             renderProjects('pt');
+            
+            // Add scroll-triggered animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe experience items
+            setTimeout(() => {
+                document.querySelectorAll('.experience-item').forEach(item => {
+                    observer.observe(item);
+                });
+            }, 100);
         });
         
         // Render experience section
