@@ -189,6 +189,36 @@ const BRANDS_CONFIG = {
         animations: 'health'
     },
     
+    quintoandar: {
+        name: 'QuintoAndar',
+        aliases: [
+            'quinto andar',
+            'quintoandar',
+            'quinto',
+            'quin',
+            'qa',
+            'qto andar',
+            'qto'
+        ],
+        colors: {
+            primary: '#0066CC',
+            secondary: '#4A90E2',
+            accent: '#F5A623',
+            text: '#333333',
+            whiteText: '#FFFFFF',
+            grayText: '#666666',
+            border: 'rgba(0, 102, 204, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #0066CC 0%, #4A90E2 100%)',
+        logo: '/assets/images/quinto_andar/quinto-andar.svg',
+        tagline: {
+            en: 'Simplifying Real Estate',
+            pt: 'Simplificando Imóveis'
+        },
+        shapes: 'geometric',
+        animations: 'property'
+    },
+    
     neogroup: {
         name: 'Neo Group',
         colors: {

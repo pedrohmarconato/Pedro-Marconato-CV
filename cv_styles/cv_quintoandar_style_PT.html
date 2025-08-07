@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Henrique Marconato - QuintoAndar CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            /* QuintoAndar Brand Colors */
+            --quintoandar-blue: #0066CC;
+            --quintoandar-light-blue: #4A90E2;
+            --quintoandar-yellow: #F5A623;
+            --quintoandar-cream: #F8F6F0;
+            --quintoandar-white: #FFFFFF;
+            --quintoandar-dark-gray: #333333;
+            --quintoandar-medium-gray: #666666;
+            --quintoandar-light-gray: #F5F5F5;
+            
+            /* Applied Colors */
+            --primary-color: #0066CC;
+            --secondary-color: #4A90E2;
+            --accent-color: #F5A623;
+            --light-accent: #F8F6F0;
+            --dark-accent: #0066CC;
+            --text-color: #333333;
+            --border-color: rgba(0, 102, 204, 0.2);
+            --background-gradient: linear-gradient(135deg, #0066CC 0%, #4A90E2 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Main container */
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Header Section */
+        .header {
+            background: var(--background-gradient);
+            padding: 50px 50px 55px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 166, 35, 0.2), transparent);
+            animation: shimmer 8s infinite;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: 30px;
+            width: 150px;
+            height: 150px;
+            background: url('/assets/images/quinto_andar/quinto-andar.svg') no-repeat center bottom;
+            background-size: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .quintoandar-logo {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            width: 160px;
+            height: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+            z-index: 2;
+        }
+        
+        .header h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .header-tagline {
+            font-size: 17px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            margin-top: 22px;
+            margin-bottom: 28px;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-item i {
+            color: var(--accent-color);
+            width: 16px;
+            text-align: center;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 40px 50px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        /* Qualifications List */
+        .qualifications-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .qualifications-list li {
+            position: relative;
+            padding: 8px 0 8px 20px;
+            margin-bottom: 10px;
+            font-size: 11.5px;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+        
+        .qualifications-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        /* Education & Tech Container */
+        .education-tech-container {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .education-section {
+            flex: 1;
+        }
+        
+        .education-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+        }
+        
+        .education-item:last-child {
+            border-bottom: none;
+        }
+        
+        .degree {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+        
+        .university {
+            font-size: 11.5px;
+            color: var(--medium-gray);
+            margin-bottom: 2px;
+        }
+        
+        .edu-period {
+            font-size: 10.5px;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        .tech-skills-container {
+            flex: 1;
+        }
+        
+        .skills-section {
+            margin-bottom: 25px;
+        }
+        
+        .skills-section h3 {
+            font-size: 12px;
+            color: var(--dark-accent);
+            margin-bottom: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .skill-tag {
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10.5px;
+            font-weight: 500;
+            border: 1px solid rgba(0, 102, 204, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: rgba(245, 166, 35, 0.1);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .courses-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .course-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .course-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .course-info {
+            font-size: 10px;
+            color: var(--medium-gray);
+        }
+        
+        /* Experience Timeline */
+        .experience-timeline {
+            position: relative;
+        }
+        
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+        
+        .experience-item {
+            position: relative;
+            margin-left: 30px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+        
+        .experience-item::before {
+            content: "";
+            position: absolute;
+            left: -36px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--primary-color);
+            z-index: 1;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .company {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        .job-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+        
+        .period {
+            font-size: 11px;
+            color: var(--accent-color);
+            font-weight: 500;
+            background: rgba(245, 166, 35, 0.1);
+            padding: 4px 8px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+        
+        .job-bullets {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        
+        .job-bullets li {
+            position: relative;
+            padding: 4px 0 4px 16px;
+            margin-bottom: 6px;
+            font-size: 11px;
+            line-height: 1.4;
+            color: var(--text-color);
+        }
+        
+        .job-bullets li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 4px;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background: white !important;
+                font-size: 9px !important;
+                line-height: 1.3 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .cv-container {
+                margin: 0;
+                max-width: none;
+                width: 100%;
+                height: 100%;
+                box-shadow: none;
+            }
+            
+            .header {
+                padding: 30px 30px 35px 30px !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            .header h1 {
+                font-size: 24px !important;
+            }
+            
+            .header-tagline {
+                font-size: 12px !important;
+                margin: 15px 0 20px 0 !important;
+            }
+            
+            .section {
+                padding: 25px 30px !important;
+            }
+            
+            .section-title {
+                font-size: 14px !important;
+                margin-bottom: 15px !important;
+            }
+            
+            .qualifications-list li {
+                font-size: 9px !important;
+                margin-bottom: 6px !important;
+            }
+            
+            .education-tech-container {
+                gap: 25px !important;
+            }
+            
+            .experience-item {
+                margin-bottom: 20px !important;
+            }
+
+            .experience-item {
+                margin-bottom: 15px !important;
+            }
+
+            .section:not(:last-child)::after {
+                display: none;
+            }
+
+            @page {
+                size: A4;
+                margin: 8mm;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Favicon Meta Tags -->
+    <meta name="theme-color" content="#0066CC">
+    <meta name="msapplication-TileColor" content="#0066CC">
+</head>
+<body>
+    <div class="cv-container">
+        <header class="header">
+            <div class="header-content">
+                <img src="/assets/images/quinto_andar/quinto-andar.svg" alt="QuintoAndar" class="quintoandar-logo">
+                <h1>PEDRO HENRIQUE MARCONATO</h1>
+                
+                <div class="header-tagline">GESTÃO DE CRM | INTELIGÊNCIA DE DADOS | CUSTOMER EQUITY | ANALYTICS</div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i> Brasileiro, Casado, 33 anos
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i> +55 (55) 98114-7758
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i> linkedin.com/in/pedrohmarconato
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <section class="section" style="padding-top: 35px;">
+            <h2 class="section-title">RESUMO PROFISSIONAL</h2>
+            <ul class="qualifications-list">
+                <li>Profissional em Gestão de CRM e Inteligência de Dados focado em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa de Brand Equity que suportou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos.</li>
+                <li>Como Coordenador de CRM nas Lojas Renner, otimizei orçamento gerando 10% de economia anual, implementei 80% de comunicações automatizadas e estratégias que resultaram em aumento de consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.</li>
+                <li>Experiência em empresas de grande porte e alta complexidade, liderando projetos estratégicos em CRM, business intelligence e performance de marketing com dados aplicados a marketing, canais, crédito, controle e operações.</li>
+                <li>Destaques em projetos de visualização, segmentação e comportamento do consumidor, com domínio de ferramentas como Databricks, SQL, Oracle Responsys, Power BI, Python, Salesforce, Mailchimp, Tableau, SAS e plataformas de automação.</li>
+                <li>Conhecimento em metodologias ágeis (Scrum, Kanban), atuando na priorização de backlog, estruturação de squads e aceleração de entregas com foco no cliente e geração de valor de negócio.</li>
+                <li>Experiência com integração de dados de múltiplas fontes, construção de pipelines, análise preditiva e mapeamento de comportamento para suportar decisões estratégicas com foco na otimização do Customer Lifetime Value.</li>
+                <li>Diferencial na combinação de capacidade analítica, pensamento estratégico e conhecimento técnico, com performance reconhecida em estruturas de liderança e consultivas em diferentes contextos de negócio.</li>
+                <li>Experiência em gestão de pessoas, liderando equipes multidisciplinares com foco no desenvolvimento, autonomia e geração de resultados consistentes em ambientes acelerados e orientados por dados.</li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">EDUCAÇÃO & TECNOLOGIA</h2>
+            <div class="education-tech-container">
+                <div class="education-section">
+                    <h3 style="font-size: 12px; color: var(--dark-accent); margin-bottom: 12px; font-weight: 600;">EDUCAÇÃO</h3>
+                    <div class="education-item">
+                        <div class="degree">Mestrado em Administração</div>
+                        <div class="university">Universidade Federal de Santa Maria - UFSM</div>
+                        <div class="edu-period">Concluído: 2019 | Dissertação: Customer Equity</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Bacharelado em Administração</div>
+                        <div class="university">Universidade Federal de Santa Maria - UFSM</div>
+                        <div class="edu-period">Concluído: 2015 | TCC: Brand Equity</div>
+                    </div>
+                </div>
+                
+                <div class="tech-skills-container">
+                    <div class="skills-section">
+                        <h3>FERRAMENTAS & PLATAFORMAS</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">Databricks</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Power BI</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Oracle Responsys</span>
+                            <span class="skill-tag">Kanbanize</span>
+                            <span class="skill-tag">Mailchimp</span>
+                            <span class="skill-tag">Salesforce CRM</span>
+                            <span class="skill-tag">SAS</span>
+                            <span class="skill-tag">Tableau</span>
+                            <span class="skill-tag">BigQuery</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-section">
+                        <h3>CERTIFICAÇÕES & CURSOS</h3>
+                        <div class="courses-section">
+                            <div class="course-item">
+                                <span class="course-name">Marketing Analytics Na Prática</span>
+                                <span class="course-info">Coursera - Statement of Accomplishment</span>
+                            </div>
+                            <div class="course-item">
+                                <span class="course-name">Marketing Analytics em R</span>
+                                <span class="course-info">PPGA - Programa de Pós-Graduação em Administração</span>
+                            </div>
+                            <div class="course-item">
+                                <span class="course-name">Marketing Digital & Resolução de Problemas</span>
+                                <span class="course-info">Illinois University - Marketing em um Mundo Digital</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">EXPERIÊNCIA PROFISSIONAL</h2>
+            
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">LOJAS RENNER | REALIZE CFI</div>
+                        </div>
+                        <div class="period">2020-2025</div>
+                    </div>
+                    
+                    <div class="job-title" style="margin-top: 10px; margin-bottom: 8px;">Coordenador de CRM</div>
+                    <div class="period" style="font-size: 11px; color: var(--quintoandar-medium-gray); margin-bottom: 10px;">2021-2025</div>
+                    
+                    <ul class="job-bullets">
+                        <li>Liderei equipe de 8 profissionais (6 internos, 2 terceirizados) com gestão de orçamento anual de R$5 milhões (excluindo folha de pagamento), implementando framework Renner para gestão de equipe e metodologia ágil</li>
+                        <li>Alcancei 10% de redução anual de custos (impacto de R$350k em 15 meses) através de benchmarking estratégico de fornecedores, análise de ROI para contratos terceirizados, e otimização de custo por disparo de R$0,03</li>
+                        <li>Implementei 80% de comunicações automatizadas através de segmentação comportamental avançada, gerando menos comunicação com maior efetividade e aumento nos padrões de consumo</li>
+                        <li>Desenvolvi modelos preditivos para identificação de compras potenciais e estratégias personalizadas com incentivos específicos por segmento, resultando em melhorias mensuráveis no customer lifetime value</li>
+                        <li>Gerenciei projetos estratégicos para expansão da base de clientes ativos e ativação de novos canais de comunicação, com foco na evolução do ciclo de vida e fidelização em produtos financeiros</li>
+                        <li>Gestão técnica das plataformas Oracle Responsys, Databricks e Power BI, habilitando segmentações automatizadas, processamento de dados e dashboards de performance para tomada de decisão</li>
+                        <li>Apliquei frameworks ágeis (Scrum, Kanban) para gestão de backlog, manutenção do ritmo de entrega e alinhamento interfuncional com equipes de TI, Produtos, Analytics, Marketing e Comercial</li>
+                    </ul>
+                    
+                    <div class="job-title" style="margin-top: 15px; margin-bottom: 8px;">Especialista CRM & Analytics</div>
+                    <div class="period" style="font-size: 11px; color: var(--quintoandar-medium-gray); margin-bottom: 10px;">2020-2021</div>
+                    
+                    <ul class="job-bullets">
+                        <li>Criei dashboards estratégicos e KPIs para Marketing, CRM, Crédito e Canais, entregando visões integradas em tempo real para suportar decisões de negócio e monitoramento de performance</li>
+                        <li>Desenvolvi bases de dados segmentadas e relatórios automatizados focados em ganhos de eficiência do CRM, agilidade de análises e geração de receita através de ações precisas de clientes</li>
+                        <li>Integrei dados operacionais, comportamentais e transacionais de múltiplas fontes em bases confiáveis para análises abrangentes do ciclo de vida do cliente e modelagem preditiva</li>
+                        <li>Apliquei SQL, BigQuery, Python e Power BI para análises exploratórias, automações de rotinas e desenvolvimento de modelos preditivos com aplicação direta no negócio e resultados mensuráveis</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Analista de Inteligência de Mercado</div>
+                            <div class="company">GRUPO RBS</div>
+                        </div>
+                        <div class="period">2019-2020</div>
+                    </div>
+                    
+                    <ul class="job-bullets">
+                        <li>Conduzi auditoria de pesquisa de Brand Equity no valor de R$300k, suportando decisões estratégicas com análise de 3.000+ respondentes e fornecendo fundação para decisões estratégicas de marca</li>
+                        <li>Alcancei redução de 12 horas/semana em processos manuais (600h/ano economizadas) através de migração completa para PowerBI e automação de relatórios estratégicos para consumo da liderança</li>
+                        <li>Gerei R$1,5 milhão em economia tributária (redução de 18% da carga tributária) através de análise aprofundada de oportunidades fiscais e recomendações estratégicas de otimização tributária</li>
+                        <li>Desenvolvi estudos de segmentação e mapeamento de potencial de consumo, usando dados para orientar decisões, validar hipóteses e promover ações de vendas e prospecção com ROI mensurável</li>
+                        <li>Criei relatórios analíticos em tempo real e dashboards apoiando decisões de negócio com interface direta à liderança, traduzindo dados de mercado em oportunidades de crescimento acionáveis</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Dynamic Favicon System -->
+    <script src="../../assets/js/dynamic-favicon.js"></script>
+</body>
+</html>
