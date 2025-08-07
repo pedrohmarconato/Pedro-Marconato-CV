@@ -37,6 +37,11 @@ window.DynamicFavicon = (function() {
             name: 'RD Station',
             color: '#FF7A00'
         },
+        'quintoandar': {
+            dataUri: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IiMwMDY2Q0MiLz4KPHRleHQgeD0iMTIiIHk9IjE3IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5RQTwvdGV4dD4KPC9zdmc+',
+            name: 'QuintoAndar',
+            color: '#0066CC'
+        },
         'general': {
             dataUri: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMWE0Yjg0O3N0b3Atb3BhY2l0eToxIiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMyZDdkZDI7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSJ1cmwoI2dyYWQpIi8+CiAgPHRleHQgeD0iMTYiIHk9IjIyIiBmb250LWZhbWlseT0iSW50ZXIsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5QPC90ZXh0Pgo8L3N2Zz4=',
             name: 'Pedro Marconato',
@@ -56,8 +61,9 @@ window.DynamicFavicon = (function() {
         if (url.includes('ifood') || pathname.includes('ifood')) return 'ifood';
         if (url.includes('contaazul') || pathname.includes('contaazul')) return 'contaazul';
         if (url.includes('rdstation') || pathname.includes('rdstation')) return 'rdstation';
+        if (url.includes('quintoandar') || pathname.includes('quintoandar')) return 'quintoandar';
         if (url.includes('completebari') || pathname.includes('completebari')) return 'general'; // Fallback
-        
+
         // Check page title or meta tags
         const title = document.title.toLowerCase();
         if (title.includes('allos')) return 'allos';
@@ -66,7 +72,8 @@ window.DynamicFavicon = (function() {
         if (title.includes('ifood')) return 'ifood';
         if (title.includes('conta azul') || title.includes('contaazul')) return 'contaazul';
         if (title.includes('rd station') || title.includes('rdstation')) return 'rdstation';
-        
+        if (title.includes('quintoandar') || title.includes('quinto andar')) return 'quintoandar';
+
         return 'general'; // Default
     }
     
@@ -134,7 +141,8 @@ window.DynamicFavicon = (function() {
                     'boticario': ['boticario', 'gb', 'grupoboticario', 'grupo boticario', 'grupo boticário', 'grupoboticário'],
                     'completebari': ['completebari', 'complete bari', 'bari', 'cb', 'complete'],
                     'allos': ['allos', 'allo', 'all', 'consultoria', 'consulting'],
-                    'contaazul': ['contazul', 'contaazul', 'ca', 'azulconta', 'azul']
+                    'contaazul': ['contazul', 'contaazul', 'ca', 'azulconta', 'azul'],
+                    'quintoandar': ['quintoandar', 'quinto andar', 'quinto', 'quin', 'qa', 'qto andar', 'qto']
                 };
                 
                 // Find matching company

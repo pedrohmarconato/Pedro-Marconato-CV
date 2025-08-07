@@ -210,7 +210,7 @@ const BRANDS_CONFIG = {
             border: 'rgba(0, 102, 204, 0.2)'
         },
         gradient: 'linear-gradient(135deg, #0066CC 0%, #4A90E2 100%)',
-        logo: '../assets/images/quinto_andar/quinto-andar.svg',
+        logo: '../../assets/images/quinto_andar/quinto-andar.svg',
         tagline: {
             en: 'Simplifying Real Estate',
             pt: 'Simplificando Imóveis'
