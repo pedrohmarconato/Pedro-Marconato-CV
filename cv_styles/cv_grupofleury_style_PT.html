@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Henrique Marconato - CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            /* Grupo Fleury Official Brand Colors */
+            --primary-color: #ED0F69;
+            --secondary-color: #BA0850;
+            --accent-color: #ff4d8a;
+            --light-accent: #fff5f8;
+            --dark-accent: #464646;
+            --text-color: #464646;
+            --border-color: rgba(237, 15, 105, 0.15);
+            --background-gradient: linear-gradient(135deg, #ED0F69 0%, #BA0850 100%);
+            --health-gradient: linear-gradient(45deg, #ED0F69 0%, #BA0850 50%, #ff4d8a 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Main container */
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 1);
+            overflow: hidden;
+            position: relative;
+            animation: containerGlow 20s ease infinite;
+        }
+        
+        @keyframes containerGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 10px 40px rgba(237, 15, 105, 0.08),
+                    0 5px 20px rgba(0, 0, 0, 0.04),
+                    0 0 80px rgba(237, 15, 105, 0.03),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+            }
+            50% { 
+                box-shadow: 
+                    0 10px 40px rgba(186, 8, 80, 0.08),
+                    0 5px 20px rgba(0, 0, 0, 0.04),
+                    0 0 100px rgba(255, 77, 138, 0.03),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+            }
+        }
+        
+        /* Medical background pattern */
+        .cv-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.02;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(237, 15, 105, 0.03) 35px, rgba(237, 15, 105, 0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(237, 15, 105, 0.03) 35px, rgba(237, 15, 105, 0.03) 70px);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Header Section */
+        .header {
+            background: var(--background-gradient);
+            padding: 70px 50px 70px 50px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        /* Dynamic dots pattern */
+        .dots-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.15) 1px, transparent 0);
+            background-size: 40px 40px;
+            animation: dotsMove 20s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes dotsMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
+        }
+        
+        /* Large decorative circle */
+        .large-circle {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 70%);
+            top: -200px;
+            left: -200px;
+            animation: circleRotate 25s linear infinite;
+        }
+        
+        @keyframes circleRotate {
+            from { transform: rotate(0deg) scale(1); }
+            to { transform: rotate(360deg) scale(1.1); }
+        }
+        
+        /* Pulse elements */
+        .pulse-element {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: pulseGrow 3s ease-in-out infinite;
+        }
+        
+        .pulse-1 { top: 20%; left: 20%; animation-delay: 0s; }
+        .pulse-2 { top: 60%; right: 30%; animation-delay: 1s; }
+        .pulse-3 { bottom: 30%; left: 40%; animation-delay: 2s; }
+        .pulse-4 { top: 40%; right: 10%; animation-delay: 1.5s; }
+        .pulse-5 { bottom: 10%; right: 50%; animation-delay: 0.5s; }
+        
+        @keyframes pulseGrow {
+            0%, 100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* Geometric shapes overlay */
+        .geo-shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.08);
+            animation: geoFloat 15s ease-in-out infinite;
+        }
+        
+        .geo-triangle {
+            width: 0;
+            height: 0;
+            background: none;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid rgba(255, 255, 255, 0.1);
+            top: 25%;
+            right: 25%;
+            animation-delay: 0s;
+        }
+        
+        .geo-diamond {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            bottom: 25%;
+            right: 15%;
+            animation-delay: 3s;
+        }
+        
+        .geo-hexagon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.08);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            top: 15%;
+            left: 25%;
+            animation-delay: 6s;
+        }
+        
+        @keyframes geoFloat {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            33% { 
+                transform: translateY(-30px) rotate(120deg);
+                opacity: 0.4;
+            }
+            66% { 
+                transform: translateY(20px) rotate(240deg);
+                opacity: 0.6;
+            }
+        }
+        
+        /* Medical particles floating */
+        .medical-particle {
+            position: absolute;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.2);
+            animation: particleFloat 12s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        .particle-1 { top: 10%; left: 15%; animation-delay: 0s; }
+        .particle-2 { top: 30%; right: 20%; animation-delay: 2s; }
+        .particle-3 { bottom: 40%; left: 25%; animation-delay: 4s; }
+        .particle-4 { top: 70%; right: 35%; animation-delay: 6s; }
+        .particle-5 { bottom: 20%; right: 45%; animation-delay: 8s; }
+        .particle-6 { top: 50%; left: 35%; animation-delay: 10s; }
+        
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-50px) rotate(180deg);
+                opacity: 0.6;
+            }
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(237, 15, 105, 0.15), transparent);
+            animation: shimmer 8s infinite;
+        }
+        
+        /* Medical decorative elements */
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            opacity: 0.1;
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 12H18L15 21L9 3L6 12H2" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+        
+        /* Logo for CV */
+        .cv-logo {
+            width: 120px;
+            height: auto;
+            opacity: 1;
+            z-index: 2;
+            margin-left: 30px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .header-tagline {
+            font-size: 17px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            margin-top: 22px;
+            margin-bottom: 28px;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-top: 12px;
+        }
+        
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 8px 14px;
+            color: white;
+            font-size: 12.5px;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact-item i {
+            margin-right: 6px;
+            font-size: 12px;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 25px 50px;
+            position: relative;
+        }
+
+        .section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            right: 50px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+        }
+        
+        .section-title {
+            background: var(--background-gradient);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            padding: 8px 16px;
+            border-radius: 12px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(237, 15, 105, 0.15);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(237, 15, 105, 0.2), transparent);
+            animation: titleShimmer 6s infinite;
+        }
+
+        @keyframes titleShimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        /* Área de Atuação Section */
+        .area-section {
+            background: linear-gradient(135deg, rgba(255, 245, 248, 0.8), rgba(255, 240, 244, 0.5));
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(237, 15, 105, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .area-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .area-subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        /* Resumo de Qualificações */
+        .qualifications-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .qualifications-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 14px;
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: var(--text-color);
+        }
+
+        .qualifications-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 20px;
+            top: -2px;
+        }
+        
+        /* Skills & Tools Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .skills-section {
+            background: linear-gradient(135deg, rgba(255, 245, 248, 0.8), rgba(255, 240, 244, 0.5));
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(237, 15, 105, 0.1);
+        }
+
+        .skills-section h3 {
+            font-size: 12px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tag {
+            background: rgba(237, 15, 105, 0.1);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10.5px;
+            font-weight: 500;
+            border: 1px solid rgba(237, 15, 105, 0.2);
+        }
+
+        /* Cursos Complementares */
+        .courses-section {
+            margin-top: 10px;
+        }
+
+        .course-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(237, 15, 105, 0.1);
+            font-size: 11px;
+        }
+
+        .course-item:last-child {
+            border-bottom: none;
+        }
+
+        .course-name {
+            color: var(--text-color);
+            font-weight: 500;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .course-info {
+            color: var(--accent-color);
+            font-size: 10px;
+            font-style: italic;
+        }
+        
+        /* Experience Timeline */
+        .experience-timeline {
+            position: relative;
+            margin-left: 20px;
+            padding-left: 30px;
+        }
+        
+        .experience-timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--health-gradient);
+            border-radius: 3px;
+        }
+        
+        .experience-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding: 18px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(237, 15, 105, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 20px rgba(237, 15, 105, 0.08);
+            border-color: rgba(237, 15, 105, 0.15);
+        }
+        
+        .experience-item::before {
+            content: "";
+            position: absolute;
+            left: -36px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(237, 15, 105, 0.2);
+            z-index: 1;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .job-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .job-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--background-gradient);
+            color: white;
+            border-radius: 50%;
+            font-size: 16px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            animation: rollIn 1s ease-out backwards, glow 3s ease-in-out infinite;
+            animation-delay: 0.3s, 1.3s;
+            box-shadow: 0 4px 15px rgba(237, 15, 105, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        /* Job number animations */
+        @keyframes rollIn {
+            0% {
+                opacity: 0;
+                transform: rotate(-540deg) scale(0);
+            }
+            100% {
+                opacity: 1;
+                transform: rotate(0deg) scale(1);
+            }
+        }
+        
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(237, 15, 105, 0.3);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 6px 25px rgba(237, 15, 105, 0.5), 0 0 30px rgba(237, 15, 105, 0.3);
+                transform: scale(1.1);
+            }
+        }
+        
+        .job-number:hover {
+            transform: rotate(360deg) scale(1.2);
+            box-shadow: 0 8px 30px rgba(237, 15, 105, 0.5);
+        }
+        
+        .job-number::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: shimmerNumber 2s infinite;
+        }
+        
+        @keyframes shimmerNumber {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        /* Stagger job number animations */
+        .experience-item:nth-child(1) .job-number { animation-delay: 0.1s, 1.1s; }
+        .experience-item:nth-child(2) .job-number { animation-delay: 0.3s, 1.3s; }
+        .experience-item:nth-child(3) .job-number { animation-delay: 0.5s, 1.5s; }
+        .experience-item:nth-child(4) .job-number { animation-delay: 0.7s, 1.7s; }
+        .experience-item:nth-child(5) .job-number { animation-delay: 0.9s, 1.9s; }
+        
+        .company {
+            font-weight: 500;
+            font-size: 13px;
+            color: var(--accent-color);
+        }
+        
+        .period {
+            font-size: 12px;
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-align: right;
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(237, 15, 105, 0.1), rgba(186, 8, 80, 0.05));
+            padding: 6px 16px;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(237, 15, 105, 0.15);
+            letter-spacing: 0.5px;
+            animation: slideInRight 0.8s ease-out backwards;
+            transition: all 0.3s ease;
+        }
+        
+        .period::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(237, 15, 105, 0.2), transparent);
+            animation: periodShimmer 3s infinite;
+        }
+        
+        .period:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(237, 15, 105, 0.2);
+            background: linear-gradient(135deg, rgba(237, 15, 105, 0.15), rgba(186, 8, 80, 0.08));
+        }
+        
+        @keyframes periodShimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Stagger animation for multiple periods */
+        .experience-item:nth-child(1) .period { animation-delay: 0.1s; }
+        .experience-item:nth-child(2) .period { animation-delay: 0.2s; }
+        .experience-item:nth-child(3) .period { animation-delay: 0.3s; }
+        .experience-item:nth-child(4) .period { animation-delay: 0.4s; }
+        .experience-item:nth-child(5) .period { animation-delay: 0.5s; }
+        
+        .job-description {
+            font-size: 12px;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 12px;
+        }
+
+        .job-bullets {
+            list-style: none;
+            padding: 0;
+        }
+
+        .job-bullets li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+
+        .job-bullets li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        /* Achievements container and items */
+        .achievements-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 900px) {
+            .achievements-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .achievements-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .achievement-item {
+            background: linear-gradient(135deg, rgba(237, 15, 105, 0.05), rgba(237, 15, 105, 0.02));
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid rgba(237, 15, 105, 0.12);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInScale 0.6s ease-out backwards;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(237, 15, 105, 0.15);
+            border-color: var(--primary-color);
+        }
+        
+        .achievement-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+            flex-shrink: 0;
+            animation: bounceIn 1s ease-out backwards, pulse 2s ease-in-out infinite;
+            animation-delay: 0.5s, 1.5s;
+            transform-origin: center;
+        }
+        
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            50% {
+                transform: scale(1.1);
+                filter: brightness(1.2);
+            }
+        }
+        
+        .achievement-item:hover .achievement-icon {
+            transform: rotate(360deg) scale(1.2);
+            color: var(--secondary-color);
+        }
+        
+        .achievement-content {
+            flex: 1;
+        }
+        
+        .achievement-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--secondary-color);
+            margin-bottom: 6px;
+        }
+        
+        .achievement-description {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+        
+        /* Stagger animations for achievement items */
+        .achievement-item:nth-child(1) { animation-delay: 0.1s; }
+        .achievement-item:nth-child(2) { animation-delay: 0.2s; }
+        .achievement-item:nth-child(3) { animation-delay: 0.3s; }
+        .achievement-item:nth-child(4) { animation-delay: 0.4s; }
+        .achievement-item:nth-child(5) { animation-delay: 0.5s; }
+        .achievement-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        /* Stagger icon animations */
+        .achievement-item:nth-child(1) .achievement-icon { animation-delay: 0.3s, 1.3s; }
+        .achievement-item:nth-child(2) .achievement-icon { animation-delay: 0.4s, 1.4s; }
+        .achievement-item:nth-child(3) .achievement-icon { animation-delay: 0.5s, 1.5s; }
+        .achievement-item:nth-child(4) .achievement-icon { animation-delay: 0.6s, 1.6s; }
+        .achievement-item:nth-child(5) .achievement-icon { animation-delay: 0.7s, 1.7s; }
+        .achievement-item:nth-child(6) .achievement-icon { animation-delay: 0.8s, 1.8s; }
+        
+        /* Education */
+        .education-tech-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 25px;
+        }
+        
+        .education-section {
+            background: linear-gradient(135deg, rgba(255, 245, 248, 0.8), rgba(255, 240, 244, 0.5));
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(237, 15, 105, 0.1);
+        }
+
+        .education-item {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(237, 15, 105, 0.1);
+        }
+
+        .education-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .degree {
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--primary-color);
+            margin-bottom: 3px;
+        }
+        
+        .university {
+            font-size: 11px;
+            color: var(--text-color);
+            margin-bottom: 2px;
+        }
+        
+        .edu-period {
+            font-size: 10px;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .tech-skills-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        /* Languages */
+        .language-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .language-item {
+            text-align: center;
+        }
+
+        .language-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+
+        .language-level {
+            font-size: 11px;
+            color: var(--text-color);
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .cv-container {
+                max-width: 100%;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            .header {
+                background: var(--background-gradient) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                padding: 25px 35px !important;
+                page-break-after: avoid;
+            }
+
+            .section-title {
+                background: var(--primary-color) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color: white !important;
+                page-break-after: avoid;
+            }
+
+            .section {
+                padding: 15px 35px;
+                page-break-inside: avoid;
+            }
+
+            .experience-item {
+                page-break-inside: avoid;
+            }
+
+            /* Reduce font sizes for better fit */
+            .header h1 {
+                font-size: 22px !important;
+            }
+
+            .header {
+                padding: 20px 30px 25px 30px !important;
+            }
+
+            .contact-item {
+                font-size: 9px !important;
+                padding: 3px 6px !important;
+            }
+
+            .section-title {
+                font-size: 12px !important;
+                padding: 4px 10px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .section {
+                padding: 12px 30px !important;
+            }
+
+            .job-title {
+                font-size: 13px !important;
+            }
+
+            .job-description, .job-bullets li {
+                font-size: 10px !important;
+                line-height: 1.4 !important;
+            }
+
+            .qualifications-list li {
+                font-size: 11px !important;
+                margin-bottom: 8px !important;
+                line-height: 1.5 !important;
+                padding-left: 20px !important;
+            }
+
+            .experience-item {
+                padding: 12px !important;
+                margin-bottom: 12px !important;
+            }
+
+            .skills-section {
+                padding: 8px !important;
+            }
+
+            .skill-tag {
+                font-size: 8px !important;
+                padding: 2px 6px !important;
+            }
+
+            .degree {
+                font-size: 11px !important;
+            }
+
+            .university {
+                font-size: 9px !important;
+            }
+
+            .course-name {
+                font-size: 9px !important;
+            }
+
+            .course-info {
+                font-size: 8px !important;
+            }
+
+            /* Hide animations */
+            * {
+                animation: none !important;
+            }
+
+            /* Adjust margins */
+            .experience-item {
+                margin-bottom: 15px !important;
+            }
+
+            .section:not(:last-child)::after {
+                display: none;
+            }
+
+            @page {
+                size: A4;
+                margin: 8mm;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Favicon Meta Tags -->
+    <meta name="theme-color" content="#ED0F69">
+    <meta name="msapplication-TileColor" content="#ED0F69">
+    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
+</head>
+<body>
+    <!-- Render achievements function -->
+    <script>
+        function renderAchievements(achievements) {
+            if (!achievements || achievements.length === 0) return '';
+            
+            let html = '<div class="achievements-container">';
+            achievements.forEach((achievement, index) => {
+                const iconMap = {
+                    'star': 'fas fa-star',
+                    'trophy': 'fas fa-trophy',
+                    'chart': 'fas fa-chart-line',
+                    'users': 'fas fa-users',
+                    'target': 'fas fa-bullseye',
+                    'growth': 'fas fa-chart-growth',
+                    'award': 'fas fa-award',
+                    'rocket': 'fas fa-rocket'
+                };
+                
+                const icon = iconMap[achievement.icon] || 'fas fa-certificate';
+                
+                html += `
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="${icon}"></i>
+                        </div>
+                        <div class="achievement-content">
+                            <div class="achievement-title">${achievement.title}</div>
+                            <div class="achievement-description">${achievement.description}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            return html;
+        }
+    </script>
+    <div class="cv-container">
+        <header class="header">
+            <!-- Dynamic dots pattern -->
+            <div class="dots-pattern"></div>
+            
+            <!-- Large decorative circle -->
+            <div class="large-circle"></div>
+            
+            <!-- Pulse elements -->
+            <div class="pulse-element pulse-1"></div>
+            <div class="pulse-element pulse-2"></div>
+            <div class="pulse-element pulse-3"></div>
+            <div class="pulse-element pulse-4"></div>
+            <div class="pulse-element pulse-5"></div>
+            
+            <!-- Geometric shapes -->
+            <div class="geo-shape geo-triangle"></div>
+            <div class="geo-shape geo-diamond"></div>
+            <div class="geo-shape geo-hexagon"></div>
+            
+            <!-- Medical particles -->
+            <div class="medical-particle particle-1">⚕</div>
+            <div class="medical-particle particle-2">🧬</div>
+            <div class="medical-particle particle-3">🔬</div>
+            <div class="medical-particle particle-4">💊</div>
+            <div class="medical-particle particle-5">🩺</div>
+            <div class="medical-particle particle-6">🧪</div>
+            
+            <div class="header-content">
+                <h1>PEDRO HENRIQUE MARCONATO</h1>
+                
+                <div class="header-tagline">CRM | ANALYTICS | BUSINESS INTELLIGENCE | LTV | SQL</div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i> Brasileiro, Casado, 33 anos
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i> +55 (55) 98114-7758
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i> pedrohmarconato@gmail.com
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i> linkedin.com/in/pedrohmarconato
+                    </div>
+                </div>
+            </div>
+            <!-- Logo Fleury -->
+            <img src="../assets/images/fleury/logopretobranco.png" alt="Grupo Fleury" class="cv-logo">
+        </header>
+        
+        <section class="section" style="padding-top: 35px;">
+            <h2 class="section-title">RESUMO PROFISSIONAL</h2>
+            <ul class="qualifications-list">
+                <li>Mestrado em Administração, com formação em Analytics, unindo inteligência de dados, CRM, visualização analítica e automação para geração de valor ao negócio</li>
+                <li>Experiência em empresas grandes e de alta complexidade, como Grupo RBS, Realize CFI (Grupo Lojas Renner S.A.) e Rede Globo, liderando projetos estratégicos em CRM, business intelligence e performance de marketing</li>
+                <li>Expertise com dados aplicados ao marketing, canais, crédito, controle e operações, conectando áreas e traduzindo necessidades técnicas em soluções analíticas de alto impacto</li>
+                <li>Destaque em projetos de visualização, segmentação e comportamento do consumidor, com domínio de ferramentas como Databricks, SQL, Responsys, Power BI, Python, Salesforce, Mailchimp, Tableau, SAS, Mix Agents e Kanbanize</li>
+                <li>Conhecimento em metodologias ágeis (Scrum, Kanban), atuando na priorização de backlog, estruturação de squads e aceleração de entregas com foco no cliente</li>
+                <li>Experiência com integração de dados multi-fonte, construção de pipelines, analytics preditivo e mapeamento de comportamentos para apoiar decisões estratégicas</li>
+                <li>Diferencial na combinação de capacidade analítica, pensamento estratégico e conhecimento técnico, com reconhecida atuação como liderança mesmo em estruturas consultivas</li>
+                <li>Gestão de pessoas, liderando equipes multidisciplinares com foco em desenvolvimento, autonomia e geração de resultados consistentes</li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">EDUCAÇÃO & TECNOLOGIA</h2>
+            <div class="education-tech-container">
+                <div class="education-section">
+                    <h3 style="font-size: 12px; color: var(--primary-color); margin-bottom: 12px; font-weight: 600;">EDUCAÇÃO</h3>
+                    <div class="education-item">
+                        <div class="degree">Mestrado em Administração</div>
+                        <div class="university">Universidade Federal de Santa Maria - UFSM</div>
+                        <div class="edu-period">Concluído: 2019</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="degree">Bacharelado em Administração</div>
+                        <div class="university">Universidade Federal de Santa Maria - UFSM</div>
+                        <div class="edu-period">Concluído: 2015</div>
+                    </div>
+                </div>
+                
+                <div class="tech-skills-container">
+                    <div class="skills-section">
+                        <h3>FERRAMENTAS & PLATAFORMAS</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">Databricks</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Power BI</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Oracle Responsys</span>
+                            <span class="skill-tag">Kanbanize</span>
+                            <span class="skill-tag">Mailchimp</span>
+                            <span class="skill-tag">Mix Agents</span>
+                            <span class="skill-tag">SAS</span>
+                            <span class="skill-tag">Tableau</span>
+                            <span class="skill-tag">Salesforce CRM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-section">
+                        <h3>CERTIFICAÇÕES & CURSOS</h3>
+                        <div class="courses-section">
+                            <div class="course-item">
+                                <span class="course-name">Statement of Accomplishment - Intermediate R Course</span>
+                                <span class="course-info">Marketing Analytics In Practice - Coursera</span>
+                            </div>
+                            <div class="course-item">
+                                <span class="course-name">Marketing Analytics in R</span>
+                                <span class="course-info">PPGA - Programa de Pós-Graduação em Administração</span>
+                            </div>
+                            <div class="course-item">
+                                <span class="course-name">Problem Solving Fundamentals</span>
+                                <span class="course-info">Marketing in a Digital World - University of Illinois</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">EXPERIÊNCIA PROFISSIONAL</h2>
+            
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">LOJAS RENNER | REALIZE CFI (Empresa Nacional de Serviços Financeiros)</div>
+                        </div>
+                        <div class="period">2020-2025</div>
+                    </div>
+                    
+                    <div class="job-title" style="margin-top: 10px; margin-bottom: 8px;">Gerente de CRM</div>
+                    <div class="period" style="font-size: 11px; color: var(--secondary-color); margin-bottom: 10px;">2021-2025</div>
+                    
+                    <ul class="job-bullets">
+                        <li>Responsável por liderar a frente estratégica de CRM, com foco na evolução da área, crescimento da base de clientes e geração de valor ao negócio</li>
+                        <li>Definição e acompanhamento de OKRs da área, conectando objetivos de negócio a indicadores de relacionamento</li>
+                        <li>Planejamento, execução e otimização de campanhas de relacionamento multicanal (e-mail, SMS, push, entre outros), aplicando segmentações inteligentes e automações para aumento da frequência de uso e vendas</li>
+                        <li>Construção de jornadas personalizadas baseadas no comportamento e perfil do cliente, promovendo evolução no ciclo de vida e fidelização em produtos financeiros (cartões, empréstimos, seguros e consumo no ecossistema Renner)</li>
+                        <li>Gestão de ritmo ágil (daily, planning, reviews e retrospectivas), utilizando frameworks como Scrum e Kanban para manter o ritmo de entregas, visibilidade de prioridades e foco no impacto</li>
+                        <li>Gestão de backlog da área, com mapeamento, priorização e organização de demandas conforme valor incremental e alinhamento com o time comercial</li>
+                        <li>Gestão estratégica de fornecedores e parceiros de tecnologia, incluindo plataformas de CRM, automação e enriquecimento de dados, garantindo qualidade de entrega e alinhamento com diretrizes da área</li>
+                        <li>Interface contínua com áreas chaves (TI, Produtos, Analytics, Marketing, Lojas e Comercial), promovendo alinhamento entre iniciativas de CRM e objetivos corporativos</li>
+                        <li>Gestão técnica e operacional de ferramentas como Oracle Responsys, Databricks e Power BI, viabilizando segmentações automatizadas, processamento de dados e painéis de performance</li>
+                        <li>Acompanhamento e análise de KPIs e indicadores de campanhas, utilizando dados para orientar decisões, validar hipóteses e promover melhoria contínua</li>
+                        <li>Liderança de projetos e iniciativas estratégicas para expansão da base ativa de clientes e ativação de novos canais de comunicação</li>
+                    </ul>
+                    
+                    <div class="job-title" style="margin-top: 15px; margin-bottom: 8px;">Especialista em Analytics</div>
+                    <div class="period" style="font-size: 11px; color: var(--secondary-color); margin-bottom: 10px;">2020-2021</div>
+                    
+                    <ul class="job-bullets">
+                        <li>Responsável pela criação de dashboards e indicadores estratégicos para áreas como Marketing, CRM, Crédito e Canais, entregando visão integrada e em tempo real para apoio às decisões de negócio</li>
+                        <li>Desenvolvimento de bases segmentadas e relatórios automatizados com foco no time de CRM, priorizando ganhos de eficiência, agilidade nas análises e geração de receita através de ações mais precisas</li>
+                        <li>Organização e integração de dados operacionais, comportamentais e transacionais, consolidando múltiplas fontes em base confiável para análises completas do ciclo de vida dos clientes</li>
+                        <li>Utilização prática de ferramentas como SQL, BigQuery, Python e Power BI para análises exploratórias, automações de rotinas e desenvolvimento de modelos preditivos aplicados ao negócio</li>
+                        <li>Colaboração próxima com áreas de Marketing, Produtos, Risco e Operações, traduzindo necessidades estratégicas em análises aplicáveis, com foco no direcionamento de ações e tomada de decisões</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Especialista em Analytics</div>
+                            <div class="company">DBC COMPANY (Empresa Nacional de Consultoria em TI)</div>
+                        </div>
+                        <div class="period">2020-2021</div>
+                    </div>
+                    
+                    <ul class="job-bullets">
+                        <li>Responsável por apoiar a reestruturação estratégica da área de CRM no cliente Realize, implementando metodologias ágeis (Kanban) e definindo processos que reduziram o time-to-market de campanhas e aumentaram a eficiência operacional</li>
+                    </ul>
+                </div>
+                
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Analista de Business Intelligence</div>
+                            <div class="company">GRUPO RBS (Empresa Nacional de Mídia)</div>
+                        </div>
+                        <div class="period">2019 - 2020</div>
+                    </div>
+                    
+                    <ul class="job-bullets">
+                        <li>Responsável pela estruturação e análise de dados de performance comercial, audiência e comportamento de mercado, apoiando a liderança na tomada de decisões estratégicas para o cliente Rede Globo</li>
+                        <li>Desenvolvimento de estudos de segmentação e mapeamento de potencial de consumo, utilizando dados para orientar decisões, validar hipóteses e promover ações de vendas e prospecção</li>
+                        <li>Criação de relatórios analíticos e painéis em tempo real para apoio às decisões de negócio</li>
+                        <li>Interface direta com liderança, traduzindo dados de mercado em planos de ação e oportunidades de crescimento</li>
+                        <li>Análise de KPIs e indicadores de campanhas, utilizando dados para orientar decisões, validar hipóteses e promover melhoria contínua</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Dynamic Favicon System -->
+    <script src="../assets/js/dynamic-favicon.js"></script>
+</body>
+</html>
