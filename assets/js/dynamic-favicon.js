@@ -42,6 +42,11 @@ window.DynamicFavicon = (function() {
             name: 'QuintoAndar',
             color: '#0066CC'
         },
+        'bancobv': {
+            dataUri: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwMDU1QTM7c3RvcC1vcGFjaXR5OjEiIC8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzM0OThEQjtzdG9wLW9wYWNpdHk6MSIgLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI4IiBmaWxsPSJ1cmwoI2dyYWQpIi8+Cjx0ZXh0IHg9IjE2IiB5PSIyMiIgZm9udC1mYW1pbHk9Ik1vbnRzZXJyYXQsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5CVjwvdGV4dD4KPC9zdmc+',
+            name: 'Banco BV',
+            color: '#0055A3'
+        },
         'general': {
             dataUri: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMWE0Yjg0O3N0b3Atb3BhY2l0eToxIiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMyZDdkZDI7c3RvcC1vcGFjaXR5OjEiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSJ1cmwoI2dyYWQpIi8+CiAgPHRleHQgeD0iMTYiIHk9IjIyIiBmb250LWZhbWlseT0iSW50ZXIsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5QPC90ZXh0Pgo8L3N2Zz4=',
             name: 'Pedro Marconato',
@@ -62,6 +67,8 @@ window.DynamicFavicon = (function() {
         if (url.includes('contaazul') || pathname.includes('contaazul')) return 'contaazul';
         if (url.includes('rdstation') || pathname.includes('rdstation')) return 'rdstation';
         if (url.includes('quintoandar') || pathname.includes('quintoandar')) return 'quintoandar';
+        if (url.includes('banco-bv') || pathname.includes('banco-bv') || 
+            url.includes('bancobv') || pathname.includes('bancobv')) return 'bancobv';
         if (url.includes('completebari') || pathname.includes('completebari')) return 'general'; // Fallback
 
         // Check page title or meta tags
@@ -73,6 +80,7 @@ window.DynamicFavicon = (function() {
         if (title.includes('conta azul') || title.includes('contaazul')) return 'contaazul';
         if (title.includes('rd station') || title.includes('rdstation')) return 'rdstation';
         if (title.includes('quintoandar') || title.includes('quinto andar')) return 'quintoandar';
+        if (title.includes('banco bv') || title.includes('banco-bv') || title.includes('bancobv')) return 'bancobv';
 
         return 'general'; // Default
     }
@@ -142,7 +150,8 @@ window.DynamicFavicon = (function() {
                     'completebari': ['completebari', 'complete bari', 'bari', 'cb', 'complete'],
                     'allos': ['allos', 'allo', 'all', 'consultoria', 'consulting'],
                     'contaazul': ['contazul', 'contaazul', 'ca', 'azulconta', 'azul'],
-                    'quintoandar': ['quintoandar', 'quinto andar', 'quinto', 'quin', 'qa', 'qto andar', 'qto']
+                    'quintoandar': ['quintoandar', 'quinto andar', 'quinto', 'quin', 'qa', 'qto andar', 'qto'],
+                    'bancobv': ['banco bv', 'banco-bv', 'bv', 'bv banco', 'banco', 'bancobv']
                 };
                 
                 // Find matching company

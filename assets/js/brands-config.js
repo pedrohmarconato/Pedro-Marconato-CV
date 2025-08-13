@@ -259,6 +259,35 @@ const BRANDS_CONFIG = {
         },
         shapes: 'digital',
         animations: 'marketing'
+    },
+    
+    bancobv: {
+        name: 'Banco BV',
+        aliases: [
+            'banco bv',
+            'banco-bv',
+            'bv',
+            'bv banco',
+            'banco',
+            'bancobv'
+        ],
+        colors: {
+            primary: '#0055A3',
+            secondary: '#3498DB',
+            accent: '#2ECC71',
+            text: '#2c3e50',
+            whiteText: '#FFFFFF',
+            grayText: '#333333',
+            border: 'rgba(0, 85, 163, 0.15)'
+        },
+        gradient: 'linear-gradient(135deg, #0055A3 0%, #3498DB 100%)',
+        logo: '../../assets/images/banco-bv/logos/logo.png',
+        tagline: {
+            en: 'Technology that simplifies finances',
+            pt: 'Tecnologia que simplifica finanças'
+        },
+        shapes: 'geometric',
+        animations: 'banking'
     }
 };
 
@@ -295,9 +324,43 @@ function getBrandFromURL() {
     }
     
     // Fallback: detectar pela URL do arquivo
-    const currentPath = window.location.pathname;
+    const currentPath = window.location.pathname.toLowerCase();
+    
+    // Primeiro, verificar se o path contém exatamente o nome da marca
     for (const [brand, config] of Object.entries(BRANDS_CONFIG)) {
         if (currentPath.includes(brand)) {
+            return brand;
+        }
+    }
+    
+    // Depois, verificar aliases
+    for (const [brand, config] of Object.entries(BRANDS_CONFIG)) {
+        if (config.aliases) {
+            for (const alias of config.aliases) {
+                if (currentPath.includes(alias.toLowerCase().replace(' ', '-'))) {
+                    return brand;
+                }
+            }
+        }
+    }
+    
+    return 'general';
+}
+
+// Função para buscar marca por texto (usado no dynamic favicon)
+function findBrandByText(text) {
+    const searchText = text.toLowerCase().trim();
+    
+    // Verificar nomes exatos primeiro
+    for (const [brand, config] of Object.entries(BRANDS_CONFIG)) {
+        if (brand === searchText || config.name.toLowerCase() === searchText) {
+            return brand;
+        }
+    }
+    
+    // Verificar aliases
+    for (const [brand, config] of Object.entries(BRANDS_CONFIG)) {
+        if (config.aliases && config.aliases.includes(searchText)) {
             return brand;
         }
     }
@@ -338,3 +401,4 @@ window.BRANDS_CONFIG = BRANDS_CONFIG;
 window.getBrandConfig = getBrandConfig;
 window.applyBrandTheme = applyBrandTheme;
 window.getBrandFromURL = getBrandFromURL;
+window.findBrandByText = findBrandByText;
