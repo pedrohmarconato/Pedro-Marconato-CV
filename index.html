@@ -720,19 +720,28 @@
                     'banco bv', 'bv', 'bv financeira', 'banco votorantim', 'bv bank', 'banco b.v.', 'banco b v', 'banco b.v', 'banco-bv', 'bancobv', 'banco_bv', 'banco-votorantim', 'bvfinaceira', 'b v', 'b.v.', 'b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'bv brasil', 'bvbrasil', 'bv-brasil', 'bv_brasil', 'banco bv brasil', 'banco bvbrasil', 'banco bv-brasil', 'banco bv_brasil', 'banco votorantim financeira', 'votorantim financeira', 'votorantim', 'banco votorantim', 'banco-votorantim', 'banco_votorantim', 'bancovotorantim'
                 ],
                 'templates/companies/grupofleury.html': ['fleury', 'grupo fleury', 'grupofleury', 'fleury medicina', 'fleury saude', 'fleury saúde', 'fleury laboratorio', 'fleury laboratório', 'fleury diagnostico', 'fleury diagnóstico', 'fleury medicina e saude', 'fleury medicina e saúde', 'fleury hospital', 'fleury clinica', 'fleury clínica', 'fleury medicina diagnostica', 'fleury medicina diagnóstica', 'fleury grupo', 'grupo fleury sa', 'grupofleury sa', 'fleury sa', 'fleury s a', 'fleury s.a.', 'fleury s/a', 'gf', 'flr', 'fleury brasil', 'fleury medicina brasil', 'medicina e saude fleury', 'medicina e saúde fleury'],
-                'templates/companies/youtube.html': ['youtube', 'yt', 'you tube', 'google']
+                'templates/companies/stone-co.html': ['stone', 'stone co', 'stoneco', 'stone.co', 'stone pagamentos', 'stone payments', 'stone brasil', 'stone fintech', 'stone tecnologia', 'stone maquininhas', 'stone pos', 'stone financial', 'stone solutions', 'stone company', 'stone tech', 'stone startup', 'stone adquirencia', 'stone payment', 'stone digital', 'stone banking', 'stone bank', 'stone enterprise', 'stone business', 'stone corp', 'stone corporation'],
+                'templates/companies/hyland.html': ['hyland', 'hyland software', 'hyland.com', 'hyland inc', 'hyland corporation', 'hyland tech', 'hyland tecnologia', 'hyland brasil', 'hyland systems', 'hyland platform', 'hyland ecm', 'hyland onbase', 'onbase', 'hyland content', 'hyland documents', 'hyland information', 'hyland cloud', 'hyland saas', 'hyland digital', 'hyland automation', 'hyland workflow', 'hy', 'hyl', 'hyland enterprise', 'hyland solutions', 'hyland company', 'hyland corp', 'hyland it', 'hyland technology', 'hyland gestao', 'hyland gestão', 'hyland conteudo', 'hyland conteúdo', 'hyland documentos', 'hyland informacao', 'hyland informação', 'hyland sistemas', 'hyland plataforma', 'hyland nuvem', 'hyland automacao', 'hyland automação', 'hyland fluxo', 'hyland workflow', 'hyland processos', 'hyland process', 'hyland bpm', 'hyland dms', 'hyland cms', 'hyland eim'],
+                'templates/companies/youtube.html': ['youtube', 'yt', 'you tube', 'google'],
+                'templates/companies/the-heineken-company.html': ['heineken', 'heineken company', 'the heineken company', 'heineken-company', 'the-heineken-company', 'heineken group', 'heineken nv', 'cervejaria heineken', 'cerveja heineken'],
             };
             
             // Find matching target
             let target = 'templates/companies/general.html';
             for (const [page, keywords] of Object.entries(companyMappings)) {
-                if (keywords.includes(companyName)) {
-                    target = page;
+                if (keywords.some(k => k === companyName || companyName.includes(k) || k.includes(companyName))) {
+                    console.log('Match found for', companyName, '->', page);
+                target = page;
                     break;
                 }
             }
             
             // Show door animation and load target page
+        
+        // If no match was found, log it
+        if (target === 'templates/companies/general.html') {
+            console.log('No match found for', companyName, ', using default', target);
+        }
             const doorWrapper = document.getElementById('doorWrapper');
             const targetFrame = document.getElementById('targetFrame');
             const container = document.querySelector('.container');
@@ -741,7 +750,8 @@
             doorWrapper.classList.add('active');
             
             // Preload target page in iframe with cache busting
-            targetFrame.src = target + '?t=' + new Date().getTime();
+            console.log('Company entered:', companyName, 'Target page:', target);
+                targetFrame.src = './' + target + '?t=' + new Date().getTime();
             
             // Hide the animated background immediately to show iframe content
             document.querySelector('.animated-bg').style.display = 'none';
