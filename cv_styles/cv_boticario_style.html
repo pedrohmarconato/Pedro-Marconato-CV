@@ -5,28 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedro Henrique Marconato - CV</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
         
         :root {
-            /* O Boticário Inspired Colors */
-            --boticario-navy: #1B2B4A;
-            --boticario-dark-blue: #0D1829;
-            --boticario-purple: #8A4FFF;
-            --boticario-light-purple: #B47EFF;
-            --boticario-orange: #FF6B35;
-            --boticario-coral: #FF8C69;
+            /* O Boticário Brand Colors - Official Brand Book */
+            --boticario-navy: #011E38;
+            --boticario-off-white: #F5F1EB;
+            --boticario-royal: #264FEC;
+            --boticario-salmon: #FFBC82;
             --boticario-white: #FFFFFF;
-            --boticario-light-gray: #F8F9FA;
+            --eco-green: #7BC224;
             
             /* Applied Colors */
-            --primary-color: #1B2B4A;
-            --secondary-color: #8A4FFF;
-            --accent-color: #FF6B35;
-            --light-accent: #F8F9FA;
-            --dark-accent: #0D1829;
-            --text-color: #2c3e50;
-            --border-color: rgba(27, 43, 74, 0.2);
-            --background-gradient: linear-gradient(135deg, #1B2B4A 0%, #0D1829 50%, #8A4FFF 100%);
+            --primary-color: var(--boticario-navy);
+            --secondary-color: var(--boticario-royal);
+            --accent-color: var(--eco-green);
+            --light-accent: var(--boticario-off-white);
+            --text-color: var(--boticario-navy);
+            --border-color: rgba(1, 30, 56, 0.15);
+            --background-gradient: linear-gradient(135deg, var(--boticario-navy) 0%, var(--boticario-royal) 100%);
         }
         
         * {
@@ -36,10 +33,10 @@
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: var(--text-color);
             line-height: 1.6;
-            background: #ffffff;
+            background: var(--light-accent);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
@@ -69,21 +66,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(138, 79, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             animation: shimmer 8s infinite;
-        }
-
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            right: 30px;
-            width: 150px;
-            height: 150px;
-            background: url('../assets/images/boticario.svg') no-repeat center bottom;
-            background-size: contain;
-            opacity: 0.1;
-            z-index: 1;
         }
 
         @keyframes shimmer {
@@ -107,31 +91,9 @@
             z-index: 2;
         }
         
-        /* Variações de tamanho do logo */
-        .boticario-logo.extra-small {
-            width: 80px;
-        }
-        
-        .boticario-logo.small {
-            width: 120px;
-        }
-        
-        .boticario-logo.medium {
-            width: 160px; /* tamanho padrão */
-        }
-        
-        .boticario-logo.large {
-            width: 200px;
-        }
-        
-        .boticario-logo.extra-large {
-            width: 240px;
-        }
-        
         .header h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 36px;
-            font-weight: 800;
+            font-size: 32px;
+            font-weight: 700;
             color: white;
             margin-bottom: 8px;
             letter-spacing: -0.5px;
@@ -199,7 +161,7 @@
             padding: 8px 16px;
             border-radius: 12px;
             letter-spacing: 0.3px;
-            box-shadow: 0 4px 12px rgba(0, 117, 177, 0.2);
+            box-shadow: 0 4px 12px rgba(1, 30, 56, 0.2);
             display: inline-block;
             position: relative;
             overflow: hidden;
@@ -213,38 +175,13 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(138, 79, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             animation: titleShimmer 6s infinite;
         }
 
         @keyframes titleShimmer {
             0% { left: -100%; }
             50%, 100% { left: 100%; }
-        }
-
-        /* Área de Atuação Section */
-        .area-section {
-            background: linear-gradient(135deg, rgba(240, 248, 255, 0.8), rgba(220, 240, 250, 0.5));
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px solid rgba(27, 43, 74, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .area-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--dark-accent);
-            text-align: center;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-
-        .area-subtitle {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-color);
-            text-align: center;
         }
 
         /* Resumo de Qualificações */
@@ -263,10 +200,10 @@
         }
 
         .qualifications-list li::before {
-            content: '•';
+            content: '"';
             position: absolute;
             left: 0;
-            color: var(--boticario-secondary-green);
+            color: var(--accent-color);
             font-weight: bold;
             font-size: 20px;
             top: -2px;
@@ -280,15 +217,15 @@
         }
 
         .skills-section {
-            background: linear-gradient(135deg, rgba(240, 248, 255, 0.8), rgba(220, 240, 250, 0.5));
+            background: linear-gradient(135deg, rgba(245, 241, 235, 0.8), rgba(240, 236, 230, 0.5));
             padding: 16px;
             border-radius: 14px;
-            border: 1px solid rgba(27, 43, 74, 0.1);
+            border: 1px solid var(--border-color);
         }
 
         .skills-section h3 {
             font-size: 12px;
-            color: var(--dark-accent);
+            color: var(--primary-color);
             margin-bottom: 10px;
             font-weight: 600;
             text-transform: uppercase;
@@ -302,7 +239,7 @@
 
         .skill-tag {
             background: rgba(123, 194, 36, 0.15);
-            color: var(--dark-accent);
+            color: var(--primary-color);
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 10.5px;
@@ -317,7 +254,7 @@
 
         .course-item {
             padding: 8px 0;
-            border-bottom: 1px solid rgba(0, 117, 177, 0.1);
+            border-bottom: 1px solid var(--border-color);
             font-size: 11px;
         }
 
@@ -333,11 +270,11 @@
         }
 
         .course-info {
-            color: var(--boticario-primary-blue);
+            color: var(--secondary-color);
             font-size: 10px;
             font-style: italic;
         }
-        
+
         /* Experience Timeline */
         .experience-timeline {
             position: relative;
@@ -352,7 +289,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, var(--boticario-primary-blue), var(--boticario-secondary-green));
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
             border-radius: 3px;
         }
         
@@ -363,13 +300,13 @@
             border-radius: 14px;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(27, 43, 74, 0.1);
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
         .experience-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 4px 20px rgba(0, 117, 177, 0.08);
+            box-shadow: 0 4px 20px rgba(1, 30, 56, 0.08);
             border-color: rgba(123, 194, 36, 0.2);
         }
         
@@ -381,7 +318,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--boticario-secondary-green);
+            background: var(--accent-color);
             border: 3px solid white;
             box-shadow: 0 0 0 3px rgba(123, 194, 36, 0.2);
             z-index: 1;
@@ -397,19 +334,19 @@
         .job-title {
             font-weight: 600;
             font-size: 16px;
-            color: var(--dark-accent);
+            color: var(--primary-color);
             margin-bottom: 4px;
         }
         
         .company {
             font-weight: 500;
             font-size: 13px;
-            color: var(--boticario-primary-blue);
+            color: var(--secondary-color);
         }
         
         .period {
             font-size: 12px;
-            color: var(--boticario-dark-gray);
+            color: var(--secondary-color);
             font-weight: 600;
             text-align: right;
         }
@@ -436,10 +373,10 @@
         }
 
         .job-bullets li::before {
-            content: '•';
+            content: '"';
             position: absolute;
             left: 0;
-            color: var(--boticario-secondary-green);
+            color: var(--accent-color);
             font-weight: bold;
         }
         
@@ -451,16 +388,16 @@
         }
         
         .education-section {
-            background: linear-gradient(135deg, rgba(240, 248, 255, 0.8), rgba(220, 240, 250, 0.5));
+            background: linear-gradient(135deg, rgba(245, 241, 235, 0.8), rgba(240, 236, 230, 0.5));
             padding: 20px;
             border-radius: 14px;
-            border: 1px solid rgba(27, 43, 74, 0.1);
+            border: 1px solid var(--border-color);
         }
 
         .education-item {
             margin-bottom: 12px;
             padding-bottom: 12px;
-            border-bottom: 1px solid rgba(0, 117, 177, 0.1);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .education-item:last-child {
@@ -472,7 +409,7 @@
         .degree {
             font-weight: 600;
             font-size: 13px;
-            color: var(--dark-accent);
+            color: var(--primary-color);
             margin-bottom: 3px;
         }
         
@@ -484,7 +421,7 @@
         
         .edu-period {
             font-size: 10px;
-            color: var(--boticario-dark-gray);
+            color: var(--secondary-color);
             font-style: italic;
         }
 
@@ -507,7 +444,7 @@
 
         .language-name {
             font-weight: 600;
-            color: var(--dark-accent);
+            color: var(--primary-color);
             font-size: 13px;
             margin-bottom: 2px;
         }
@@ -518,20 +455,6 @@
         }
 
         /* Print Styles */
-        /* Forçar cores para impressão */
-        .header {
-            background: #1B2B4A !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-        
-        .section-title {
-            background: #1B2B4A !important;
-            color: #FFFFFF !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-        
         @media print {
             body {
                 background: white;
@@ -548,20 +471,15 @@
             }
 
             .header {
-                background: #1B2B4A !important;
+                background: var(--background-gradient) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 padding: 25px 35px !important;
                 page-break-after: avoid;
             }
-            
-            .header::before,
-            .header::after {
-                display: none !important;
-            }
 
             .section-title {
-                background: #1B2B4A !important;
+                background: var(--primary-color) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 color: white !important;
@@ -577,88 +495,9 @@
                 page-break-inside: avoid;
             }
 
-            /* Reduce font sizes for better fit */
-            .header h1 {
-                font-size: 22px !important;
-            }
-
-            .header {
-                padding: 20px 30px 25px 30px !important;
-            }
-
-            .contact-item {
-                font-size: 9px !important;
-                padding: 3px 6px !important;
-            }
-
-            .section-title {
-                font-size: 12px !important;
-                padding: 4px 10px !important;
-                margin-bottom: 10px !important;
-            }
-
-            .section {
-                padding: 12px 30px !important;
-            }
-
-            .job-title {
-                font-size: 13px !important;
-            }
-
-            .job-description, .job-bullets li {
-                font-size: 10px !important;
-                line-height: 1.4 !important;
-            }
-
-            .qualifications-list li {
-                font-size: 11px !important;
-                margin-bottom: 8px !important;
-                line-height: 1.5 !important;
-                padding-left: 20px !important;
-            }
-
-            .experience-item {
-                padding: 12px !important;
-                margin-bottom: 12px !important;
-            }
-
-            .skills-section {
-                padding: 8px !important;
-            }
-
-            .skill-tag {
-                font-size: 8px !important;
-                padding: 2px 6px !important;
-            }
-
-            .degree {
-                font-size: 11px !important;
-            }
-
-            .university {
-                font-size: 9px !important;
-            }
-
-            .course-name {
-                font-size: 9px !important;
-            }
-
-            .course-info {
-                font-size: 8px !important;
-            }
-
             /* Hide animations */
             * {
                 animation: none !important;
-            }
-
-            /* Adjust margins */
-            .experience-item {
-                margin-bottom: 15px !important;
-            }
-
-            .section:not(:last-child)::after {
-                display: none;
             }
 
             @page {
@@ -669,9 +508,9 @@
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Favicon Meta Tags -->
-    <meta name="theme-color" content="#1a4b84">
-    <meta name="msapplication-TileColor" content="#1a4b84">
-    <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#011E38">
+    <meta name="msapplication-TileColor" content="#011E38">
+    <meta name="msapplication-config" content="../assets/favicons/browserconfig.xml">
 </head>
 <body>
     <div class="cv-container">
@@ -684,11 +523,11 @@
                 
                 <div class="contact-info">
                     <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i> Brasileira, Casado e 33 anos
+                        <i class="fas fa-map-marker-alt"></i> Brasileiro, Casado, 33 anos
                     </div>
                     
                     <div class="contact-item">
-                        <i class="fas fa-phone"></i> (55) 98114-7758
+                        <i class="fas fa-phone"></i> +55 (55) 98114-7758
                     </div>
                     
                     <div class="contact-item">
@@ -705,7 +544,7 @@
         <section class="section" style="padding-top: 35px;">
             <h2 class="section-title">RESUMO DE QUALIFICAÇÕES</h2>
             <ul class="qualifications-list">
-                <li>Mestre em Administração de Empresas, com ênfase Trajetória na área de Analytics, unindo inteligência de dados, CRM, visualização analítica e automação para gerar valor ao negócio</li>
+                <li>Mestre em Administração de Empresas, com ênfase na área de Analytics, unindo inteligência de dados, CRM, visualização analítica e automação para gerar valor ao negócio</li>
                 <li>Atuação em empresas de grande porte e alta complexidade, como Grupo RBS, Realize CFI (Grupo Lojas Renner S.A.) e Rede Globo, liderando projetos estratégicos nas frentes de CRM, inteligência comercial e performance de marketing</li>
                 <li>Vivência com dados aplicados a marketing, canais, crédito, controle e operações, conectando áreas e traduzindo necessidades técnicas em soluções analíticas de alto impacto</li>
                 <li>Destaques em projetos de visualização, segmentação e comportamento de consumo, com domínio de ferramentas como Databricks, SQL, Responsys, Power BI, Python, Salesforce, Mailchimp, Tableau, SAS, Mix Agents e Kanbanize</li>
@@ -720,7 +559,7 @@
             <h2 class="section-title">FORMAÇÃO ACADÊMICA & TECNOLOGIA</h2>
             <div class="education-tech-container">
                 <div class="education-section">
-                    <h3 style="font-size: 12px; color: var(--boticario-dark-blue); margin-bottom: 12px; font-weight: 600;">FORMAÇÃO</h3>
+                    <h3 style="font-size: 12px; color: var(--primary-color); margin-bottom: 12px; font-weight: 600;">FORMAÇÃO</h3>
                     <div class="education-item">
                         <div class="degree">Mestrado em Administração de Empresas</div>
                         <div class="university">Universidade Federal de Santa Maria - UFSM</div>
@@ -786,7 +625,7 @@
                     </div>
                     
                     <div class="job-title" style="margin-top: 10px; margin-bottom: 8px;">CRM Manager</div>
-                    <div class="period" style="font-size: 11px; color: var(--boticario-dark-gray); margin-bottom: 10px;">2021-2025</div>
+                    <div class="period" style="font-size: 11px; color: var(--secondary-color); margin-bottom: 10px;">2021-2025</div>
                     
                     <ul class="job-bullets">
                         <li>Responsável pela liderança da frente estratégica de CRM, com foco na evolução da área, crescimento da base de clientes e geração de valor ao negócio</li>
@@ -803,7 +642,7 @@
                     </ul>
                     
                     <div class="job-title" style="margin-top: 15px; margin-bottom: 8px;">Especialista de Analytics</div>
-                    <div class="period" style="font-size: 11px; color: var(--boticario-dark-gray); margin-bottom: 10px;">2020-2021</div>
+                    <div class="period" style="font-size: 11px; color: var(--secondary-color); margin-bottom: 10px;">2020-2021</div>
                     
                     <ul class="job-bullets">
                         <li>Responsável por criar dashboards e indicadores estratégicos para áreas como Marketing, CRM, Crédito e Canais, entregando uma visão integrada e em tempo real para apoiar decisões de negócio</li>
@@ -828,7 +667,6 @@
                     </ul>
                 </div>
                 
-                
                 <div class="experience-item">
                     <div class="job-header">
                         <div>
@@ -850,6 +688,6 @@
         </section>
     </div>
     <!-- Dynamic Favicon System -->
-    <script src="../../assets/js/dynamic-favicon.js"></script>
+    <script src="../assets/js/dynamic-favicon.js"></script>
 </body>
 </html>
