@@ -6,24 +6,27 @@
     <title>Pedro Marconato - CV</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
         
         :root {
             /* Nuvemshop Brand Colors */
-            --nuvemshop-nimbus-blue: #4A90E2;
+            --nuvemshop-nimbus-blue: #1E3A8A;
             --nuvemshop-deep-blue: #1E40AF;
+            --nuvemshop-electric-blue: #3B82F6;
             --nuvemshop-white: #FFFFFF;
-            --nuvemshop-light-blue: #EBF4FF;
+            --nuvemshop-light-blue: #DBEAFE;
             --nuvemshop-gray: #F8F9FA;
+            --nuvemshop-glow: #60A5FA;
             
             /* Applied Colors */
             --primary-color: var(--nuvemshop-nimbus-blue);
             --secondary-color: var(--nuvemshop-deep-blue);
-            --accent-color: var(--nuvemshop-white);
+            --accent-color: var(--nuvemshop-electric-blue);
             --light-accent: var(--nuvemshop-light-blue);
-            --text-color: #2c3e50;
-            --border-color: rgba(74, 144, 226, 0.15);
-            --background-gradient: linear-gradient(135deg, var(--nuvemshop-nimbus-blue) 0%, var(--nuvemshop-deep-blue) 100%);
+            --text-color: #1F2937;
+            --border-color: rgba(30, 58, 138, 0.15);
+            --background-gradient: linear-gradient(135deg, var(--nuvemshop-nimbus-blue) 0%, var(--nuvemshop-electric-blue) 100%);
+            --glow-gradient: linear-gradient(135deg, var(--nuvemshop-electric-blue) 0%, var(--nuvemshop-glow) 100%);
         }
         
         * {
@@ -36,15 +39,60 @@
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: var(--text-color);
             line-height: 1.6;
-            background: 
-                linear-gradient(135deg, rgba(74, 144, 226, 0.95) 0%, rgba(30, 64, 175, 0.9) 100%),
-                url('../../assets/images/nuvemshop (1).png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: #0a0e27;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            cursor: none;
+        }
+        
+        /* Custom Cursor */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--nuvemshop-electric-blue);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, var(--nuvemshop-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+        }
+        
+        .custom-cursor.hover {
+            transform: scale(2);
+            background: var(--nuvemshop-electric-blue);
+            mix-blend-mode: screen;
+        }
+        
+        /* Interactive Background */
+        .interactive-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                    rgba(59, 130, 246, 0.2) 0%, 
+                    transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(30, 58, 138, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.2) 0%, transparent 50%),
+                linear-gradient(180deg, #0a0e27 0%, #0f172a 100%);
+            z-index: -2;
+            transition: all 0.3s ease;
         }
         
         /* Background animation overlay */
@@ -87,17 +135,22 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating shapes */
+        /* Floating 3D shapes */
         .shape {
-            position: absolute;
-            opacity: 0.05;
-            animation: float 25s infinite ease-in-out;
+            position: fixed;
+            opacity: 0.08;
+            filter: blur(0.5px);
+            transform-style: preserve-3d;
+            animation: float3D 30s infinite ease-in-out;
+            pointer-events: none;
         }
 
         .shape:nth-child(1) {
-            width: 200px;
-            height: 100px;
-            background: linear-gradient(45deg, var(#4A90E2), var(#1E40AF));
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at 30% 30%, 
+                var(--nuvemshop-glow) 0%, 
+                transparent 50%);
             border-radius: 50%;
             top: 10%;
             left: 5%;
@@ -105,23 +158,56 @@
         }
 
         .shape:nth-child(2) {
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(135deg, var(#4A90E2), var(#58acff));
-            transform: rotate(45deg);
+            width: 200px;
+            height: 200px;
+            background: conic-gradient(
+                from 45deg,
+                var(--nuvemshop-electric-blue) 0deg,
+                var(--nuvemshop-glow) 90deg,
+                var(--nuvemshop-nimbus-blue) 180deg,
+                var(--nuvemshop-electric-blue) 360deg
+            );
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
             top: 60%;
             right: 10%;
-            animation-delay: 8s;
+            animation-delay: 10s;
+            animation: float3D 25s infinite ease-in-out, spin 20s linear infinite;
         }
 
         .shape:nth-child(3) {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(90deg, var(#1E40AF), var(#4A90E2));
-            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, 
+                var(--nuvemshop-electric-blue) 0%, 
+                transparent 100%);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
             bottom: 20%;
             left: 25%;
-            animation-delay: 15s;
+            animation-delay: 20s;
+        }
+        
+        @keyframes float3D {
+            0%, 100% { 
+                transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) scale(1);
+                opacity: 0.08;
+            }
+            25% { 
+                transform: translate3d(50px, -60px, 100px) rotateX(180deg) rotateY(90deg) scale(1.2);
+                opacity: 0.12;
+            }
+            50% { 
+                transform: translate3d(-30px, -100px, -50px) rotateX(360deg) rotateY(180deg) scale(0.8);
+                opacity: 0.06;
+            }
+            75% { 
+                transform: translate3d(-60px, 40px, 80px) rotateX(270deg) rotateY(270deg) scale(1.1);
+                opacity: 0.1;
+            }
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         @keyframes float {
@@ -131,16 +217,28 @@
         }
         
         .cv-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 40px auto;
-            background: rgba(255, 255, 255, 1);
-            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 32px;
             box-shadow: 
-                0 10px 60px rgba(74, 144, 226, 0.1),
-                0 4px 20px rgba(30, 64, 175, 0.05);
-            border: 1px solid rgba(74, 144, 226, 0.08);
+                0 20px 80px rgba(30, 58, 138, 0.3),
+                0 10px 40px rgba(30, 58, 138, 0.2),
+                inset 0 0 100px rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
             overflow: hidden;
             position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .cv-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 30px 100px rgba(30, 58, 138, 0.4),
+                0 15px 50px rgba(59, 130, 246, 0.3),
+                inset 0 0 120px rgba(59, 130, 246, 0.08);
         }
         
         /* Clean Nuvemshop aesthetic - no excessive animations */
@@ -194,19 +292,20 @@
         .header {
             background: 
                 linear-gradient(135deg, 
-                    rgba(74, 144, 226, 0.95) 0%, 
-                    rgba(30, 64, 175, 0.9) 40%,
-                    rgba(74, 144, 226, 0.8) 100%),
-                radial-gradient(ellipse at top left, rgba(235, 244, 255, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at bottom right, rgba(74, 144, 226, 0.2) 0%, transparent 50%);
-            padding: 80px 60px 120px 60px;
+                    rgba(30, 58, 138, 0.98) 0%, 
+                    rgba(30, 64, 175, 0.95) 40%,
+                    rgba(59, 130, 246, 0.9) 100%),
+                radial-gradient(ellipse at top left, rgba(96, 165, 250, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(59, 130, 246, 0.3) 0%, transparent 50%);
+            padding: 100px 80px 140px 80px;
             position: relative;
             overflow: hidden;
-            min-height: 70vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(96, 165, 250, 0.3);
+            transform-style: preserve-3d;
         }
         
         /* Header Dynamic Shapes */
@@ -242,6 +341,21 @@
             100% { transform: rotate(360deg) scale(1); }
         }
         
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 8s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
 
         .header-content {
             position: relative;
@@ -263,37 +377,55 @@
             line-height: 1.1;
         }
         
-        /* Nome sóbrio - versão simples */
+        /* Nome com animação de glitch moderno */
         .header h1 .name-part {
             display: inline-block;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 12px 0 0;
+            text-shadow: 
+                0 0 10px var(--nuvemshop-glow),
+                0 0 20px var(--nuvemshop-electric-blue),
+                0 0 40px rgba(59, 130, 246, 0.5);
+            font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+            position: relative;
+            animation: textGlow 3s ease-in-out infinite alternate;
         }
         
-        .header h1 .name-part:nth-child(1) {
-            animation-delay: 0s;
-        }
-        
-        .header h1 .name-part:nth-child(2) {
-            animation-delay: 0.8s;
-            font-family: 'Crimson Text', serif;
-            font-style: italic;
-            font-size: 0.9em;
-            margin: 0 12px;
-        }
-        
-        .header h1 .name-part:nth-child(3) {
-            animation-delay: 1.6s;
-        }
-        
-        @keyframes nameShimmer {
-            0%, 100% { 
-                background-position: 0% 50%;
-                transform: scale(1);
+        @keyframes textGlow {
+            0% {
+                text-shadow: 
+                    0 0 10px var(--nuvemshop-glow),
+                    0 0 20px var(--nuvemshop-electric-blue),
+                    0 0 40px rgba(59, 130, 246, 0.5);
             }
-            50% { 
-                background-position: 100% 50%;
-                transform: scale(1.05);
+            100% {
+                text-shadow: 
+                    0 0 20px var(--nuvemshop-glow),
+                    0 0 40px var(--nuvemshop-electric-blue),
+                    0 0 60px rgba(96, 165, 250, 0.8);
+            }
+        }
+        
+        .header h1 .name-part:hover {
+            animation: glitchText 0.3s linear infinite;
+        }
+        
+        @keyframes glitchText {
+            0%, 100% {
+                text-shadow: 
+                    2px 2px 0 var(--nuvemshop-electric-blue),
+                    -2px -2px 0 var(--nuvemshop-glow),
+                    0 0 30px rgba(59, 130, 246, 0.8);
+            }
+            50% {
+                text-shadow: 
+                    -2px 2px 0 var(--nuvemshop-glow),
+                    2px -2px 0 var(--nuvemshop-electric-blue),
+                    0 0 50px rgba(96, 165, 250, 1);
             }
         }
         
@@ -368,21 +500,41 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
             border-radius: 100px;
-            padding: 12px 20px;
+            padding: 14px 24px;
             text-decoration: none;
             color: white;
             font-size: 14px;
             font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            cursor: none;
             position: relative;
             overflow: hidden;
             white-space: nowrap;
-            min-width: 140px;
+            min-width: 160px;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            box-shadow: 
+                0 4px 20px rgba(59, 130, 246, 0.2),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, var(--nuvemshop-glow) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+            opacity: 0;
         }
         
         .contact-button::before {
@@ -401,10 +553,25 @@
         }
         
         .contact-button:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: linear-gradient(135deg, 
+                rgba(59, 130, 246, 0.3) 0%, 
+                rgba(96, 165, 250, 0.2) 100%);
+            transform: translateY(-5px) rotateX(-10deg) scale(1.05);
+            box-shadow: 
+                0 15px 40px rgba(59, 130, 246, 0.4),
+                0 0 60px rgba(96, 165, 250, 0.3),
+                inset 0 0 30px rgba(255, 255, 255, 0.2);
+            border-color: var(--nuvemshop-glow);
+        }
+        
+        .contact-button:hover::after {
+            width: 300px;
+            height: 300px;
+            opacity: 0.6;
+        }
+        
+        .contact-button:active {
+            transform: translateY(-2px) scale(1.02);
         }
         
         .contact-button i {
@@ -422,12 +589,11 @@
         /* NUVEM Logo Container */
         .nuvem-logo-container {
             position: absolute;
-            bottom: 30px;
-            right: 30px;
+            bottom: 40px;
+            right: 40px;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 10px;
             z-index: 10;
         }
         
@@ -436,7 +602,7 @@
             height: auto;
             opacity: 0.9;
             filter: brightness(0) invert(1);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             animation: logoBreath 3s ease-in-out infinite;
         }
         
@@ -447,14 +613,8 @@
         }
         
         @keyframes logoBreath {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.9;
-            }
-            50% {
-                transform: scale(1.05);
-                opacity: 1;
-            }
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.02); opacity: 1; }
         }
         
         /* Elementos flutuantes ultra dinâmicos */
@@ -608,33 +768,74 @@
         }
         
         .section {
-            padding: 35px 80px;
+            padding: 50px 100px;
             position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section:not(:last-child)::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 80px;
-            right: 80px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+            left: 100px;
+            right: 100px;
+            height: 2px;
+            background: linear-gradient(to right, 
+                transparent, 
+                var(--nuvemshop-electric-blue) 20%, 
+                var(--nuvemshop-glow) 50%, 
+                var(--nuvemshop-electric-blue) 80%, 
+                transparent);
+            opacity: 0.3;
+            animation: lineGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes lineGlow {
+            0%, 100% { 
+                opacity: 0.3;
+                transform: scaleX(1);
+            }
+            50% { 
+                opacity: 0.6;
+                transform: scaleX(1.05);
+            }
         }
         
         .section-title {
-            background: var(--background-gradient);
+            background: linear-gradient(135deg, 
+                var(--nuvemshop-nimbus-blue) 0%, 
+                var(--nuvemshop-electric-blue) 100%);
             color: white;
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            padding: 12px 20px;
-            border-radius: 14px;
-            letter-spacing: 0.3px;
-            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.1);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding: 16px 32px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            box-shadow: 
+                0 8px 30px rgba(30, 58, 138, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
             display: inline-block;
             position: relative;
             overflow: hidden;
+            text-transform: uppercase;
+            font-family: 'Space Grotesk', sans-serif;
+            transform: perspective(1000px) rotateX(0deg);
+            transition: all 0.3s ease;
+        }
+        
+        .section-title:hover {
+            transform: perspective(1000px) rotateX(-5deg) translateY(-2px);
+            box-shadow: 
+                0 12px 40px rgba(59, 130, 246, 0.4),
+                inset 0 0 30px rgba(255, 255, 255, 0.2);
         }
 
         .section-title::before {
@@ -679,18 +880,44 @@
         }
         
         .skills-column {
-            background: linear-gradient(135deg, rgba(224, 224, 224, 0.3), rgba(224, 224, 224, 0.1));
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid rgba(74, 144, 226, 0.15);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, 
+                rgba(30, 58, 138, 0.03) 0%, 
+                rgba(59, 130, 246, 0.06) 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(59, 130, 246, 0.1);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+        
+        .skills-column::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, 
+                var(--nuvemshop-glow) 0%, 
+                transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
 
         .skills-column:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(74, 144, 226, 0.1);
-            border-color: rgba(74, 144, 226, 0.2);
+            transform: translateY(-8px) rotateX(-5deg);
+            box-shadow: 
+                0 20px 50px rgba(59, 130, 246, 0.2),
+                0 10px 25px rgba(30, 58, 138, 0.15);
+            border-color: var(--nuvemshop-electric-blue);
+        }
+        
+        .skills-column:hover::before {
+            opacity: 0.1;
         }
         
         .skill-item {
@@ -707,131 +934,72 @@
         }
         
         .skill-item i {
-            color: var(--nuvemshop-nimbus-blue);
+            color: var(#4A90E2);
             margin-right: 12px;
             font-size: 18px;
         }
         
         .tool-item {
-            margin-bottom: 14px;
-            padding: 8px 0;
+            margin-bottom: 18px;
         }
         
         .tool-name {
             display: flex;
-            flex-direction: column;
-            gap: 6px;
+            justify-content: space-between;
+            align-items: center;
             font-weight: 500;
-            font-size: 13px;
-            margin-bottom: 6px;
+            font-size: 14px;
+            margin-bottom: 8px;
             color: var(--text-color);
         }
 
-        .tool-skill-name {
-            color: var(--text-color);
+        .tool-percentage {
+            font-size: 13px;
+            color: var(#58acff);
             font-weight: 600;
         }
         
-        /* Modern 5-point rating system - Neutral colors */
-        .skill-rating {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-shrink: 0;
-            align-self: flex-start;
-        }
-        
-        .skill-dots {
-            display: flex;
-            gap: 4px;
-        }
-        
-        .skill-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(74, 144, 226, 0.2);
-            border: 1.5px solid rgba(74, 144, 226, 0.3);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-        
-        .skill-dot.active {
-            background: linear-gradient(135deg, var(--nuvemshop-nimbus-blue) 0%, var(--nuvemshop-deep-blue) 100%);
-            border-color: var(--nuvemshop-nimbus-blue);
-            box-shadow: 
-                0 0 8px rgba(74, 144, 226, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-        
-        .skill-dot.active::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: dotShimmer 2s infinite;
-        }
-        
-        @keyframes dotShimmer {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .skill-level-text {
-            font-size: 10px;
-            color: var(--nuvemshop-nimbus-blue);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            margin-left: 2px;
-            white-space: nowrap;
-        }
-        
-        /* Dots container for skills from cv-texts.js - Neutral colors */
         .dots-container {
             display: flex;
-            gap: 3px;
-            margin-top: 8px;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: nowrap;
         }
         
         .dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
-            background: rgba(74, 144, 226, 0.2);
-            border: 1px solid rgba(74, 144, 226, 0.3);
+            background-color: rgba(74, 144, 226, 0.15);
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
         
         .dot.filled {
-            background: linear-gradient(135deg, var(--nuvemshop-nimbus-blue) 0%, var(--nuvemshop-deep-blue) 100%);
-            border-color: var(--nuvemshop-nimbus-blue);
-            box-shadow: 
-                0 0 6px rgba(74, 144, 226, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+            background: linear-gradient(135deg, var(#4A90E2) 0%, var(#1E40AF) 100%);
+            box-shadow: 0 1px 3px rgba(74, 144, 226, 0.3);
+            animation: dotPulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes dotPulse {
+            0% { 
+                transform: scale(1);
+                box-shadow: 0 1px 3px rgba(74, 144, 226, 0.3);
+            }
+            100% { 
+                transform: scale(1.1);
+                box-shadow: 0 2px 6px rgba(74, 144, 226, 0.4);
+            }
         }
         
         .tool-item:hover .dot.filled {
-            box-shadow: 
-                0 0 10px rgba(74, 144, 226, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            transform: scale(1.2);
+            background: linear-gradient(135deg, var(#1E40AF) 0%, var(#58acff) 100%);
+            transform: scale(1.15);
         }
         
-        /* Hover effects */
-        .tool-item:hover .skill-dot.active {
-            box-shadow: 
-                0 0 15px rgba(74, 144, 226, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            transform: scale(1.1);
-        }
+        
+
+
         
         /* Tooltip styles */
         .tooltip {
@@ -841,7 +1009,7 @@
         }
         
         .tooltip .tooltip-icon {
-            color: var(--nuvemshop-nimbus-blue);
+            color: var(#58acff);
             font-size: 14px;
             margin-left: 5px;
             transition: transform 0.2s, color 0.2s;
@@ -850,29 +1018,35 @@
         .tooltip:hover .tooltip-icon,
         .tooltip:focus .tooltip-icon,
         .tooltip:active .tooltip-icon {
-            color: var(--nuvemshop-deep-blue);
+            color: var(#1E40AF);
             transform: scale(1.2);
         }
         
         .tooltip .tooltip-text {
             visibility: hidden;
-            width: 380px;
-            background: linear-gradient(145deg, var(--nuvemshop-deep-blue), var(--nuvemshop-nimbus-blue));
+            width: 400px;
+            background: linear-gradient(135deg, 
+                var(--nuvemshop-nimbus-blue) 0%, 
+                var(--nuvemshop-electric-blue) 100%);
             color: white;
             text-align: left;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 0;
             position: absolute;
             z-index: 100;
             bottom: 125%;
             left: 50%;
-            margin-left: -190px;
+            margin-left: -200px;
             opacity: 0;
-            transition: opacity 0.4s, transform 0.3s;
-            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(20px) scale(0.9);
             font-size: 13px;
-            line-height: 1.5;
-            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.15);
+            line-height: 1.6;
+            box-shadow: 
+                0 20px 60px rgba(30, 58, 138, 0.3),
+                0 10px 30px rgba(59, 130, 246, 0.2),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(96, 165, 250, 0.3);
             overflow: hidden;
             max-height: 85vh;
             overflow-y: auto;
@@ -886,7 +1060,7 @@
             margin-left: -8px;
             border-width: 8px;
             border-style: solid;
-            border-color: var(--nuvemshop-nimbus-blue) transparent transparent transparent;
+            border-color: var(#4A90E2) transparent transparent transparent;
         }
         
         .tooltip:hover .tooltip-text,
@@ -895,8 +1069,24 @@
         .tooltip.tooltip-active .tooltip-text {
             visibility: visible;
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
             min-height: 330px;
+            animation: tooltipPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes tooltipPulse {
+            0%, 100% {
+                box-shadow: 
+                    0 20px 60px rgba(30, 58, 138, 0.3),
+                    0 10px 30px rgba(59, 130, 246, 0.2),
+                    inset 0 0 20px rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                box-shadow: 
+                    0 25px 70px rgba(30, 58, 138, 0.4),
+                    0 15px 40px rgba(59, 130, 246, 0.3),
+                    inset 0 0 30px rgba(255, 255, 255, 0.15);
+            }
         }
         
         .tooltip-active .tooltip-text {
@@ -995,25 +1185,59 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, var(--nuvemshop-nimbus-blue), var(--nuvemshop-deep-blue));
+            background: linear-gradient(to bottom, var(#4A90E2), var(#1E40AF));
             border-radius: 3px;
         }
         
         .experience-item {
-            margin-bottom: 25px;
+            margin-bottom: 35px;
             position: relative;
-            padding: 25px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(74, 144, 226, 0.15);
-            transition: all 0.3s ease;
+            padding: 35px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%, 
+                rgba(248, 250, 255, 0.9) 100%);
+            box-shadow: 
+                0 10px 40px rgba(30, 58, 138, 0.1),
+                inset 0 0 30px rgba(59, 130, 246, 0.02);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: left center;
+        }
+        
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 24px;
+            padding: 2px;
+            background: linear-gradient(135deg, 
+                var(--nuvemshop-electric-blue), 
+                var(--nuvemshop-glow),
+                var(--nuvemshop-nimbus-blue));
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .experience-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 20px rgba(74, 144, 226, 0.08);
-            border-color: rgba(74, 144, 226, 0.15);
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(59, 130, 246, 0.2),
+                0 10px 30px rgba(30, 58, 138, 0.15),
+                inset 0 0 40px rgba(59, 130, 246, 0.05);
+        }
+        
+        .experience-item:hover::before {
+            opacity: 1;
         }
         
         .experience-item::before {
@@ -1024,7 +1248,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--nuvemshop-nimbus-blue);
+            background: var(#4A90E2);
             border: 3px solid white;
             box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
             z-index: 1;
@@ -1033,7 +1257,7 @@
         .job-title {
             font-weight: 600;
             font-size: 20px;
-            color: var(--nuvemshop-deep-blue);
+            color: var(#1E40AF);
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -1057,7 +1281,7 @@
         .company {
             font-weight: 500;
             font-size: 16px;
-            color: var(--nuvemshop-nimbus-blue);
+            color: var(#4A90E2);
             margin-bottom: 5px;
         }
         
@@ -1111,12 +1335,12 @@
         .achievement-item:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(74, 144, 226, 0.15);
-            border-color: var(--nuvemshop-nimbus-blue);
+            border-color: var(#4A90E2);
         }
         
         .achievement-icon {
             font-size: 24px;
-            color: var(--nuvemshop-nimbus-blue);
+            color: var(#4A90E2);
             flex-shrink: 0;
         }
         
@@ -1127,7 +1351,7 @@
         .achievement-title {
             font-weight: 600;
             font-size: 15px;
-            color: var(--nuvemshop-deep-blue);
+            color: var(#1E40AF);
             margin-bottom: 6px;
         }
         
@@ -1165,7 +1389,7 @@
         .degree {
             font-weight: 600;
             font-size: 18px;
-            color: var(--nuvemshop-deep-blue);
+            color: var(#1E40AF);
             margin-bottom: 8px;
         }
         
@@ -1230,13 +1454,13 @@
         .project-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 30px rgba(74, 144, 226, 0.15);
-            border-color: var(--nuvemshop-nimbus-blue);
+            border-color: var(#4A90E2);
         }
         
         .project-title {
             font-weight: 600;
             font-size: 18px;
-            color: var(--nuvemshop-deep-blue);
+            color: var(#1E40AF);
             margin-bottom: 12px;
         }
         
@@ -1250,7 +1474,7 @@
         .tech-tag {
             display: inline-block;
             background: rgba(74, 144, 226, 0.1);
-            color: var(--nuvemshop-deep-blue);
+            color: var(#1E40AF);
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 12px;
@@ -1262,7 +1486,7 @@
         }
 
         .tech-tag:hover {
-            background: var(--nuvemshop-nimbus-blue);
+            background: var(#4A90E2);
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
@@ -1365,7 +1589,7 @@
         
         .language-option:not(.active):hover {
             background: rgba(74, 144, 226, 0.05);
-            color: var(--nuvemshop-nimbus-blue);
+            color: var(#4A90E2);
         }
         
         .language-divider {
@@ -1603,6 +1827,204 @@
             }
         }
 
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.98) 0%, 
+                rgba(248, 250, 255, 0.95) 100%);
+            padding: 50px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 
+                0 25px 80px rgba(30, 58, 138, 0.4),
+                0 15px 40px rgba(59, 130, 246, 0.3),
+                inset 0 0 30px rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            transform: translateY(50px) scale(0.9);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: modalPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes modalPulse {
+            0%, 100% {
+                box-shadow: 
+                    0 25px 80px rgba(30, 58, 138, 0.4),
+                    0 15px 40px rgba(59, 130, 246, 0.3),
+                    inset 0 0 30px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                box-shadow: 
+                    0 30px 90px rgba(30, 58, 138, 0.5),
+                    0 20px 50px rgba(59, 130, 246, 0.4),
+                    inset 0 0 40px rgba(255, 255, 255, 0.6);
+            }
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: none;
+            cursor: none;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        .modal-close span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 24px;
+            height: 2px;
+            background: var(--nuvemshop-nimbus-blue);
+            transform-origin: center;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close span:first-child {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        
+        .modal-close span:last-child {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+        
+        .modal-close:hover span {
+            background: var(--nuvemshop-electric-blue);
+            box-shadow: 0 0 10px var(--nuvemshop-glow);
+        }
+        
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .modal-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--nuvemshop-nimbus-blue);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .modal-form input,
+        .modal-form textarea {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid rgba(30, 58, 138, 0.1);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        .modal-form input:focus,
+        .modal-form textarea:focus {
+            outline: none;
+            border-color: var(--nuvemshop-electric-blue);
+            box-shadow: 
+                0 0 0 4px rgba(59, 130, 246, 0.1),
+                0 0 20px rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .modal-form button {
+            background: var(--background-gradient);
+            color: white;
+            border: none;
+            padding: 18px 36px;
+            border-radius: 12px;
+            cursor: none;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 
+                0 8px 30px rgba(30, 58, 138, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modal-form button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+        
+        .modal-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 40px rgba(59, 130, 246, 0.4),
+                inset 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+        
+        .modal-form button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Scroll animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         /* Print styles */
         @media print {
             body {
@@ -1623,13 +2045,13 @@
             }
 
             .section-title {
-                background: var(--nuvemshop-nimbus-blue) !important;
+                background: var(#4A90E2) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
 
             .header {
-                background: var(--nuvemshop-nimbus-blue) !important;
+                background: var(#4A90E2) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 page-break-inside: avoid;
@@ -1655,9 +2077,14 @@
     <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
 </head>
 <body>
-    <div class="animated-bg"></div>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
     
-    <!-- Floating shapes -->
+    <!-- Interactive Background -->
+    <div class="interactive-bg"></div>
+    
+    <!-- Floating 3D shapes -->
     <div class="shape"></div>
     <div class="shape"></div>
     <div class="shape"></div>
@@ -1761,12 +2188,12 @@
     <!-- Language toggle button -->
     <div class="language-toggle">
         <a href="nuvemshop.html" class="language-option">
-            <span>EN</span>
+            <span id="lang-en">EN</span>
         </a>
         <div class="language-divider"></div>
         <a href="nuvemshop_pt.html" class="language-option active">
             <i class="fas fa-check-circle"></i>
-            <span>PT</span>
+            <span id="lang-pt">PT</span>
         </a>
     </div>
     
@@ -1776,92 +2203,228 @@
     </button>
     
     <!-- Email Modal -->
-    <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
-        <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
-            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--nuvemshop-deep-blue); font-size: 24px;">Enviar Email</h3>
-            <form action="https://formspree.io/f/mdkekegw" method="POST">
-                <div style="margin-bottom:20px;">
-                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
-                    <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+    <div id="emailModal" class="modal-overlay">
+        <div class="modal-content">
+            <button onclick="closeEmailModal()" class="modal-close">
+                <span></span>
+                <span></span>
+            </button>
+            <h3 id="email-modal-title" style="margin-bottom:30px; color: var(--nuvemshop-nimbus-blue); font-size: 28px; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 1px;">Send Email</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST" class="modal-form">
+                <div>
+                    <label id="email-label-name">Your Name</label>
+                    <input type="text" name="name" required>
                 </div>
-                <div style="margin-bottom:20px;">
-                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Email</label>
-                    <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                <div>
+                    <label id="email-label-email">Your Email</label>
+                    <input type="email" name="email" required>
                 </div>
-                <div style="margin-bottom:20px;">
-                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Assunto</label>
-                    <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                <div>
+                    <label id="email-label-subject">Subject</label>
+                    <input type="text" name="subject" required>
                 </div>
-                <div style="margin-bottom:25px;">
-                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem</label>
-                    <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
+                <div>
+                    <label id="email-label-message">Message</label>
+                    <textarea name="message" required rows="5" style="resize: vertical;"></textarea>
                 </div>
-                <button id="email-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);">Enviar</button>
+                <button id="email-button" type="submit">Send Message</button>
             </form>
         </div>
     </div>
     
     <!-- Phone Modal -->
-    <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
-        <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
-            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--nuvemshop-deep-blue); font-size: 24px;">Entre em Contato</h3>
-            <form action="https://formspree.io/f/mdkekegw" method="POST">
+    <div id="phoneModal" class="modal-overlay">
+        <div class="modal-content">
+            <button onclick="closePhoneModal()" class="modal-close">
+                <span></span>
+                <span></span>
+            </button>
+            <h3 id="phone-modal-title" style="margin-bottom:30px; color: var(--nuvemshop-nimbus-blue); font-size: 28px; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 1px;">Get in Touch</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST" class="modal-form">
                 <input type="hidden" name="contact_type" value="phone_request">
-                <div style="margin-bottom:20px;">
-                    <label id="phone-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
-                    <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                <div>
+                    <label id="phone-label-name">Your Name</label>
+                    <input type="text" name="name" required>
                 </div>
-                <div style="margin-bottom:20px;">
-                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Telefone</label>
-                    <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                <div>
+                    <label id="phone-label-phone">Your Phone</label>
+                    <input type="tel" name="phone" required>
                 </div>
-                <div style="margin-bottom:20px;">
-                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Melhor horário para contato</label>
-                    <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                <div>
+                    <label id="phone-label-besttime">Best time to contact</label>
+                    <input type="text" name="best_time" required>
                 </div>
-                <div style="margin-bottom:25px;">
-                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem (Opcional)</label>
-                    <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
+                <div>
+                    <label id="phone-label-message">Message (Optional)</label>
+                    <textarea name="message" rows="3" style="resize: vertical;"></textarea>
                 </div>
-                <div style="display:flex; gap:15px;">
-                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);">Solicitar Contato</button>
-                    <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
-                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> <span id="whatsapp-text">WhatsApp</span>
+                <div style="display:flex; gap:20px; margin-top: 30px;">
+                    <button id="phone-button" type="submit">Request Contact</button>
+                    <a href="https://wa.me/55981147758" target="_blank" style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color:white; text-decoration:none; border:none; padding:18px 36px; border-radius:12px; font-weight:700; font-size:16px; text-transform:uppercase; letter-spacing:1px; transition:all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1); display:inline-flex; align-items:center; cursor:none;">
+                        <i class="fab fa-whatsapp" style="margin-right:10px; font-size:20px;"></i> <span id="whatsapp-text">WhatsApp</span>
                     </a>
                 </div>
             </form>
         </div>
     </div>
     
-    
     <script>
+        // Custom Cursor Implementation
+        const cursor = document.querySelector('.custom-cursor');
+        const follower = document.querySelector('.cursor-follower');
+        const interactive = document.querySelector('.interactive-bg');
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let followerX = 0;
+        let followerY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Update cursor position
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+            
+            // Update interactive background
+            const x = (mouseX / window.innerWidth) * 100;
+            const y = (mouseY / window.innerHeight) * 100;
+            interactive.style.setProperty('--mouse-x', x + '%');
+            interactive.style.setProperty('--mouse-y', y + '%');
+        });
+        
+        // Smooth follower animation
+        setInterval(() => {
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+            
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+        }, 20);
+        
+        // Add hover effects to interactive elements
+        const hoverElements = document.querySelectorAll('a, button, .contact-button, .skill-item, .tool-item, .experience-item, .education-item, .project-item');
+        
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+                follower.style.transform = 'scale(2)';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+                follower.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Scroll Animations with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Stagger animations for child elements
+                    const children = entry.target.querySelectorAll('.skill-item, .experience-item, .education-item, .project-item');
+                    children.forEach((child, index) => {
+                        setTimeout(() => {
+                            child.style.opacity = '1';
+                            child.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Parallax effect for shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.2);
+                const yPos = -(scrolled * speed);
+                shape.style.transform = `translate3d(0, ${yPos}px, 0)`;
+            });
+        });
+        
+        // Enhanced Modal Functions
         function openEmailForm() {
-            document.getElementById('emailModal').style.display = 'flex';
+            const modal = document.getElementById('emailModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
         
         function closeEmailModal() {
-            document.getElementById('emailModal').style.display = 'none';
+            const modal = document.getElementById('emailModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
         }
         
         function openPhoneForm() {
-            document.getElementById('phoneModal').style.display = 'flex';
+            const modal = document.getElementById('phoneModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
         
         function closePhoneModal() {
-            document.getElementById('phoneModal').style.display = 'none';
+            const modal = document.getElementById('phoneModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
         }
         
         
         // Close modal when clicking outside
         window.onclick = function(event) {
-            if (event.target == document.getElementById('emailModal')) {
-                closeEmailModal();
+            if (event.target.classList.contains('modal-overlay')) {
+                if (event.target.id === 'emailModal') {
+                    closeEmailModal();
+                } else if (event.target.id === 'phoneModal') {
+                    closePhoneModal();
+                }
             }
-            if (event.target == document.getElementById('phoneModal')) {
-                closePhoneModal();
+        }
+        
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add typing effect to role text
+        const roleElement = document.getElementById('cv-role');
+        if (roleElement) {
+            const text = roleElement.textContent;
+            roleElement.textContent = '';
+            let index = 0;
+            
+            function typeWriter() {
+                if (index < text.length) {
+                    roleElement.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 100);
+                }
             }
+            
+            setTimeout(typeWriter, 500);
         }
 
         // Initialize CV content when DOM is loaded

@@ -694,37 +694,270 @@
             loading.style.display = 'block';
             button.disabled = true;
             
-            // Company mappings
             const companyMappings = {
-                'templates/companies/ifood.html': ['ifood', 'i food', 'if'],
-                'templates/companies/rdstation.html': ['rd', 'rdstation', 'rds', 'rd station'],
-                'templates/companies/sicredi.html': ['sicredi', 'sic', 'sicred'],
-                'templates/companies/boticario.html': ['boticario', 'gb', 'grupoboticario', 'grupo boticario', 'grupo boticário', 'grupoboticário'],
-                'templates/companies/completebari.html': ['completebari', 'complete bari', 'bari', 'cb', 'complete'],
-                'templates/companies/allos.html': ['allos', 'allo', 'all', 'consultoria', 'consulting'],
-                'templates/companies/contaazul.html': ['contazul', 'contaazul', 'ca', 'azulconta', 'azul'],
-                'templates/companies/willbank.html': ['willbank', 'will bank', 'will', 'wb', 'banco will', 'bancodigital'],
-                'templates/companies/neogroup.html': ['neogroup', 'neo group', 'neo', 'ng', 'grupo neo', 'neogrupo'],
-                'templates/companies/wehandle.html': ['wehandle', 'we handle', 'wh', 'handle', 'wehand'],
-                'templates/companies/quintoandar.html': ['quintoandar', 'quinto andar', 'quinto', 'quin', 'qa', 'qto andar', 'qto'],
-                'templates/companies/raio.html': ['raio', 'raiô', 'Raio', 'Raiô', 'RAIO', 'RAIÔ', 'RB', 'rb', 'R.B.', 'raio beneficios', 'raio benefícios', 'raiô beneficios', 'raiô benefícios', 'raio beneficio', 'raiô beneficio', 'Raio Beneficios', 'Raio Benefícios', 'Raiô Beneficios', 'Raiô Benefícios', 'raio-beneficios', 'raio-benefícios', 'raiô-beneficios', 'raiô-benefiços', 'raio_beneficios', 'raio_benefícios'],
-                'templates/companies/macfor.html': ['macfor', 'mac for', 'mf', 'macfor agencia', 'macfor agência', 'agencia macfor', 'agência macfor', 'macfor digital', 'macfor comunicacao', 'macfor comunicação'],
-                'templates/companies/magazineluiza.html': ['magazineluiza', 'magalu', 'magazine luiza', 'lu'],
-                'templates/companies/nuvemshop.html': ['nuvemshop', 'nuvem shop', 'nuvem', 'tiendanube', 'ecommerce'],
-                'templates/companies/cea.html': ['cea', 'c&a', 'c a', 'canda', 'c and a', 'c&a brasil', 'cea brasil', 'c&a fashion', 'cea fashion', 'ca', 'ce&a'],
-                'templates/companies/renner.html': ['renner', 'lojas renner', 'lojasrenner', 'lojas renner sa', 'renner sa', 'lr', 'renner moda', 'renner fashion', 'moda renner', 'renner brasil', 'renner loja', 'lojarener', 'loja renner'],
-                'templates/companies/cognitivo_ai.html': ['cognitivo', 'cognitivo.ai', 'cognitivo ai', 'cognitivoai', 'cog', 'cognitivo ia', 'cognitivo artificial', 'cognitivo intelligence', 'cognitive', 'cognitive ai', 'cognitive.ai', 'ai cognitivo', 'ia cognitivo', 'cognitivo tech', 'cognitivo technology', 'cognitivo artificial intelligence', 'cognitivo machine learning', 'cognitivo ml', 'cognitivo data', 'cognitivo analytics', 'cognitivo solutions', 'cognitivo startup', 'cognitivo empresa', 'cognitivo company', 'cognitivo neural', 'cognitivo network', 'cognitivo deep learning', 'cognitivo automation', 'cognitivo platform', 'cognitivo software', 'cognitivo systems', 'cognitivo lab', 'cognitivo labs', 'cognitivo research', 'cognitivo innovation', 'inteligencia artificial', 'artificial intelligence', 'machine learning', 'deep learning', 'neural network', 'ai company', 'ia empresa', 'startup ai', 'startup ia', 'tech cognitivo', 'tecnologia cognitivo'],
-                'templates/companies/cadastra.html': ['cadastra', 'data platform', 'growth marketing', 'customer intelligence'],
-                'templates/companies/meutudo.html': ['meutudo', 'meu tudo', 'meutudo.com', 'meutudo.com.br'],
-                'templates/companies/banco-bv.html': [
-                    'banco bv', 'bv', 'bv financeira', 'banco votorantim', 'bv bank', 'banco b.v.', 'banco b v', 'banco b.v', 'banco-bv', 'bancobv', 'banco_bv', 'banco-votorantim', 'bvfinaceira', 'b v', 'b.v.', 'b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'banco b.v financeira', 'banco b.v. financeira', 'banco b v financeira', 'bv brasil', 'bvbrasil', 'bv-brasil', 'bv_brasil', 'banco bv brasil', 'banco bvbrasil', 'banco bv-brasil', 'banco bv_brasil', 'banco votorantim financeira', 'votorantim financeira', 'votorantim', 'banco votorantim', 'banco-votorantim', 'banco_votorantim', 'bancovotorantim'
-                ],
-                'templates/companies/grupofleury.html': ['fleury', 'grupo fleury', 'grupofleury', 'fleury medicina', 'fleury saude', 'fleury saúde', 'fleury laboratorio', 'fleury laboratório', 'fleury diagnostico', 'fleury diagnóstico', 'fleury medicina e saude', 'fleury medicina e saúde', 'fleury hospital', 'fleury clinica', 'fleury clínica', 'fleury medicina diagnostica', 'fleury medicina diagnóstica', 'fleury grupo', 'grupo fleury sa', 'grupofleury sa', 'fleury sa', 'fleury s a', 'fleury s.a.', 'fleury s/a', 'gf', 'flr', 'fleury brasil', 'fleury medicina brasil', 'medicina e saude fleury', 'medicina e saúde fleury'],
-                'templates/companies/stone-co.html': ['stone', 'stone co', 'stoneco', 'stone.co', 'stone pagamentos', 'stone payments', 'stone brasil', 'stone fintech', 'stone tecnologia', 'stone maquininhas', 'stone pos', 'stone financial', 'stone solutions', 'stone company', 'stone tech', 'stone startup', 'stone adquirencia', 'stone payment', 'stone digital', 'stone banking', 'stone bank', 'stone enterprise', 'stone business', 'stone corp', 'stone corporation'],
-                'templates/companies/hyland.html': ['hyland', 'hyland software', 'hyland.com', 'hyland inc', 'hyland corporation', 'hyland tech', 'hyland tecnologia', 'hyland brasil', 'hyland systems', 'hyland platform', 'hyland ecm', 'hyland onbase', 'onbase', 'hyland content', 'hyland documents', 'hyland information', 'hyland cloud', 'hyland saas', 'hyland digital', 'hyland automation', 'hyland workflow', 'hy', 'hyl', 'hyland enterprise', 'hyland solutions', 'hyland company', 'hyland corp', 'hyland it', 'hyland technology', 'hyland gestao', 'hyland gestão', 'hyland conteudo', 'hyland conteúdo', 'hyland documentos', 'hyland informacao', 'hyland informação', 'hyland sistemas', 'hyland plataforma', 'hyland nuvem', 'hyland automacao', 'hyland automação', 'hyland fluxo', 'hyland workflow', 'hyland processos', 'hyland process', 'hyland bpm', 'hyland dms', 'hyland cms', 'hyland eim'],
-                'templates/companies/youtube.html': ['youtube', 'yt', 'you tube', 'google'],
-                'templates/companies/the-heineken-company.html': ['heineken', 'heineken company', 'the heineken company', 'heineken-company', 'the-heineken-company', 'heineken group', 'heineken nv', 'cervejaria heineken', 'cerveja heineken'],
-            };
+  "templates/companies/grupofleury_pt.html": [
+    "grupofleury_pt",
+    "grupofleury_pt.html"
+  ],
+  "templates/companies/general_pt.html": [
+    "general_pt.html",
+    "general_pt"
+  ],
+  "templates/companies/allos_pt.html": [
+    "allos_pt.html",
+    "allos_pt"
+  ],
+  "templates/companies/contaazul.html": [
+    "contaazul",
+    "contaazul.html"
+  ],
+  "templates/companies/boticario_pt.html": [
+    "boticario_pt.html",
+    "boticario_pt",
+    "gb",
+    "grupoboticario",
+    "grupo boticario"
+  ],
+  "templates/companies/general.html": [
+    "general",
+    "general.html"
+  ],
+  "templates/companies/quintoandar.html": [
+    "quintoandar",
+    "quintoandar.html"
+  ],
+  "templates/companies/cadastra.html": [
+    "cadastra",
+    "cadastra.html"
+  ],
+  "templates/companies/meutudo.html": [
+    "meutudo",
+    "meutudo.html"
+  ],
+  "templates/companies/macfor_pt.html": [
+    "macfor_pt.html",
+    "macfor_pt"
+  ],
+  "templates/companies/sicredi_pt.html": [
+    "sicredi_pt",
+    "sicredi_pt.html"
+  ],
+  "templates/companies/cea_pt.html": [
+    "cea_pt.html",
+    "cea_pt"
+  ],
+  "templates/companies/ifood_pt.html": [
+    "ifood_pt",
+    "ifood_pt.html"
+  ],
+  "templates/companies/neogroup_pt.html": [
+    "neogroup_pt",
+    "neogroup_pt.html"
+  ],
+  "templates/companies/stone-co.html": [
+    "stone-co",
+    "stone co",
+    "co",
+    "stone-co.html",
+    "stone"
+  ],
+  "templates/companies/contaazul_pt.html": [
+    "contaazul_pt.html",
+    "contaazul_pt"
+  ],
+  "templates/companies/cea.html": [
+    "cea",
+    "cea.html"
+  ],
+  "templates/companies/rdstation_pt.html": [
+    "rdstation_pt",
+    "rdstation_pt.html"
+  ],
+  "templates/companies/completebari_pt.html": [
+    "completebari_pt",
+    "completebari_pt.html"
+  ],
+  "templates/companies/magazineluiza_pt.html": [
+    "magazineluiza_pt",
+    "magazineluiza_pt.html"
+  ],
+  "templates/companies/sicredi.html": [
+    "sicredi.html",
+    "sicredi"
+  ],
+  "templates/companies/nuvemshop_pt.html": [
+    "nuvemshop_pt",
+    "nuvemshop_pt.html"
+  ],
+  "templates/companies/completebari.html": [
+    "completebari",
+    "completebari.html"
+  ],
+  "templates/companies/banco-bv.html": [
+    "banco-bv",
+    "banco",
+    "banco bv",
+    "banco-bv.html",
+    "bv"
+  ],
+  "templates/companies/neogroup.html": [
+    "neogroup",
+    "neogroup.html"
+  ],
+  "templates/companies/wehandle_pt.html": [
+    "wehandle_pt.html",
+    "wehandle_pt"
+  ],
+  "templates/companies/banco-bv_pt.html": [
+    "banco",
+    "bv_pt",
+    "banco bv_pt",
+    "banco-bv_pt.html",
+    "banco-bv_pt"
+  ],
+  "templates/companies/rdstation.html": [
+    "rdstation.html",
+    "rdstation"
+  ],
+  "templates/companies/nuvemshop.html": [
+    "nuvemshop",
+    "nuvemshop.html"
+  ],
+  "templates/companies/lisinski-law-firm.html": [
+    "lisinski law firm",
+    "firm",
+    "law",
+    "lisinski-law-firm.html",
+    "lisinski-law-firm",
+    "lisinski"
+  ],
+  "templates/companies/the-heineken-company.html": [
+    "the-heineken-company",
+    "the-heineken-company.html",
+    "company",
+    "the",
+    "heineken",
+    "the heineken company"
+  ],
+  "templates/companies/lisinski-law-firm_pt.html": [
+    "firm_pt",
+    "lisinski-law-firm_pt.html",
+    "lisinski-law-firm_pt",
+    "lisinski law firm_pt",
+    "law",
+    "lisinski"
+  ],
+  "templates/companies/cognitivo_ai.html": [
+    "cognitivo_ai",
+    "cognitivo_ai.html"
+  ],
+  "templates/companies/grupofleury.html": [
+    "grupofleury.html",
+    "grupofleury"
+  ],
+  "templates/companies/allos.html": [
+    "allos.html",
+    "allos"
+  ],
+  "templates/companies/willbank.html": [
+    "willbank.html",
+    "willbank"
+  ],
+  "templates/companies/renner_pt.html": [
+    "renner_pt",
+    "renner_pt.html"
+  ],
+  "templates/companies/ifood.html": [
+    "ifood",
+    "ifood.html"
+  ],
+  "templates/companies/hyland.html": [
+    "hyland.html",
+    "hyland"
+  ],
+  "templates/companies/hyland_pt.html": [
+    "hyland_pt.html",
+    "hyland_pt"
+  ],
+  "templates/companies/raio.html": [
+    "raio",
+    "raio.html"
+  ],
+  "templates/companies/the-heineken-company_pt.html": [
+    "the-heineken-company_pt.html",
+    "the-heineken-company_pt",
+    "the heineken company_pt",
+    "the",
+    "heineken",
+    "company_pt"
+  ],
+  "templates/companies/wehandle.html": [
+    "wehandle.html",
+    "wehandle"
+  ],
+  "templates/companies/cadastra_pt.html": [
+    "cadastra_pt",
+    "cadastra_pt.html"
+  ],
+  "templates/companies/renner.html": [
+    "renner",
+    "renner.html"
+  ],
+  "templates/companies/magazineluiza.html": [
+    "magazineluiza.html",
+    "magazineluiza"
+  ],
+  "templates/companies/recarga-pay.html": [
+    "recarga pay",
+    "recarga-pay",
+    "pay",
+    "recarga-pay.html",
+    "recarga"
+  ],
+  "templates/companies/recarga-pay_pt.html": [
+    "recarga-pay_pt.html",
+    "pay_pt",
+    "recarga pay_pt",
+    "recarga",
+    "recarga-pay_pt"
+  ],
+  "templates/companies/willbank_pt.html": [
+    "willbank_pt.html",
+    "willbank_pt"
+  ],
+  "templates/companies/quintoandar_pt.html": [
+    "quintoandar_pt.html",
+    "quintoandar_pt"
+  ],
+  "templates/companies/cognitivo_ai_pt.html": [
+    "cognitivo_ai_pt",
+    "cognitivo_ai_pt.html"
+  ],
+  "templates/companies/stone-co_pt.html": [
+    "stone-co_pt.html",
+    "stone co_pt",
+    "stone-co_pt",
+    "co_pt",
+    "stone"
+  ],
+  "templates/companies/boticario.html": [
+    "boticario.html",
+    "boticario"
+  ],
+  "templates/companies/macfor.html": [
+    "macfor",
+    "macfor.html"
+  ],
+  "templates/companies/meutudo_pt.html": [
+    "meutudo_pt.html",
+    "meutudo_pt"
+  ],
+  "templates/companies/raio_pt.html": [
+    "raio_pt.html",
+    "raio_pt"
+  ]
+};
+;
             
             // Find matching target
             let target = 'templates/companies/general.html';

@@ -1,52 +1,51 @@
-# 🛡️ GITIGNORE - PEDRO MARCONATO CV
+# Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
 
-# Arquivos temporários (proibidos pelas regras)
-*_backup.html
-*_backup.*
-*.tmp
-*.temp
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
 *~
+
+# OS
 .DS_Store
 Thumbs.db
 
-# Arquivos de teste (proibidos na raiz)
-test-*.html
-*-test.html
-*-testing.*
-
-# Scripts de desenvolvimento em locais incorretos
-templates/companies/*.py
-templates/companies/*.sh
-templates/companies/*.txt
-templates/companies/*.md
-
-# Logs e cache
+# Logs
 *.log
-*.pid
-__pycache__/
-*.pyc
-*.pyo
-.pytest_cache/
 
-# Editores
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Sistema
+# Local config
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
-# Arquivos específicos do projeto que não devem ser commitados
-validation-report.txt
-temp-*
-draft-*
-
-# Mas manter arquivos importantes
-!validate-project.py
-!setup-hooks.sh
-!REGRAS_PROJETO.md
+# Temporary files
+*.tmp
+*.temp

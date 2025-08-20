@@ -5,21 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedro Henrique Marconato - CV</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&family=Roboto+Mono:wght@400&display=swap');
         
         :root {
-            /* Nuvemshop Official Brand Colors */
-            --primary-color: #1E3A8A;
-            --secondary-color: #1E40AF;
-            --accent-color: #3B82F6;
-            --light-accent: #DBEAFE;
-            --dark-accent: #1a252f;
-            --text-color: #1F2937;
-            --border-color: rgba(30, 58, 138, 0.15);
-            --background-gradient: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
-            --nuvem-blue: #1E3A8A;
-            --nuvem-light-blue: #3B82F6;
+            /* Hyland Brand Colors for CV */
+            --primary-color: #0066CC;
+            --secondary-color: #3399FF;
+            --accent-color: #33CC99;
+            --alert-accent: #FF6633;
+            --neutral-gray: #666666;
+            --light-accent: #f0f6ff;
+            --dark-accent: #003d7a;
+            --text-color: #333333;
+            --border-color: rgba(0, 102, 204, 0.15);
+            --background-gradient: linear-gradient(135deg, #0066CC 0%, #3399FF 100%);
+            
+            /* Typography */
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
         }
         
         * {
@@ -29,7 +33,7 @@
         }
         
         body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: var(--font-body);
             color: var(--text-color);
             line-height: 1.6;
             background: #ffffff;
@@ -50,25 +54,17 @@
         /* Header Section */
         .header {
             background: var(--background-gradient);
-            padding: 50px 50px 55px 50px;
+            padding: 60px 50px 70px;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
-
-        .company-logo {
-            position: absolute;
-            top: 25px;
-            right: 50px;
+        
+        .brand-logo-cv {
             width: 120px;
             height: auto;
-            opacity: 1;
-            z-index: 2;
-        }
-
-        .company-logo img {
-            width: 100%;
-            height: auto;
-            display: block;
+            margin-bottom: 30px;
+            filter: brightness(0) invert(1);
         }
         
         .header::before {
@@ -78,7 +74,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 102, 204, 0.2), transparent);
             animation: shimmer 8s infinite;
         }
 
@@ -93,22 +89,24 @@
         }
         
         .header h1 {
+            font-family: var(--font-heading);
             font-size: 32px;
             font-weight: 700;
             color: white;
             margin-bottom: 8px;
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            text-transform: none;
         }
 
         .header-tagline {
-            font-size: 17px;
-            font-weight: 400;
+            font-family: var(--font-body);
+            font-size: 18px;
+            font-weight: 300;
             color: rgba(255, 255, 255, 0.95);
-            margin-top: 22px;
-            margin-bottom: 28px;
-            font-style: italic;
-            letter-spacing: 0.5px;
+            margin-top: 12px;
+            margin-bottom: 25px;
+            font-style: normal;
+            letter-spacing: 0.02em;
         }
         
         .contact-info {
@@ -154,19 +152,15 @@
         }
         
         .section-title {
-            background: var(--background-gradient);
-            color: white;
-            font-size: 15px;
+            font-family: var(--font-heading);
             font-weight: 600;
-            margin-bottom: 18px;
-            padding: 8px 16px;
-            border-radius: 12px;
-            letter-spacing: 0.3px;
-            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
+            font-size: 16px;
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 16px;
+            margin-bottom: 20px;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .section-title::before {
@@ -176,7 +170,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(51, 153, 255, 0.3), transparent);
             animation: titleShimmer 6s infinite;
         }
 
@@ -187,10 +181,10 @@
 
         /* Área de Atuação Section */
         .area-section {
-            background: linear-gradient(135deg, rgba(236, 240, 241, 0.8), rgba(189, 195, 199, 0.5));
+            background: linear-gradient(135deg, rgba(240, 246, 255, 0.8), rgba(51, 153, 255, 0.1));
             padding: 20px;
             border-radius: 16px;
-            border: 1px solid rgba(52, 73, 94, 0.1);
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
 
@@ -243,10 +237,10 @@
         }
 
         .skills-section {
-            background: linear-gradient(135deg, rgba(236, 240, 241, 0.8), rgba(189, 195, 199, 0.5));
+            background: linear-gradient(135deg, rgba(240, 246, 255, 0.8), rgba(51, 153, 255, 0.1));
             padding: 16px;
             border-radius: 14px;
-            border: 1px solid rgba(52, 73, 94, 0.1);
+            border: 1px solid var(--border-color);
         }
 
         .skills-section h3 {
@@ -264,13 +258,13 @@
         }
 
         .skill-tag {
-            background: rgba(52, 152, 219, 0.15);
+            background: rgba(0, 102, 204, 0.15);
             color: var(--primary-color);
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 10.5px;
             font-weight: 500;
-            border: 1px solid rgba(52, 152, 219, 0.3);
+            border: 1px solid rgba(0, 102, 204, 0.3);
         }
 
         /* Cursos Complementares */
@@ -280,7 +274,7 @@
 
         .course-item {
             padding: 8px 0;
-            border-bottom: 1px solid rgba(52, 73, 94, 0.1);
+            border-bottom: 1px solid var(--border-color);
             font-size: 11px;
         }
 
@@ -324,16 +318,16 @@
             position: relative;
             padding: 18px;
             border-radius: 14px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 246, 255, 0.9));
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(52, 73, 94, 0.1);
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
         .experience-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 4px 20px rgba(52, 73, 94, 0.08);
-            border-color: rgba(52, 152, 219, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 102, 204, 0.08);
+            border-color: rgba(51, 153, 255, 0.2);
         }
         
         .experience-item::before {
@@ -346,7 +340,7 @@
             border-radius: 50%;
             background: var(--accent-color);
             border: 3px solid white;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            box-shadow: 0 0 0 3px rgba(51, 153, 255, 0.2);
             z-index: 1;
         }
         
@@ -414,16 +408,16 @@
         }
         
         .education-section {
-            background: linear-gradient(135deg, rgba(236, 240, 241, 0.8), rgba(189, 195, 199, 0.5));
+            background: linear-gradient(135deg, rgba(240, 246, 255, 0.8), rgba(51, 153, 255, 0.1));
             padding: 20px;
             border-radius: 14px;
-            border: 1px solid rgba(52, 73, 94, 0.1);
+            border: 1px solid var(--border-color);
         }
 
         .education-item {
             margin-bottom: 12px;
             padding-bottom: 12px;
-            border-bottom: 1px solid rgba(52, 73, 94, 0.1);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .education-item:last-child {
@@ -620,10 +614,8 @@
 <body>
     <div class="cv-container">
         <header class="header">
-            <div class="company-logo">
-                <img src="../../assets/images/NUVEM.png" alt="Nuvemshop Logo">
-            </div>
             <div class="header-content">
+                <img src="../assets/images/hyland/logos/HYLAND.png" alt="Hyland" class="brand-logo-cv">
                 <h1>PEDRO HENRIQUE MARCONATO</h1>
                 
                 <div class="header-tagline">CRM | ANALYTICS | BUSINESS INTELLIGENCE | LTV | SQL</div>
