@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Henrique Marconato - CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            /* Vibra Foods Brand Colors */
+            --verde-vibra: #009A44;
+            --verde-escuro: #006837;
+            --verde-claro: #6FCF97;
+            --amarelo-energia: #F2C94C;
+            --verde-agua: #29D3B0;
+            --azul-petroleo: #0C4240;
+            --bege-claro: #F5F6ED;
+            
+            --primary-color: var(--verde-vibra);
+            --secondary-color: var(--verde-escuro);
+            --accent-color: var(--verde-claro);
+            --text-color: var(--azul-petroleo);
+            --border-color: rgba(0, 154, 68, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: var(--bege-claro);
+        }
+        
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20mm;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 154, 68, 0.1);
+            position: relative;
+        }
+
+        /* Add Vibra logo */
+        .cv-container::before {
+            content: '';
+            position: absolute;
+            top: 5mm;
+            right: 5mm;
+            width: 40px;
+            height: 40px;
+            background: url('../assets/images/vibra/Vibra.webp') no-repeat center;
+            background-size: contain;
+            opacity: 0.8;
+        }
+        
+        h1, h2 {
+            color: var(--primary-color);
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .cv-container {
+                margin: 0;
+                padding: 15mm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <header style="background: var(--bege-claro); padding: 40px; margin: -20mm -20mm 20px -20mm; position: relative; overflow: hidden; min-height: 200px; display: flex; align-items: center;">
+            <!-- Header graphic element -->
+            <div style="position: absolute; top: -50%; left: -20%; width: 60%; height: 200%; background: var(--verde-agua); opacity: 0.9; border-radius: 0 100% 100% 0 / 0 50% 50% 0; z-index: 1;"></div>
+            <div style="position: absolute; bottom: -30%; left: -10%; width: 40%; height: 80%; background: linear-gradient(135deg, var(--verde-claro), transparent); opacity: 0.5; border-radius: 50%; z-index: 0;"></div>
+            
+            <div style="position: relative; z-index: 10; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                <!-- Logo section -->
+                <div style="text-align: center;">
+                    <img src="../assets/images/vibra/Vibra.webp" alt="Vibra Foods" style="max-width: 180px; height: auto; filter: drop-shadow(0 10px 30px rgba(0, 154, 68, 0.3));">
+                </div>
+                
+                <!-- Header text section -->
+                <div style="text-align: left; color: var(--azul-petroleo);">
+                    <h1 style="font-size: 32px; font-weight: 200; color: var(--azul-petroleo); margin-bottom: 12px; letter-spacing: 1px; position: relative;">Pedro Henrique Lima Marconato</h1>
+                    <h2 style="font-size: 18px; font-weight: 400; color: var(--azul-petroleo); margin-bottom: 8px;">Gestão de CRM e Inteligência de Dados</h2>
+                    <p style="font-size: 14px; font-weight: 400; color: var(--verde-escuro); margin-bottom: 15px; font-style: italic;">Energia que transforma o futuro dos dados</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; font-weight: 400; color: var(--azul-petroleo);">
+                        <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-envelope" style="color: var(--verde-agua);"></i> pedrohmarconato@gmail.com</div>
+                        <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-phone" style="color: var(--verde-agua);"></i> +55 (55) 981147758</div>
+                        <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-map-marker-alt" style="color: var(--verde-agua);"></i> Cachoeira do Sul, RS</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <section style="margin-bottom: 25px;">
+            <h2 style="color: var(--verde-escuro); font-size: 18px; font-weight: 600; margin-bottom: 12px; padding-bottom: 5px; border-bottom: 2px solid var(--verde-claro);">Perfil Profissional</h2>
+            <p style="color: var(--azul-petroleo); font-size: 14px; line-height: 1.6;">Profissional especializado em Gestão de CRM e Inteligência de Dados com foco em resultados quantificáveis e crescimento sustentável. Experiência em empresas de grande porte, liderando projetos estratégicos que conectam dados, marketing e performance comercial.</p>
+        </section>
+        
+        <section style="margin-bottom: 25px;">
+            <h2 style="color: var(--verde-escuro); font-size: 18px; font-weight: 600; margin-bottom: 12px; padding-bottom: 5px; border-bottom: 2px solid var(--verde-claro);">Habilidades & Ferramentas</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <span style="background: var(--verde-claro); color: var(--verde-escuro); padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500;">PowerBI</span>
+                <span style="background: var(--verde-claro); color: var(--verde-escuro); padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500;">Oracle/Databricks</span>
+                <span style="background: var(--verde-claro); color: var(--verde-escuro); padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500;">Python/SQL</span>
+                <span style="background: var(--verde-claro); color: var(--verde-escuro); padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500;">Gestão de CRM</span>
+                <span style="background: var(--verde-claro); color: var(--verde-escuro); padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 500;">Analytics</span>
+            </div>
+        </section>
+        
+        <section style="margin-bottom: 25px;">
+            <h2 style="color: var(--verde-escuro); font-size: 18px; font-weight: 600; margin-bottom: 12px; padding-bottom: 5px; border-bottom: 2px solid var(--verde-claro);">Experiência Profissional</h2>
+            <div style="background: linear-gradient(135deg, rgba(111, 207, 151, 0.1), rgba(245, 246, 237, 0.8)); padding: 15px; border-radius: 10px; border-left: 4px solid var(--verde-vibra);">
+                <h3 style="color: var(--verde-escuro); font-size: 16px; margin-bottom: 5px;">Coordenador de CRM</h3>
+                <p style="color: var(--azul-petroleo); font-size: 14px; margin-bottom: 8px; font-weight: 500;">Realize CFI (Set/2022 - Presente)</p>
+                <p style="color: var(--azul-petroleo); font-size: 13px; line-height: 1.5;">Liderança estratégica em CRM com foco no crescimento da base de clientes e geração de valor de negócio através de campanhas multicanal, segmentações inteligentes e automações.</p>
+            </div>
+        </section>
+        
+        <section style="margin-bottom: 25px;">
+            <h2 style="color: var(--verde-escuro); font-size: 18px; font-weight: 600; margin-bottom: 12px; padding-bottom: 5px; border-bottom: 2px solid var(--verde-claro);">Formação</h2>
+            <div style="background: linear-gradient(135deg, rgba(111, 207, 151, 0.1), rgba(245, 246, 237, 0.8)); padding: 15px; border-radius: 10px;">
+                <h3 style="color: var(--verde-escuro); font-size: 14px; margin-bottom: 3px;">Mestrado em Administração</h3>
+                <p style="color: var(--azul-petroleo); font-size: 13px;">Universidade Federal de Santa Maria - UFSM</p>
+            </div>
+        </section>
+        
+        <section style="margin-bottom: 25px;">
+            <h2 style="color: var(--verde-escuro); font-size: 18px; font-weight: 600; margin-bottom: 12px; padding-bottom: 5px; border-bottom: 2px solid var(--verde-claro);">Experiência Detalhada</h2>
+            <div style="background: linear-gradient(135deg, rgba(111, 207, 151, 0.1), rgba(245, 246, 237, 0.8)); padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid var(--verde-vibra);">
+                <h3 style="color: var(--verde-escuro); font-size: 16px; margin-bottom: 8px;">Gerente de CRM</h3>
+                <p style="color: var(--azul-petroleo); font-size: 14px; margin-bottom: 8px; font-weight: 500;">Lojas Renner | Realize CFI (2021-2025)</p>
+                <ul style="color: var(--azul-petroleo); font-size: 13px; line-height: 1.6; margin-left: 20px;">
+                    <li>Liderança da frente estratégica de CRM, focando na evolução da área e geração de valor de negócio</li>
+                    <li>Planejamento e execução de campanhas de relacionamento multicanal (email, SMS, push)</li>
+                    <li>Construção de jornadas personalizadas baseadas em comportamento e perfil do cliente</li>
+                    <li>Gestão de ritmo ágil usando frameworks Scrum e Kanban</li>
+                </ul>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(111, 207, 151, 0.1), rgba(245, 246, 237, 0.8)); padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid var(--verde-agua);">
+                <h3 style="color: var(--verde-escuro); font-size: 16px; margin-bottom: 8px;">Especialista Analytics</h3>
+                <p style="color: var(--azul-petroleo); font-size: 14px; margin-bottom: 8px; font-weight: 500;">Lojas Renner | Realize CFI (2020-2021)</p>
+                <ul style="color: var(--azul-petroleo); font-size: 13px; line-height: 1.6; margin-left: 20px;">
+                    <li>Criação de dashboards e indicadores estratégicos para Marketing, CRM e Canais</li>
+                    <li>Desenvolvimento de bases segmentadas e relatórios automatizados</li>
+                    <li>Uso prático de SQL, BigQuery, Python e Power BI</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section style="margin-bottom: 25px;">
+            <h2 style="color: var(--verde-escuro); font-size: 18px; font-weight: 600; margin-bottom: 12px; padding-bottom: 5px; border-bottom: 2px solid var(--verde-claro);">Competências Técnicas</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                <div style="background: linear-gradient(135deg, rgba(111, 207, 151, 0.1), rgba(245, 246, 237, 0.8)); padding: 15px; border-radius: 10px;">
+                    <h3 style="color: var(--verde-escuro); font-size: 14px; margin-bottom: 10px;">Ferramentas & Plataformas</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                        <span style="background: var(--verde-claro); color: var(--verde-escuro); padding: 3px 10px; border-radius: 10px; font-size: 11px;">Databricks</span>
+                        <span style="background: var(--verde-claro); color: var(--verde-escuro); padding: 3px 10px; border-radius: 10px; font-size: 11px;">SQL</span>
+                        <span style="background: var(--verde-claro); color: var(--verde-escuro); padding: 3px 10px; border-radius: 10px; font-size: 11px;">Power BI</span>
+                        <span style="background: var(--verde-claro); color: var(--verde-escuro); padding: 3px 10px; border-radius: 10px; font-size: 11px;">Python</span>
+                        <span style="background: var(--verde-claro); color: var(--verde-escuro); padding: 3px 10px; border-radius: 10px; font-size: 11px;">Oracle Responsys</span>
+                        <span style="background: var(--verde-claro); color: var(--verde-escuro); padding: 3px 10px; border-radius: 10px; font-size: 11px;">Kanbanize</span>
+                    </div>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(111, 207, 151, 0.1), rgba(245, 246, 237, 0.8)); padding: 15px; border-radius: 10px;">
+                    <h3 style="color: var(--verde-escuro); font-size: 14px; margin-bottom: 10px;">Metodologias</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                        <span style="background: var(--amarelo-energia); color: var(--verde-escuro); padding: 3px 10px; border-radius: 10px; font-size: 11px;">Scrum</span>
+                        <span style="background: var(--amarelo-energia); color: var(--verde-escuro); padding: 3px 10px; border-radius: 10px; font-size: 11px;">Kanban</span>
+                        <span style="background: var(--amarelo-energia); color: var(--verde-escuro); padding: 3px 10px; border-radius: 10px; font-size: 11px;">Analytics</span>
+                        <span style="background: var(--amarelo-energia); color: var(--verde-escuro); padding: 3px 10px; border-radius: 10px; font-size: 11px;">CRM Strategy</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section style="margin-bottom: 25px;">
+            <h2 style="color: var(--verde-escuro); font-size: 18px; font-weight: 600; margin-bottom: 12px; padding-bottom: 5px; border-bottom: 2px solid var(--verde-claro);">Formação Acadêmica</h2>
+            <div style="background: linear-gradient(135deg, rgba(111, 207, 151, 0.1), rgba(245, 246, 237, 0.8)); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                <h3 style="color: var(--verde-escuro); font-size: 14px; margin-bottom: 3px;">Mestrado em Administração</h3>
+                <p style="color: var(--azul-petroleo); font-size: 13px; margin-bottom: 5px;">Universidade Federal de Santa Maria - UFSM</p>
+                <p style="color: var(--verde-agua); font-size: 12px; font-style: italic;">Concluído: 2019</p>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(111, 207, 151, 0.1), rgba(245, 246, 237, 0.8)); padding: 15px; border-radius: 10px;">
+                <h3 style="color: var(--verde-escuro); font-size: 14px; margin-bottom: 3px;">Bacharelado em Administração</h3>
+                <p style="color: var(--azul-petroleo); font-size: 13px; margin-bottom: 5px;">Universidade Federal de Santa Maria - UFSM</p>
+                <p style="color: var(--verde-agua); font-size: 12px; font-style: italic;">Concluído: 2015</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2 style="color: var(--verde-escuro); font-size: 18px; font-weight: 600; margin-bottom: 12px; padding-bottom: 5px; border-bottom: 2px solid var(--verde-claro);">Projetos & Resultados</h2>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 15px;">
+                <div style="background: linear-gradient(135deg, rgba(41, 211, 176, 0.1), rgba(245, 246, 237, 0.8)); padding: 15px; border-radius: 10px; border-left: 3px solid var(--verde-agua);">
+                    <h3 style="color: var(--verde-escuro); font-size: 14px; margin-bottom: 8px;">Sistema de Automação de Campanhas</h3>
+                    <p style="color: var(--azul-petroleo); font-size: 12px; line-height: 1.5;">Desenvolvimento de plataforma automatizada para campanhas multicanal, resultando em 40% de aumento na eficiência operacional e 25% de melhoria nas taxas de conversão.</p>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(41, 211, 176, 0.1), rgba(245, 246, 237, 0.8)); padding: 15px; border-radius: 10px; border-left: 3px solid var(--amarelo-energia);">
+                    <h3 style="color: var(--verde-escuro); font-size: 14px; margin-bottom: 8px;">Dashboard de Performance em Tempo Real</h3>
+                    <p style="color: var(--azul-petroleo); font-size: 12px; line-height: 1.5;">Criação de dashboards integrados para monitoramento de KPIs, possibilitando decisões data-driven e redução de 60% no tempo de análise de campanhas.</p>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(41, 211, 176, 0.1), rgba(245, 246, 237, 0.8)); padding: 15px; border-radius: 10px; border-left: 3px solid var(--verde-vibra);">
+                    <h3 style="color: var(--verde-escuro); font-size: 14px; margin-bottom: 8px;">Segmentação Inteligente de Clientes</h3>
+                    <p style="color: var(--azul-petroleo); font-size: 12px; line-height: 1.5;">Implementação de algoritmos de segmentação comportamental, aumentando a precisão das campanhas em 35% e o ROI em marketing digital.</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer style="margin-top: 30px; text-align: center; padding: 20px; background: linear-gradient(135deg, var(--bege-claro), rgba(245, 246, 237, 0.8)); border-radius: 10px;">
+            <p style="color: var(--verde-escuro); font-size: 12px; font-weight: 500;">🌱 Energia que transforma o futuro dos dados</p>
+            <div style="margin-top: 10px; display: flex; justify-content: center; gap: 15px; align-items: center;">
+                <span style="color: var(--verde-agua); font-size: 11px;">📧 pedrohmarconato@gmail.com</span>
+                <span style="color: var(--verde-agua); font-size: 11px;">📱 +55 (55) 981147758</span>
+                <span style="color: var(--verde-agua); font-size: 11px;">💼 LinkedIn/pedrohmarconato</span>
+            </div>
+        </footer>
+    </div>
+    
+    <style>
+        @media print {
+            body {
+                background: white !important;
+            }
+            .cv-container {
+                box-shadow: none !important;
+                padding: 10mm !important;
+            }
+            section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</body>
+</html>
