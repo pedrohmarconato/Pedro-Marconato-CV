@@ -963,19 +963,28 @@
     "vibrafood.html",
     "vibra",
     "food"
+  ],
+  "templates/companies/bradesco.html": [
+    "bradesco",
+    "bradesco.html",
+    "banco bradesco",
+    "bradesco s.a.",
+    "bradesco sa"
   ]
 };
 ;
             
             // Find matching target
             let target = 'templates/companies/general.html';
+            // Busca apenas correspondência exata
             for (const [page, keywords] of Object.entries(companyMappings)) {
-                if (keywords.some(k => k === companyName || companyName.includes(k) || k.includes(companyName))) {
-                    console.log('Match found for', companyName, '->', page);
-                target = page;
+                if (keywords.some(k => k === companyName)) {
+                    console.log('Match found (exact) for', companyName, '->', page);
+                    target = page;
                     break;
                 }
             }
+            // Se não encontrou exato, permanece general.html
             
             // Show door animation and load target page
         
