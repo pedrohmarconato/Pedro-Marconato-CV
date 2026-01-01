@@ -1270,489 +1270,31 @@
     </div>
     
     <script>
-        // Fallback content in case cv-texts.js fails to load
-        const fallbackContent = {
-            name: "PEDRO HENRIQUE LIMA MARCONATO",
-            role: "Gestão de CRM e Inteligência de Dados",
-            email: "pedrohmarconato@gmail.com",
-            phone: "+55 (55) 981147758",
-            location: "Cachoeira do Sul, RS",
-            linkedin: "LinkedIn",
-            repository: "Repositório",
-            profileTitle: "PERFIL PROFISSIONAL",
-            skillsTitle: "HABILIDADES E FERRAMENTAS",
-            experienceTitle: "EXPERIÊNCIA PROFISSIONAL",
-            educationTitle: "FORMAÇÃO ACADÊMICA",
-            projectsTitle: "PROJETOS E INOVAÇÃO",
-            professionalProfile: "Profissional em Gestão de CRM e Inteligência de Dados focado em resultados quantificáveis. Experiência em liderança estratégica, gestão de orçamento e tomada de decisões baseada em dados."
-        };
-
-        // Enhanced content loading with proper error handling
-        function loadContent() {
-            console.log('Starting content loading...');
-            console.log('CVTexts available:', typeof CVTexts !== 'undefined');
-            console.log('getText available:', typeof getText !== 'undefined');
-            
-            try {
-                const currentLang = 'pt'; // Portuguese language
-                let content;
-                
-                // Check if cv-texts.js loaded properly
-                if (typeof CVTexts !== 'undefined' && CVTexts.common && CVTexts.common[currentLang]) {
-                    console.log('Using CVTexts data');
-                    content = CVTexts.common[currentLang];
-                } else {
-                    console.warn('CVTexts not available, using fallback content');
-                    // Use fallback content but still try to load what we can
-                    content = null;
-                }
-                
-                // Basic Information - with fallback
-                const nameEl = document.getElementById('cv-name');
-                if (nameEl) {
-                    nameEl.textContent = content ? content.name : fallbackContent.name;
-                }
-                
-                const roleEl = document.getElementById('cv-role');
-                if (roleEl) {
-                    roleEl.textContent = content ? content.role : fallbackContent.role;
-                }
-                
-                // Contact Information - with fallback
-                const emailEl = document.getElementById('cv-email');
-                if (emailEl) {
-                    emailEl.textContent = content ? content.contact.email : fallbackContent.email;
-                }
-                
-                const phoneEl = document.getElementById('cv-phone');
-                if (phoneEl) {
-                    phoneEl.textContent = content ? content.contact.phone : fallbackContent.phone;
-                }
-                
-                const locationEl = document.getElementById('cv-location');
-                if (locationEl) {
-                    locationEl.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${content ? content.contact.location : fallbackContent.location}`;
-                }
-                
-                const linkedinEl = document.getElementById('cv-linkedin');
-                if (linkedinEl) {
-                    linkedinEl.textContent = content ? content.contact.linkedin : fallbackContent.linkedin;
-                }
-                
-                const repositoryEl = document.getElementById('cv-repository');
-                if (repositoryEl) {
-                    repositoryEl.textContent = content ? content.contact.repository : fallbackContent.repository;
-                }
-                
-                // Section Titles - with fallback
-                const profileTitleEl = document.getElementById('cv-profile-title');
-                if (profileTitleEl) {
-                    profileTitleEl.textContent = content ? content.sections.profile : fallbackContent.profileTitle;
-                }
-                
-                const skillsTitleEl = document.getElementById('cv-skills-title');
-                if (skillsTitleEl) {
-                    skillsTitleEl.textContent = content ? content.sections.skills : fallbackContent.skillsTitle;
-                }
-                
-                const experienceTitleEl = document.getElementById('cv-experience-title');
-                if (experienceTitleEl) {
-                    experienceTitleEl.textContent = content ? content.sections.experience : fallbackContent.experienceTitle;
-                }
-                
-                const educationTitleEl = document.getElementById('cv-education-title');
-                if (educationTitleEl) {
-                    educationTitleEl.textContent = content ? content.sections.education : fallbackContent.educationTitle;
-                }
-                
-                const projectsTitleEl = document.getElementById('cv-projects-title');
-                if (projectsTitleEl) {
-                    projectsTitleEl.textContent = content ? content.sections.projects : fallbackContent.projectsTitle;
-                }
-                
-                // Professional Profile - with fallback
-                const profileContentEl = document.getElementById('cv-profile-content');
-                if (profileContentEl) {
-                    profileContentEl.textContent = content ? content.professionalProfile : fallbackContent.professionalProfile;
-                }
-                
-                // Only load advanced content if CVTexts is available
-                if (content) {
-                    loadSkills(content);
-                    loadExperience(content, currentLang);
-                    loadEducation(content);
-                    loadProjects(content);
-                    loadModalTexts(content);
-                } else {
-                    console.warn('Advanced content not loaded due to missing CVTexts');
-                }
-                
-                console.log('Content loading completed successfully');
-                
-            } catch (error) {
-                console.error('Error loading content:', error);
-                // In case of error, at least show basic fallback content
-                showFallbackContent();
-            }
-        }
-        
-        // Function to load skills
-        function loadSkills(content) {
-            try {
-                const skillsGrid = document.getElementById('cv-skills-grid');
-                if (!skillsGrid) return;
-                
-                skillsGrid.innerHTML = '';
-                
-                Object.entries(content.skills).forEach(([category, skills]) => {
-                    const categoryDiv = document.createElement('div');
-                    categoryDiv.className = 'skill-category';
-                    
-                    const categoryTitle = document.createElement('h3');
-                    categoryTitle.textContent = content.skillCategories[category];
-                    categoryDiv.appendChild(categoryTitle);
-                    
-                    skills.forEach(skill => {
-                        const skillDiv = document.createElement('div');
-                        skillDiv.className = 'skill-item';
-                        
-                        const skillName = document.createElement('span');
-                        skillName.className = 'skill-name';
-                        skillName.textContent = skill.name;
-                        
-                        const skillLevel = document.createElement('div');
-                        skillLevel.className = 'skill-level';
-                        
-                        for (let i = 1; i <= 5; i++) {
-                            const dot = document.createElement('span');
-                            dot.className = 'skill-dot';
-                            if (i <= skill.level) {
-                                dot.classList.add('filled');
-                            }
-                            skillLevel.appendChild(dot);
-                        }
-                        
-                        skillDiv.appendChild(skillName);
-                        skillDiv.appendChild(skillLevel);
-                        categoryDiv.appendChild(skillDiv);
-                    });
-                    
-                    skillsGrid.appendChild(categoryDiv);
-                });
-                
-                console.log('Skills loaded successfully');
-            } catch (error) {
-                console.error('Error loading skills:', error);
-            }
-        }
-        
-        // Function to load experience
-        function loadExperience(content, currentLang) {
-            try {
-                const experienceTimeline = document.getElementById('cv-experience-timeline');
-                if (!experienceTimeline) return;
-                
-                experienceTimeline.innerHTML = '';
-                
-                // Use the experience data directly from content
-                const experiences = content.experience;
-                
-                experiences.forEach((exp, index) => {
-                    const timelineItem = document.createElement('div');
-                    timelineItem.className = 'timeline-item';
-                    
-                    const timelineContent = document.createElement('div');
-                    timelineContent.className = 'timeline-content';
-                    
-                    const header = document.createElement('div');
-                    header.className = 'timeline-header';
-                    
-                    const titleContainer = document.createElement('div');
-                    const title = document.createElement('h3');
-                    title.className = 'timeline-title';
-                    title.textContent = exp.title;
-                    
-                    // Create tooltip if available
-                    if (exp.tooltip) {
-                        const tooltip = document.createElement('div');
-                        tooltip.className = 'tooltip';
-                        
-                        const tooltipIcon = document.createElement('i');
-                        tooltipIcon.className = 'fas fa-info-circle tooltip-icon';
-                        
-                        const tooltipText = document.createElement('span');
-                        tooltipText.className = 'tooltip-text';
-                        
-                        // Create tooltip content
-                        let tooltipContent = `<div class="tooltip-header">${exp.title} - ${exp.company}</div>`;
-                        
-                        if (exp.tooltip.sections && exp.tooltip.sections.length > 0) {
-                            tooltipContent += '<div class="tooltip-content">';
-                            exp.tooltip.sections.forEach(section => {
-                                tooltipContent += `
-                                    <div class="tooltip-section">
-                                        <div class="tooltip-section-title">
-                                            <i class="fas ${section.icon}"></i> ${section.title}
-                                        </div>
-                                        <ul class="tooltip-list">
-                                            ${section.items.map(item => `<li>${item}</li>`).join('')}
-                                        </ul>
-                                    </div>
-                                `;
-                            });
-                            tooltipContent += '</div>';
-                        }
-                        
-                        tooltipText.innerHTML = tooltipContent;
-                        tooltip.appendChild(tooltipIcon);
-                        tooltip.appendChild(tooltipText);
-                        titleContainer.appendChild(tooltip);
-                    }
-                    
-                    titleContainer.appendChild(title);
-                    
-                    const date = document.createElement('span');
-                    date.className = 'timeline-date';
-                    date.textContent = exp.period;
-                    
-                    header.appendChild(titleContainer);
-                    header.appendChild(date);
-                    
-                    const company = document.createElement('div');
-                    company.className = 'timeline-company';
-                    company.textContent = exp.company;
-                    
-                    const description = document.createElement('p');
-                    description.className = 'timeline-description';
-                    description.textContent = exp.description;
-                    
-                    // Add achievements if available
-                    if (exp.achievements && exp.achievements.length > 0) {
-                        const achievementsDiv = document.createElement('div');
-                        achievementsDiv.className = 'achievements-container';
-                        
-                        exp.achievements.forEach(achievement => {
-                            const achievementItem = document.createElement('div');
-                            achievementItem.className = 'achievement-item';
-                            
-                            const achievementIcon = document.createElement('div');
-                            achievementIcon.className = 'achievement-icon';
-                            achievementIcon.innerHTML = `<i class="fas ${achievement.icon}"></i>`;
-                            
-                            const achievementContent = document.createElement('div');
-                            achievementContent.className = 'achievement-content';
-                            
-                            const achievementTitle = document.createElement('div');
-                            achievementTitle.className = 'achievement-title';
-                            achievementTitle.textContent = achievement.title;
-                            
-                            const achievementDescription = document.createElement('div');
-                            achievementDescription.className = 'achievement-description';
-                            achievementDescription.textContent = achievement.description;
-                            
-                            achievementContent.appendChild(achievementTitle);
-                            achievementContent.appendChild(achievementDescription);
-                            achievementItem.appendChild(achievementIcon);
-                            achievementItem.appendChild(achievementContent);
-                            achievementsDiv.appendChild(achievementItem);
-                        });
-                        
-                        timelineContent.appendChild(achievementsDiv);
-                    }
-                    
-                    timelineContent.insertBefore(header, timelineContent.firstChild);
-                    timelineContent.insertBefore(company, timelineContent.children[1]);
-                    timelineContent.insertBefore(description, timelineContent.children[2]);
-                    
-                    timelineItem.appendChild(timelineContent);
-                    experienceTimeline.appendChild(timelineItem);
-                });
-                
-                console.log('Experience loaded successfully');
-            } catch (error) {
-                console.error('Error loading experience:', error);
-            }
-        }
-        
-        // Function to load education
-        function loadEducation(content) {
-            try {
-                const educationTimeline = document.getElementById('cv-education-timeline');
-                if (!educationTimeline) return;
-                
-                educationTimeline.innerHTML = '';
-                
-                content.education.forEach(edu => {
-                    const timelineItem = document.createElement('div');
-                    timelineItem.className = 'timeline-item';
-                    
-                    const timelineContent = document.createElement('div');
-                    timelineContent.className = 'timeline-content';
-                    
-                    const title = document.createElement('h3');
-                    title.className = 'timeline-title';
-                    title.textContent = edu.degree;
-                    
-                    const company = document.createElement('div');
-                    company.className = 'timeline-company';
-                    company.textContent = edu.university;
-                    
-                    const description = document.createElement('p');
-                    description.className = 'timeline-description';
-                    description.textContent = edu.thesis;
-                    
-                    timelineContent.appendChild(title);
-                    timelineContent.appendChild(company);
-                    timelineContent.appendChild(description);
-                    timelineItem.appendChild(timelineContent);
-                    educationTimeline.appendChild(timelineItem);
-                });
-                
-                console.log('Education loaded successfully');
-            } catch (error) {
-                console.error('Error loading education:', error);
-            }
-        }
-        
-        // Function to load projects
-        function loadProjects(content) {
-            try {
-                const projectsGrid = document.getElementById('cv-projects-grid');
-                if (!projectsGrid) return;
-                
-                projectsGrid.innerHTML = '';
-                
-                content.projects.forEach(project => {
-                    const projectCard = document.createElement('div');
-                    projectCard.className = 'project-card';
-                    
-                    const projectContent = document.createElement('div');
-                    projectContent.className = 'project-content';
-                    
-                    const title = document.createElement('h3');
-                    title.className = 'project-title';
-                    title.textContent = project.title;
-                    
-                    const description = document.createElement('p');
-                    description.className = 'project-description';
-                    description.textContent = project.description;
-                    
-                    const techDiv = document.createElement('div');
-                    techDiv.className = 'project-tech';
-                    
-                    project.techs.forEach(tech => {
-                        const techTag = document.createElement('span');
-                        techTag.className = 'tech-tag';
-                        techTag.textContent = tech;
-                        techDiv.appendChild(techTag);
-                    });
-                    
-                    projectContent.appendChild(title);
-                    projectContent.appendChild(description);
-                    projectContent.appendChild(techDiv);
-                    projectCard.appendChild(projectContent);
-                    projectsGrid.appendChild(projectCard);
-                });
-                
-                console.log('Projects loaded successfully');
-            } catch (error) {
-                console.error('Error loading projects:', error);
-            }
-        }
-        
-        // Function to load modal texts
-        function loadModalTexts(content) {
-            try {
-                // Email modal
-                const emailModalTitle = document.getElementById('email-modal-title');
-                if (emailModalTitle) emailModalTitle.textContent = content.modals.email.title;
-                
-                const emailLabelName = document.getElementById('email-label-name');
-                if (emailLabelName) emailLabelName.textContent = content.modals.email.fields.name;
-                
-                const emailLabelEmail = document.getElementById('email-label-email');
-                if (emailLabelEmail) emailLabelEmail.textContent = content.modals.email.fields.email;
-                
-                const emailLabelSubject = document.getElementById('email-label-subject');
-                if (emailLabelSubject) emailLabelSubject.textContent = content.modals.email.fields.subject;
-                
-                const emailLabelMessage = document.getElementById('email-label-message');
-                if (emailLabelMessage) emailLabelMessage.textContent = content.modals.email.fields.message;
-                
-                const emailButton = document.getElementById('email-button');
-                if (emailButton) emailButton.textContent = content.modals.email.button;
-                
-                // Phone modal
-                const phoneModalTitle = document.getElementById('phone-modal-title');
-                if (phoneModalTitle) phoneModalTitle.textContent = content.modals.phone.title;
-                
-                const phoneLabelName = document.getElementById('phone-label-name');
-                if (phoneLabelName) phoneLabelName.textContent = content.modals.phone.fields.name;
-                
-                const phoneLabelPhone = document.getElementById('phone-label-phone');
-                if (phoneLabelPhone) phoneLabelPhone.textContent = content.modals.phone.fields.phone;
-                
-                const phoneLabelBesttime = document.getElementById('phone-label-besttime');
-                if (phoneLabelBesttime) phoneLabelBesttime.textContent = content.modals.phone.fields.bestTime;
-                
-                const phoneLabelMessage = document.getElementById('phone-label-message');
-                if (phoneLabelMessage) phoneLabelMessage.textContent = content.modals.phone.fields.message;
-                
-                const phoneButton = document.getElementById('phone-button');
-                if (phoneButton) phoneButton.textContent = content.modals.phone.button;
-                
-                const whatsappText = document.getElementById('whatsapp-text');
-                if (whatsappText) whatsappText.textContent = content.modals.phone.whatsapp;
-                
-                console.log('Modal texts loaded successfully');
-            } catch (error) {
-                console.error('Error loading modal texts:', error);
-            }
-        }
-        
-        // Function to show basic fallback content
-        function showFallbackContent() {
-            console.log('Showing fallback content');
-            document.getElementById('cv-name').textContent = fallbackContent.name;
-            document.getElementById('cv-role').textContent = fallbackContent.role;
-            document.getElementById('cv-profile-content').textContent = fallbackContent.professionalProfile;
-        }
-
-        // Load CV content when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, starting content initialization...');
-            
-            // Add a small delay to ensure cv-texts.js has loaded
-            setTimeout(() => {
-                loadContent();
-            }, 100);
-        });
-        
         // Modal functions
         function openEmailForm() {
             const modal = document.getElementById('emailModal');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeEmailModal() {
             const modal = document.getElementById('emailModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
-        
+
         function openPhoneForm() {
             const modal = document.getElementById('phoneModal');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closePhoneModal() {
             const modal = document.getElementById('phoneModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
-        
+
         // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target.classList && event.target.classList.contains('modal')) {
@@ -1763,35 +1305,206 @@
                 }
             }
         }
-        
-        // Tooltip functionality
+
+        // Render tooltip function
+        function renderTooltip(tooltip, jobTitle) {
+            if (!tooltip) return '';
+            const header = tooltip.title && tooltip.title !== 'undefined' ? tooltip.title : (jobTitle || '');
+
+            return `
+                <span class="tooltip">
+                    <i class="fas fa-info-circle tooltip-icon"></i>
+                    <div class="tooltip-text">
+                        <div class="tooltip-header">${header}</div>
+                        <div class="tooltip-content">
+                            ${tooltip.sections.map(section => `
+                                <div class="tooltip-section">
+                                    <div class="tooltip-section-title">
+                                        <i class="${section.icon}"></i>
+                                        ${section.title}
+                                    </div>
+                                    <ul class="tooltip-list">
+                                        ${section.items.map(item => `<li>${item}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </span>
+            `;
+        }
+
+        // Render achievements function
+        function renderAchievements(achievements) {
+            if (!achievements) return '';
+
+            return achievements.map(achievement => `
+                <div class="achievement-item">
+                    <div class="achievement-icon">
+                        <i class="${achievement.icon}"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <div class="achievement-title">${achievement.title}</div>
+                        <div class="achievement-description">${achievement.description}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render experience section
+        function renderExperience(lang = 'pt') {
+            const container = document.getElementById('cv-experience-timeline');
+            if (!container) return;
+
+            const experiences = getText('experience', lang);
+            let html = '';
+
+            experiences.forEach((exp, index) => {
+                html += `
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div>
+                                    <h3 class="timeline-title">${exp.title}</h3>
+                                    ${renderTooltip(exp.tooltip, exp.title)}
+                                </div>
+                                <span class="timeline-date">${exp.period}</span>
+                            </div>
+                            <div class="timeline-company">${exp.company}</div>
+                            <p class="timeline-description">${exp.description}</p>
+                            <div class="achievements-container">
+                                ${renderAchievements(exp.achievements)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Render education section
+        function renderEducation(lang = 'pt') {
+            const container = document.getElementById('cv-education-timeline');
+            if (!container) return;
+
+            const education = getText('education', lang);
+            let html = '';
+
+            education.forEach(edu => {
+                html += `
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">${edu.degree}</h3>
+                            <div class="timeline-company">${edu.university}</div>
+                            <p class="timeline-description">${edu.thesis}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Render projects section
+        function renderProjects(lang = 'pt') {
+            const container = document.getElementById('cv-projects-grid');
+            if (!container) return;
+
+            const projects = getText('projects', lang);
+            let html = '';
+
+            projects.forEach(project => {
+                html += `
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3 class="project-title">${project.title}</h3>
+                            <p class="project-description">${project.description}</p>
+                            <div class="project-tech">
+                                ${project.techs.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Render skills section (MeuTudo specific layout)
+        function renderMeutudoSkills(lang = 'pt') {
+            const container = document.getElementById('cv-skills-grid');
+            if (!container) return;
+
+            const categories = ['strategic', 'tools', 'emerging'];
+            let html = '';
+
+            categories.forEach(category => {
+                const skills = getText(`skills.${category}`, lang);
+                const categoryTitle = getText(`skillCategories.${category}`, lang);
+
+                html += `<div class="skill-category"><h3>${categoryTitle}</h3>`;
+
+                skills.forEach(skill => {
+                    const filledDots = Math.round(skill.level);
+                    let dotsHtml = '';
+                    for (let i = 1; i <= 5; i++) {
+                        dotsHtml += `<span class="skill-dot ${i <= filledDots ? 'filled' : ''}"></span>`;
+                    }
+
+                    html += `
+                        <div class="skill-item">
+                            <span class="skill-name">${skill.name}</span>
+                            <div class="skill-level">${dotsHtml}</div>
+                        </div>
+                    `;
+                });
+
+                html += '</div>';
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Initialize CV content when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Wait for tooltips to be created
-            setTimeout(() => {
-                const tooltips = document.querySelectorAll('.tooltip');
-                tooltips.forEach(tooltip => {
-                    tooltip.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        
-                        // Close all other tooltips
-                        tooltips.forEach(t => {
-                            if (t !== this) {
-                                t.classList.remove('tooltip-active');
-                            }
-                        });
-                        
-                        // Toggle current tooltip
-                        this.classList.toggle('tooltip-active');
-                    });
-                });
-                
-                // Close tooltips when clicking outside
-                document.addEventListener('click', function() {
-                    tooltips.forEach(tooltip => {
-                        tooltip.classList.remove('tooltip-active');
-                    });
-                });
-            }, 1000);
+            // Initialize CV with Portuguese content using standard functions from cv-texts.js
+            initializeBasicContent('pt');
+
+            // Update section titles
+            const profileTitleEl = document.getElementById('cv-profile-title');
+            if (profileTitleEl) profileTitleEl.textContent = getText('sections.profile', 'pt');
+
+            const skillsTitleEl = document.getElementById('cv-skills-title');
+            if (skillsTitleEl) skillsTitleEl.textContent = getText('sections.skills', 'pt');
+
+            const experienceTitleEl = document.getElementById('cv-experience-title');
+            if (experienceTitleEl) experienceTitleEl.textContent = getText('sections.experience', 'pt');
+
+            const educationTitleEl = document.getElementById('cv-education-title');
+            if (educationTitleEl) educationTitleEl.textContent = getText('sections.education', 'pt');
+
+            const projectsTitleEl = document.getElementById('cv-projects-title');
+            if (projectsTitleEl) projectsTitleEl.textContent = getText('sections.projects', 'pt');
+
+            // Profile content
+            const profileContentEl = document.getElementById('cv-profile-content');
+            if (profileContentEl) profileContentEl.textContent = getText('professionalProfile', 'pt');
+
+            // Skills section (MeuTudo specific)
+            renderMeutudoSkills('pt');
+
+            // Experience section
+            renderExperience('pt');
+
+            // Education section
+            renderEducation('pt');
+
+            // Projects section
+            renderProjects('pt');
+
+            // Initialize modal texts
+            initializeModalTexts('pt');
         });
     </script>
 </body>
