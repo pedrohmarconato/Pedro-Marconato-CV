@@ -1311,21 +1311,17 @@
             // Preload target page in iframe with cache busting
             console.log('Company entered:', companyName, 'Target page:', target);
 
-            // Hide loading state when iframe finishes loading
+            // Hide loading state and container when iframe finishes loading
             targetFrame.onload = function() {
                 loading.style.display = 'none';
-                button.disabled = false;
-                buttonText.style.display = 'inline';
-                document.getElementById('buttonTextPt').style.display = 'inline';
+                container.style.display = 'none';  // Hide the welcome card/modal
                 console.log('Iframe loaded successfully');
             };
 
             // Also handle errors
             targetFrame.onerror = function() {
                 loading.style.display = 'none';
-                button.disabled = false;
-                buttonText.style.display = 'inline';
-                document.getElementById('buttonTextPt').style.display = 'inline';
+                container.style.display = 'none';  // Hide even on error
                 console.error('Error loading iframe');
             };
 
