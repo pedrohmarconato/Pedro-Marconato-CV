@@ -1310,7 +1310,26 @@
             
             // Preload target page in iframe with cache busting
             console.log('Company entered:', companyName, 'Target page:', target);
-                targetFrame.src = './' + target + '?t=' + new Date().getTime();
+
+            // Hide loading state when iframe finishes loading
+            targetFrame.onload = function() {
+                loading.style.display = 'none';
+                button.disabled = false;
+                buttonText.style.display = 'inline';
+                document.getElementById('buttonTextPt').style.display = 'inline';
+                console.log('Iframe loaded successfully');
+            };
+
+            // Also handle errors
+            targetFrame.onerror = function() {
+                loading.style.display = 'none';
+                button.disabled = false;
+                buttonText.style.display = 'inline';
+                document.getElementById('buttonTextPt').style.display = 'inline';
+                console.error('Error loading iframe');
+            };
+
+            targetFrame.src = './' + target + '?t=' + new Date().getTime();
             
             // Hide the animated background immediately to show iframe content
             document.querySelector('.animated-bg').style.display = 'none';
