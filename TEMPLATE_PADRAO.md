@@ -310,6 +310,11 @@ Para a versão PT, use o mesmo template com estas mudanças:
 - [ ] IDs de seção: section-skills, section-experience, section-education, section-projects
 - [ ] Container: cv-container com max-width: 1000px
 - [ ] Scripts: cv-texts.js e dynamic-favicon.js
+- [ ] Language Toggle: Botão EN/PT no canto superior direito
+- [ ] Print Button: Botão PDF que abre cv_styles em nova aba e aciona print
+- [ ] Email Modal: Modal para envio de email via Formspree
+- [ ] Phone Modal: Modal com opções de contato (telefone/WhatsApp)
+- [ ] Tooltips: Sistema de tooltips nas experiências (renderTooltip function)
 
 ### ☑️ **Após criar:**
 - [ ] Executar `python validate-project.py`
