@@ -288,6 +288,33 @@ const BRANDS_CONFIG = {
         },
         shapes: 'geometric',
         animations: 'banking'
+    },
+
+    cielo: {
+        name: 'Cielo',
+        aliases: [
+            'cielo',
+            'maquininha cielo',
+            'cielo s.a.',
+            'cielo sa'
+        ],
+        colors: {
+            primary: '#00aeef',
+            secondary: '#0088cc',
+            accent: '#00d4ff',
+            text: '#2c3e50',
+            whiteText: '#FFFFFF',
+            grayText: '#333333',
+            border: 'rgba(0, 174, 239, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #00aeef 0%, #0088cc 100%)',
+        logo: '../../assets/images/cielo-logo.png',
+        tagline: {
+            en: 'Transforming payments into opportunities',
+            pt: 'Transformando pagamentos em oportunidades'
+        },
+        shapes: 'digital',
+        animations: 'payments'
     }
 };
 

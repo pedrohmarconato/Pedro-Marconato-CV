@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Marconato - Cielo CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            /* Cielo Official Colors */
+            --cielo-blue: #00aeef;
+            --cielo-dark-blue: #0088cc;
+            --cielo-black: #000000;
+            --cielo-light-blue: #e0f4ff;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #333333;
+            --white: #FFFFFF;
+
+            /* Applied Colors */
+            --primary-color: #00aeef;
+            --secondary-color: #0088cc;
+            --accent-color: #00d4ff;
+            --light-accent: #e0f4ff;
+            --dark-accent: #006699;
+            --text-color: #2c3e50;
+            --border-color: rgba(0, 174, 239, 0.2);
+            --background-gradient: linear-gradient(135deg, #00aeef 0%, #0088cc 100%);
+
+            /* Animation Variables */
+            --transition-speed: 0.3s;
+            --animation-curve: cubic-bezier(0.4, 0, 0.2, 1);
+            --hover-scale: 1.05;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: #f0f8ff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e0f4ff 50%, #f0f8ff 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Scroll animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Animation classes */
+        .animate-on-scroll {
+            opacity: 0;
+            animation-fill-mode: forwards;
+            animation-duration: 0.8s;
+            animation-timing-function: var(--animation-curve);
+        }
+
+        .animate-on-scroll.animate {
+            opacity: 1;
+        }
+
+        .fade-in-up { animation-name: fadeInUp; }
+        .fade-in { animation-name: fadeIn; }
+        .slide-in-left { animation-name: slideInLeft; }
+        .slide-in-right { animation-name: slideInRight; }
+
+        /* Staggered animations */
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+
+        /* Floating shapes - Cielo payment terminal inspired */
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 200px;
+            height: 100px;
+            background: linear-gradient(45deg, var(--cielo-blue), var(--cielo-dark-blue));
+            border-radius: 20px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--cielo-blue), var(--accent-color));
+            border-radius: 50%;
+            top: 60%;
+            right: 10%;
+            animation-delay: 8s;
+        }
+
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(90deg, var(--cielo-dark-blue), var(--cielo-blue));
+            border-radius: 15px;
+            bottom: 20%;
+            left: 25%;
+            animation-delay: 15s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(5deg); }
+            66% { transform: translateY(30px) rotate(-5deg); }
+        }
+
+        .cv-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 28px;
+            box-shadow:
+                0 20px 50px rgba(0, 174, 239, 0.15),
+                0 15px 30px rgba(0, 0, 0, 0.08),
+                inset 0 1px 2px rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 174, 239, 0.15);
+            overflow: hidden;
+            position: relative;
+            animation: containerGlow 20s ease infinite;
+        }
+
+        @keyframes containerGlow {
+            0%, 100% {
+                box-shadow:
+                    0 10px 40px rgba(0, 174, 239, 0.08),
+                    0 5px 20px rgba(0, 0, 0, 0.05),
+                    0 0 80px rgba(0, 174, 239, 0.03),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+            }
+            50% {
+                box-shadow:
+                    0 10px 40px rgba(0, 136, 204, 0.08),
+                    0 5px 20px rgba(0, 0, 0, 0.05),
+                    0 0 100px rgba(0, 174, 239, 0.05),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+            }
+        }
+
+        .cv-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 174, 239, 0.02) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(0, 136, 204, 0.02) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 80%, rgba(0, 212, 255, 0.02) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #00aeef 0%, #0088cc 50%, #00aeef 100%);
+            background-size: 200% 200%;
+            animation: headerGradientShift 8s ease infinite;
+            padding: 120px 60px 140px 60px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0, 1);
+            transform-origin: top;
+            box-shadow: 0 20px 60px rgba(0, 174, 239, 0.4);
+        }
+
+        @keyframes headerGradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header.scrolled {
+            padding: 80px 60px 100px 60px;
+            box-shadow: 0 15px 50px rgba(0, 174, 239, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: headerPatternMove 20s linear infinite;
+            z-index: 0;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        @keyframes headerPatternMove {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(50px, 50px) rotate(360deg); }
+        }
+
+        /* Header Sparkle Effects */
+        .header-sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 3s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .sparkle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { left: 20%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { left: 30%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { left: 40%; animation-delay: 1.5s; }
+        .sparkle:nth-child(5) { left: 50%; animation-delay: 2s; }
+        .sparkle:nth-child(6) { left: 60%; animation-delay: 2.5s; }
+        .sparkle:nth-child(7) { left: 70%; animation-delay: 0.3s; }
+        .sparkle:nth-child(8) { left: 80%; animation-delay: 0.8s; }
+        .sparkle:nth-child(9) { left: 90%; animation-delay: 1.3s; }
+        .sparkle:nth-child(10) { left: 95%; animation-delay: 1.8s; }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            animation: headerContentSlide 1.2s cubic-bezier(0.4, 0, 0, 1);
+        }
+
+        @keyframes headerContentSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-text {
+            max-width: 850px;
+            padding-left: 280px;
+            position: relative;
+        }
+
+        .header-text::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 250px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+            opacity: 0;
+            animation: glowPulse 3s ease-in-out 2s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Cielo Logo */
+        .cielo-logo {
+            position: absolute;
+            top: 50%;
+            left: 60px;
+            transform: translateY(-50%);
+            opacity: 0;
+            animation: logoSpectacularEntrance 1.5s cubic-bezier(0.4, 0, 0, 1) 0.3s forwards;
+            z-index: 2;
+        }
+
+        @keyframes logoSpectacularEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(-50%) scale(0.5) rotate(-180deg);
+                filter: blur(10px);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-50%) scale(1.1) rotate(-90deg);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1) rotate(0deg);
+                filter: blur(0);
+            }
+        }
+
+        .cielo-logo img {
+            width: 180px;
+            height: auto;
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3)) brightness(1.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0, 1);
+        }
+
+        .cielo-logo:hover img {
+            transform: scale(1.1) translateY(-5px);
+            filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.4)) brightness(1.2);
+        }
+
+        .cielo-logo::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 120%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .cielo-logo:hover::before {
+            opacity: 1;
+            animation: logoPulse 2s ease infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        .header h1 {
+            font-size: 52px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: nameSpectacular 1.5s cubic-bezier(0.4, 0, 0, 1);
+            position: relative;
+        }
+
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.8);
+            animation: underlineExpand 1s ease-out 1.5s forwards;
+        }
+
+        @keyframes nameSpectacular {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px) rotateY(-90deg);
+                filter: blur(5px);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateX(-10px) rotateY(-45deg);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) rotateY(0deg);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes underlineExpand {
+            to { width: 100px; }
+        }
+
+        .role {
+            font-size: 24px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            animation: roleAnimation 1.5s ease-out 0.5s both;
+            position: relative;
+            display: inline-block;
+        }
+
+        @keyframes roleAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            animation: contactInfoSpectacular 1.8s cubic-bezier(0.4, 0, 0, 1) 0.8s both;
+        }
+
+        @keyframes contactInfoSpectacular {
+            0% {
+                opacity: 0;
+                transform: translateX(-60px) scale(0.8);
+                filter: blur(5px);
+            }
+            60% {
+                opacity: 0.8;
+                transform: translateX(10px) scale(1.05);
+                filter: blur(1px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 10px 16px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all var(--transition-speed) var(--animation-curve);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+        }
+
+        .contact-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .contact-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .contact-button i {
+            margin-right: 8px;
+            font-size: 16px;
+            transition: transform var(--transition-speed) var(--animation-curve);
+        }
+
+        .contact-button:hover i {
+            transform: scale(1.2);
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .contact-cta {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+            animation: gentlePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.02); }
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .location i {
+            margin-right: 6px;
+        }
+
+        .section {
+            padding: 35px 80px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s var(--animation-curve);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 80px;
+            right: 80px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+        }
+
+        .section-title {
+            background: var(--background-gradient);
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 12px 20px;
+            border-radius: 14px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(0, 174, 239, 0.2);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-speed) var(--animation-curve);
+        }
+
+        .section-title:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(0, 174, 239, 0.3);
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: titleShimmer 6s infinite;
+        }
+
+        @keyframes titleShimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        .profile-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-color);
+            text-align: justify;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 1000px) {
+            .skills-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .skills-column {
+            background: linear-gradient(135deg, rgba(0, 174, 239, 0.05), rgba(0, 174, 239, 0.02));
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 174, 239, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-speed) var(--animation-curve);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .skills-column.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skills-column:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 174, 239, 0.15);
+            border-color: rgba(0, 174, 239, 0.3);
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--text-color);
+            transition: all var(--transition-speed) var(--animation-curve);
+            opacity: 0;
+            animation: fadeInLeft 0.5s var(--animation-curve) forwards;
+        }
+
+        .skill-item:hover {
+            transform: translateX(8px);
+            color: var(--primary-color);
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .skill-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--background-gradient);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-size: 14px;
+            transition: all var(--transition-speed) var(--animation-curve);
+        }
+
+        .skill-item:hover .skill-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 4px 12px rgba(0, 174, 239, 0.3);
+        }
+
+        .skills-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .skills-section-title i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .experience-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(0, 174, 239, 0.03), rgba(0, 174, 239, 0.01));
+            border-radius: 16px;
+            border-left: 4px solid var(--primary-color);
+            transition: all var(--transition-speed) var(--animation-curve);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .experience-item.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .experience-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(0, 174, 239, 0.1);
+        }
+
+        .job-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .job-number {
+            width: 28px;
+            height: 28px;
+            background: var(--background-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 12px;
+        }
+
+        .company {
+            font-size: 16px;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .period {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .period::before {
+            content: '';
+            width: 12px;
+            height: 2px;
+            background: var(--primary-color);
+            margin-right: 8px;
+        }
+
+        .job-description {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .achievements-container {
+            margin-top: 15px;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            background: rgba(0, 174, 239, 0.05);
+            border-radius: 10px;
+            transition: all var(--transition-speed) var(--animation-curve);
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .achievement-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .achievement-item:hover {
+            background: rgba(0, 174, 239, 0.1);
+            transform: translateX(5px);
+        }
+
+        .achievement-icon {
+            color: var(--primary-color);
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+
+        .achievement-text {
+            font-size: 14px;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        .education-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(0, 174, 239, 0.03), rgba(0, 174, 239, 0.01));
+            border-radius: 16px;
+            border-left: 4px solid var(--secondary-color);
+            transition: all var(--transition-speed) var(--animation-curve);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .education-item.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .education-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(0, 174, 239, 0.1);
+        }
+
+        .degree {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .university {
+            font-size: 16px;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .thesis {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .project-item {
+            margin-bottom: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(0, 174, 239, 0.05), rgba(0, 174, 239, 0.02));
+            border-radius: 16px;
+            border: 1px solid rgba(0, 174, 239, 0.15);
+            transition: all var(--transition-speed) var(--animation-curve);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .project-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 174, 239, 0.15);
+            border-color: rgba(0, 174, 239, 0.3);
+        }
+
+        .project-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-color);
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: var(--background-gradient);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin: 4px;
+            transition: all var(--transition-speed) var(--animation-curve);
+        }
+
+        .tech-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 174, 239, 0.3);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            background-color: var(--dark-gray);
+            color: white;
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 8px;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Print Button */
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--background-gradient);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 25px rgba(0, 174, 239, 0.4);
+            transition: all var(--transition-speed) var(--animation-curve);
+            z-index: 1000;
+        }
+
+        .print-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(0, 174, 239, 0.5);
+        }
+
+        .print-button i {
+            font-size: 16px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cv-container {
+                margin: 10px;
+                border-radius: 20px;
+            }
+
+            .header {
+                padding: 80px 30px 100px 30px;
+            }
+
+            .header-text {
+                padding-left: 0;
+                text-align: center;
+            }
+
+            .cielo-logo {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .cielo-logo img {
+                width: 140px;
+            }
+
+            .header-content {
+                flex-direction: column;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .role {
+                font-size: 18px;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+
+            .section {
+                padding: 25px 20px;
+            }
+
+            .section:not(:last-child)::after {
+                left: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .animated-bg,
+            .print-button,
+            .shape {
+                display: none !important;
+            }
+
+            .cv-container {
+                margin: 0;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+            }
+
+            .header {
+                padding: 40px;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .section {
+                opacity: 1;
+                transform: none;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- Floating Shapes -->
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+
+    <div class="cv-container">
+        <header class="header">
+            <!-- Header Sparkles -->
+            <div class="header-sparkles">
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+            </div>
+
+            <div class="header-content">
+                <!-- Cielo Logo -->
+                <div class="cielo-logo">
+                    <img src="../../assets/images/cielo-logo.png" alt="Cielo Logo">
+                </div>
+
+                <div class="header-text">
+                    <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
+                    <div class="role" id="cv-role">CRM Management and Data Intelligence</div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <a href="#" class="contact-button" onclick="openEmailForm(); return false;">
+                                <i class="fas fa-envelope"></i>
+                                <span id="cv-email">pedrohmarconato@gmail.com</span>
+                            </a>
+                            <span class="contact-cta" id="cv-cta-email">Click to send email</span>
+                        </div>
+
+                        <div class="contact-item">
+                            <a href="#" class="contact-button" onclick="openPhoneForm(); return false;">
+                                <i class="fas fa-phone"></i>
+                                <span id="cv-phone">+55 (55) 981147758</span>
+                            </a>
+                            <span class="contact-cta" id="cv-cta-phone">Click to call</span>
+                        </div>
+
+                        <div class="contact-item">
+                            <a href="https://linkedin.com/in/pedrohmarconato" target="_blank" class="contact-button">
+                                <i class="fab fa-linkedin"></i>
+                                <span id="cv-linkedin">LinkedIn</span>
+                            </a>
+                            <span class="contact-cta" id="cv-cta-linkedin">View profile</span>
+                        </div>
+
+                        <div class="contact-item">
+                            <a href="https://github.com/pedrohmarconato" target="_blank" class="contact-button">
+                                <i class="fab fa-github"></i>
+                                <span id="cv-repository">Repository</span>
+                            </a>
+                            <span class="contact-cta" id="cv-cta-repository">See projects</span>
+                        </div>
+
+                        <div class="location" id="cv-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Cachoeira do Sul, RS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title" id="section-profile">Professional Profile</h2>
+            <p class="profile-text" id="cv-profile">
+                Results-driven professional with extensive experience in CRM management and data intelligence.
+                Specialized in developing data-driven strategies that enhance customer relationships and business performance.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title" id="section-skills">Skills & Tools</h2>
+            <div class="skills-container">
+                <div class="skills-column">
+                    <div class="skills-section-title">
+                        <i class="fas fa-chess"></i>
+                        <span>Strategic</span>
+                    </div>
+                    <div id="skills-strategic"></div>
+                </div>
+                <div class="skills-column">
+                    <div class="skills-section-title">
+                        <i class="fas fa-tools"></i>
+                        <span>Tools</span>
+                    </div>
+                    <div id="skills-tools"></div>
+                </div>
+                <div class="skills-column">
+                    <div class="skills-section-title">
+                        <i class="fas fa-rocket"></i>
+                        <span>Emerging</span>
+                    </div>
+                    <div id="skills-emerging"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title" id="section-experience">Professional Experience</h2>
+            <div id="cv-experience"></div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title" id="section-education">Education</h2>
+            <div id="cv-education"></div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title" id="section-projects">Projects & Innovation</h2>
+            <div id="cv-projects"></div>
+        </section>
+    </div>
+
+    <!-- Print Button -->
+    <button class="print-button" onclick="window.open('../../cv_styles/cv_cielo_style_PT.html', '_blank')">
+        <i class="fas fa-print"></i>
+        Imprimir CV
+    </button>
+
+    <!-- Email Modal -->
+    <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:10000; justify-content:center; align-items:center;">
+        <div style="background:white; padding:30px; border-radius:20px; max-width:500px; width:90%; position:relative;">
+            <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+            <h3 style="color:var(--primary-color); margin-bottom:20px;">Enviar Email</h3>
+            <form action="mailto:pedrohmarconato@gmail.com" method="post" enctype="text/plain">
+                <input type="text" name="subject" placeholder="Subject" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #e5e7eb; border-radius:8px; font-size:14px;">
+                <textarea name="body" placeholder="Sua mensagem" rows="5" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #e5e7eb; border-radius:8px; font-size:14px; resize:vertical;"></textarea>
+                <button type="submit" style="background:var(--background-gradient); color:white; border:none; padding:12px 24px; border-radius:8px; cursor:pointer; font-weight:600;">Enviar Email</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Phone Modal -->
+    <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:10000; justify-content:center; align-items:center;">
+        <div style="background:white; padding:30px; border-radius:20px; max-width:400px; width:90%; text-align:center; position:relative;">
+            <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+            <h3 style="color:var(--primary-color); margin-bottom:20px;">Opções de Contato</h3>
+            <div style="display:flex; flex-direction:column; gap:15px;">
+                <a href="tel:+5555981147758" style="display:inline-flex; align-items:center; justify-content:center; background:var(--background-gradient); color:white; text-decoration:none; padding:14px 28px; border-radius:8px; font-weight:600;">
+                    <i class="fas fa-phone" style="margin-right:8px;"></i> Ligar Agora
+                </a>
+                <a href="https://wa.me/5555981147758" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; background:#25D366; color:white; text-decoration:none; padding:14px 28px; border-radius:8px; font-weight:600;">
+                    <i class="fab fa-whatsapp" style="margin-right:8px;"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../cv-texts.js"></script>
+    <script src="../../assets/js/dynamic-favicon.js"></script>
+    <script>
+        function openEmailForm() {
+            document.getElementById('emailModal').style.display = 'flex';
+        }
+
+        function closeEmailModal() {
+            document.getElementById('emailModal').style.display = 'none';
+        }
+
+        function openPhoneForm() {
+            document.getElementById('phoneModal').style.display = 'flex';
+        }
+
+        function closePhoneModal() {
+            document.getElementById('phoneModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('emailModal')) {
+                closeEmailModal();
+            }
+            if (event.target == document.getElementById('phoneModal')) {
+                closePhoneModal();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeBasicContent('pt');
+            initializeScrollAnimations();
+            initializeHeaderScroll();
+        });
+
+        function initializeBasicContent(lang = 'en') {
+            const nameEl = document.getElementById('cv-name');
+            if (nameEl) nameEl.textContent = getText('name', lang);
+
+            const roleEl = document.getElementById('cv-role');
+            if (roleEl) roleEl.textContent = getText('role', lang);
+
+            const emailEl = document.getElementById('cv-email');
+            if (emailEl) emailEl.textContent = getText('contact.email', lang);
+
+            const phoneEl = document.getElementById('cv-phone');
+            if (phoneEl) phoneEl.textContent = getText('contact.phone', lang);
+
+            const locationEl = document.querySelector('#cv-location span');
+            if (locationEl) locationEl.textContent = getText('contact.location', lang);
+
+            const linkedinEl = document.getElementById('cv-linkedin');
+            if (linkedinEl) linkedinEl.textContent = getText('contact.linkedin', lang);
+
+            const repositoryEl = document.getElementById('cv-repository');
+            if (repositoryEl) repositoryEl.textContent = getText('contact.repository', lang);
+
+            const emailCTAEl = document.getElementById('cv-cta-email');
+            if (emailCTAEl) emailCTAEl.textContent = getText('contactCTA.email', lang);
+
+            const phoneCTAEl = document.getElementById('cv-cta-phone');
+            if (phoneCTAEl) phoneCTAEl.textContent = getText('contactCTA.phone', lang);
+
+            const linkedinCTAEl = document.getElementById('cv-cta-linkedin');
+            if (linkedinCTAEl) linkedinCTAEl.textContent = getText('contactCTA.linkedin', lang);
+
+            const repositoryCTAEl = document.getElementById('cv-cta-repository');
+            if (repositoryCTAEl) repositoryCTAEl.textContent = getText('contactCTA.repository', lang);
+
+            const profileTitleEl = document.getElementById('section-profile');
+            if (profileTitleEl) profileTitleEl.textContent = getText('sections.profile', lang);
+
+            const skillsTitleEl = document.getElementById('section-skills');
+            if (skillsTitleEl) skillsTitleEl.textContent = getText('sections.skills', lang);
+
+            const experienceTitleEl = document.getElementById('section-experience');
+            if (experienceTitleEl) experienceTitleEl.textContent = getText('sections.experience', lang);
+
+            const educationTitleEl = document.getElementById('section-education');
+            if (educationTitleEl) educationTitleEl.textContent = getText('sections.education', lang);
+
+            const projectsTitleEl = document.getElementById('section-projects');
+            if (projectsTitleEl) projectsTitleEl.textContent = getText('sections.projects', lang);
+
+            const profileEl = document.getElementById('cv-profile');
+            if (profileEl) profileEl.textContent = getText('professionalProfile', lang);
+
+            renderSkills('skills-strategic', 'strategic', lang);
+            renderSkills('skills-tools', 'tools', lang);
+            renderSkills('skills-emerging', 'emerging', lang);
+
+            renderExperience(lang);
+            renderEducation(lang);
+            renderProjects(lang);
+        }
+
+        function renderExperience(lang = 'en') {
+            const container = document.getElementById('cv-experience');
+            if (!container) return;
+
+            const experiences = getText('experience', lang);
+            let html = '';
+
+            experiences.forEach((exp, index) => {
+                html += `
+                    <div class="experience-item">
+                        <div class="job-title">
+                            <div class="job-number">${index + 1}</div>
+                            ${exp.title}
+                        </div>
+                        <div class="company">${exp.company}</div>
+                        <div class="period">${exp.period}</div>
+                        <div class="job-description">${exp.description}</div>
+                        <div class="achievements-container">
+                            ${renderAchievements(exp.achievements)}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function renderEducation(lang = 'en') {
+            const container = document.getElementById('cv-education');
+            if (!container) return;
+
+            const education = getText('education', lang);
+            let html = '';
+
+            education.forEach(edu => {
+                html += `
+                    <div class="education-item">
+                        <div class="degree">${edu.degree}</div>
+                        <div class="university">${edu.university}</div>
+                        <div class="thesis">${edu.thesis}</div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function renderProjects(lang = 'en') {
+            const container = document.getElementById('cv-projects');
+            if (!container) return;
+
+            const projects = getText('projects', lang);
+            let html = '';
+
+            projects.forEach(project => {
+                html += `
+                    <div class="project-item">
+                        <div class="project-title">${project.title}</div>
+                        <div class="project-description">${project.description}</div>
+                        <div style="margin-top: 15px;">
+                            ${renderTechTags(project.techs)}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function initializeScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+
+                        const children = entry.target.querySelectorAll('.skills-column, .experience-item, .education-item, .project-item, .achievement-item, .skill-item');
+                        children.forEach((child, index) => {
+                            setTimeout(() => {
+                                child.classList.add('animate');
+                            }, index * 100);
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        function initializeHeaderScroll() {
+            const header = document.querySelector('.header');
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+
+                if (currentScroll > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
