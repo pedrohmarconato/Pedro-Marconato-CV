@@ -149,25 +149,10 @@ window.simpleTransition = (function() {
         });
     }
     
-    // Performance monitoring
+    // Performance monitoring (disabled in production)
     function logPerformance() {
-        if ('performance' in window && 'getEntriesByType' in performance) {
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    const navigation = performance.getEntriesByType('navigation')[0];
-                    if (navigation) {
-                        console.log('Performance Metrics:', {
-                            'DNS Lookup': navigation.domainLookupEnd - navigation.domainLookupStart,
-                            'TCP Connect': navigation.connectEnd - navigation.connectStart,
-                            'Request': navigation.responseStart - navigation.requestStart,
-                            'Response': navigation.responseEnd - navigation.responseStart,
-                            'DOM Processing': navigation.domContentLoadedEventStart - navigation.responseEnd,
-                            'Total Load Time': navigation.loadEventEnd - navigation.navigationStart
-                        });
-                    }
-                }, 0);
-            });
-        }
+        // Removed console.log for production
+        // Enable for debugging by uncommenting the original code
     }
     
     // Preload critical resources

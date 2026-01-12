@@ -108,21 +108,15 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
+        /* 8 particles spread across the viewport */
         .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 25s; }
-        .particle:nth-child(2) { left: 20%; animation-delay: -3s; animation-duration: 22s; width: 3px; height: 3px; }
-        .particle:nth-child(3) { left: 30%; animation-delay: -6s; animation-duration: 28s; }
-        .particle:nth-child(4) { left: 40%; animation-delay: -9s; animation-duration: 20s; width: 5px; height: 5px; }
-        .particle:nth-child(5) { left: 50%; animation-delay: -12s; animation-duration: 24s; }
-        .particle:nth-child(6) { left: 60%; animation-delay: -15s; animation-duration: 26s; width: 3px; height: 3px; }
-        .particle:nth-child(7) { left: 70%; animation-delay: -18s; animation-duration: 21s; }
-        .particle:nth-child(8) { left: 80%; animation-delay: -21s; animation-duration: 27s; width: 4px; height: 4px; }
-        .particle:nth-child(9) { left: 90%; animation-delay: -24s; animation-duration: 23s; }
-        .particle:nth-child(10) { left: 15%; animation-delay: -2s; animation-duration: 29s; width: 2px; height: 2px; }
-        .particle:nth-child(11) { left: 35%; animation-delay: -7s; animation-duration: 19s; }
-        .particle:nth-child(12) { left: 55%; animation-delay: -11s; animation-duration: 30s; width: 3px; height: 3px; }
-        .particle:nth-child(13) { left: 75%; animation-delay: -16s; animation-duration: 22s; }
-        .particle:nth-child(14) { left: 85%; animation-delay: -20s; animation-duration: 25s; width: 2px; height: 2px; }
-        .particle:nth-child(15) { left: 5%; animation-delay: -4s; animation-duration: 28s; }
+        .particle:nth-child(2) { left: 25%; animation-delay: -4s; animation-duration: 22s; width: 3px; height: 3px; }
+        .particle:nth-child(3) { left: 40%; animation-delay: -8s; animation-duration: 28s; }
+        .particle:nth-child(4) { left: 55%; animation-delay: -12s; animation-duration: 20s; width: 5px; height: 5px; }
+        .particle:nth-child(5) { left: 65%; animation-delay: -16s; animation-duration: 24s; }
+        .particle:nth-child(6) { left: 75%; animation-delay: -20s; animation-duration: 26s; width: 3px; height: 3px; }
+        .particle:nth-child(7) { left: 85%; animation-delay: -24s; animation-duration: 21s; }
+        .particle:nth-child(8) { left: 95%; animation-delay: -28s; animation-duration: 27s; width: 4px; height: 4px; }
 
         @keyframes particleFloat {
             0% {
@@ -768,6 +762,36 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Performance: GPU hints for animated elements */
+        .aurora, .particle, .shape {
+            will-change: transform, opacity;
+        }
+
+        /* Accessibility: Respect user's motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .aurora, .particle, .shape, .grid-lines,
+            .container, .profile-img, h1, .subtitle,
+            input[type="text"], button, .disclaimer-wrapper::before,
+            .skip-company-link::before {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .container {
+                opacity: 1;
+                transform: none;
+            }
+
+            .profile-img {
+                opacity: 1;
+                transform: none;
+            }
+
+            .door {
+                transition: transform 0.5s ease !important;
+            }
+        }
+
         /* Responsive design */
         @media (max-width: 480px) {
             body {
@@ -887,6 +911,9 @@
             pointer-events: auto;
         }
     </style>
+    <!-- Font loading optimization: preconnect + display=swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Favicon Meta Tags -->
     <meta name="theme-color" content="#1a4b84">
@@ -904,15 +931,8 @@
     <!-- Grid lines overlay -->
     <div class="grid-lines"></div>
 
-    <!-- Floating particles -->
+    <!-- Floating particles (reduced from 15 to 8 for performance) -->
     <div class="particles-container">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
@@ -941,7 +961,7 @@
     
     <div class="container door-handle">
         <div class="profile-section">
-            <img src="assets/images/Pedro.jfif" alt="Pedro Marconato" class="profile-img">
+            <img src="assets/images/Pedro.jfif" alt="Pedro Marconato" class="profile-img" width="110" height="110" loading="eager">
             <h1>Welcome!</h1>
             <p class="subtitle">Pedro Marconato</p>
         </div>
@@ -1303,41 +1323,27 @@
             // Busca apenas correspondência exata
             for (const [page, keywords] of Object.entries(companyMappings)) {
                 if (keywords.some(k => k === companyName)) {
-                    console.log('Match found (exact) for', companyName, '->', page);
                     target = page;
                     break;
                 }
             }
-            // Se não encontrou exato, permanece general.html
-            
-            // Show door animation and load target page
-        
-        // If no match was found, log it
-        if (target === 'templates/companies/general.html') {
-            console.log('No match found for', companyName, ', using default', target);
-        }
             const doorWrapper = document.getElementById('doorWrapper');
             const targetFrame = document.getElementById('targetFrame');
             const container = document.querySelector('.container');
             
             // Activate door animation
             doorWrapper.classList.add('active');
-            
-            // Preload target page in iframe with cache busting
-            console.log('Company entered:', companyName, 'Target page:', target);
 
             // Hide loading state and container when iframe finishes loading
             targetFrame.onload = function() {
                 loading.style.display = 'none';
-                container.style.display = 'none';  // Hide the welcome card/modal
-                console.log('Iframe loaded successfully');
+                container.style.display = 'none';
             };
 
             // Also handle errors
             targetFrame.onerror = function() {
                 loading.style.display = 'none';
-                container.style.display = 'none';  // Hide even on error
-                console.error('Error loading iframe');
+                container.style.display = 'none';
             };
 
             targetFrame.src = './' + target + '?t=' + new Date().getTime();
@@ -1352,19 +1358,10 @@
             }, 500);
         }
 
-        // Enforce lowercase as user types
+        // Enforce lowercase as user types (optimized with regex)
         companyInput.addEventListener('input', function() {
-            let value = this.value;
-            let sanitizedValue = "";
-            for (let i = 0; i < value.length; i++) {
-                let char = value[i];
-                if ((char >= 'a' && char <= 'z') || (char >= '0' && char <= '9') || char === ' ') {
-                    sanitizedValue += char;
-                } else if (char >= 'A' && char <= 'Z') {
-                    sanitizedValue += char.toLowerCase();
-                }
-            }
-            this.value = sanitizedValue;
+            // Single-pass regex: remove non-alphanumeric (except space) and lowercase
+            this.value = this.value.toLowerCase().replace(/[^a-z0-9 ]/g, '');
         });
 
         // Allow Enter key to submit
@@ -1390,10 +1387,8 @@
         window.reloadFrame = function() {
             const iframe = document.getElementById('targetFrame');
             if (iframe && iframe.src) {
-                // Remove old timestamp and add new one
                 let url = iframe.src.split('?')[0];
                 iframe.src = url + '?t=' + new Date().getTime();
-                console.log('Iframe reloaded with fresh content');
             }
         };
 

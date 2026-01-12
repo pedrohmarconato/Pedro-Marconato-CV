@@ -1,10 +1,27 @@
 /**
  * Dynamic Favicon System for Pedro Marconato CV
  * Automatically sets company-specific favicons based on page URL
+ *
+ * Performance optimizations:
+ * - Debounced input handler (300ms)
+ * - Cached favicon state to avoid redundant DOM operations
+ * - Efficient company matching
  */
 
 window.DynamicFavicon = (function() {
-    
+
+    // Cache for current favicon state
+    let cachedCompany = null;
+    let debounceTimer = null;
+
+    // Debounce utility function
+    function debounce(func, wait) {
+        return function executedFunction(...args) {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+
     // Company favicon mappings
     const FAVICONS = {
         'allos': {
@@ -85,12 +102,20 @@ window.DynamicFavicon = (function() {
         return 'general'; // Default
     }
     
-    // Set favicon
+    // Set favicon with cache check
     function setFavicon(company = null) {
         const detectedCompany = company || detectCompany();
+
+        // Skip if favicon is already set for this company (cache hit)
+        if (detectedCompany === cachedCompany) {
+            return FAVICONS[detectedCompany] || FAVICONS.general;
+        }
+
+        // Update cache
+        cachedCompany = detectedCompany;
         const favicon = FAVICONS[detectedCompany] || FAVICONS.general;
-        
-        // Remove existing favicons
+
+        // Remove existing favicons (batch operation)
         const existingFavicons = document.querySelectorAll('link[rel*="icon"]');
         existingFavicons.forEach(link => link.remove());
         
@@ -130,42 +155,45 @@ window.DynamicFavicon = (function() {
         }
         themeColorMeta.content = favicon.color;
         
-        console.log(`🎨 Favicon set for: ${favicon.name} (${detectedCompany})`);
         return favicon;
     }
     
-    // Dynamic favicon for index page based on form input
+    // Dynamic favicon for index page based on form input (debounced)
     function setDynamicFavicon() {
         const companyInput = document.getElementById('companyName');
-        if (companyInput) {
-            companyInput.addEventListener('input', function() {
-                const companyName = this.value.trim().toLowerCase();
-                
-                // Company mappings (same as in index.html)
-                const companyMappings = {
-                    'ifood': ['ifood', 'i food', 'if'],
-                    'rdstation': ['rd', 'rdstation', 'rds', 'rd station'],
-                    'sicredi': ['sicredi', 'sic', 'sicred'],
-                    'boticario': ['boticario', 'gb', 'grupoboticario', 'grupo boticario', 'grupo boticário', 'grupoboticário'],
-                    'completebari': ['completebari', 'complete bari', 'bari', 'cb', 'complete'],
-                    'allos': ['allos', 'allo', 'all', 'consultoria', 'consulting'],
-                    'contaazul': ['contazul', 'contaazul', 'ca', 'azulconta', 'azul'],
-                    'quintoandar': ['quintoandar', 'quinto andar', 'quinto', 'quin', 'qa', 'qto andar', 'qto'],
-                    'bancobv': ['banco bv', 'banco-bv', 'bv', 'bv banco', 'banco', 'bancobv']
-                };
-                
-                // Find matching company
-                let matchedCompany = 'general';
-                for (const [company, keywords] of Object.entries(companyMappings)) {
-                    if (keywords.includes(companyName)) {
-                        matchedCompany = company;
-                        break;
-                    }
+        if (!companyInput) return;
+
+        // Company mappings for favicon matching
+        const companyMappings = {
+            'ifood': ['ifood', 'i food', 'if'],
+            'rdstation': ['rd', 'rdstation', 'rds', 'rd station'],
+            'sicredi': ['sicredi', 'sic', 'sicred'],
+            'boticario': ['boticario', 'gb', 'grupoboticario', 'grupo boticario', 'grupo boticário', 'grupoboticário'],
+            'completebari': ['completebari', 'complete bari', 'bari', 'cb', 'complete'],
+            'allos': ['allos', 'allo', 'all', 'consultoria', 'consulting'],
+            'contaazul': ['contazul', 'contaazul', 'ca', 'azulconta', 'azul'],
+            'quintoandar': ['quintoandar', 'quinto andar', 'quinto', 'quin', 'qa', 'qto andar', 'qto'],
+            'bancobv': ['banco bv', 'banco-bv', 'bv', 'bv banco', 'banco', 'bancobv']
+        };
+
+        // Debounced handler - only updates favicon after 300ms of no typing
+        const updateFavicon = debounce(function(companyName) {
+            // Find matching company
+            let matchedCompany = 'general';
+            for (const [company, keywords] of Object.entries(companyMappings)) {
+                if (keywords.includes(companyName)) {
+                    matchedCompany = company;
+                    break;
                 }
-                
-                setFavicon(matchedCompany);
-            });
-        }
+            }
+            setFavicon(matchedCompany);
+        }, 300);
+
+        // Lightweight input handler - just calls debounced function
+        companyInput.addEventListener('input', function() {
+            const companyName = this.value.trim().toLowerCase();
+            updateFavicon(companyName);
+        });
     }
     
     // Initialize favicon system
@@ -176,26 +204,9 @@ window.DynamicFavicon = (function() {
         // Set up dynamic favicon for form pages
         setDynamicFavicon();
         
-        // Update favicon when page changes (for SPAs)
-        if ('MutationObserver' in window) {
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    if (mutation.type === 'childList' && mutation.target === document.head) {
-                        // Re-check if favicon needs updating
-                        const currentCompany = detectCompany();
-                        const currentFavicon = document.querySelector('link[rel*="icon"]');
-                        const expectedFavicon = FAVICONS[currentCompany];
-                        
-                        if (currentFavicon && expectedFavicon && 
-                            !currentFavicon.href.includes(expectedFavicon.dataUri.substring(0, 50))) {
-                            setFavicon(currentCompany);
-                        }
-                    }
-                });
-            });
-            
-            observer.observe(document.head, { childList: true });
-        }
+        // MutationObserver disabled for performance
+        // The favicon is already cached and won't change unexpectedly
+        // If needed for SPAs, uncomment and add proper cleanup
     }
     
     // Public API
