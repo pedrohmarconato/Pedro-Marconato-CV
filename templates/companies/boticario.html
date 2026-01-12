@@ -74,178 +74,54 @@
             overflow: hidden;
         }
         
-        /* Gradient Mesh Orbs */
+        /* Gradient Mesh Orbs - SIMPLIFIED: static, smaller, less blur */
         .gradient-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: orbFloat 20s ease-in-out infinite;
+            filter: blur(40px);
+            opacity: 0.15;
+            /* No animation - static orbs for performance */
         }
-        
+
         .gradient-orb:nth-child(1) {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle at 30% 30%, var(--eco-turquoise), transparent);
-            top: -200px;
-            left: -100px;
-            animation-duration: 25s;
-        }
-        
-        .gradient-orb:nth-child(2) {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle at 70% 70%, var(--eco-green), transparent);
-            bottom: -150px;
-            right: -50px;
-            animation-duration: 30s;
-            animation-delay: -5s;
-        }
-        
-        .gradient-orb:nth-child(3) {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle at 50% 50%, var(--boticario-salmon), transparent);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation-duration: 35s;
-            animation-delay: -10s;
-        }
-        
-        @keyframes orbFloat {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            33% {
-                transform: translate(50px, -30px) scale(1.1);
-            }
-            66% {
-                transform: translate(-30px, 20px) scale(0.9);
-            }
-        }
-        
-        /* Sistema de partículas de essência flutuando */
-        .essence-particles {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .essence-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: radial-gradient(circle, var(--boticario-salmon), transparent);
-            border-radius: 50%;
-            opacity: 0;
-            animation: essenceFloat 25s infinite ease-in-out;
-            filter: blur(0.5px);
-        }
-        
-        .essence-particle:nth-child(odd) {
-            background: radial-gradient(circle, var(--boticario-royal), transparent);
-        }
-        
-        .essence-particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 20s; }
-        .essence-particle:nth-child(2) { left: 20%; animation-delay: 3s; animation-duration: 22s; }
-        .essence-particle:nth-child(3) { left: 30%; animation-delay: 6s; animation-duration: 24s; }
-        .essence-particle:nth-child(4) { left: 40%; animation-delay: 9s; animation-duration: 21s; }
-        .essence-particle:nth-child(5) { left: 50%; animation-delay: 12s; animation-duration: 23s; }
-        .essence-particle:nth-child(6) { left: 60%; animation-delay: 15s; animation-duration: 25s; }
-        .essence-particle:nth-child(7) { left: 70%; animation-delay: 2s; animation-duration: 20s; }
-        .essence-particle:nth-child(8) { left: 80%; animation-delay: 5s; animation-duration: 22s; }
-        .essence-particle:nth-child(9) { left: 90%; animation-delay: 8s; animation-duration: 24s; }
-        .essence-particle:nth-child(10) { left: 95%; animation-delay: 11s; animation-duration: 21s; }
-        
-        @keyframes essenceFloat {
-            0% {
-                bottom: -10px;
-                opacity: 0;
-                transform: translateX(0) scale(0) rotate(0deg);
-            }
-            10% {
-                opacity: 0.6;
-                transform: translateX(30px) scale(1.5) rotate(90deg);
-            }
-            30% {
-                transform: translateX(-20px) scale(1) rotate(180deg);
-            }
-            60% {
-                opacity: 0.8;
-                transform: translateX(40px) scale(1.2) rotate(270deg);
-            }
-            90% {
-                opacity: 0.4;
-                transform: translateX(-30px) scale(0.8) rotate(360deg);
-            }
-            100% {
-                bottom: 100%;
-                opacity: 0;
-                transform: translateX(50px) scale(0) rotate(450deg);
-            }
-        }
-        
-        /* DNA Helix Animation - Representando P&D e Inovação */
-        .dna-helix {
-            position: fixed;
-            right: 50px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 60px;
+            width: 300px;
             height: 300px;
-            opacity: 0.03;
-            z-index: 0;
-            animation: helixRotate 30s linear infinite;
-            transform-style: preserve-3d;
-            perspective: 1000px;
+            background: var(--eco-turquoise);
+            top: -100px;
+            left: -100px;
         }
-        
-        /* Sustainable Innovation Particles */
-        .eco-particles {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 2;
+
+        .gradient-orb:nth-child(2) {
+            width: 250px;
+            height: 250px;
+            background: var(--eco-green);
+            bottom: -100px;
+            right: -50px;
         }
-        
+
+        .gradient-orb:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            background: var(--boticario-salmon);
+            top: 40%;
+            right: 10%;
+        }
+
+        /* Essence particles - DISABLED for performance */
+        .essence-particles,
+        .essence-particle {
+            display: none;
+        }
+
+        /* DNA Helix - DISABLED for performance */
+        .dna-helix {
+            display: none;
+        }
+
+        /* Eco Particles - DISABLED for performance */
+        .eco-particles,
         .eco-particle {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            opacity: 0;
-            animation: ecoFloat 15s infinite;
-        }
-        
-        .eco-particle::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, var(--eco-green) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(2px);
-        }
-        
-        .eco-particle::after {
-            content: '♻️';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 14px;
-            opacity: 0.8;
-        }
-        
-        .eco-particle:nth-child(odd)::after {
-            content: '🌿';
+            display: none;
         }
         
         .eco-particle:nth-child(3n)::after {
@@ -322,7 +198,7 @@
             height: 300px;
             top: 10%;
             right: 5%;
-            animation: logoFloat1 25s ease-in-out infinite;
+            /* animation: logoFloat1 - DISABLED for performance */
         }
 
         .logo-bg-element:nth-child(2) {
@@ -330,7 +206,7 @@
             height: 200px;
             bottom: 15%;
             left: 8%;
-            animation: logoFloat2 30s ease-in-out infinite reverse;
+            /* animation: logoFloat2 - DISABLED for performance */
         }
 
         .logo-bg-element:nth-child(3) {
@@ -338,7 +214,7 @@
             height: 150px;
             top: 45%;
             left: 50%;
-            animation: logoFloat3 20s ease-in-out infinite;
+            /* animation: logoFloat3 - DISABLED for performance */
         }
 
         @keyframes logoFloat1 {
@@ -389,7 +265,7 @@
             border-radius: 50%;
             top: -80px;
             right: -80px;
-            animation: subtleFloat 20s ease-in-out infinite;
+            /* animation: subtleFloat - DISABLED for performance */
         }
 
         .brand-element:nth-child(5) {
@@ -399,7 +275,7 @@
             border-radius: 20px;
             bottom: -60px;
             left: -60px;
-            animation: subtleFloat 25s ease-in-out infinite reverse;
+            /* animation: subtleFloat - DISABLED for performance */
         }
 
         @keyframes subtleFloat {
@@ -411,8 +287,7 @@
             max-width: 1000px;
             margin: 30px auto;
             background: linear-gradient(135deg, var(--boticario-white) 0%, rgba(245, 241, 235, 0.3) 100%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            /* backdrop-filter removed for performance */
             border-radius: 24px;
             box-shadow:
             0 20px 60px rgba(1, 30, 56, 0.15),
@@ -435,7 +310,7 @@
             padding: 40px 30px 70px 30px;
             background: linear-gradient(135deg, var(--boticario-navy), var(--boticario-royal));
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            animation: headerColorFlow 15s ease-in-out infinite;
+            /* animation: headerColorFlow - DISABLED: hue-rotate is very expensive */
             position: relative;
             overflow: hidden;
             min-height: 60vh;
@@ -457,7 +332,7 @@
             background-image: 
                 repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 255, 255, 0.1) 35px, rgba(255, 255, 255, 0.1) 70px),
                 repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255, 188, 130, 0.1) 35px, rgba(255, 188, 130, 0.1) 70px);
-            animation: patternShift 30s linear infinite;
+            /* animation: patternShift - DISABLED for performance */
             z-index: 2;
         }
         
@@ -479,7 +354,7 @@
                 transparent,
                 var(--boticario-navy));
             opacity: 0;
-            animation: gradientFade 15s ease-in-out infinite;
+            /* animation: gradientFade - DISABLED for performance */
             z-index: 0;
         }
         
@@ -518,7 +393,7 @@
                 transparent 40%,
                 rgba(38, 79, 236, 0.08) 70%,
                 transparent 100%);
-            animation: glowPulse 10s ease-in-out infinite;
+            /* animation: glowPulse - DISABLED for performance */
             z-index: 1;
             pointer-events: none;
         }
@@ -716,8 +591,7 @@
             display: inline-flex;
             align-items: center;
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            /* backdrop-filter removed for performance */
             border-radius: 20px;
             padding: 14px 24px;
             text-decoration: none;
@@ -866,7 +740,7 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
+            /* backdrop-filter removed for performance */
         }
 
         .section-title::before {
@@ -920,8 +794,7 @@
         
         .skills-column {
             background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px) saturate(120%);
-            -webkit-backdrop-filter: blur(10px) saturate(120%);
+            /* backdrop-filter removed for performance */
             padding: 28px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -1132,8 +1005,7 @@
             padding: 36px;
             border-radius: 24px;
             background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px) saturate(120%);
-            -webkit-backdrop-filter: blur(20px) saturate(120%);
+            /* backdrop-filter removed for performance */
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 
@@ -1413,8 +1285,7 @@
         
         .project-item {
             background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(15px) saturate(150%);
-            -webkit-backdrop-filter: blur(15px) saturate(150%);
+            /* backdrop-filter removed for performance */
             border-radius: 20px;
             padding: 36px;
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -1546,7 +1417,7 @@
             top: 30px;
             right: 30px;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
+            /* backdrop-filter removed for performance */
             border-radius: 35px;
             padding: 6px;
             display: flex;
