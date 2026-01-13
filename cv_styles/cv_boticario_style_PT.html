@@ -38,8 +38,8 @@
             line-height: 1.6;
             background: var(--light-accent);
             min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Main container */
@@ -70,9 +70,7 @@
             right: 40px;
             width: 160px;
             height: auto;
-            filter: brightness(0) invert(1);
             opacity: 0.9;
-            z-index: 2;
         }
         
         .header h1 {
@@ -112,12 +110,6 @@
             font-size: 12.5px;
             font-weight: 500;
             border: 1px solid rgba(255, 255, 255, 0.25);
-            transition: background 0.2s ease, border-color 0.2s ease;
-        }
-
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.35);
         }
         
         .contact-item i {
@@ -128,21 +120,15 @@
         /* Section Styles */
         .section {
             padding: 25px 50px;
-            position: relative;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .section:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50px;
-            right: 50px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+        .section:last-child {
+            border-bottom: none;
         }
-        
+
         .section-title {
-            background: var(--background-gradient);
+            background: var(--primary-color);
             color: white;
             font-size: 15px;
             font-weight: 600;
@@ -150,15 +136,8 @@
             padding: 8px 16px;
             border-radius: 12px;
             letter-spacing: 0.3px;
-            box-shadow: 0 4px 12px rgba(1, 30, 56, 0.2);
             display: inline-block;
             text-transform: uppercase;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .section-title:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(1, 30, 56, 0.25);
         }
 
         /* Resumo de Qualificações */
@@ -266,7 +245,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+            background: var(--primary-color);
             border-radius: 3px;
         }
         
@@ -275,15 +254,8 @@
             position: relative;
             padding: 18px;
             border-radius: 14px;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            background: #fff;
             border: 1px solid var(--border-color);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .experience-item:hover {
-            box-shadow: 0 4px 12px rgba(1, 30, 56, 0.08);
-            border-color: rgba(123, 194, 36, 0.3);
         }
         
         .experience-item::before {
@@ -296,8 +268,6 @@
             border-radius: 50%;
             background: var(--accent-color);
             border: 3px solid white;
-            box-shadow: 0 0 0 3px rgba(123, 194, 36, 0.2);
-            z-index: 1;
         }
         
         .job-header {
