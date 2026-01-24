@@ -72,6 +72,66 @@ const CVTexts = {
             // Experience
             experience: [
                 {
+                    title: "DATA ANALYTICS COORDINATOR",
+                    company: "Cadastra",
+                    period: "Sep/2025 - Present",
+                    description: "Leading Data Analytics and AI operations for enterprise clients in technology, retail and education sectors. Managing multidisciplinary team (DataViz, Data Engineering, Web Analytics) with direct interface to C-level stakeholders and business areas.",
+                    achievements: [
+                        {
+                            icon: "fa-cloud",
+                            title: "Cloud Migration",
+                            description: "Technical diagnosis and restructuring of legacy data environments, including AWS→GCP migration with projected 40% reduction in processing costs."
+                        },
+                        {
+                            icon: "fa-users",
+                            title: "Team Expansion",
+                            description: "Data operations restructuring with +67% team expansion and scope extension to multiple LATAM business units."
+                        },
+                        {
+                            icon: "fa-cogs",
+                            title: "Cost Optimization",
+                            description: "Stabilization of critical data environments, achieving 20% savings in operational processing costs (Airflow/DAGs)."
+                        },
+                        {
+                            icon: "fa-robot",
+                            title: "AI Automation",
+                            description: "Development of automations with n8n and AI Agents (LLMs), including automated Status Report with AI-generated executive summaries."
+                        }
+                    ],
+                    tooltip: {
+                        header: "Position Details: Data Analytics Coordinator",
+                        sections: [
+                            {
+                                icon: "fa-briefcase",
+                                title: "Scope and Responsibilities",
+                                items: [
+                                    "Data Analytics and AI operations for enterprise clients",
+                                    "Simultaneous management of strategic accounts",
+                                    "Direct interface with C-level and business areas (Performance, E-commerce, Commercial)"
+                                ]
+                            },
+                            {
+                                icon: "fa-database",
+                                title: "Data Architecture",
+                                items: [
+                                    "Data architecture and governance definition for BI projects",
+                                    "Real-Time Analytics and AI applications implementation",
+                                    "AWS→GCP migration with 40% cost reduction"
+                                ]
+                            },
+                            {
+                                icon: "fa-rocket",
+                                title: "Innovation and AI",
+                                items: [
+                                    "Automations with n8n and AI Agents (LLMs)",
+                                    "Automated Status Report with AI-generated summaries",
+                                    "Leadership in first generative AI initiatives for client operations"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
                     title: "CRM COORDINATOR",
                     company: "Realize CFI",
                     period: "Sep/2022 - Feb/2025",
@@ -377,6 +437,66 @@ const CVTexts = {
             
             // Experience
             experience: [
+                {
+                    title: "COORDENADOR DE DATA ANALYTICS",
+                    company: "Cadastra",
+                    period: "Set/2025 - Presente",
+                    description: "Liderança da operação de Data Analytics e AI para clientes de grande porte dos setores de tecnologia, varejo e educação. Gestão de time multidisciplinar (DataViz, Engenharia de Dados, Web Analytics) com interface direta com stakeholders C-level e áreas de negócio.",
+                    achievements: [
+                        {
+                            icon: "fa-cloud",
+                            title: "Migração Cloud",
+                            description: "Diagnóstico técnico e reestruturação de ambientes de dados legados, incluindo migração AWS→GCP com redução projetada de 40% em custos de processamento."
+                        },
+                        {
+                            icon: "fa-users",
+                            title: "Expansão de Time",
+                            description: "Reestruturação de operações de dados com expansão de time (+67%) e ampliação de escopo para múltiplas unidades de negócio em LATAM."
+                        },
+                        {
+                            icon: "fa-cogs",
+                            title: "Otimização de Custos",
+                            description: "Estabilização de ambientes críticos de dados, alcançando economia de 20% em custos operacionais de processamento (Airflow/DAGs)."
+                        },
+                        {
+                            icon: "fa-robot",
+                            title: "Automação com IA",
+                            description: "Desenvolvimento de automações com n8n e AI Agents (LLMs), incluindo Status Report automatizado com geração de resumos executivos por IA."
+                        }
+                    ],
+                    tooltip: {
+                        header: "Detalhes da Posição: Coordenador de Data Analytics",
+                        sections: [
+                            {
+                                icon: "fa-briefcase",
+                                title: "Escopo e Responsabilidades",
+                                items: [
+                                    "Operação de Data Analytics e AI para clientes enterprise",
+                                    "Gestão simultânea de contas estratégicas",
+                                    "Interface direta com C-level e áreas de negócio (Performance, E-commerce, Comercial)"
+                                ]
+                            },
+                            {
+                                icon: "fa-database",
+                                title: "Arquitetura de Dados",
+                                items: [
+                                    "Definição de arquitetura de dados e governança para projetos de BI",
+                                    "Implementação de Real-Time Analytics e aplicações de IA",
+                                    "Migração AWS→GCP com 40% de redução de custos"
+                                ]
+                            },
+                            {
+                                icon: "fa-rocket",
+                                title: "Inovação e IA",
+                                items: [
+                                    "Automações com n8n e AI Agents (LLMs)",
+                                    "Status Report automatizado com resumos gerados por IA",
+                                    "Liderança das primeiras iniciativas de IA generativa para operações de clientes"
+                                ]
+                            }
+                        ]
+                    }
+                },
                 {
                     title: "COORDENADOR DE CRM",
                     company: "Realize CFI",
