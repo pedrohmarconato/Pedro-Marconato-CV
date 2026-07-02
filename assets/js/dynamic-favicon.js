@@ -24,6 +24,16 @@ window.DynamicFavicon = (function() {
 
     // Company favicon mappings
     const FAVICONS = {
+        'act': {
+            dataUri: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwOTBGMTk7c3RvcC1vcGFjaXR5OjEiIC8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzA2N0ZGRjtzdG9wLW9wYWNpdHk6MSIgLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI4IiBmaWxsPSJ1cmwoI2dyYWQpIi8+Cjx0ZXh0IHg9IjE2IiB5PSIyMSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjNDJFREJBIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BQ1Q8L3RleHQ+Cjwvc3ZnPgo=',
+            name: 'ACT Digital',
+            color: '#090F19'
+        },
+        'tke': {
+            dataUri: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM3MDAwQkQ7c3RvcC1vcGFjaXR5OjEiIC8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzAwQTBGMDtzdG9wLW9wYWNpdHk6MSIgLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI4IiBmaWxsPSJ1cmwoI2dyYWQpIi8+Cjx0ZXh0IHg9IjE2IiB5PSIyMSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iODAwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VEs8L3RleHQ+Cjwvc3ZnPgo=',
+            name: 'TK Elevator',
+            color: '#7000BD'
+        },
         'allos': {
             dataUri: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjEyOSIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTAwIDEyOSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KIDxwYXRoIGQ9Im0wIDEyNy41OWM2LjUwNzctMjUuMjkzIDI5LjQ2MS00NC4wMTUgNTYuODA2LTQ0LjAxNSAyMi4wMjQgMCAzNS44MDggMTIuMTgyIDM1LjgwOCAxMi4xODJzLTguODE1OC0xMC42NzUtMjIuMDg4LTE3LjExOWwtMTMuNTkyLTUyLjA2MS0xMy4zMDQgNTAuNzc5Yy0xMy40NjQgMS44MjczLTI1LjE5NyA3LjY2MTctMzIuNjAyIDEzLjgxN2wyNC4xMDctNzkuMDIyYzEuOTU1NS02LjM3OTQgNy44MjItMTAuNzM5IDE0LjQ5LTEwLjczOWgxNC4yOThjNi42NjggMCAxMi41NjcgNC4zNTk4IDE0LjQ5IDEwLjczOWwzMy41IDExMC4wMmMwLjY0MTIgMS43NjMyIDEuMjE4MiAzLjU5MDQgMS42OTkxIDUuNDQ5OGgtMzAuMzI2bC0wLjA2NC0wLjIyNDRjLTUuMTkzMy05LjIzMjUtMTUuMDk5LTE1LjQ1Mi0yNi40MTUtMTUuNDUycy0yMC45OTggNi4wOTA5LTI2LjI1NSAxNS4xMzFsLTAuMTI4MiAwLjU0NDk3aC0zMC40MjN6bTQ2My4xIDBoLTQ2Ljc3MnYtMjYuMzUxaDQ1LjUyMmM2LjUwNzcgMCAxMS43OTctNC4wMzkyIDExLjc5Ny0xMC41MTUgMC02LjA5MDktOS42NDkzLTkuOTA1OC0yMS44NjMtMTMuNTkyLTkuMzkyOC0yLjgyMS0zNC4zMzQtMTAuMzIyLTM0LjMzNC0zNy41NzEgMC0yMS4wMyAxNS40Mi0zOC4xNDggMzguMTQ4LTM4LjE0OGgzOS4zMDJsLTYuODkyNCAyNi4zNTFoLTMyLjQxYy02LjUwNzYgMC0xMS43OTcgNC4wMzkyLTExLjc5NyAxMC41MTUgMCA2LjA5MDkgMy4zNjYgOS45MDU4IDE1LjU4IDEzLjU5MiA5LjM5MjggMi44MjEgNDAuNjE3IDEwLjMyMiA0MC42MTcgMzcuNTcxIDAgMjIuNjk3LTE1LjgzNiAzOC4xNDgtMzYuODY2IDM4LjE0OG0tMzEyLjY2IDBjLTcuMTQ4OSAwLTEzLjA0Ny0xLjA5LTE3LjY5Ni0zLjIzNzgtNC42NDgzLTIuMTQ3OC04LjExMDUtNS41NDU5LTEwLjM4Ny0xMC4xOTQtMi4yNzYtNC42NDgzLTMuMzk4MS0xMC42NDMtMy4zOTgxLTE4LjAxNnYtOTQuNzNoMjkuNDI5djg5Ljc5M2MwIDIuMzcyMiAwLjM1MjYgNC4yOTU3IDEuMDg5OSA1Ljc3MDMgMC43Mzc0IDEuNDc0NiAxLjg1OTQgMi41NjQ2IDMuMzk4MSAzLjIzNzggMS41Mzg4IDAuNjczMiAzLjMwMTkgMS4wMjU4IDUuMzUzNiAxLjAyNThoMzguMjc3djI2LjM1MWgtNDYuMDk5em0yNDIuMzItMTA4LjQyYy0yNS4wMzctMjUuMDM3LTY1LjYyMi0yNS4wMzctOTAuNjU4IDAtMjUuMDM3IDI1LjAzNy0yNS4wMzcgNjUuNjIyIDAgOTAuNjU4IDI1LjAzNyAyNS4wMzcgNjUuNjIyIDI1LjAzNyA5MC42NTggMHMyNS4wMzctNjUuNjIyIDAtOTAuNjU4bS0xOC45MTQgNzEuNzc3Yy0xNC41ODYgMTQuNTg2LTM4LjI3NyAxNC41ODYtNTIuODYzIDAtMTQuNTg2LTE0LjU4Ni0xNC41ODYtMzguMjc3IDAtNTIuODYzIDE0LjU4Ni0xNC41ODYgMzguMjc3LTE0LjU4NiA1Mi44NjMgMHMxNC41ODYgMzguMjc3IDAgNTIuODYzbS0xMzYuMzcgMzYuNjQyYy03LjE0ODggMC0xMy4wNDctMS4wOS0xNy42OTYtMy4yMzc4cy04LjExMDUtNS41NDU5LTEwLjM4Ny0xMC4xOTRjLTIuMjc2MS00LjY0ODMtMy4zOTgxLTEwLjY0My0zLjM5ODEtMTguMDE2di05NC43M2gyOS40Mjl2ODkuNzkzYzAgMi4zNzIyIDAuMzUyNyA0LjI5NTcgMS4wOSA1Ljc3MDMgMC43MzczIDEuNDc0NiAxLjg1OTMgMi41NjQ2IDMuMzk4MSAzLjIzNzggMS41Mzg3IDAuNjczMiAzLjMwMTkgMS4wMjU4IDUuMzUzNiAxLjAyNThoMzguMjc3djI2LjM1MWgtNDYuMDk5eiIgZmlsbD0iIzAwNjg3NyIvPgo8L3N2Zz4=',
             name: 'Allos',
@@ -77,6 +87,10 @@ window.DynamicFavicon = (function() {
         const pathname = window.location.pathname.toLowerCase();
         
         // Check URL patterns
+        if (pathname.includes('/act.html') || pathname.includes('/act_pt.html') ||
+            pathname.includes('act_style') || url.includes('actdigital')) return 'act';
+        if (pathname.includes('/tke.html') || pathname.includes('/tke_pt.html') ||
+            pathname.includes('tke_style') || url.includes('tkelevator')) return 'tke';
         if (url.includes('allos') || pathname.includes('allos')) return 'allos';
         if (url.includes('boticario') || pathname.includes('boticario')) return 'boticario';
         if (url.includes('sicredi') || pathname.includes('sicredi')) return 'sicredi';
@@ -90,6 +104,8 @@ window.DynamicFavicon = (function() {
 
         // Check page title or meta tags
         const title = document.title.toLowerCase();
+        if (title.includes('act digital')) return 'act';
+        if (title.includes('tk elevator')) return 'tke';
         if (title.includes('allos')) return 'allos';
         if (title.includes('boticario') || title.includes('boticário')) return 'boticario';
         if (title.includes('sicredi')) return 'sicredi';

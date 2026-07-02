@@ -1,5 +1,47 @@
 // Configuração centralizada de todas as marcas
 const BRANDS_CONFIG = {
+    act: {
+        name: 'ACT Digital',
+        colors: {
+            primary: '#090F19',
+            secondary: '#067FFF',
+            accent: '#42EDBA',
+            text: '#000000',
+            whiteText: '#FFFFFF',
+            grayText: '#566D8F',
+            border: 'rgba(66, 237, 186, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #090F19 0%, #067FFF 100%)',
+        logo: null,
+        tagline: {
+            en: 'Impacting business, empowering people',
+            pt: 'Impactando negócios, empoderando pessoas'
+        },
+        shapes: 'circles',
+        animations: 'standard'
+    },
+
+    tke: {
+        name: 'TK Elevator',
+        colors: {
+            primary: '#7000BD',
+            secondary: '#00A0F0',
+            accent: '#D7005F',
+            text: '#000000',
+            whiteText: '#FFFFFF',
+            grayText: '#262626',
+            border: 'rgba(112, 0, 189, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #7000BD 0%, #00A0F0 100%)',
+        logo: null,
+        tagline: {
+            en: 'engineering. tomorrow. together.',
+            pt: 'engenharia. amanhã. juntos.'
+        },
+        shapes: 'circles',
+        animations: 'standard'
+    },
+
     general: {
         name: 'General',
         colors: {
