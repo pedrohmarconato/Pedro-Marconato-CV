@@ -75,7 +75,7 @@ const BRANDS_CONFIG = {
             border: 'rgba(255, 215, 0, 0.2)'
         },
         gradient: 'linear-gradient(135deg, #FFD700 0%, #F7DC00 100%)',
-        logo: '../assets/images/willbank_will-bank.svg',
+        logo: '../../assets/images/willbank_will-bank.svg',
         tagline: {
             en: 'Banking Made Simple',
             pt: 'Banco Digital Simples'
@@ -96,7 +96,7 @@ const BRANDS_CONFIG = {
             border: 'rgba(216, 27, 96, 0.2)'
         },
         gradient: 'linear-gradient(135deg, #1C2D4B 0%, #D81B60 100%)',
-        logo: '../assets/images/wehandle_logo.svg',
+        logo: '../../assets/images/wehandle.webp',
         tagline: {
             en: 'Let\'s Handle Success Together',
             pt: 'Vamos Lidar com o Sucesso Juntos'
@@ -117,7 +117,7 @@ const BRANDS_CONFIG = {
             border: 'rgba(234, 29, 44, 0.2)'
         },
         gradient: 'linear-gradient(135deg, #EA1D2C 0%, #FF6B35 100%)',
-        logo: '../assets/images/ifood_logo.svg',
+        logo: '../../assets/images/IFood_logo_c.svg',
         tagline: {
             en: 'Connecting People Through Food',
             pt: 'Conectando Pessoas Através da Comida'
@@ -138,7 +138,7 @@ const BRANDS_CONFIG = {
             border: 'rgba(0, 168, 89, 0.2)'
         },
         gradient: 'linear-gradient(135deg, #00A859 0%, #4CAF50 100%)',
-        logo: '../assets/images/sicredi_logo.svg',
+        logo: '../../assets/images/sicredi.svg',
         tagline: {
             en: 'Growing Together Cooperatively',
             pt: 'Crescendo Juntos de Forma Cooperativa'
@@ -159,7 +159,7 @@ const BRANDS_CONFIG = {
             border: 'rgba(139, 69, 19, 0.2)'
         },
         gradient: 'linear-gradient(135deg, #8B4513 0%, #D2691E 100%)',
-        logo: '../assets/images/boticario_logo.svg',
+        logo: '../../assets/images/boticario.svg',
         tagline: {
             en: 'Beauty in Every Detail',
             pt: 'Beleza em Cada Detalhe'
@@ -180,7 +180,7 @@ const BRANDS_CONFIG = {
             border: 'rgba(0, 102, 204, 0.2)'
         },
         gradient: 'linear-gradient(135deg, #0066CC 0%, #4A90E2 100%)',
-        logo: '../assets/images/contaazul_logo.svg',
+        logo: '../../assets/images/logo_conta_azul.svg',
         tagline: {
             en: 'Simplifying Business Management',
             pt: 'Simplificando a Gestão do Negócio'
@@ -201,7 +201,7 @@ const BRANDS_CONFIG = {
             border: 'rgba(46, 139, 87, 0.2)'
         },
         gradient: 'linear-gradient(135deg, #2E8B57 0%, #3CB371 100%)',
-        logo: '../assets/images/allos_logo.svg',
+        logo: '../../assets/images/allos.png',
         tagline: {
             en: 'Strategic Consulting Excellence',
             pt: 'Excelência em Consultoria Estratégica'
@@ -222,7 +222,7 @@ const BRANDS_CONFIG = {
             border: 'rgba(75, 0, 130, 0.2)'
         },
         gradient: 'linear-gradient(135deg, #4B0082 0%, #663399 100%)',
-        logo: '../assets/images/completebari_logo.svg',
+        logo: '../../assets/images/complete_bari.png',
         tagline: {
             en: 'Complete Bariatric Solutions',
             pt: 'Soluções Bariátricas Completas'
@@ -273,7 +273,7 @@ const BRANDS_CONFIG = {
             border: 'rgba(255, 69, 0, 0.2)'
         },
         gradient: 'linear-gradient(135deg, #FF4500 0%, #FF6347 100%)',
-        logo: '../assets/images/neogroup_logo.svg',
+        logo: '../../assets/images/neo_group.png',
         tagline: {
             en: 'Innovation at Every Step',
             pt: 'Inovação a Cada Passo'
@@ -294,7 +294,7 @@ const BRANDS_CONFIG = {
             border: 'rgba(46, 204, 113, 0.2)'
         },
         gradient: 'linear-gradient(135deg, #2ECC71 0%, #27AE60 100%)',
-        logo: '../assets/images/rdstation_logo.svg',
+        logo: null,
         tagline: {
             en: 'Digital Marketing Excellence',
             pt: 'Excelência em Marketing Digital'
