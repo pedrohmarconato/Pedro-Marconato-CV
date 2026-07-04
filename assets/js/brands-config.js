@@ -213,22 +213,22 @@ const BRANDS_CONFIG = {
     completebari: {
         name: 'Complete Bari',
         colors: {
-            primary: '#4B0082',
-            secondary: '#663399',
-            accent: '#9370DB',
+            primary: '#005C66',
+            secondary: '#006A78',
+            accent: '#A9DC8D',
             text: '#000000',
             whiteText: '#FFFFFF',
             grayText: '#333333',
             border: 'rgba(75, 0, 130, 0.2)'
         },
-        gradient: 'linear-gradient(135deg, #4B0082 0%, #663399 100%)',
+        gradient: 'linear-gradient(135deg, #005C66 0%, #1A3C3E 100%)',
         logo: '../../assets/images/complete_bari.png',
         tagline: {
-            en: 'Complete Bariatric Solutions',
-            pt: 'Soluções Bariátricas Completas'
+            en: 'simple. digital. complete.',
+            pt: 'simples. digital. completo.'
         },
-        shapes: 'medical',
-        animations: 'health'
+        shapes: 'fintech',
+        animations: 'digital'
     },
     
     quintoandar: {

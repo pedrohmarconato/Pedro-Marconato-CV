@@ -24,6 +24,7 @@
             --rd-blue-accent: #4A9DC4;
             --rd-blue-deep: #0D1E2F;
             --text-color: #2c3e50;
+            --neutral-dark: #5a6c7d;
             --border-color: rgba(46, 124, 184, 0.2);
             --background-gradient: linear-gradient(135deg, #2E7CB8 0%, #1B4B73 50%, #0D1E2F 100%);
         }
@@ -71,9 +72,9 @@
         }
 
         .shape:nth-child(1) {
-            width: 100px;
-            height: 100px;
-            background: var(--rdstation-green);
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, var(--rd-blue-main), var(--rd-blue-accent));
             border-radius: 50%;
             top: 10%;
             left: 5%;
@@ -81,9 +82,9 @@
         }
 
         .shape:nth-child(2) {
-            width: 150px;
-            height: 150px;
-            background: var(--rdstation-dark-green);
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(45deg, var(--rd-blue-dark), var(--rd-blue-deep));
             transform: rotate(45deg);
             top: 60%;
             right: 10%;
@@ -91,9 +92,9 @@
         }
 
         .shape:nth-child(3) {
-            width: 80px;
-            height: 80px;
-            background: var(--rdstation-green);
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--rd-blue-accent), var(--rd-blue-main));
             border-radius: 50%;
             bottom: 20%;
             left: 25%;
@@ -114,10 +115,10 @@
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-radius: 28px;
             box-shadow: 
-                0 20px 50px rgba(20, 110, 55, 0.15),
+                0 20px 50px rgba(27, 75, 115, 0.15),
                 0 15px 30px rgba(0, 0, 0, 0.08),
                 inset 0 1px 2px rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(0, 201, 255, 0.1);
+            border: 1px solid rgba(74, 157, 196, 0.1);
             overflow: hidden;
             position: relative;
             animation: containerGlow 20s ease infinite;
@@ -126,16 +127,16 @@
         @keyframes containerGlow {
             0%, 100% { 
                 box-shadow: 
-                    0 20px 50px rgba(0, 201, 255, 0.15),
+                    0 20px 50px rgba(74, 157, 196, 0.15),
                     0 15px 30px rgba(0, 0, 0, 0.08),
-                    0 0 100px rgba(0, 201, 255, 0.1),
+                    0 0 100px rgba(74, 157, 196, 0.1),
                     inset 0 1px 2px rgba(255, 255, 255, 0.9);
             }
             50% { 
                 box-shadow: 
-                    0 20px 50px rgba(0, 201, 255, 0.2),
+                    0 20px 50px rgba(74, 157, 196, 0.2),
                     0 15px 30px rgba(0, 0, 0, 0.08),
-                    0 0 120px rgba(0, 201, 255, 0.15),
+                    0 0 120px rgba(74, 157, 196, 0.15),
                     inset 0 1px 2px rgba(255, 255, 255, 0.9);
             }
         }
@@ -147,7 +148,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(0, 201, 255, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(74, 157, 196, 0.05) 0%, transparent 70%);
             animation: rotate 30s linear infinite;
             pointer-events: none;
         }
@@ -225,16 +226,149 @@
             z-index: 2;
         }
 
-        @keyframes waveMotion {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(2deg) scale(1.1); }
-            50% { transform: rotate(-2deg) scale(0.95); }
-            75% { transform: rotate(1deg) scale(1.05); }
+        /* RD Station hexagon-based static shapes */
+        .rd-hexagon-shape {
+            position: absolute;
+            opacity: 0.15;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
         }
 
-        @keyframes wave {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-1440px); }
+        .rd-hexagon-shape:nth-child(1) {
+            width: 200px;
+            height: 230px;
+            background: linear-gradient(135deg, var(--rd-teal), var(--rd-blue-main));
+            top: 10%;
+            left: 5%;
+            transform: rotate(15deg);
+        }
+
+        .rd-hexagon-shape:nth-child(2) {
+            width: 150px;
+            height: 170px;
+            background: linear-gradient(45deg, var(--rd-blue-dark), var(--rd-navy));
+            top: 60%;
+            right: 10%;
+            transform: rotate(-20deg);
+        }
+
+        .rd-hexagon-shape:nth-child(3) {
+            width: 120px;
+            height: 140px;
+            background: linear-gradient(90deg, var(--rd-blue-main), var(--rd-teal));
+            bottom: 20%;
+            left: 30%;
+            transform: rotate(45deg);
+        }
+
+        .rd-hexagon-shape:nth-child(4) {
+            width: 80px;
+            height: 90px;
+            background: linear-gradient(180deg, var(--rd-navy), var(--rd-black));
+            top: 30%;
+            right: 30%;
+            transform: rotate(-10deg);
+        }
+
+        @keyframes organicFlow1 {
+            0%, 100% {
+                transform: rotate(0deg) scale(1) translate(0, 0);
+                border-radius: 50% 30% 70% 40%;
+            }
+            25% {
+                transform: rotate(5deg) scale(1.1) translate(20px, -10px);
+                border-radius: 40% 60% 50% 30%;
+            }
+            50% {
+                transform: rotate(-3deg) scale(0.95) translate(-15px, 15px);
+                border-radius: 60% 40% 30% 70%;
+            }
+            75% {
+                transform: rotate(2deg) scale(1.05) translate(10px, -5px);
+                border-radius: 30% 70% 60% 40%;
+            }
+        }
+
+        @keyframes organicFlow2 {
+            0%, 100% {
+                transform: rotate(0deg) scale(1) translate(0, 0);
+                border-radius: 40% 60% 30% 70%;
+            }
+            30% {
+                transform: rotate(-4deg) scale(1.08) translate(-25px, 20px);
+                border-radius: 70% 30% 60% 40%;
+            }
+            60% {
+                transform: rotate(6deg) scale(0.92) translate(30px, -25px);
+                border-radius: 30% 70% 40% 60%;
+            }
+            90% {
+                transform: rotate(-2deg) scale(1.03) translate(-10px, 10px);
+                border-radius: 60% 40% 70% 30%;
+            }
+        }
+
+        @keyframes organicFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                border-radius: 60% 40% 30% 70%;
+            }
+            33% {
+                transform: translateY(-30px) rotate(8deg) scale(1.1);
+                border-radius: 40% 60% 70% 30%;
+            }
+            66% {
+                transform: translateY(20px) rotate(-5deg) scale(0.9);
+                border-radius: 70% 30% 40% 60%;
+            }
+        }
+
+        /* Floating energy particles */
+        .energy-particle {
+            position: absolute;
+            background: rgba(46, 124, 184, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .energy-particle:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            top: 15%;
+            left: 15%;
+            animation: energyFloat 6s infinite ease-in-out;
+        }
+
+        .energy-particle:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            top: 30%;
+            right: 25%;
+            animation: energyFloat 8s infinite ease-in-out 1s;
+            background: rgba(27, 75, 115, 0.5);
+        }
+
+        .energy-particle:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 25%;
+            left: 35%;
+            animation: energyFloat 10s infinite ease-in-out 2s;
+            background: rgba(74, 157, 196, 0.4);
+        }
+
+        @keyframes energyFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 0.6;
+            }
+            33% {
+                transform: translateY(-40px) rotate(120deg) scale(1.2);
+                opacity: 0.9;
+            }
+            66% {
+                transform: translateY(20px) rotate(240deg) scale(0.8);
+                opacity: 0.7;
+            }
         }
 
         @keyframes shimmer {
@@ -244,7 +378,28 @@
 
         .header-content {
             position: relative;
-            z-index: 1;
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Logo container - clean without background */
+        .logo-container {
+            margin-bottom: 30px;
+            animation: logoMegaEntrance 2s ease-out;
+            position: relative;
+        }
+
+        @keyframes logoMegaEntrance {
+            0% {
+                transform: scale(0.8) translateY(-20px);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
         }
 
         .rdstation-logo {
@@ -261,24 +416,95 @@
             z-index: 2;
         }
 
-        .header-text {
-            max-width: 850px;
-            padding-right: 180px;
+        @keyframes logoMegaPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
         }
-        
+
+        .rdstation-logo:hover {
+            transform: scale(1.05);
+            filter: brightness(0) invert(1)
+                    drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3))
+                    drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2))
+                    drop-shadow(0 0 50px rgba(255, 255, 255, 0.7))
+                    drop-shadow(0 0 90px rgba(255, 255, 255, 0.5));
+        }
+
+        /* Animated tagline */
+        .company-tagline {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            animation: taglineMegaGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes taglineMegaGlow {
+            from {
+                text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+                transform: scale(1);
+            }
+            to {
+                text-shadow: 3px 3px 25px rgba(255, 255, 255, 1),
+                           0 0 40px rgba(74, 157, 196, 0.8),
+                           0 0 60px rgba(74, 157, 196, 0.6);
+                transform: scale(1.02);
+            }
+        }
+
+        .header-text {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
         .header h1 {
             font-size: 36px;
             font-weight: 700;
             color: white;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
             letter-spacing: -0.5px;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+            animation: nameMegaSlide 1.5s ease-out 0.5s both;
         }
-        
+
+        @keyframes nameMegaSlide {
+            from {
+                transform: translateX(-150px) rotateY(-90deg);
+                opacity: 0;
+                filter: blur(10px);
+            }
+            to {
+                transform: translateX(0) rotateY(0deg);
+                opacity: 1;
+                filter: blur(0px);
+            }
+        }
+
         .role {
-            font-size: 20px;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: roleMegaSlide 1.5s ease-out 0.8s both;
+        }
+
+        @keyframes roleMegaSlide {
+            from {
+                transform: translateX(150px) rotateY(90deg);
+                opacity: 0;
+                filter: blur(10px);
+            }
+            to {
+                transform: translateX(0) rotateY(0deg);
+                opacity: 1;
+                filter: blur(0px);
+            }
         }
         
         .contact-info {
@@ -286,6 +512,7 @@
             flex-wrap: wrap;
             gap: 12px;
             align-items: center;
+            justify-content: center;
         }
         
         .contact-button {
@@ -377,7 +604,7 @@
             padding: 12px 20px;
             border-radius: 14px;
             letter-spacing: 0.3px;
-            box-shadow: 0 4px 12px rgba(63, 161, 16, 0.1);
+            box-shadow: 0 4px 12px rgba(46, 124, 184, 0.1);
             display: inline-block;
             position: relative;
             overflow: hidden;
@@ -425,7 +652,7 @@
         }
         
         .skills-column {
-            background: linear-gradient(135deg, rgba(215, 230, 200, 0.3), rgba(215, 230, 200, 0.1));
+            background: linear-gradient(135deg, rgba(232, 244, 249, 0.3), rgba(232, 244, 249, 0.1));
             padding: 18px;
             border-radius: 12px;
             border: 1px solid rgba(46, 124, 184, 0.1);
@@ -573,10 +800,15 @@
         
         /* Hover effects */
         .tool-item:hover .skill-dot.active {
-            box-shadow: 
-                0 0 15px rgba(46, 124, 184, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            transform: scale(1.1);
+            box-shadow:
+                0 0 16px rgba(46, 124, 184, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transform: scale(1.15);
+        }
+
+        .tool-item:hover .skill-dot:not(.active) {
+            background: rgba(46, 124, 184, 0.3);
+            border-color: rgba(46, 124, 184, 0.4);
         }
         
         /* Tooltip styles */
@@ -741,7 +973,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, var(--rdstation-green), var(--rdstation-dark-green));
+            background: linear-gradient(to bottom, var(--rd-blue-main), var(--rd-blue-dark));
             border-radius: 3px;
         }
         
@@ -752,14 +984,14 @@
             border-radius: 16px;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 247, 0.9));
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 201, 255, 0.1);
+            border: 1px solid rgba(74, 157, 196, 0.1);
             transition: all 0.3s ease;
         }
 
         .experience-item:hover {
             transform: translateX(5px);
-            box-shadow: 0 4px 20px rgba(0, 201, 255, 0.08);
-            border-color: rgba(0, 201, 255, 0.15);
+            box-shadow: 0 4px 20px rgba(74, 157, 196, 0.08);
+            border-color: rgba(74, 157, 196, 0.15);
         }
         
         .experience-item::before {
@@ -770,16 +1002,16 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--rdstation-green);
+            background: var(--rd-blue-main);
             border: 3px solid white;
-            box-shadow: 0 0 0 3px rgba(63, 161, 16, 0.1);
+            box-shadow: 0 0 0 3px rgba(46, 124, 184, 0.1);
             z-index: 1;
         }
         
         .job-title {
             font-weight: 600;
             font-size: 20px;
-            color: var(--rdstation-dark-green);
+            color: var(--rd-blue-dark);
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -797,23 +1029,23 @@
             border-radius: 50%;
             font-size: 16px;
             font-weight: 600;
-            box-shadow: 0 3px 10px rgba(63, 161, 16, 0.15);
+            box-shadow: 0 3px 10px rgba(46, 124, 184, 0.15);
         }
         
         .company {
             font-weight: 500;
             font-size: 16px;
-            color: var(--rdstation-green);
+            color: var(--rd-blue-main);
             margin-bottom: 5px;
         }
         
         .period {
             font-size: 14px;
-            color: var(--sicredi-dark-neutral);
+            color: var(--neutral-dark);
             font-style: italic;
             margin-bottom: 15px;
             display: inline-block;
-            background: rgba(215, 230, 200, 0.5);
+            background: rgba(232, 244, 249, 0.5);
             padding: 4px 12px;
             border-radius: 20px;
         }
@@ -844,10 +1076,10 @@
         }
         
         .achievement-item {
-            background: linear-gradient(135deg, rgba(63, 161, 16, 0.05), rgba(63, 161, 16, 0.02));
+            background: linear-gradient(135deg, rgba(46, 124, 184, 0.05), rgba(46, 124, 184, 0.02));
             border-radius: 12px;
             padding: 18px;
-            border: 1px solid rgba(0, 201, 255, 0.1);
+            border: 1px solid rgba(74, 157, 196, 0.1);
             display: flex;
             align-items: flex-start;
             gap: 12px;
@@ -856,13 +1088,13 @@
         
         .achievement-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(63, 161, 16, 0.15);
-            border-color: var(--rdstation-green);
+            box-shadow: 0 6px 20px rgba(46, 124, 184, 0.15);
+            border-color: var(--rd-blue-main);
         }
         
         .achievement-icon {
             font-size: 24px;
-            color: var(--rdstation-green);
+            color: var(--rd-blue-main);
             flex-shrink: 0;
         }
         
@@ -873,7 +1105,7 @@
         .achievement-title {
             font-weight: 600;
             font-size: 15px;
-            color: var(--rdstation-dark-green);
+            color: var(--rd-blue-dark);
             margin-bottom: 6px;
         }
         
@@ -896,22 +1128,22 @@
         }
         
         .education-item {
-            background: linear-gradient(135deg, rgba(215, 230, 200, 0.4), rgba(215, 230, 200, 0.2));
+            background: linear-gradient(135deg, rgba(232, 244, 249, 0.4), rgba(232, 244, 249, 0.2));
             padding: 25px;
             border-radius: 16px;
-            border: 1px solid rgba(0, 201, 255, 0.1);
+            border: 1px solid rgba(74, 157, 196, 0.1);
             transition: all 0.3s ease;
         }
 
         .education-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(63, 161, 16, 0.1);
+            box-shadow: 0 8px 24px rgba(46, 124, 184, 0.1);
         }
         
         .degree {
             font-weight: 600;
             font-size: 18px;
-            color: var(--rdstation-dark-green);
+            color: var(--rd-blue-dark);
             margin-bottom: 8px;
         }
         
@@ -924,7 +1156,7 @@
         .thesis {
             font-size: 14px;
             font-style: italic;
-            color: var(--sicredi-dark-neutral);
+            color: var(--neutral-dark);
         }
 
         .cta-button {
@@ -939,7 +1171,7 @@
             font-size: 14px;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(63, 161, 16, 0.15);
+            box-shadow: 0 4px 15px rgba(46, 124, 184, 0.15);
             position: relative;
             overflow: hidden;
         }
@@ -957,7 +1189,7 @@
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(63, 161, 16, 0.2);
+            box-shadow: 0 6px 20px rgba(46, 124, 184, 0.2);
         }
 
         .cta-button:hover::before {
@@ -991,7 +1223,7 @@
             border-radius: 16px;
             padding: 30px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 201, 255, 0.1);
+            border: 1px solid rgba(74, 157, 196, 0.1);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -1016,14 +1248,14 @@
         
         .project-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(63, 161, 16, 0.15);
-            border-color: var(--rdstation-green);
+            box-shadow: 0 8px 30px rgba(46, 124, 184, 0.15);
+            border-color: var(--rd-blue-main);
         }
         
         .project-title {
             font-weight: 600;
             font-size: 18px;
-            color: var(--rdstation-dark-green);
+            color: var(--rd-blue-dark);
             margin-bottom: 12px;
         }
         
@@ -1036,23 +1268,23 @@
         
         .tech-tag {
             display: inline-block;
-            background: rgba(63, 161, 16, 0.1);
-            color: var(--rdstation-dark-green);
+            background: rgba(46, 124, 184, 0.1);
+            color: var(--rd-blue-dark);
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 500;
             margin-right: 8px;
             margin-bottom: 8px;
-            border: 1px solid rgba(63, 161, 16, 0.2);
+            border: 1px solid rgba(46, 124, 184, 0.2);
             transition: all 0.2s ease;
         }
 
         .tech-tag:hover {
-            background: var(--rdstation-green);
+            background: var(--rd-blue-main);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(63, 161, 16, 0.15);
+            box-shadow: 0 2px 8px rgba(46, 124, 184, 0.15);
         }
 
         /* Print button */
@@ -1070,7 +1302,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(63, 161, 16, 0.15);
+            box-shadow: 0 4px 20px rgba(46, 124, 184, 0.15);
             transition: all 0.3s ease;
             z-index: 100;
         }
@@ -1089,13 +1321,13 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             z-index: 100;
-            border: 2px solid rgba(63, 161, 16, 0.2);
+            border: 2px solid rgba(46, 124, 184, 0.2);
         }
         
         .language-toggle:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(63, 161, 16, 0.3);
-            border-color: rgba(63, 161, 16, 0.4);
+            box-shadow: 0 6px 30px rgba(46, 124, 184, 0.3);
+            border-color: rgba(46, 124, 184, 0.4);
         }
         
         .language-option {
@@ -1121,7 +1353,7 @@
         .language-option.active {
             background: var(--background-gradient);
             color: white;
-            box-shadow: 0 2px 10px rgba(63, 161, 16, 0.3);
+            box-shadow: 0 2px 10px rgba(46, 124, 184, 0.3);
             animation: pulseActive 2s ease-in-out infinite;
         }
         
@@ -1151,20 +1383,20 @@
         }
         
         .language-option:not(.active):hover {
-            background: rgba(63, 161, 16, 0.05);
-            color: var(--rdstation-green);
+            background: rgba(46, 124, 184, 0.05);
+            color: var(--rd-blue-main);
         }
         
         .language-divider {
             width: 1px;
             height: 20px;
-            background: rgba(63, 161, 16, 0.2);
+            background: rgba(46, 124, 184, 0.2);
             margin: 0 5px;
         }
 
         .print-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(63, 161, 16, 0.4);
+            box-shadow: 0 6px 30px rgba(46, 124, 184, 0.4);
         }
 
         .print-button i {
@@ -1221,6 +1453,19 @@
             }
         }
 
+        /* Reduced motion accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .section, .skills-column, .experience-item, .project-item {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
         /* Print styles */
         @media print {
             body {
@@ -1229,7 +1474,8 @@
 
             .animated-bg,
             .shape,
-            .print-button {
+            .print-button,
+            .language-toggle {
                 display: none !important;
             }
 
@@ -1240,20 +1486,43 @@
             }
 
             .section-title {
-                background: var(--rdstation-green) !important;
+                background: var(--rd-blue-dark) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
 
             .header {
-                background: var(--rdstation-green) !important;
+                background: var(--rd-blue-dark) !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+                page-break-inside: avoid;
+                padding: 30px !important;
+            }
+
+            .header-text {
+                padding-right: 0 !important;
+            }
+
+            .rdstation-logo {
+                position: static !important;
+                display: block !important;
+                margin: 20px auto 0 !important;
+                width: 100px !important;
+                opacity: 1 !important;
+                filter: brightness(0) invert(1) !important;
+            }
+
+            .header::after,
+            .header::before {
+                display: none !important;
+            }
+
+            .contact-cta {
+                display: none !important;
             }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="../../assets/js/cv-texts.js"></script>
     <!-- Favicon Meta Tags -->
     <meta name="theme-color" content="#1a4b84">
     <meta name="msapplication-TileColor" content="#1a4b84">
@@ -1320,14 +1589,14 @@
         </header>
         
         <section class="section">
-            <h2 class="section-title">PERFIL PROFISSIONAL</h2>
+            <h2 class="section-title" id="section-profile">PERFIL PROFISSIONAL</h2>
             <p class="profile-text" id="cv-profile">
                 Profissional em Gestão de CRM e Inteligência de Dados com foco em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa de Brand Equity que fundamentou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos. Como Coordenador de CRM nas Lojas Renner, otimizei orçamento gerando economia de 10% ao ano, implementei 80% de comunicações automatizadas e estratégias que resultaram em incremento no consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.
             </p>
         </section>
         
         <section class="section">
-            <h2 class="section-title" id="section-skills"></h2>
+            <h2 class="section-title" id="section-skills">HABILIDADES E FERRAMENTAS</h2>
             <div class="skills-container">
                 <div class="skills-column" id="skills-strategic"></div>
                 <div class="skills-column" id="skills-tools"></div>
@@ -1354,12 +1623,12 @@
     <!-- Language toggle button -->
     <div class="language-toggle">
         <a href="rdstation.html" class="language-option">
-            <span>EN</span>
+            <span id="lang-en">EN</span>
         </a>
         <div class="language-divider"></div>
         <a href="rdstation_pt.html" class="language-option active">
             <i class="fas fa-check-circle"></i>
-            <span>PT</span>
+            <span id="lang-pt">PT</span>
         </a>
     </div>
     
@@ -1371,26 +1640,26 @@
     <!-- Email Modal -->
     <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
-            <h3 style="margin-bottom:25px; color: var(--rdstation-dark-green); font-size: 24px;">Enviar E-mail</h3>
+            <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--neutral-dark);">×</button>
+            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--rd-blue-dark); font-size: 24px;">Enviar E-mail</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu E-mail</label>
+                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu E-mail</label>
                     <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Assunto</label>
+                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Assunto</label>
                     <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem</label>
+                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem</label>
                     <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
-                <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.3);">Enviar</button>
+                <button id="email-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(46, 124, 184, 0.3);">Enviar</button>
             </form>
         </div>
     </div>
@@ -1398,35 +1667,38 @@
     <!-- Phone Modal -->
     <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
         <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--sicredi-dark-neutral);">×</button>
-            <h3 style="margin-bottom:25px; color: var(--rdstation-dark-green); font-size: 24px;">Entrar em Contato</h3>
+            <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--neutral-dark);">×</button>
+            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--rd-blue-dark); font-size: 24px;">Entre em Contato</h3>
             <form action="https://formspree.io/f/mdkekegw" method="POST">
                 <input type="hidden" name="contact_type" value="phone_request">
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <label id="phone-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
                     <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Telefone</label>
+                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Telefone</label>
                     <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:20px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Melhor horário para contato</label>
+                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Melhor horário para contato</label>
                     <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
                 </div>
                 <div style="margin-bottom:25px;">
-                    <label style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem (Opcional)</label>
+                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem (Opcional)</label>
                     <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
                 </div>
                 <div style="display:flex; gap:15px;">
-                    <button type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(63, 161, 16, 0.3);">Solicitar Contato</button>
+                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(46, 124, 184, 0.3);">Solicitar Contato</button>
                     <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
-                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> WhatsApp
+                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> <span id="whatsapp-text">WhatsApp</span>
                     </a>
                 </div>
             </form>
         </div>
     </div>
+
+    <!-- CV Texts System -->
+    <script src="../../assets/js/cv-texts.js"></script>
     <script>
         function openEmailForm() {
             document.getElementById('emailModal').style.display = 'flex';

@@ -170,43 +170,6 @@
             }
         }
 
-        /* Door opening effect in header - enhanced */
-        .header-door {
-            position: absolute;
-            right: 80px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 140px;
-            height: 200px;
-            z-index: 3;
-        }
-
-        .door-frame-header {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 4px 4px 0 0;
-            backdrop-filter: blur(10px);
-        }
-
-        .door-panel {
-            position: absolute;
-            width: calc(100% - 6px);
-            height: calc(100% - 6px);
-            background: rgba(255, 255, 255, 0.1);
-            left: 3px;
-            top: 3px;
-            transform-origin: left center;
-            animation: headerDoorOpen 8s ease-in-out infinite;
-            backdrop-filter: blur(5px);
-        }
-
-        @keyframes headerDoorOpen {
-            0%, 100% { transform: perspective(500px) rotateY(0deg); }
-            50% { transform: perspective(500px) rotateY(-65deg); }
-        }
-
         /* Floating floor plan elements - enhanced */
         .floor-plan-element {
             position: absolute;
@@ -428,6 +391,46 @@
             position: relative;
             border-bottom: 1px solid var(--border-color);
             transition: background-color 0.3s ease;
+        }
+
+        /* Static illustrations for sections */
+        .section-illustration {
+            position: absolute;
+            font-size: 60px;
+            opacity: 0.05;
+            color: var(--azul-quinto);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .profile-illustration {
+            top: 40px;
+            right: 60px;
+            transform: rotate(-15deg);
+        }
+
+        .skills-illustration {
+            bottom: 40px;
+            left: 40px;
+            transform: rotate(15deg);
+        }
+
+        .experience-illustration {
+            top: 50%;
+            right: 40px;
+            transform: translateY(-50%) rotate(-10deg);
+        }
+
+        .education-illustration {
+            bottom: 30px;
+            right: 50px;
+            transform: rotate(20deg);
+        }
+
+        .projects-illustration {
+            top: 30px;
+            left: 40px;
+            transform: rotate(-20deg);
         }
 
         .section:hover {
@@ -933,7 +936,32 @@
             bottom: -35px;
         }
 
-        /* Print button will be styled via JavaScript following general pattern */
+        /* Print button — repo standard (fixed round FAB) */
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--background-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 102, 204, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .print-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(0, 102, 204, 0.55);
+        }
+
+        .print-button i { font-size: 24px; }
 
         /* Language toggle with QuintoAndar style */
         .language-toggle {
@@ -1037,11 +1065,9 @@
                 right: 20px;
             }
 
-            #printButton {
-                bottom: 20px !important;
-                right: 20px !important;
-                padding: 8px 12px !important;
-                font-size: 14px !important;
+            .print-button {
+                bottom: 20px;
+                right: 20px;
             }
         }
 
@@ -1218,7 +1244,6 @@
     
     <script src="../../assets/js/cv-texts.js"></script>
     <script src="../../assets/js/brands-config.js"></script>
-    <script src="../../assets/js/dynamic-favicon.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -1233,12 +1258,6 @@
             <div class="floor-plan-element"></div>
             <div class="floor-plan-element"></div>
             <div class="floor-plan-element"></div>
-            
-            <!-- Door opening effect in header -->
-            <div class="header-door">
-                <div class="door-frame-header"></div>
-                <div class="door-panel"></div>
-            </div>
             
             <!-- Golden accent line -->
             <div class="header-accent"></div>
@@ -1325,50 +1344,68 @@
         <a href="quintoandar_pt.html" class="lang-option">PT</a>
     </div>
     
-    <!-- Print button will be added via JavaScript -->
-    
+    <!-- Print button -->
+    <button class="print-button" aria-label="Save as PDF" onclick="var win = window.open('../../cv_styles/cv_quintoandar_style_EN.html', '_blank'); win.onload = function() { win.print(); }">
+        <i class="fas fa-file-pdf"></i>
+    </button>
+
     <!-- Email Modal -->
     <div id="emailModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; justify-content: center; align-items: center;">
-        <div style="background: white; padding: 30px; border-radius: 10px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;">
-            <h3 style="margin-bottom: 20px; color: var(--azul-quinto);">Send Email</h3>
-            <form id="emailForm">
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Your Name:</label>
-                    <input type="text" name="name" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+        <div style="background: white; padding: 40px; border-radius: 16px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);">
+            <button onclick="closeEmailModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #6b7280;">&times;</button>
+            <h3 id="email-modal-title" style="margin-bottom: 25px; color: var(--azul-quinto); font-size: 24px;">Send Email</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <div style="margin-bottom: 20px;">
+                    <label id="email-label-name" style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">Your Name</label>
+                    <input type="text" name="name" required style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 16px;">
                 </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Your Email:</label>
-                    <input type="email" name="email" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                <div style="margin-bottom: 20px;">
+                    <label id="email-label-email" style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">Your Email</label>
+                    <input type="email" name="email" required style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 16px;">
                 </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Subject:</label>
-                    <input type="text" name="subject" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                <div style="margin-bottom: 20px;">
+                    <label id="email-label-subject" style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">Subject</label>
+                    <input type="text" name="subject" required style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 16px;">
                 </div>
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Message:</label>
-                    <textarea name="message" rows="5" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+                <div style="margin-bottom: 25px;">
+                    <label id="email-label-message" style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">Message</label>
+                    <textarea name="message" required rows="5" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 16px; resize: vertical;"></textarea>
                 </div>
-                <div style="display: flex; gap: 10px; justify-content: flex-end;">
-                    <button type="button" onclick="closeEmailForm()" style="padding: 10px 20px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">Cancel</button>
-                    <button type="submit" style="padding: 10px 20px; background: var(--azul-quinto); color: white; border: none; border-radius: 4px; cursor: pointer;">Send Email</button>
-                </div>
+                <button id="email-button" type="submit" style="background: var(--background-gradient); color: white; border: none; padding: 14px 28px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 16px; box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);">Send</button>
             </form>
         </div>
     </div>
-    
+
     <!-- Phone Modal -->
     <div id="phoneModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; justify-content: center; align-items: center;">
-        <div style="background: white; padding: 30px; border-radius: 10px; max-width: 400px; width: 90%;">
-            <h3 style="margin-bottom: 20px; color: var(--azul-quinto);">Contact Options</h3>
-            <div style="display: flex; flex-direction: column; gap: 15px;">
-                <a href="tel:+555581147758" style="padding: 15px; background: var(--azul-quinto); color: white; text-decoration: none; border-radius: 8px; text-align: center; display: flex; align-items: center; gap: 10px; justify-content: center;">
-                    <i class="fas fa-phone"></i> Call Now
-                </a>
-                <a href="https://wa.me/555581147758" target="_blank" style="padding: 15px; background: #25D366; color: white; text-decoration: none; border-radius: 8px; text-align: center; display: flex; align-items: center; gap: 10px; justify-content: center;">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-                <button onclick="closePhoneForm()" style="padding: 15px; border: 1px solid #ddd; background: white; border-radius: 8px; cursor: pointer;">Close</button>
-            </div>
+        <div style="background: white; padding: 40px; border-radius: 16px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);">
+            <button onclick="closePhoneModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #6b7280;">&times;</button>
+            <h3 id="phone-modal-title" style="margin-bottom: 25px; color: var(--azul-quinto); font-size: 24px;">Get in Touch</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <input type="hidden" name="contact_type" value="phone_request">
+                <div style="margin-bottom: 20px;">
+                    <label id="phone-label-name" style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">Your Name</label>
+                    <input type="text" name="name" required style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 16px;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label id="phone-label-phone" style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">Your Phone</label>
+                    <input type="tel" name="phone" required style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 16px;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label id="phone-label-besttime" style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">Best time to contact</label>
+                    <input type="text" name="best_time" required style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 16px;">
+                </div>
+                <div style="margin-bottom: 25px;">
+                    <label id="phone-label-message" style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">Message (Optional)</label>
+                    <textarea name="message" rows="3" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 16px; resize: vertical;"></textarea>
+                </div>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color: white; border: none; padding: 14px 28px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 16px; box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);">Request Contact</button>
+                    <a href="https://wa.me/55981147758" target="_blank" style="display: inline-flex; align-items: center; background-color: #25D366; color: white; text-decoration: none; border: none; padding: 14px 28px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 16px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
+                        <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> <span id="whatsapp-text">WhatsApp</span>
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
     
@@ -1634,7 +1671,7 @@
             document.getElementById('emailModal').style.display = 'flex';
         }
 
-        function closeEmailForm() {
+        function closeEmailModal() {
             document.getElementById('emailModal').style.display = 'none';
         }
 
@@ -1642,52 +1679,21 @@
             document.getElementById('phoneModal').style.display = 'flex';
         }
 
-        function closePhoneForm() {
+        function closePhoneModal() {
             document.getElementById('phoneModal').style.display = 'none';
         }
-
-        // Handle email form submission
-        document.getElementById('emailForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const subject = encodeURIComponent(formData.get('subject'));
-            const body = encodeURIComponent(`From: ${formData.get('name')} (${formData.get('email')})\n\n${formData.get('message')}`);
-            window.location.href = `mailto:pedrohmarconato@gmail.com?subject=${subject}&body=${body}`;
-            closeEmailForm();
-        });
 
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             const lang = 'en';
-            
+
             initializeBasicContent(lang);
             renderSkills(lang);
             renderExperience(lang);
             renderEducation(lang);
             renderProjects(lang);
-            
-            // Add print button following general pattern
-            const printButton = document.createElement('button');
-            printButton.id = 'printButton';
-            printButton.innerHTML = '<i class="fas fa-file-pdf"></i> Save as PDF';
-            printButton.style.position = 'fixed';
-            printButton.style.bottom = '20px';
-            printButton.style.right = '20px';
-            printButton.style.backgroundColor = '#0066CC';
-            printButton.style.color = 'white';
-            printButton.style.border = 'none';
-            printButton.style.borderRadius = '4px';
-            printButton.style.padding = '10px 15px';
-            printButton.style.cursor = 'pointer';
-            printButton.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
-            printButton.style.zIndex = '999';
-            printButton.style.fontSize = '14px';
-            printButton.onclick = function() {
-                var win = window.open('../../cv_styles/cv_quintoandar_style_EN.html', '_blank');
-                win.onload = function() { win.print(); };
-            };
-            document.body.appendChild(printButton);
-            
+            initializeModalTexts(lang);
+
             // Initialize tooltips following general pattern
             const tooltips = document.querySelectorAll('.tooltip');
             
@@ -1750,14 +1756,16 @@
         window.onclick = function(event) {
             const emailModal = document.getElementById('emailModal');
             const phoneModal = document.getElementById('phoneModal');
-            
+
             if (event.target == emailModal) {
-                closeEmailForm();
+                closeEmailModal();
             }
             if (event.target == phoneModal) {
-                closePhoneForm();
+                closePhoneModal();
             }
         }
     </script>
+    <!-- Dynamic Favicon System -->
+    <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
 </html>

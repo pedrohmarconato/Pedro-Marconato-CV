@@ -704,6 +704,11 @@
             font-size: 14px;
         }
 
+        button.contact-item {
+            font-family: inherit;
+            line-height: inherit;
+        }
+
         /* Content sections */
         .content-section {
             padding: 40px 60px;
@@ -779,27 +784,56 @@
             text-transform: uppercase;
         }
 
-        .skill-items {
+        .tool-item {
+            margin-bottom: 16px;
+        }
+
+        .tool-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .tool-name {
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .skill-tag {
-            background: var(--border-color);
-            color: var(--text-color);
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 12px;
+            justify-content: space-between;
+            align-items: center;
             font-weight: 500;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--text-color);
         }
 
-        .skill-tag:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
+        .tool-percentage {
+            font-size: 12px;
+            color: var(--accent-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dots-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: nowrap;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: rgba(255, 140, 0, 0.15);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .dot.filled {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 60%, var(--accent-color) 100%);
+            box-shadow: 0 1px 4px rgba(255, 140, 0, 0.45);
+        }
+
+        .tool-item:hover .dot.filled {
+            transform: scale(1.2);
+            box-shadow: 0 2px 7px rgba(255, 107, 53, 0.55);
         }
 
         /* Experience Timeline */
@@ -1100,6 +1134,15 @@
             }
         }
 
+        /* Reduced motion accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
         /* Print styles */
         @media print {
             body {
@@ -1166,24 +1209,19 @@
         
         <section class="contact-section">
             <div class="contact-info">
-                <a href="mailto:pedrohmarconato@gmail.com" class="contact-item" title="Clique para enviar um email">
+                <button type="button" class="contact-item" onclick="openEmailForm()" title="Clique para enviar um email">
                     <i class="fas fa-envelope"></i>
                     <span id="cv-email">pedrohmarconato@gmail.com</span>
-                </a>
-                
-                <a href="tel:+5555981147758" class="contact-item" title="Clique para ligar">
+                </button>
+
+                <button type="button" class="contact-item" onclick="openPhoneForm()" title="Clique para solicitar contato">
                     <i class="fas fa-phone"></i>
                     <span id="cv-phone">+55 (55) 981147758</span>
-                </a>
-                
+                </button>
+
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <span id="cv-location">Cachoeira do Sul, RS</span>
-                </div>
-                
-                <div class="contact-item">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Brasileiro, Casado, 35 anos</span>
                 </div>
                 
                 <a href="https://linkedin.com/in/pedrohmarconato" target="_blank" class="contact-item" title="Clique para visitar o LinkedIn" id="cv-linkedin">
@@ -1199,13 +1237,17 @@
         </section>
 
         <section class="content-section">
-            <h2 class="section-title">Perfil Profissional</h2>
+            <h2 class="section-title" id="section-profile">Perfil Profissional</h2>
             <div class="item-description" id="cv-profile"></div>
         </section>
 
         <section class="content-section">
             <h2 class="section-title" id="section-skills">Skills & Ferramentas</h2>
-            <div class="skills-grid" id="cv-skills"></div>
+            <div class="skills-grid">
+                <div class="skills-category" id="skills-strategic"></div>
+                <div class="skills-category" id="skills-tools"></div>
+                <div class="skills-category" id="skills-emerging"></div>
+            </div>
         </section>
 
         <section class="content-section">
@@ -1244,53 +1286,79 @@
         <i class="fas fa-file-pdf"></i>
     </button>
 
-    <script>
-        function getText(key, lang = 'pt') {
-            if (typeof CVTexts === 'undefined') {
-                return '';
-            }
-            
-            const texts = CVTexts.common[lang];
-            if (!texts) return '';
-            
-            switch (key) {
-                case 'name': return texts.name;
-                case 'role': return texts.role;
-                case 'professionalProfile': return texts.professionalProfile;
-                case 'skills': return texts.skills;
-                case 'skillCategories': return texts.skillCategories;
-                case 'experience': return texts.experience;
-                case 'education': return texts.education;
-                case 'projects': return texts.projects;
-                default: return texts[key] || '';
-            }
-        }
+    <!-- Email Modal -->
+    <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+            <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: #6b7280;">×</button>
+            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--primary-color); font-size: 24px;">Enviar Email</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <div style="margin-bottom:20px;">
+                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Email</label>
+                    <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Assunto</label>
+                    <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:25px;">
+                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem</label>
+                    <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
+                </div>
+                <button id="email-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);">Enviar</button>
+            </form>
+        </div>
+    </div>
 
-        function renderSkills(lang = 'pt') {
-            const container = document.getElementById('cv-skills');
-            if (!container) return;
-            
-            const skills = getText('skills', lang);
-            const skillCategories = getText('skillCategories', lang);
-            let html = '';
-            
-            const categories = ['strategic', 'tools', 'emerging'];
-            
-            categories.forEach(categoryKey => {
-                if (skills[categoryKey]) {
-                    html += `
-                        <div class="skills-category">
-                            <h3>${skillCategories[categoryKey]}</h3>
-                            <div class="skill-items">
-                                ${skills[categoryKey].map(skill => `<span class="skill-tag">${skill.name}</span>`).join('')}
-                            </div>
-                        </div>
-                    `;
-                }
-            });
-            
-            container.innerHTML = html;
-        }
+    <!-- Phone Modal -->
+    <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background-color:white; padding:40px; border-radius:16px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+            <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: #6b7280;">×</button>
+            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--primary-color); font-size: 24px;">Entre em Contato</h3>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <input type="hidden" name="contact_type" value="phone_request">
+                <div style="margin-bottom:20px;">
+                    <label id="phone-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Nome</label>
+                    <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Seu Telefone</label>
+                    <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Melhor horário para contato</label>
+                    <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s;">
+                </div>
+                <div style="margin-bottom:25px;">
+                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Mensagem (Opcional)</label>
+                    <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:8px; font-size: 16px; transition: border-color 0.3s; resize: vertical;"></textarea>
+                </div>
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color:white; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);">Solicitar Contato</button>
+                    <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; border:none; padding:14px 28px; border-radius:8px; cursor:pointer; font-weight:600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
+                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> <span id="whatsapp-text">WhatsApp</span>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openEmailForm() { document.getElementById('emailModal').style.display = 'flex'; }
+        function closeEmailModal() { document.getElementById('emailModal').style.display = 'none'; }
+        function openPhoneForm() { document.getElementById('phoneModal').style.display = 'flex'; }
+        function closePhoneModal() { document.getElementById('phoneModal').style.display = 'none'; }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('emailModal')) closeEmailModal();
+            if (event.target == document.getElementById('phoneModal')) closePhoneModal();
+        };
+
+        // getText e renderSkills vêm do cv-texts.js global (fonte única de verdade) —
+        // nenhuma versão local deve ser declarada aqui para não shadowá-los.
 
         function renderExperience(lang = 'pt') {
             const container = document.getElementById('cv-experience');
@@ -1434,10 +1502,13 @@
             document.getElementById('cv-role').textContent = getText('role', lang);
             document.getElementById('cv-profile').textContent = getText('professionalProfile', lang);
             
-            renderSkills(lang);
+            renderSkills('skills-strategic', 'strategic', lang);
+            renderSkills('skills-tools', 'tools', lang);
+            renderSkills('skills-emerging', 'emerging', lang);
             renderExperience(lang);
             renderEducation(lang);
             renderProjects(lang);
+            initializeModalTexts(lang);
         });
     </script>
     <script src="../../assets/js/dynamic-favicon.js"></script>
