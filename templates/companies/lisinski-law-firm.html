@@ -1293,11 +1293,39 @@
         }
 
         /* Print styles */
+        /* Print button */
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+            color: white;
+            border: 1px solid rgba(74, 144, 226, 0.4);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(26, 75, 132, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .print-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(26, 75, 132, 0.5);
+        }
+
+        .print-button i { font-size: 24px; color: white; }
+
         @media print {
             body {
                 background: white;
             }
 
+            .print-button,
             .animated-bg,
             .shape,
             .language-toggle,
@@ -1428,6 +1456,11 @@
         </section>
     </div>
     
+    <!-- Print button -->
+    <button class="print-button" title="Print CV" onclick="var win = window.open('../../cv_styles/cv_lisinski-law-firm_style_EN.html', '_blank'); win.onload = function() { win.print(); }">
+        <i class="fas fa-file-pdf"></i>
+    </button>
+
     <!-- Language toggle button -->
     <div class="language-toggle">
         <a href="lisinski-law-firm.html" class="language-option active">
