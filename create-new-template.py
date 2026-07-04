@@ -273,7 +273,7 @@ class TemplateCreator:
     </div>
     
     <!-- SCRIPTS OBRIGATÓRIOS -->
-    <script src="../../cv-texts.js"></script>
+    <script src="../../assets/js/cv-texts.js"></script>
     <script src="../../assets/js/dynamic-favicon.js"></script>
     <script>
         // Initialize content when page loads
