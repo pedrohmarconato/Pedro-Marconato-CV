@@ -264,40 +264,60 @@ PAGE_TEMPLATE = Template('''<!DOCTYPE html>
             font-size: 0.85em;
         }
 
-        /* Print button */
+        /* Print button — FAB fixo inferior-direito (padrão das referências) */
         .print-button {
-            position: absolute;
-            top: 20px; right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, $primary_color 0%, $secondary_color 100%);
             color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9em;
-        }
-        .print-button:hover { background: rgba(255, 255, 255, 0.3); }
-
-        /* Language toggle */
-        .language-toggle {
-            position: absolute;
-            top: 20px; left: 20px;
+            border: none;
             display: flex;
-            gap: 4px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            padding: 4px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
         }
+        .print-button:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4); }
+        .print-button i { font-size: 24px; }
+
+        /* Language toggle — pílula fixa superior-direita (padrão das referências) */
+        .language-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .language-toggle:hover { transform: translateY(-2px); }
         .language-option {
-            color: white;
+            color: var(--text-color);
             text-decoration: none;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.85em;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
         }
-        .language-option.active { background: rgba(255, 255, 255, 0.3); font-weight: 700; }
+        .language-option.active {
+            background: linear-gradient(135deg, $primary_color 0%, $secondary_color 100%);
+            color: white;
+        }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -305,6 +325,13 @@ PAGE_TEMPLATE = Template('''<!DOCTYPE html>
             .header { padding: 70px 30px 40px; }
             .header h1 { font-size: 2em; }
             .content { padding: 30px; }
+            .print-button, .language-toggle {
+                position: fixed;
+                bottom: 20px;
+                top: auto;
+            }
+            .print-button { right: 20px; }
+            .language-toggle { right: auto; left: 20px; }
         }
 
         /* Print styles */
@@ -321,17 +348,18 @@ PAGE_TEMPLATE = Template('''<!DOCTYPE html>
 <body>
     <div class="animated-bg"></div>
 
+    <!-- Controles fixos fora do container (backdrop-filter quebraria position:fixed) -->
+    <div class="language-toggle">
+        <a href="$en_filename" class="language-option $en_active">$en_check EN</a>
+        <a href="$pt_filename" class="language-option $pt_active">$pt_check PT</a>
+    </div>
+
+    <button class="print-button" title="$print_text" onclick="var win = window.open('../../cv_styles/cv_${empresa_lower}_style_$lang_upper.html', '_blank'); win.onload = function() { win.print(); }">
+        <i class="fas fa-file-pdf"></i>
+    </button>
+
     <div class="cv-container">
         <header class="header">
-            <div class="language-toggle">
-                <a href="$en_filename" class="language-option $en_active">EN</a>
-                <a href="$pt_filename" class="language-option $pt_active">PT</a>
-            </div>
-
-            <button class="print-button" onclick="var win = window.open('../../cv_styles/cv_${empresa_lower}_style_$lang_upper.html', '_blank'); win.onload = function() { win.print(); }">
-                <i class="fas fa-print"></i> $print_text
-            </button>
-
             <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
             <h2 id="cv-role">$role_text</h2>
 
@@ -576,6 +604,8 @@ LANG_CONFIG = {
         'projects_title': 'Projects & Innovation',
         'en_active': 'active',
         'pt_active': '',
+        'en_check': '<i class="fas fa-check-circle"></i>',
+        'pt_check': '',
     },
     'pt': {
         'lang': 'pt-BR',
@@ -592,6 +622,8 @@ LANG_CONFIG = {
         'projects_title': 'Projetos e Inovação',
         'en_active': '',
         'pt_active': 'active',
+        'en_check': '',
+        'pt_check': '<i class="fas fa-check-circle"></i>',
     },
 }
 
@@ -665,11 +697,13 @@ class TemplateCreator:
             self.log("brands-config.js não encontrado", 'warning')
             return
         content = brands_config_path.read_text(encoding='utf-8')
-        if re.search(rf"^\s*{re.escape(data['empresa_lower'])}:", content, re.M):
+        if re.search(rf"^\s*'?{re.escape(data['empresa_lower'])}'?:", content, re.M):
             self.log(f"{data['empresa_lower']} já existe no brands-config.js", 'warning')
             return
+        # chave sempre com aspas: slugs com hífen (ex.: grupo-rbs) quebrariam sem elas
+        js_key = f"'{data['empresa_lower']}'"
         new_brand_config = f'''
-    {data['empresa_lower']}: {{
+    {js_key}: {{
         name: '{data['empresa_display']}',
         colors: {{
             primary: '{data['primary_color']}',
@@ -693,7 +727,11 @@ class TemplateCreator:
         if insert_position < 0:
             self.log("Não foi possível atualizar brands-config.js", 'error')
             return
-        new_content = content[:insert_position] + new_brand_config + '\n' + content[insert_position:]
+        # garante vírgula após a última entrada existente antes de anexar a nova
+        head = content[:insert_position].rstrip()
+        if head.endswith('}'):
+            head += ','
+        new_content = head + '\n' + new_brand_config + '\n' + content[insert_position:]
         brands_config_path.write_text(new_content, encoding='utf-8')
         self.log("brands-config.js atualizado", 'success')
 

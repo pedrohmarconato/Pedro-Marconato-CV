@@ -357,7 +357,91 @@ const BRANDS_CONFIG = {
         },
         shapes: 'digital',
         animations: 'payments'
-    }
+    },
+
+    'grupo-rbs': {
+        name: 'Grupo RBS',
+        colors: {
+            primary: '#003563',
+            secondary: '#0A5394',
+            accent: '#D64545',
+            text: '#000000',
+            whiteText: '#FFFFFF',
+            grayText: '#333333',
+            border: 'rgba(0, 0, 0, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #003563 0%, #0A5394 100%)',
+        logo: '../../assets/images/grupo-rbs.png',
+        tagline: {
+            en: 'journalism. data. audience.',
+            pt: 'jornalismo. dados. audiência.'
+        },
+        shapes: 'circles',
+        animations: 'standard'
+    },
+
+    itau: {
+        name: 'Itaú',
+        colors: {
+            primary: '#FF6200',
+            secondary: '#C24E00',
+            accent: '#FFB300',
+            text: '#000000',
+            whiteText: '#FFFFFF',
+            grayText: '#333333',
+            border: 'rgba(0, 0, 0, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #FF6200 0%, #C24E00 100%)',
+        logo: '../../assets/images/itau.png',
+        tagline: {
+            en: 'made of future',
+            pt: 'feito de futuro'
+        },
+        shapes: 'circles',
+        animations: 'standard'
+    },
+
+    nubank: {
+        name: 'Nubank',
+        colors: {
+            primary: '#820AD1',
+            secondary: '#5C08A0',
+            accent: '#A64CE8',
+            text: '#000000',
+            whiteText: '#FFFFFF',
+            grayText: '#333333',
+            border: 'rgba(0, 0, 0, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #820AD1 0%, #5C08A0 100%)',
+        logo: '../../assets/images/nubank.png',
+        tagline: {
+            en: 'fighting complexity to empower people',
+            pt: 'descomplicando a vida financeira'
+        },
+        shapes: 'circles',
+        animations: 'standard'
+    },
+
+    magalu: {
+        name: 'Magalu',
+        colors: {
+            primary: '#0086FF',
+            secondary: '#236FBE',
+            accent: '#FF3BA8',
+            text: '#000000',
+            whiteText: '#FFFFFF',
+            grayText: '#333333',
+            border: 'rgba(0, 0, 0, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #0086FF 0%, #236FBE 100%)',
+        logo: '../../assets/images/magalu.svg',
+        tagline: {
+            en: "For you, it's Magalu!",
+            pt: 'Pra você é Magalu!'
+        },
+        shapes: 'circles',
+        animations: 'standard'
+    },
 };
 
 // Função para obter configuração de uma marca
