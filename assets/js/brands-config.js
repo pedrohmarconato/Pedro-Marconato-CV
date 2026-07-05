@@ -442,6 +442,90 @@ const BRANDS_CONFIG = {
         shapes: 'circles',
         animations: 'standard'
     },
+
+    'accenture': {
+        name: 'Accenture',
+        colors: {
+            primary: '#A100FF',
+            secondary: '#460073',
+            accent: '#BD00FF',
+            text: '#000000',
+            whiteText: '#FFFFFF',
+            grayText: '#333333',
+            border: 'rgba(0, 0, 0, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #A100FF 0%, #460073 100%)',
+        logo: '../../assets/images/accenture.svg',
+        tagline: {
+            en: 'let there be change',
+            pt: 'que haja mudança'
+        },
+        shapes: 'circles',
+        animations: 'standard'
+    },
+
+    'google': {
+        name: 'Google',
+        colors: {
+            primary: '#4285F4',
+            secondary: '#1A73E8',
+            accent: '#EA4335',
+            text: '#000000',
+            whiteText: '#FFFFFF',
+            grayText: '#333333',
+            border: 'rgba(0, 0, 0, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #4285F4 0%, #1A73E8 100%)',
+        logo: '../../assets/images/google.png',
+        tagline: {
+            en: "organizing the world's information",
+            pt: 'organizando a informação do mundo'
+        },
+        shapes: 'circles',
+        animations: 'standard'
+    },
+
+    'vivo': {
+        name: 'Vivo',
+        colors: {
+            primary: '#660099',
+            secondary: '#44006B',
+            accent: '#ED0080',
+            text: '#000000',
+            whiteText: '#FFFFFF',
+            grayText: '#333333',
+            border: 'rgba(0, 0, 0, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #660099 0%, #44006B 100%)',
+        logo: '../../assets/images/vivo.webp',
+        tagline: {
+            en: 'live it all',
+            pt: 'viva tudo'
+        },
+        shapes: 'circles',
+        animations: 'standard'
+    },
+
+    'mercado-livre': {
+        name: 'Mercado Livre',
+        colors: {
+            primary: '#2D3277',
+            secondary: '#1B1F55',
+            accent: '#FFE600',
+            text: '#000000',
+            whiteText: '#FFFFFF',
+            grayText: '#333333',
+            border: 'rgba(0, 0, 0, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #2D3277 0%, #1B1F55 100%)',
+        logo: '../../assets/images/mercado-livre.png',
+        tagline: {
+            en: 'democratizing commerce',
+            pt: 'democratizando o comércio'
+        },
+        shapes: 'circles',
+        animations: 'standard'
+    },
 };
 
 // Função para obter configuração de uma marca
