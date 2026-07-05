@@ -5,93 +5,404 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedro Henrique Marconato - CV</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
 
         :root {
-            /* Magalu Colors */
+            /* Magalu Colors (docs/magalu_brandbook.md) */
             --primary-color: #0086FF;
             --secondary-color: #236FBE;
             --accent-color: #FF3BA8;
+            --light-bg: #E5F2FF;
             --text-color: #2c3e50;
-            --border-color: rgba(0, 0, 0, 0.15);
+            --muted-color: #5a6b7a;
+            --border-color: rgba(0, 134, 255, 0.18);
+            --background-gradient: linear-gradient(135deg, #0086FF 0%, #236FBE 100%);
+            --font-title: 'Baloo 2', 'Trebuchet MS', sans-serif;
+            --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: var(--font-body);
             color: var(--text-color);
-            line-height: 1.5;
-            background: white;
-            font-size: 12px;
+            line-height: 1.55;
+            background: linear-gradient(180deg, #eaf4ff 0%, #f8fbff 100%);
+            font-size: 12.5px;
         }
 
-        .cv-container { max-width: 210mm; margin: 0 auto; padding: 14mm; background: white; }
+        .cv-container {
+            max-width: 210mm;
+            margin: 20px auto;
+            padding: 0 0 14mm;
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 134, 255, 0.14);
+        }
 
-        .header { border-bottom: 3px solid var(--primary-color); padding-bottom: 12px; margin-bottom: 16px; }
-        .header h1 { font-size: 22px; color: var(--primary-color); }
-        .header h2 { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-        .contact-info { font-size: 11px; }
-        .contact-info a { color: var(--text-color); text-decoration: none; }
+        /* Header */
+        .header {
+            background: var(--background-gradient);
+            padding: 32px 40px 34px;
+            position: relative;
+            overflow: hidden;
+        }
 
-        .section { margin-bottom: 14px; }
+        .header::before {
+            content: '';
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            top: -80px;
+            right: -50px;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: rgba(255, 59, 168, 0.12);
+            bottom: -60px;
+            left: -35px;
+        }
+
+        .header-content { position: relative; z-index: 1; }
+
+        .brand-logo {
+            width: 150px;
+            height: 42px;
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-family: var(--font-title);
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        .header h2 {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            margin-top: 4px;
+            margin-bottom: 16px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .contact-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 999px;
+            padding: 7px 14px;
+            color: #ffffff;
+            font-size: 11.5px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .contact-pill i { font-size: 11px; color: #ffffff; }
+        .contact-pill span, .contact-pill a { color: #ffffff; text-decoration: none; }
+
+        /* Sections */
+        .section { padding: 22px 40px; position: relative; }
+
+        .section:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 40px;
+            right: 40px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+        }
+
         .section-title {
+            font-family: var(--font-title);
+            background: var(--background-gradient);
+            color: #ffffff;
             font-size: 14px;
             font-weight: 700;
-            color: var(--primary-color);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 3px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+            padding: 8px 18px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+            display: inline-block;
+            letter-spacing: 0.2px;
+            box-shadow: 0 4px 12px rgba(0, 134, 255, 0.22);
         }
 
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-        .tool-item { margin-bottom: 6px; }
-        .tool-name { display: flex; justify-content: space-between; font-weight: 500; font-size: 11px; }
-        .tool-percentage { color: var(--accent-color); font-size: 10px; font-weight: 600; }
-        .dots-container { display: flex; gap: 2px; margin-top: 2px; }
-        .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-color); }
+        #cv-profile { font-size: 12.5px; line-height: 1.65; color: var(--text-color); }
+
+        /* Skills */
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+        .skills-card {
+            background: linear-gradient(135deg, var(--light-bg), #ffffff);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 14px 16px;
+        }
+
+        .skills-card h3 { font-family: var(--font-title); }
+
+        .tool-item { margin-bottom: 9px; }
+        .tool-item:last-child { margin-bottom: 0; }
+
+        .tool-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 11.5px;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+
+        .tool-percentage {
+            color: var(--accent-color);
+            font-size: 9.5px;
+            font-weight: 800;
+            background: rgba(255, 59, 168, 0.1);
+            padding: 2px 8px;
+            border-radius: 999px;
+        }
+
+        .dots-container { display: flex; gap: 3px; }
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(0, 134, 255, 0.15); }
         .dot.filled { background: var(--primary-color); }
 
+        /* Experience */
         .experience-item {
-            padding: 8px 0 8px 14px;
-            border-left: 2px solid var(--primary-color);
-            margin-bottom: 10px;
+            position: relative;
+            margin-bottom: 16px;
+            padding: 16px 18px 16px 22px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--primary-color);
+            background: linear-gradient(135deg, #ffffff 0%, rgba(229, 242, 255, 0.5) 100%);
+            box-shadow: 0 3px 14px rgba(0, 134, 255, 0.07);
             page-break-inside: avoid;
         }
-        .job-title { font-size: 13px; font-weight: 700; color: var(--primary-color); }
-        .job-number { display: none; }
-        .experience-item .company { font-weight: 600; font-size: 12px; }
-        .experience-item .period { font-size: 11px; color: var(--accent-color); margin-bottom: 4px; }
-        .job-description { font-size: 11px; margin-bottom: 6px; }
-        .achievements-container { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-        .achievement-item { display: flex; gap: 6px; font-size: 10.5px; }
-        .achievement-icon { color: var(--primary-color); padding-top: 1px; }
-        .achievement-title { font-weight: 600; }
-        .tooltip { display: none; }
 
-        .education-item { margin-bottom: 8px; page-break-inside: avoid; }
-        .degree { font-weight: 700; color: var(--primary-color); font-size: 12px; }
-        .university { font-size: 11px; }
-        .thesis { font-size: 10.5px; }
-        .cta-button { display: none; }
+        .job-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--secondary-color);
+            margin-bottom: 4px;
+        }
 
-        .project-item { margin-bottom: 8px; page-break-inside: avoid; }
-        .project-title { font-weight: 700; color: var(--primary-color); font-size: 12px; }
-        .project-description { font-size: 11px; }
-        .tech-tag {
-            display: inline-block;
-            padding: 1px 7px;
-            margin: 2px 3px 0 0;
-            border: 1px solid var(--primary-color);
+        .job-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: var(--background-gradient);
+            color: #ffffff;
+            font-family: var(--font-body);
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .experience-item .company { font-weight: 700; font-size: 12px; color: var(--primary-color); }
+        .experience-item .period { font-size: 11px; color: var(--accent-color); font-weight: 700; margin-bottom: 6px; }
+        .job-description { font-size: 11.5px; line-height: 1.55; margin-bottom: 8px; color: var(--text-color); }
+
+        .achievements-container { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+        .achievement-item {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: 10px;
+            padding: 6px 8px;
+        }
+
+        .achievement-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: rgba(0, 134, 255, 0.12);
             color: var(--primary-color);
-            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 9.5px;
         }
 
+        .achievement-title { font-weight: 700; font-size: 10.5px; color: var(--text-color); }
+        .achievement-description { font-size: 10px; color: var(--muted-color); line-height: 1.4; }
+
+        .tooltip { display: none; } /* hover doesn't work on paper */
+
+        /* Education */
+        .education-item {
+            margin-bottom: 10px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--light-bg), #ffffff);
+            border: 1px solid var(--border-color);
+            page-break-inside: avoid;
+        }
+
+        .degree { font-family: var(--font-title); font-weight: 700; color: var(--primary-color); font-size: 12.5px; }
+        .university { font-size: 11px; margin-top: 2px; }
+        .thesis { font-size: 10.5px; color: var(--muted-color); font-style: italic; margin-top: 2px; }
+        .cta-button { display: none; }
+
+        /* Projects */
+        .project-item {
+            margin-bottom: 10px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ffffff, rgba(229, 242, 255, 0.5));
+            border: 1px solid var(--border-color);
+            page-break-inside: avoid;
+        }
+
+        .project-title { font-family: var(--font-title); font-weight: 700; color: var(--primary-color); font-size: 12.5px; }
+        .project-description { font-size: 11px; margin-top: 3px; margin-bottom: 6px; }
+
+        .tech-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            margin: 2px 4px 0 0;
+            background: var(--light-bg);
+            border: 1px solid rgba(0, 134, 255, 0.35);
+            color: var(--primary-color);
+            border-radius: 999px;
+            font-size: 9.5px;
+            font-weight: 700;
+        }
+
         @media print {
-            body { margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .cv-container { margin: 0; padding: 10mm; max-width: none; }
+            * { animation: none !important; }
+
+            body {
+                background: #ffffff;
+                margin: 0;
+                padding: 0;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .cv-container { margin: 0; max-width: 100%; border-radius: 0; box-shadow: none; padding-bottom: 6mm; }
+
+            .header {
+                background: var(--background-gradient) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                padding: 18px 26px 22px !important;
+                page-break-after: avoid;
+            }
+
+            .header h1 { font-size: 19px !important; }
+            .header h2 { font-size: 11px !important; margin-bottom: 10px !important; }
+            .brand-logo { width: 110px !important; height: 32px !important; margin-bottom: 8px !important; }
+
+            .contact-pill {
+                font-size: 8.5px !important;
+                padding: 4px 9px !important;
+                background: rgba(255, 255, 255, 0.22) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .section { padding: 10px 26px !important; page-break-inside: avoid; }
+            .section:not(:last-child)::after { left: 26px; right: 26px; }
+
+            .section-title {
+                background: var(--background-gradient) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                font-size: 11.5px !important;
+                padding: 5px 14px !important;
+                margin-bottom: 9px !important;
+                box-shadow: none !important;
+            }
+
+            #cv-profile { font-size: 10.5px !important; line-height: 1.5 !important; }
+
+            .skills-grid { gap: 10px !important; }
+            .skills-card { padding: 9px 11px !important; border-radius: 12px !important; }
+            .skills-card h3 { font-size: 12px !important; margin-bottom: 8px !important; }
+            .tool-item { margin-bottom: 6px !important; }
+            .tool-name { font-size: 9.5px !important; }
+            .tool-percentage { font-size: 7.5px !important; padding: 1px 6px !important; }
+            .dot { width: 5.5px !important; height: 5.5px !important; }
+
+            .experience-item {
+                padding: 10px 12px 10px 15px !important;
+                margin-bottom: 8px !important;
+                border-radius: 10px !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+            }
+
+            .job-title { font-size: 11.5px !important; }
+            .job-number { width: 15px !important; height: 15px !important; font-size: 8px !important; }
+            .experience-item .company { font-size: 10px !important; }
+            .experience-item .period { font-size: 9px !important; margin-bottom: 4px !important; }
+            .job-description { font-size: 9.5px !important; margin-bottom: 5px !important; }
+            .achievements-container { gap: 5px !important; }
+            .achievement-item { padding: 4px 6px !important; gap: 5px !important; }
+            .achievement-icon { width: 15px !important; height: 15px !important; font-size: 7.5px !important; }
+            .achievement-title { font-size: 9px !important; }
+            .achievement-description { font-size: 8.5px !important; }
+
+            .education-item, .project-item {
+                padding: 9px 11px !important;
+                margin-bottom: 6px !important;
+                border-radius: 10px !important;
+                page-break-inside: avoid !important;
+            }
+
+            .degree, .project-title { font-size: 10.5px !important; }
+            .university { font-size: 9.5px !important; }
+            .thesis { font-size: 9px !important; }
+            .project-description { font-size: 9.5px !important; }
+            .tech-tag { font-size: 8px !important; padding: 2px 8px !important; }
+
+            .tooltip { display: none !important; }
+
+            @page { size: A4; margin: 8mm; }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -99,13 +410,19 @@
 <body>
     <div class="cv-container">
         <header class="header">
-            <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
-            <h2 id="cv-role">CRM Management and Data Intelligence</h2>
-            <div class="contact-info">
-                <span id="cv-email">pedrohmarconato@gmail.com</span> |
-                <span id="cv-phone">+55 (55) 981147758</span> |
-                <span id="cv-location"><span>Cachoeira do Sul, RS</span></span> |
-                <a href="https://linkedin.com/in/pedrohmarconato" id="cv-linkedin">LinkedIn</a>
+            <div class="header-content">
+                <div class="brand-logo">
+                    <img src="../assets/images/magalu.svg" alt="Magalu">
+                </div>
+                <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
+                <h2 id="cv-role">CRM Management and Data Intelligence</h2>
+                <div class="contact-info">
+                    <span class="contact-pill"><i class="fas fa-envelope"></i><span id="cv-email">pedrohmarconato@gmail.com</span></span>
+                    <span class="contact-pill"><i class="fas fa-phone"></i><span id="cv-phone">+55 (55) 981147758</span></span>
+                    <span class="contact-pill" id="cv-location"><i class="fas fa-map-marker-alt"></i><span>Cachoeira do Sul, RS</span></span>
+                    <a class="contact-pill" href="https://linkedin.com/in/pedrohmarconato" target="_blank"><i class="fab fa-linkedin"></i><span id="cv-linkedin">LinkedIn</span></a>
+                    <a class="contact-pill" href="https://github.com/pedrohmarconato" target="_blank"><i class="fab fa-github"></i><span id="cv-repository">Repository</span></a>
+                </div>
             </div>
         </header>
 
@@ -117,9 +434,9 @@
         <section class="section">
             <h2 class="section-title" id="section-skills">Skills & Tools</h2>
             <div class="skills-grid">
-                <div id="skills-strategic"></div>
-                <div id="skills-tools"></div>
-                <div id="skills-emerging"></div>
+                <div id="skills-strategic" class="skills-card"></div>
+                <div id="skills-tools" class="skills-card"></div>
+                <div id="skills-emerging" class="skills-card"></div>
             </div>
         </section>
 

@@ -4,94 +4,251 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedro Henrique Marconato - CV</title>
+    <meta name="theme-color" content="#820AD1">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&display=swap');
 
         :root {
-            /* Nubank Colors */
-            --primary-color: #820AD1;
-            --secondary-color: #5C08A0;
-            --accent-color: #A64CE8;
-            --text-color: #2c3e50;
-            --border-color: rgba(0, 0, 0, 0.15);
+            /* Nubank Colors — brandbook (docs/nubank_brandbook.md) */
+            --primary-color: #820AD1;   /* Roxo Nu — masterbrand */
+            --secondary-color: #5C08A0; /* Roxo Profundo */
+            --accent-color: #A64CE8;    /* Lilás */
+            --lavender-color: #C89AF2;  /* Lavanda — dots vazios */
+            --mist-color: #F3E9FC;      /* Névoa — fundo alternado de seção */
+            --text-color: #1A1A1A;
+            --border-color: rgba(130, 10, 209, 0.15);
+            --gradient: linear-gradient(135deg, #820AD1 0%, #5C08A0 100%);
+            --font-display: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: var(--font-body);
             color: var(--text-color);
-            line-height: 1.5;
-            background: white;
+            line-height: 1.55;
+            background: #ffffff;
             font-size: 12px;
         }
 
-        .cv-container { max-width: 210mm; margin: 0 auto; padding: 14mm; background: white; }
+        .cv-container { max-width: 210mm; margin: 0 auto; background: #ffffff; }
 
-        .header { border-bottom: 3px solid var(--primary-color); padding-bottom: 12px; margin-bottom: 16px; }
-        .header h1 { font-size: 22px; color: var(--primary-color); }
-        .header h2 { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-        .contact-info { font-size: 11px; }
-        .contact-info a { color: var(--text-color); text-decoration: none; }
-
-        .section { margin-bottom: 14px; }
-        .section-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--primary-color);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 3px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+        /* Header — hero roxo minimalista */
+        .header {
+            background: var(--gradient);
+            padding: 34px 40px 38px;
+            text-align: center;
         }
 
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-        .tool-item { margin-bottom: 6px; }
-        .tool-name { display: flex; justify-content: space-between; font-weight: 500; font-size: 11px; }
-        .tool-percentage { color: var(--accent-color); font-size: 10px; font-weight: 600; }
-        .dots-container { display: flex; gap: 2px; margin-top: 2px; }
-        .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-color); }
+        .brand-logo { width: 100px; height: 55px; margin: 0 auto 14px; }
+        .brand-logo img { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1); }
+
+        .header h1 {
+            font-family: var(--font-display);
+            font-size: 23px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.2px;
+            margin-bottom: 6px;
+        }
+
+        .header h2 {
+            font-size: 12.5px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.92);
+            margin-bottom: 16px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .contact-info > span,
+        .contact-info > a {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 10.5px;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        /* Seções — muito espaço em branco, névoa alternada */
+        .section { padding: 24px 40px; }
+        .section:nth-of-type(even) { background: var(--mist-color); }
+
+        .section-title {
+            display: inline-block;
+            font-family: var(--font-display);
+            background: var(--primary-color);
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+        }
+
+        #cv-profile { font-size: 11.5px; line-height: 1.65; }
+
+        /* Skills — dots em escala de roxo */
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+        #skills-strategic h3,
+        #skills-tools h3,
+        #skills-emerging h3 {
+            font-family: var(--font-display) !important;
+            font-size: 11.5px !important;
+            font-weight: 700 !important;
+            color: var(--secondary-color) !important;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding-bottom: 6px;
+            margin-bottom: 10px !important;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tool-item { margin-bottom: 8px; }
+        .tool-name { display: flex; justify-content: space-between; align-items: baseline; font-size: 10.8px; font-weight: 500; }
+        .tool-percentage { color: var(--accent-color); font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2px; }
+        .dots-container { display: flex; gap: 3px; margin-top: 3px; }
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lavender-color); }
         .dot.filled { background: var(--primary-color); }
 
+        /* Experiência — cards limpos, sombra suave */
         .experience-item {
-            padding: 8px 0 8px 14px;
-            border-left: 2px solid var(--primary-color);
-            margin-bottom: 10px;
-            page-break-inside: avoid;
+            background: #ffffff;
+            border-left: 3px solid var(--primary-color);
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 10px rgba(130, 10, 209, 0.07);
         }
-        .job-title { font-size: 13px; font-weight: 700; color: var(--primary-color); }
-        .job-number { display: none; }
-        .experience-item .company { font-weight: 600; font-size: 12px; }
-        .experience-item .period { font-size: 11px; color: var(--accent-color); margin-bottom: 4px; }
-        .job-description { font-size: 11px; margin-bottom: 6px; }
-        .achievements-container { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-        .achievement-item { display: flex; gap: 6px; font-size: 10.5px; }
-        .achievement-icon { color: var(--primary-color); padding-top: 1px; }
-        .achievement-title { font-weight: 600; }
+
+        .job-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-display);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 4px;
+        }
+
+        .job-number {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: #ffffff;
+            font-family: var(--font-body);
+            font-size: 10.5px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .company { font-weight: 600; font-size: 11.5px; color: var(--text-color); }
+        .period { font-size: 10.5px; color: var(--accent-color); font-weight: 600; margin-bottom: 6px; }
+        .job-description { font-size: 11px; line-height: 1.55; margin-bottom: 8px; color: var(--text-color); }
+
+        .achievements-container { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+        .achievement-item { display: flex; gap: 7px; align-items: flex-start; font-size: 10.3px; }
+        .achievement-icon { flex-shrink: 0; width: 15px; text-align: center; color: var(--primary-color); padding-top: 1px; }
+        .achievement-title { font-weight: 600; color: var(--text-color); }
+        .achievement-description { color: #4a4a4a; line-height: 1.4; }
         .tooltip { display: none; }
 
-        .education-item { margin-bottom: 8px; page-break-inside: avoid; }
-        .degree { font-weight: 700; color: var(--primary-color); font-size: 12px; }
-        .university { font-size: 11px; }
-        .thesis { font-size: 10.5px; }
+        /* Educação */
+        .education-item {
+            background: #ffffff;
+            border-left: 3px solid var(--secondary-color);
+            border-radius: 0 10px 10px 0;
+            padding: 10px 16px;
+            margin-bottom: 10px;
+        }
+        .degree { font-family: var(--font-display); font-weight: 700; font-size: 12px; color: var(--secondary-color); margin-bottom: 2px; }
+        .university { font-size: 11px; margin-bottom: 2px; }
+        .thesis { font-size: 10px; color: #555555; font-style: italic; }
         .cta-button { display: none; }
 
-        .project-item { margin-bottom: 8px; page-break-inside: avoid; }
-        .project-title { font-weight: 700; color: var(--primary-color); font-size: 12px; }
-        .project-description { font-size: 11px; }
+        /* Projetos */
+        .project-item {
+            background: #ffffff;
+            border-left: 3px solid var(--primary-color);
+            border-radius: 0 10px 10px 0;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+        }
+        .project-title { font-family: var(--font-display); font-weight: 700; font-size: 12px; color: var(--secondary-color); margin-bottom: 4px; }
+        .project-description { font-size: 11px; line-height: 1.5; margin-bottom: 6px; }
         .tech-tag {
             display: inline-block;
-            padding: 1px 7px;
-            margin: 2px 3px 0 0;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            border-radius: 8px;
-            font-size: 9.5px;
+            padding: 2px 9px;
+            margin: 3px 4px 0 0;
+            border: 1px solid var(--accent-color);
+            color: var(--secondary-color);
+            border-radius: 10px;
+            font-size: 9px;
+            font-weight: 500;
         }
 
         @media print {
-            body { margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .cv-container { margin: 0; padding: 10mm; max-width: none; }
+            body { margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .cv-container { max-width: 100%; margin: 0; }
+
+            .header {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                padding: 22px 30px 26px !important;
+                page-break-after: avoid;
+            }
+
+            .section-title {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .section:nth-of-type(even) {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .section { padding: 14px 30px !important; page-break-inside: avoid; }
+            .experience-item, .education-item, .project-item { page-break-inside: avoid; }
+
+            .header h1 { font-size: 19px !important; }
+            .header h2 { font-size: 11px !important; }
+            .brand-logo { width: 80px !important; height: 44px !important; margin-bottom: 10px !important; }
+            .contact-info > span, .contact-info > a { font-size: 8.5px !important; padding: 3px 8px !important; }
+            .section-title { font-size: 10.5px !important; padding: 4px 11px !important; margin-bottom: 10px !important; }
+
+            .job-title { font-size: 11.5px !important; }
+            .job-number { width: 16px !important; height: 16px !important; font-size: 9px !important; }
+            .job-description, .achievement-item { font-size: 9px !important; }
+            .company, .period { font-size: 9.5px !important; }
+            .experience-item { padding: 10px 14px !important; margin-bottom: 10px !important; }
+            .education-item, .project-item { padding: 8px 14px !important; margin-bottom: 8px !important; }
+            .degree, .project-title { font-size: 10.5px !important; }
+            .university, .project-description { font-size: 9.5px !important; }
+            .thesis { font-size: 8.5px !important; }
+            .tool-name { font-size: 9.5px !important; }
+            .tool-percentage { font-size: 8px !important; }
+            #skills-strategic h3, #skills-tools h3, #skills-emerging h3 { font-size: 10px !important; }
+
+            @page { size: A4; margin: 8mm; }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -99,12 +256,15 @@
 <body>
     <div class="cv-container">
         <header class="header">
+            <div class="brand-logo">
+                <img src="../assets/images/nubank.png" alt="Nubank">
+            </div>
             <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
             <h2 id="cv-role">Gestão de CRM e Inteligência de Dados</h2>
             <div class="contact-info">
-                <span id="cv-email">pedrohmarconato@gmail.com</span> |
-                <span id="cv-phone">+55 (55) 981147758</span> |
-                <span id="cv-location"><span>Cachoeira do Sul, RS</span></span> |
+                <span id="cv-email">pedrohmarconato@gmail.com</span>
+                <span id="cv-phone">+55 (55) 981147758</span>
+                <span id="cv-location"><span>Cachoeira do Sul, RS</span></span>
                 <a href="https://linkedin.com/in/pedrohmarconato" id="cv-linkedin">LinkedIn</a>
             </div>
         </header>
