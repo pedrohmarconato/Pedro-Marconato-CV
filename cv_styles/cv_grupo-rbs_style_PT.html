@@ -5,93 +5,467 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedro Henrique Marconato - CV</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap');
 
         :root {
-            /* Grupo RBS Colors */
-            --primary-color: #003563;
-            --secondary-color: #0A5394;
-            --accent-color: #D64545;
-            --text-color: #2c3e50;
-            --border-color: rgba(0, 0, 0, 0.15);
+            /* Grupo RBS — navy institucional + paleta editorial derivada (brandbook) */
+            --rbs-navy: #003563;
+            --rbs-navy-deep: #00294D;
+            --rbs-blue: #0A5394;
+            --rbs-sky: #2E77B8;
+            --rbs-ice: #EAF2F9;
+            --rbs-red: #D64545;
+            --rbs-ink: #16283C;
+
+            --primary-color: var(--rbs-navy);
+            --secondary-color: var(--rbs-blue);
+            --accent-color: var(--rbs-red);
+            --text-color: var(--rbs-ink);
+            --border-color: rgba(0, 53, 99, 0.18);
+            --background-gradient: linear-gradient(150deg, var(--rbs-navy-deep) 0%, var(--rbs-navy) 55%, var(--rbs-blue) 100%);
+
+            --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+            --font-mono: 'IBM Plex Mono', 'SF Mono', Menlo, monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: var(--font-body);
             color: var(--text-color);
             line-height: 1.5;
-            background: white;
+            background: #e7edf3;
             font-size: 12px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
-        .cv-container { max-width: 210mm; margin: 0 auto; padding: 14mm; background: white; }
+        .cv-container {
+            max-width: 210mm;
+            margin: 14px auto;
+            background: #ffffff;
+            box-shadow: 0 4px 24px rgba(0, 53, 99, 0.14);
+            border-radius: 4px;
+            overflow: hidden;
+        }
 
-        .header { border-bottom: 3px solid var(--primary-color); padding-bottom: 12px; margin-bottom: 16px; }
-        .header h1 { font-size: 22px; color: var(--primary-color); }
-        .header h2 { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-        .contact-info { font-size: 11px; }
-        .contact-info a { color: var(--text-color); text-decoration: none; }
+        /* ===== Header — masthead navy ===== */
+        .header {
+            background: var(--background-gradient);
+            color: #ffffff;
+            padding: 28px 40px 32px;
+            text-align: center;
+            position: relative;
+        }
 
-        .section { margin-bottom: 14px; }
-        .section-title {
-            font-size: 14px;
+        .brand-logo {
+            width: 150px;
+            margin: 0 auto 14px;
+        }
+
+        .brand-logo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: brightness(0) invert(1);
+        }
+
+        #cv-name {
+            font-family: var(--font-serif);
+            font-size: 25px;
             font-weight: 700;
-            color: var(--primary-color);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 3px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-        .tool-item { margin-bottom: 6px; }
-        .tool-name { display: flex; justify-content: space-between; font-weight: 500; font-size: 11px; }
-        .tool-percentage { color: var(--accent-color); font-size: 10px; font-weight: 600; }
-        .dots-container { display: flex; gap: 2px; margin-top: 2px; }
-        .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-color); }
-        .dot.filled { background: var(--primary-color); }
-
-        .experience-item {
-            padding: 8px 0 8px 14px;
-            border-left: 2px solid var(--primary-color);
+            letter-spacing: -0.3px;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
             margin-bottom: 10px;
-            page-break-inside: avoid;
         }
-        .job-title { font-size: 13px; font-weight: 700; color: var(--primary-color); }
-        .job-number { display: none; }
-        .experience-item .company { font-weight: 600; font-size: 12px; }
-        .experience-item .period { font-size: 11px; color: var(--accent-color); margin-bottom: 4px; }
-        .job-description { font-size: 11px; margin-bottom: 6px; }
-        .achievements-container { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-        .achievement-item { display: flex; gap: 6px; font-size: 10.5px; }
-        .achievement-icon { color: var(--primary-color); padding-top: 1px; }
-        .achievement-title { font-weight: 600; }
+
+        #cv-name::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 64px;
+            height: 3px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--rbs-sky), var(--rbs-red));
+        }
+
+        #cv-role {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.92);
+            margin-bottom: 16px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .contact-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 20px;
+            padding: 4px 11px;
+            font-size: 10px;
+        }
+
+        .contact-pill i { font-size: 9.5px; color: #9CC4E8; }
+        .contact-pill a { color: #ffffff; text-decoration: none; }
+
+        /* ===== Sections ===== */
+        .section { padding: 14px 34px; }
+        .section:not(:last-of-type) { border-bottom: 1px solid var(--border-color); }
+
+        .section-title {
+            display: inline-block;
+            font-family: var(--font-serif);
+            font-size: 12.5px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #ffffff;
+            background: var(--rbs-navy);
+            border-left: 4px solid var(--rbs-red);
+            border-radius: 3px 10px 10px 3px;
+            padding: 5px 14px 5px 12px;
+            margin-bottom: 10px;
+        }
+
+        #cv-profile {
+            font-size: 11px;
+            line-height: 1.65;
+            text-align: justify;
+        }
+
+        /* ===== Skills ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .skills-column {
+            background: linear-gradient(165deg, var(--rbs-ice), rgba(234, 242, 249, 0.35));
+            border: 1px solid var(--border-color);
+            border-top: 3px solid var(--rbs-navy);
+            border-radius: 6px;
+            padding: 10px 12px;
+        }
+
+        .skills-column:nth-child(2) { border-top-color: var(--rbs-blue); }
+        .skills-column:nth-child(3) { border-top-color: var(--rbs-sky); }
+
+        .skills-column h3 {
+            font-family: var(--font-serif) !important;
+            font-size: 11.5px !important;
+            font-weight: 700 !important;
+            color: var(--rbs-navy) !important;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding-bottom: 4px;
+            margin-bottom: 8px !important;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tool-item { margin-bottom: 7px; }
+
+        .tool-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            font-size: 10px;
+            margin-bottom: 3px;
+        }
+
+        .tool-percentage {
+            font-family: var(--font-mono);
+            font-size: 7.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--rbs-blue);
+            background: rgba(10, 83, 148, 0.08);
+            border: 1px solid rgba(10, 83, 148, 0.22);
+            padding: 1px 6px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .dots-container { display: flex; gap: 3px; }
+        .dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(0, 53, 99, 0.16); }
+        .dot.filled { background: var(--rbs-navy); }
+
+        /* Tooltip não funciona no papel */
         .tooltip { display: none; }
 
-        .education-item { margin-bottom: 8px; page-break-inside: avoid; }
-        .degree { font-weight: 700; color: var(--primary-color); font-size: 12px; }
-        .university { font-size: 11px; }
-        .thesis { font-size: 10.5px; }
-        .cta-button { display: none; }
-
-        .project-item { margin-bottom: 8px; page-break-inside: avoid; }
-        .project-title { font-weight: 700; color: var(--primary-color); font-size: 12px; }
-        .project-description { font-size: 11px; }
-        .tech-tag {
-            display: inline-block;
-            padding: 1px 7px;
-            margin: 2px 3px 0 0;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            border-radius: 8px;
-            font-size: 9.5px;
+        /* ===== Experiência ===== */
+        .experience-item {
+            position: relative;
+            margin-bottom: 12px;
+            padding: 11px 14px 11px 16px;
+            background: linear-gradient(155deg, #ffffff, rgba(234, 242, 249, 0.5));
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--rbs-navy);
+            border-radius: 5px;
+            page-break-inside: avoid;
         }
 
+        .job-title {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 12.5px;
+            color: var(--rbs-navy);
+            margin-bottom: 4px;
+        }
+
+        .job-number {
+            display: inline-flex;
+            align-items: center;
+            background: var(--rbs-navy);
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 8.5px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .job-number::before {
+            content: 'ED. ';
+            font-size: 7px;
+            opacity: 0.75;
+        }
+
+        .company {
+            font-weight: 600;
+            font-size: 10.5px;
+            color: var(--rbs-blue);
+            margin-bottom: 2px;
+        }
+
+        .period {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 8.5px;
+            color: #51667E;
+            background: rgba(0, 53, 99, 0.06);
+            border: 1px solid rgba(0, 53, 99, 0.16);
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-bottom: 7px;
+        }
+
+        .job-description {
+            font-size: 10px;
+            line-height: 1.5;
+            margin-bottom: 7px;
+        }
+
+        .achievements-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .achievement-item {
+            display: flex;
+            gap: 6px;
+            background: rgba(0, 53, 99, 0.045);
+            border: 1px solid rgba(0, 53, 99, 0.13);
+            border-radius: 5px;
+            padding: 6px 8px;
+        }
+
+        .achievement-icon {
+            color: var(--rbs-blue);
+            font-size: 10.5px;
+            padding-top: 1px;
+            flex-shrink: 0;
+        }
+
+        .achievement-content { flex: 1; }
+
+        .achievement-title {
+            font-weight: 600;
+            font-size: 9px;
+            color: var(--rbs-navy);
+            margin-bottom: 2px;
+        }
+
+        .achievement-description {
+            font-size: 8.5px;
+            line-height: 1.4;
+            color: var(--text-color);
+        }
+
+        /* ===== Formação ===== */
+        #education-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .education-item {
+            background: linear-gradient(165deg, rgba(234, 242, 249, 0.9), rgba(234, 242, 249, 0.35));
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--rbs-blue);
+            border-radius: 5px;
+            padding: 10px 12px;
+            page-break-inside: avoid;
+        }
+
+        .degree {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 11px;
+            color: var(--rbs-navy);
+            margin-bottom: 3px;
+        }
+
+        .university { font-size: 9.5px; margin-bottom: 3px; }
+        .thesis { font-size: 9px; font-style: italic; color: #51667E; }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 5px;
+            padding: 2px 7px;
+            background: var(--rbs-navy);
+            color: #ffffff;
+            border-radius: 3px;
+            text-decoration: none;
+            font-size: 8px;
+        }
+
+        /* ===== Projetos ===== */
+        #projects-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        .project-item {
+            position: relative;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            padding: 10px 12px;
+            overflow: hidden;
+            page-break-inside: avoid;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, var(--rbs-navy), var(--rbs-blue), var(--rbs-sky));
+        }
+
+        .project-title {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 10.5px;
+            color: var(--rbs-navy);
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+
+        .project-description {
+            font-size: 9px;
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 7.5px;
+            padding: 2px 6px;
+            margin: 0 4px 4px 0;
+            background: rgba(0, 53, 99, 0.06);
+            color: var(--rbs-blue);
+            border: 1px solid rgba(0, 53, 99, 0.18);
+            border-radius: 3px;
+        }
+
+        /* ===== Print ===== */
         @media print {
-            body { margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .cv-container { margin: 0; padding: 10mm; max-width: none; }
+            body {
+                margin: 0;
+                padding: 0;
+                background: #ffffff;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .cv-container { max-width: none; margin: 0; box-shadow: none; border-radius: 0; }
+
+            .header {
+                background: var(--background-gradient) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                padding: 16px 30px 20px !important;
+            }
+
+            #cv-name { font-size: 20px !important; padding-bottom: 8px !important; }
+            #cv-role { font-size: 11px !important; margin-bottom: 10px !important; }
+            .contact-pill { font-size: 8.5px !important; padding: 3px 9px !important; }
+
+            .section-title {
+                background: var(--rbs-navy) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                font-size: 10.5px !important;
+                padding: 4px 11px 4px 10px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .section { padding: 9px 26px !important; }
+            #cv-profile { font-size: 9.5px !important; }
+
+            .skills-column { padding: 8px 10px !important; }
+            .skills-column h3 { font-size: 10px !important; margin-bottom: 6px !important; }
+            .tool-item { margin-bottom: 5px !important; }
+
+            .experience-item, .education-item, .project-item {
+                page-break-inside: avoid;
+                margin-bottom: 8px !important;
+            }
+
+            .job-title { font-size: 11px !important; }
+            .company { font-size: 9.5px !important; }
+            .job-description { font-size: 9px !important; }
+            .achievement-title { font-size: 8.5px !important; }
+            .achievement-description { font-size: 8px !important; }
+            .degree { font-size: 10px !important; }
+            .project-title { font-size: 10px !important; }
+
+            * { animation: none !important; transition: none !important; }
+
+            @page { size: A4; margin: 8mm; }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -99,13 +473,17 @@
 <body>
     <div class="cv-container">
         <header class="header">
+            <div class="brand-logo">
+                <img src="../assets/images/grupo-rbs.png" alt="Grupo RBS">
+            </div>
             <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
             <h2 id="cv-role">Gestão de CRM e Inteligência de Dados</h2>
             <div class="contact-info">
-                <span id="cv-email">pedrohmarconato@gmail.com</span> |
-                <span id="cv-phone">+55 (55) 981147758</span> |
-                <span id="cv-location"><span>Cachoeira do Sul, RS</span></span> |
-                <a href="https://linkedin.com/in/pedrohmarconato" id="cv-linkedin">LinkedIn</a>
+                <span class="contact-pill"><i class="fas fa-envelope"></i><span id="cv-email">pedrohmarconato@gmail.com</span></span>
+                <span class="contact-pill"><i class="fas fa-phone"></i><span id="cv-phone">+55 (55) 981147758</span></span>
+                <span class="contact-pill"><i class="fas fa-map-marker-alt"></i><span id="cv-location"><span>Cachoeira do Sul, RS</span></span></span>
+                <span class="contact-pill"><i class="fab fa-linkedin"></i><a href="https://linkedin.com/in/pedrohmarconato" id="cv-linkedin">LinkedIn</a></span>
+                <span class="contact-pill"><i class="fab fa-github"></i><a href="https://github.com/pedrohmarconato" id="cv-repository">Repositório</a></span>
             </div>
         </header>
 
@@ -117,9 +495,9 @@
         <section class="section">
             <h2 class="section-title" id="section-skills">Habilidades e Ferramentas</h2>
             <div class="skills-grid">
-                <div id="skills-strategic"></div>
-                <div id="skills-tools"></div>
-                <div id="skills-emerging"></div>
+                <div class="skills-column" id="skills-strategic"></div>
+                <div class="skills-column" id="skills-tools"></div>
+                <div class="skills-column" id="skills-emerging"></div>
             </div>
         </section>
 

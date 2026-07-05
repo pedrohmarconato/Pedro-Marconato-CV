@@ -5,107 +5,435 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedro Henrique Marconato - CV</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
         :root {
-            /* Itau Colors */
-            --primary-color: #FF6200;
-            --secondary-color: #C24E00;
-            --accent-color: #FFB300;
-            --text-color: #2c3e50;
-            --border-color: rgba(0, 0, 0, 0.15);
+            /* Itaú — 2023 rebrand, "river stones" */
+            --itau-orange: #FF6200;
+            --itau-burnt: #C24E00;
+            --itau-terracotta: #8F3A00;
+            --itau-amber: #FFB300;
+            --itau-blue: #1E5BC6;
+            --itau-green: #00A868;
+            --itau-pink: #FF4D8D;
+            --itau-sand: #FFF4EC;
+            --itau-ink: #33261C;
+
+            --primary-color: var(--itau-orange);
+            --secondary-color: var(--itau-burnt);
+            --accent-color: var(--itau-amber);
+            --text-color: var(--itau-ink);
+            --border-color: rgba(194, 78, 0, 0.16);
+            --background-gradient: linear-gradient(135deg, var(--itau-orange) 0%, var(--itau-burnt) 100%);
+            --stone-radius: 58% 42% 44% 56% / 52% 58% 42% 48%;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: var(--text-color);
             line-height: 1.5;
-            background: white;
+            background: var(--itau-sand);
             font-size: 12px;
         }
 
-        .cv-container { max-width: 210mm; margin: 0 auto; padding: 14mm; background: white; }
-
-        .header { border-bottom: 3px solid var(--primary-color); padding-bottom: 12px; margin-bottom: 16px; }
-        .header h1 { font-size: 22px; color: var(--primary-color); }
-        .header h2 { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-        .contact-info { font-size: 11px; }
-        .contact-info a { color: var(--text-color); text-decoration: none; }
-
-        .section { margin-bottom: 14px; }
-        .section-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--primary-color);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 3px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+        h1, .section-title, .job-title, .degree, .project-title {
+            font-weight: 800;
         }
 
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-        .tool-item { margin-bottom: 6px; }
-        .tool-name { display: flex; justify-content: space-between; font-weight: 500; font-size: 11px; }
-        .tool-percentage { color: var(--accent-color); font-size: 10px; font-weight: 600; }
-        .dots-container { display: flex; gap: 2px; margin-top: 2px; }
-        .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-color); }
-        .dot.filled { background: var(--primary-color); }
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 14px 40px rgba(194, 78, 0, 0.16);
+        }
+
+        /* ===== Header ===== */
+        .header {
+            background:
+                radial-gradient(circle at 14% 18%, rgba(255, 158, 74, 0.5) 0%, transparent 46%),
+                radial-gradient(circle at 90% 88%, rgba(194, 78, 0, 0.55) 0%, transparent 52%),
+                var(--background-gradient);
+            padding: 20px 28px 24px;
+            border-radius: 0 0 40px 64px;
+            position: relative;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .brand-logo {
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.96);
+            padding: 7px;
+            border-radius: 32% 68% 64% 36% / 48% 40% 60% 52%;
+            box-shadow: 0 6px 16px rgba(143, 58, 0, 0.32);
+            line-height: 0;
+        }
+
+        .brand-logo img { width: 42px; height: 42px; display: block; }
+
+        .header-text { flex: 1; min-width: 0; }
+
+        .tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 8.5px;
+            font-weight: 600;
+            letter-spacing: 1.6px;
+            text-transform: lowercase;
+            color: rgba(255, 255, 255, 0.95);
+            background: rgba(143, 58, 0, 0.26);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 999px;
+            padding: 3px 11px;
+            margin-bottom: 7px;
+        }
+
+        .tagline-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--itau-amber);
+            flex-shrink: 0;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            color: white;
+            letter-spacing: -0.3px;
+            text-transform: uppercase;
+            line-height: 1.15;
+            margin-bottom: 3px;
+            text-shadow: 0 2px 10px rgba(143, 58, 0, 0.3);
+        }
+
+        .header h2 {
+            font-size: 11.5px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: 999px;
+            padding: 3px 11px;
+            color: white;
+            font-size: 9px;
+            font-weight: 500;
+        }
+
+        .contact-item i { font-size: 8.5px; }
+
+        .contact-item a { color: white; text-decoration: none; }
+
+        /* ===== Sections ===== */
+        .section { padding: 14px 28px; }
+
+        .section:not(:last-child) { border-bottom: 1px solid var(--border-color); }
+
+        .section-title {
+            display: inline-block;
+            background: var(--background-gradient);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: lowercase;
+            padding: 6px 18px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 12px rgba(255, 98, 0, 0.28);
+        }
+
+        #cv-profile { font-size: 11px; line-height: 1.6; text-align: justify; }
+
+        /* ===== Skills ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        #skills-strategic, #skills-tools, #skills-emerging {
+            background: linear-gradient(160deg, rgba(255, 244, 236, 0.9), rgba(255, 244, 236, 0.35));
+            border: 1px solid rgba(255, 98, 0, 0.14);
+            border-top: 3px solid var(--itau-orange);
+            border-radius: 14px;
+            padding: 11px;
+        }
+
+        #skills-tools { border-top-color: var(--itau-amber); }
+        #skills-emerging { border-top-color: var(--itau-green); }
+
+        #skills-strategic h3, #skills-tools h3, #skills-emerging h3 {
+            font-size: 10px !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--itau-terracotta) !important;
+            margin-bottom: 8px !important;
+        }
+
+        .tool-item { margin-bottom: 7px; }
+
+        .tool-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            font-size: 9.5px;
+            margin-bottom: 3px;
+        }
+
+        .tool-percentage {
+            font-size: 7.5px;
+            font-weight: 700;
+            color: var(--itau-terracotta);
+            background: rgba(255, 179, 0, 0.22);
+            border: 1px solid rgba(255, 98, 0, 0.2);
+            border-radius: 999px;
+            padding: 1px 7px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .dots-container { display: flex; gap: 2px; flex-wrap: nowrap; }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: rgba(194, 78, 0, 0.15);
+            flex-shrink: 0;
+        }
+
+        .dot.filled {
+            background: linear-gradient(135deg, var(--itau-orange) 0%, var(--itau-amber) 100%);
+        }
+
+        /* ===== Experience ===== */
+        #experience-container { position: relative; }
 
         .experience-item {
-            padding: 8px 0 8px 14px;
-            border-left: 2px solid var(--primary-color);
+            padding: 12px 14px;
             margin-bottom: 10px;
+            border-radius: 16px;
+            background: linear-gradient(150deg, #ffffff, rgba(255, 244, 236, 0.6));
+            border: 1px solid rgba(255, 98, 0, 0.16);
+            border-left: 4px solid var(--itau-orange);
             page-break-inside: avoid;
         }
-        .job-title { font-size: 13px; font-weight: 700; color: var(--primary-color); }
-        .job-number { display: none; }
-        .experience-item .company { font-weight: 600; font-size: 12px; }
-        .experience-item .period { font-size: 11px; color: var(--accent-color); margin-bottom: 4px; }
-        .job-description { font-size: 11px; margin-bottom: 6px; }
-        .achievements-container { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-        .achievement-item { display: flex; gap: 6px; font-size: 10.5px; }
-        .achievement-icon { color: var(--primary-color); padding-top: 1px; }
-        .achievement-title { font-weight: 600; }
-        .tooltip { display: none; }
 
-        .education-item { margin-bottom: 8px; page-break-inside: avoid; }
-        .degree { font-weight: 700; color: var(--primary-color); font-size: 12px; }
-        .university { font-size: 11px; }
-        .thesis { font-size: 10.5px; }
-        .cta-button { display: none; }
-
-        .project-item { margin-bottom: 8px; page-break-inside: avoid; }
-        .project-title { font-weight: 700; color: var(--primary-color); font-size: 12px; }
-        .project-description { font-size: 11px; }
-        .tech-tag {
-            display: inline-block;
-            padding: 1px 7px;
-            margin: 2px 3px 0 0;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            border-radius: 8px;
-            font-size: 9.5px;
+        .job-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            color: var(--itau-terracotta);
+            margin-bottom: 4px;
         }
 
+        .job-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 18px;
+            background: linear-gradient(135deg, var(--itau-orange), var(--itau-amber));
+            color: white;
+            border-radius: var(--stone-radius);
+            font-size: 9.5px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .experience-item .company {
+            font-weight: 600;
+            font-size: 11px;
+            color: var(--itau-orange);
+            margin-bottom: 2px;
+        }
+
+        .experience-item .period {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--itau-terracotta);
+            background: rgba(255, 98, 0, 0.08);
+            border: 1px solid rgba(255, 98, 0, 0.16);
+            border-radius: 999px;
+            padding: 1px 9px;
+            margin-bottom: 6px;
+        }
+
+        .job-description {
+            font-size: 10px;
+            line-height: 1.45;
+            margin-bottom: 6px;
+        }
+
+        .achievements-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .achievement-item {
+            display: flex;
+            gap: 6px;
+            background: rgba(255, 98, 0, 0.05);
+            border: 1px solid rgba(255, 98, 0, 0.12);
+            border-radius: 10px;
+            padding: 6px 8px;
+        }
+
+        .achievement-icon {
+            color: var(--itau-orange);
+            font-size: 10px;
+            padding-top: 1px;
+            flex-shrink: 0;
+        }
+
+        .achievement-title {
+            font-weight: 700;
+            font-size: 9.5px;
+            color: var(--itau-terracotta);
+            margin-bottom: 1px;
+        }
+
+        .achievement-description { font-size: 8.8px; line-height: 1.35; }
+
+        .tooltip { display: none !important; }
+
+        /* ===== Education ===== */
+        #education-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .education-item {
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: linear-gradient(160deg, rgba(255, 244, 236, 0.9), rgba(255, 244, 236, 0.3));
+            border: 1px solid rgba(255, 98, 0, 0.14);
+            border-left: 4px solid var(--itau-amber);
+            page-break-inside: avoid;
+        }
+
+        .degree { font-size: 11.5px; color: var(--itau-terracotta); margin-bottom: 2px; }
+        .university { font-size: 10px; margin-bottom: 2px; }
+        .thesis { font-size: 9.5px; font-style: italic; color: #8a7263; }
+        .cta-button { display: none; }
+
+        /* ===== Projects ===== */
+        #projects-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        .project-item {
+            padding: 10px 12px;
+            border-radius: 14px;
+            background: linear-gradient(150deg, #ffffff, rgba(255, 244, 236, 0.5));
+            border: 1px solid rgba(255, 98, 0, 0.14);
+            page-break-inside: avoid;
+        }
+
+        .project-title { font-size: 10.5px; color: var(--itau-terracotta); margin-bottom: 4px; }
+        .project-description { font-size: 9.5px; line-height: 1.4; margin-bottom: 6px; }
+
+        .tech-tag {
+            display: inline-block;
+            background: rgba(255, 98, 0, 0.08);
+            color: var(--itau-terracotta);
+            border: 1px solid rgba(255, 98, 0, 0.2);
+            border-radius: 999px;
+            padding: 2px 8px;
+            margin: 2px 3px 0 0;
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+        /* ===== Print ===== */
         @media print {
-            body { margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .cv-container { margin: 0; padding: 10mm; max-width: none; }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body { margin: 0; padding: 0; background: white; }
+
+            .cv-container {
+                margin: 0;
+                max-width: none;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .header { border-radius: 0 0 28px 46px; padding: 16px 24px 20px; }
+            .header h1 { font-size: 18px !important; }
+            .header h2 { font-size: 10.5px !important; }
+
+            .section { padding: 10px 24px !important; }
+            .section-title { font-size: 10px !important; padding: 5px 16px !important; margin-bottom: 8px !important; }
+
+            .experience-item, .education-item, .project-item {
+                page-break-inside: avoid;
+                margin-bottom: 8px !important;
+            }
+
+            .job-description, .achievement-description { font-size: 9px !important; }
+
+            @page {
+                size: A4;
+                margin: 8mm;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="theme-color" content="#FF6200">
 </head>
 <body>
     <div class="cv-container">
         <header class="header">
-            <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
-            <h2 id="cv-role">CRM Management and Data Intelligence</h2>
+            <div class="header-top">
+                <div class="brand-logo">
+                    <img src="../assets/images/itau.png" alt="Itaú">
+                </div>
+                <div class="header-text">
+                    <div class="tagline"><span class="tagline-dot"></span>made of future</div>
+                    <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
+                    <h2 id="cv-role">CRM Management and Data Intelligence</h2>
+                </div>
+            </div>
             <div class="contact-info">
-                <span id="cv-email">pedrohmarconato@gmail.com</span> |
-                <span id="cv-phone">+55 (55) 981147758</span> |
-                <span id="cv-location"><span>Cachoeira do Sul, RS</span></span> |
-                <a href="https://linkedin.com/in/pedrohmarconato" id="cv-linkedin">LinkedIn</a>
+                <span class="contact-item"><i class="fas fa-envelope"></i><span id="cv-email">pedrohmarconato@gmail.com</span></span>
+                <span class="contact-item"><i class="fas fa-phone"></i><span id="cv-phone">+55 (55) 981147758</span></span>
+                <span class="contact-item" id="cv-location"><i class="fas fa-map-marker-alt"></i><span>Cachoeira do Sul, RS</span></span>
+                <span class="contact-item"><i class="fab fa-linkedin"></i><a href="https://linkedin.com/in/pedrohmarconato" id="cv-linkedin" target="_blank">LinkedIn</a></span>
+                <span class="contact-item"><i class="fab fa-github"></i><a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" id="cv-repository" target="_blank">Repository</a></span>
             </div>
         </header>
 
