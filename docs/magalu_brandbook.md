@@ -84,6 +84,19 @@ Magazine Luiza (Magalu) é uma das maiores varejistas do Brasil, conhecida por s
 - Inovação acessível
 - Conexão emocional com o público
 
+## Logo no Projeto
+
+- Arquivo: `assets/images/magalu.svg` — logo oficial 2021 com fills normalizados para o azul Magalu `#0086FF` (o vetor de origem trazia `#097db6`/`#0e87fe`)
+- Sobre o hero azul, usar versão branca via `filter: brightness(0) invert(1)`
+
+## Direção para a página do CV
+
+- Hero azul vibrante `#0086FF` com padrão sutil de balões de conversa/coração (universo da Lu) e o logo em branco
+- Animações temáticas: pop/bounce suaves de varejo (badges que pulsam), balões que sobem, energia de loja sem poluir
+- Cards arredondados e amigáveis; fundos alternando branco e `#E5F2FF`
+- Skills com dots azuis; tags de tech como "etiquetas de oferta"
+- Tipografia aproximada no CV: **Baloo 2** (títulos, arredondada e simpática) + **Nunito** (texto)
+
 ---
 
 *Nota: Este documento é um resumo das diretrizes principais da marca Magazine Luiza, compilado com base em informações públicas e elementos visuais identificados.*

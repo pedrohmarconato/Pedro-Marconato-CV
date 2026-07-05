@@ -71,18 +71,25 @@ index.html                                # companyMappings (busca da home)
 
 ## 🧩 ANATOMIA DO TEMPLATE GERADO
 
-1. **Header** com gradiente da marca contendo:
-   - Language toggle (EN ↔ PT, canto superior esquerdo)
-   - Print button (canto superior direito) que abre o
-     `cv_styles/cv_[empresa]_style_[EN|PT].html` do **mesmo idioma** e aciona `print()`
+1. **Controles fixos fora do `.cv-container`** (o `backdrop-filter` do container
+   quebraria `position: fixed` de descendentes):
+   - Language toggle (EN ↔ PT): pílula branca **fixa no canto superior direito**
+     (`position: fixed; top: 30px; right: 30px`), opção ativa com gradiente da
+     marca + ícone `fa-check-circle`
+   - Print button: **FAB redondo fixo no canto inferior direito**
+     (`position: fixed; bottom: 30px; right: 30px; border-radius: 50%; 60×60px`,
+     ícone `fa-file-pdf`) que abre o `cv_styles/cv_[empresa]_style_[EN|PT].html`
+     do **mesmo idioma** e aciona `print()`
+   - Mobile ≤768px: ambos migram para o rodapé (print à direita, toggle à esquerda)
+2. **Header** com gradiente da marca contendo:
    - IDs de identidade: `cv-name`, `cv-role`, `cv-email`, `cv-phone`,
      `cv-location`, `cv-linkedin`, `cv-repository`
-2. **Seções** com títulos identificados (`section-profile`, `section-skills`,
+3. **Seções** com títulos identificados (`section-profile`, `section-skills`,
    `section-experience`, `section-education`, `section-projects`)
-3. **Containers dinâmicos** preenchidos pelo cv-texts.js:
+4. **Containers dinâmicos** preenchidos pelo cv-texts.js:
    `skills-strategic`, `skills-tools`, `skills-emerging`,
    `experience-container`, `education-container`, `projects-container`
-4. **Scripts obrigatórios** no fim do body:
+5. **Scripts obrigatórios** no fim do body:
    ```html
    <script src="../../assets/js/cv-texts.js"></script>
    <script src="../../assets/js/dynamic-favicon.js"></script>

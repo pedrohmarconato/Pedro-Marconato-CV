@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Henrique Marconato - CV</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            /* Grupo RBS Colors */
+            --primary-color: #003563;
+            --secondary-color: #0A5394;
+            --accent-color: #D64545;
+            --text-color: #2c3e50;
+            --border-color: rgba(0, 0, 0, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            line-height: 1.5;
+            background: white;
+            font-size: 12px;
+        }
+
+        .cv-container { max-width: 210mm; margin: 0 auto; padding: 14mm; background: white; }
+
+        .header { border-bottom: 3px solid var(--primary-color); padding-bottom: 12px; margin-bottom: 16px; }
+        .header h1 { font-size: 22px; color: var(--primary-color); }
+        .header h2 { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+        .contact-info { font-size: 11px; }
+        .contact-info a { color: var(--text-color); text-decoration: none; }
+
+        .section { margin-bottom: 14px; }
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 3px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+        .tool-item { margin-bottom: 6px; }
+        .tool-name { display: flex; justify-content: space-between; font-weight: 500; font-size: 11px; }
+        .tool-percentage { color: var(--accent-color); font-size: 10px; font-weight: 600; }
+        .dots-container { display: flex; gap: 2px; margin-top: 2px; }
+        .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-color); }
+        .dot.filled { background: var(--primary-color); }
+
+        .experience-item {
+            padding: 8px 0 8px 14px;
+            border-left: 2px solid var(--primary-color);
+            margin-bottom: 10px;
+            page-break-inside: avoid;
+        }
+        .job-title { font-size: 13px; font-weight: 700; color: var(--primary-color); }
+        .job-number { display: none; }
+        .experience-item .company { font-weight: 600; font-size: 12px; }
+        .experience-item .period { font-size: 11px; color: var(--accent-color); margin-bottom: 4px; }
+        .job-description { font-size: 11px; margin-bottom: 6px; }
+        .achievements-container { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+        .achievement-item { display: flex; gap: 6px; font-size: 10.5px; }
+        .achievement-icon { color: var(--primary-color); padding-top: 1px; }
+        .achievement-title { font-weight: 600; }
+        .tooltip { display: none; }
+
+        .education-item { margin-bottom: 8px; page-break-inside: avoid; }
+        .degree { font-weight: 700; color: var(--primary-color); font-size: 12px; }
+        .university { font-size: 11px; }
+        .thesis { font-size: 10.5px; }
+        .cta-button { display: none; }
+
+        .project-item { margin-bottom: 8px; page-break-inside: avoid; }
+        .project-title { font-weight: 700; color: var(--primary-color); font-size: 12px; }
+        .project-description { font-size: 11px; }
+        .tech-tag {
+            display: inline-block;
+            padding: 1px 7px;
+            margin: 2px 3px 0 0;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 8px;
+            font-size: 9.5px;
+        }
+
+        @media print {
+            body { margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .cv-container { margin: 0; padding: 10mm; max-width: none; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="cv-container">
+        <header class="header">
+            <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
+            <h2 id="cv-role">Gestão de CRM e Inteligência de Dados</h2>
+            <div class="contact-info">
+                <span id="cv-email">pedrohmarconato@gmail.com</span> |
+                <span id="cv-phone">+55 (55) 981147758</span> |
+                <span id="cv-location"><span>Cachoeira do Sul, RS</span></span> |
+                <a href="https://linkedin.com/in/pedrohmarconato" id="cv-linkedin">LinkedIn</a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title" id="section-profile">Perfil Profissional</h2>
+            <p id="cv-profile"></p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title" id="section-skills">Habilidades e Ferramentas</h2>
+            <div class="skills-grid">
+                <div id="skills-strategic"></div>
+                <div id="skills-tools"></div>
+                <div id="skills-emerging"></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title" id="section-experience">Experiência Profissional</h2>
+            <div id="experience-container"></div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title" id="section-education">Formação Acadêmica</h2>
+            <div id="education-container"></div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title" id="section-projects">Projetos e Inovação</h2>
+            <div id="projects-container"></div>
+        </section>
+    </div>
+
+    <script src="../assets/js/cv-texts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var lang = 'pt';
+            initializeBasicContent(lang);
+            renderSkills('skills-strategic', 'strategic', lang);
+            renderSkills('skills-tools', 'tools', lang);
+            renderSkills('skills-emerging', 'emerging', lang);
+            renderExperienceTimeline(lang);
+            renderEducation(lang);
+            renderProjects(lang);
+        });
+    </script>
+</body>
+</html>
