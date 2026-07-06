@@ -7,8 +7,10 @@ em EN e PT.
 
 - `index.html` — home com busca por empresa (objeto `companyMappings` no próprio arquivo)
 - `templates/companies/[empresa].html` + `[empresa]_pt.html` — páginas por empresa
-- `cv_styles/cv_[empresa]_style_EN.html` + `_PT.html` — versões de impressão
-  (somente sufixos `_EN`/`_PT`; o padrão legado sem sufixo foi extinto)
+- `cv_styles/cv_[empresa]_style_EN.html` + `_PT.html` — versões de impressão (PDF):
+  currículo clássico **estático** e branded, **propositalmente diferente da página**
+  (somente sufixos `_EN`/`_PT`; padrão legado sem sufixo foi extinto). O conteúdo
+  canônico do currículo mora nas bases `cv_boticario_style_{EN,PT}.html`.
 - `assets/js/cv-texts.js` — **fonte única de todo o conteúdo do CV**
   (textos, experiências, skills, projetos, nos dois idiomas). Nunca duplicar.
 - `assets/js/dynamic-favicon.js`, `brands-config.js`, `fallback-script.js`
@@ -21,9 +23,14 @@ em EN e PT.
 1. Leia `REGRAS_PROJETO.md` antes de modificar qualquer coisa.
 2. Novo template: **sempre** via `python create-new-template.py` — nunca copiar
    HTML de outra empresa.
-3. Conteúdo do CV (novo emprego, idade, skills): editar **apenas**
-   `assets/js/cv-texts.js`. Estilos de impressão antigos com conteúdo estático
-   precisam de atualização manual; os gerados atualmente são dinâmicos.
+3. **Página ≠ PDF — dois conteúdos distintos, de propósito.** A *página*
+   (`templates/companies/`) é dinâmica: conteúdo 100% via `assets/js/cv-texts.js`
+   (fonte única da página) — mudou emprego/idade/skill, edite só o cv-texts.js.
+   O *PDF* (`cv_styles/`, botão de impressão) é o **currículo clássico estático**,
+   branded por empresa, com conteúdo vindo da base canônica Boticário — **não** da
+   página. NUNCA gere o PDF espelhando a página (foi o bug corrigido em 2026-07-05).
+   Para mudar o currículo do PDF: editar `cv_boticario_style_{EN,PT}.html` e
+   re-rebrandar as demais empresas.
 4. API de inicialização real: `initializeBasicContent(lang)`,
    `renderSkills(containerId, categoria, lang)`, `renderExperienceTimeline(lang)`,
    `renderEducation(lang)`, `renderProjects(lang)`, `initializeModalTexts(lang)`.
