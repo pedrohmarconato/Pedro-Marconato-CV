@@ -1,36 +1,20 @@
-# Documentação - Pedro Marconato CV
+# Documentação — Pedro Marconato CV
+
+Notas de arquitetura e referências de marca usadas para criar/manter as versões
+personalizadas do currículo. Para o mapa geral do projeto, veja o `CLAUDE.md`
+na raiz do repositório.
 
 ## Brandbooks
 
-Esta pasta contém os brandbooks gerados automaticamente pelo MCP Pipeline.
+Resumo da identidade visual (cores, tipografia, tom) de cada empresa-alvo,
+usado como referência ao criar um novo template com `create-new-template.py`.
+Hoje existem em dois formatos:
 
-### Estrutura
+- `docs/{empresa}_brandbook.md` — arquivo único por empresa.
+- `assets/brandbooks/{empresa}/` — pasta por empresa (para casos com mais de
+  um arquivo de referência).
 
-- `brandbooks/` - Brandbooks das marcas pesquisadas
-- Cada arquivo segue o padrão: `{company_slug}-brandbook.md`
+## Outros documentos desta pasta
 
-### Como usar
-
-1. Execute o MCP Step 1 para gerar um brandbook:
-   ```bash
-   python mcp_pipeline/step1_brand_research.py "Nome da Empresa" company_slug
-   ```
-
-2. O brandbook será salvo em `docs/brandbooks/{company_slug}-brandbook.md`
-
-3. Execute o MCP Step 2 que usará o brandbook como referência:
-   ```bash
-   python mcp_pipeline/step2_sonnet_templates.py company_slug
-   ```
-
-### Conteúdo dos Brandbooks
-
-- Identidade da marca
-- Cores primárias e secundárias  
-- Tipografia
-- Estilo visual
-- Referências técnicas para CV
-- Configurações para templates
-
----
-*Documentação gerada automaticamente pelo MCP Pipeline*
+- `REGRAS_PROJETO.md` — regras de processo para modificar o projeto.
+- `TEMPLATE_PADRAO.md` — especificação do template padrão de uma página de empresa.

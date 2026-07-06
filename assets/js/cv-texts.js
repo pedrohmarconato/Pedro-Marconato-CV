@@ -34,7 +34,7 @@ const CVTexts = {
             },
             
             // Professional Profile
-            professionalProfile: "Professional in CRM Management and Data Intelligence focused on quantifiable results. At Grupo RBS, I led a Brand Equity research audit that supported strategic decisions. At DBC/Realize CFI, I developed a pipeline for competitor analysis generating insights on R$1B in transactions and automated critical reports. As CRM Coordinator at Lojas Renner, I optimized budget generating 10% annual savings, implemented 80% automated communications and strategies that resulted in consumption increase. My approach integrates data, technology and strategic vision for tangible results.",
+            professionalProfile: "Professional in CRM Management and Data Intelligence focused on quantifiable results. At Grupo RBS, I led a Brand Equity research audit that supported strategic decisions. At DBC/Realize CFI, I developed a pipeline for competitor analysis generating insights on R$1B in transactions and automated critical reports. As CRM Manager at Realize CFI (Grupo Lojas Renner), I optimized budget generating 10% annual savings, implemented 80% automated communications and strategies that resulted in consumption increase. My approach integrates data, technology and strategic vision for tangible results.",
             
             // Skills Categories
             skillCategories: {
@@ -132,7 +132,7 @@ const CVTexts = {
                     }
                 },
                 {
-                    title: "CRM COORDINATOR",
+                    title: "CRM MANAGER",
                     company: "Realize CFI",
                     period: "Sep/2022 - Feb/2025",
                     description: "Responsible for CRM strategies, budget and contract management, team leadership and implementation of performance metrics to maximize results. I manage communication with over 7 million customers monthly, optimizing channels and messages to increase engagement and conversion.",
@@ -159,7 +159,7 @@ const CVTexts = {
                         }
                     ],
                     tooltip: {
-                        header: "Position Details: CRM Coordinator",
+                        header: "Position Details: CRM Manager",
                         sections: [
                             {
                                 icon: "fa-users",
@@ -400,7 +400,7 @@ const CVTexts = {
             },
             
             // Professional Profile
-            professionalProfile: "Profissional em Gestão de CRM e Inteligência de Dados focado em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa Brand Equity que suportou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos. Como Coordenador de CRM na Lojas Renner, otimizei orçamento gerando 10% de economia anual, implementei 80% de comunicações automatizadas e estratégias que resultaram em aumento de consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.",
+            professionalProfile: "Profissional em Gestão de CRM e Inteligência de Dados focado em resultados quantificáveis. No Grupo RBS, liderei auditoria de pesquisa Brand Equity que suportou decisões estratégicas. Na DBC/Realize CFI, desenvolvi pipeline para análise de concorrentes gerando insights sobre R$1B em transações e automatizei relatórios críticos. Como Gerente de CRM na Realize CFI (Grupo Lojas Renner), otimizei orçamento gerando 10% de economia anual, implementei 80% de comunicações automatizadas e estratégias que resultaram em aumento de consumo. Minha abordagem integra dados, tecnologia e visão estratégica para resultados tangíveis.",
             
             // Skills Categories
             skillCategories: {
@@ -498,7 +498,7 @@ const CVTexts = {
                     }
                 },
                 {
-                    title: "COORDENADOR DE CRM",
+                    title: "GERENTE DE CRM",
                     company: "Realize CFI",
                     period: "Set/2022 - Fev/2025",
                     description: "Responsável por estratégias de CRM, gestão de orçamento e contratos, liderança de equipe e implementação de métricas de performance para maximizar resultados. Gerencio comunicação com mais de 7 milhões de clientes mensalmente, otimizando canais e mensagens para aumentar engajamento e conversão.",
@@ -525,7 +525,7 @@ const CVTexts = {
                         }
                     ],
                     tooltip: {
-                        header: "Detalhes da Posição: Coordenador de CRM",
+                        header: "Detalhes da Posição: Gerente de CRM",
                         sections: [
                             {
                                 icon: "fa-users",

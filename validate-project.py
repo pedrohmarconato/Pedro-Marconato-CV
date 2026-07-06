@@ -265,7 +265,7 @@ class ProjectValidator:
     def check_documentation(self):
         """Verifica documentação"""
         print("🔍 Validando documentação...")
-        required_docs = ['README.md', 'REGRAS_PROJETO.md', 'TEMPLATE_PADRAO.md', 'CLAUDE.md']
+        required_docs = ['README.md', 'docs/REGRAS_PROJETO.md', 'docs/TEMPLATE_PADRAO.md', 'CLAUDE.md']
         for doc in required_docs:
             if not (self.project_root / doc).exists():
                 self.log_error(f"Documentação obrigatória não encontrada: {doc}")
