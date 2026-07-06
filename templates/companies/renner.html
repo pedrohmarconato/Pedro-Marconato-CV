@@ -3,467 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedro Marconato — Lojas Renner (EN)</title>
-    <meta name="theme-color" content="#D2001F">
-    <meta name="msapplication-TileColor" content="#D2001F">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Pedro Marconato - Lojas Renner</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         :root {
-            --ink: #1A1712;
-            --ink-soft: #4A453D;
-            --gray: #8A8479;
-            --paper: #FBFAF7;
-            --panel: #F5F2EB;
-            --line: #E3DED3;
-            --line-strong: #C9C2B4;
-            --red: #D2001F;
-            --red-deep: #A80019;
-            --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            /* Lojas Renner Official Colors */
+            --renner-primary: #D2001F;
+            --renner-secondary: #B30020;
+            --renner-accent: #E85A70;
 
-            /* aliases usados por modais + funções do cv-texts.js */
-            --primary-color: #D2001F;
-            --renner-red: #D2001F;
-            --text-color: #1A1712;
-            --dark-gray: #8A8479;
-            --white-text: #FFFFFF;
-            --background-gradient: linear-gradient(135deg, #D2001F 0%, #A80019 100%);
+            /* Applied Colors */
+            --primary-color: var(--renner-primary);
+            --secondary-color: var(--renner-secondary);
+            --accent-color: var(--renner-accent);
+            --text-color: #2c3e50;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --background-gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: var(--font-sans);
-            color: var(--ink-soft);
-            background: #E9E5DC;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
             line-height: 1.6;
-            font-size: 15px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            background: #f8f9fa;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
 
+        .animated-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Container PADRÃO - 1000px centralizado */
         .cv-container {
-            max-width: 940px;
-            margin: 34px auto;
-            background: var(--paper);
-            position: relative;
-            box-shadow: 0 18px 60px rgba(26, 23, 18, 0.16);
+            max-width: 1000px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            animation: fadeUp 0.7s ease both;
-        }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-
-        .cv-container::before {
-            content: "";
-            position: absolute; top: 0; left: 0; right: 0; height: 5px;
-            background: var(--red);
+            position: relative;
+            border: 1px solid var(--border-color);
         }
 
-        /* ==================== HERO ==================== */
         .header {
-            padding: 58px 64px 34px;
+            background: var(--background-gradient);
+            color: white;
+            padding: 60px 50px;
+            text-align: center;
             position: relative;
         }
-        .header-content { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; }
 
-        .header h1 {
-            font-family: var(--font-serif);
-            font-weight: 800;
-            font-size: 44px;
-            line-height: 1.02;
-            letter-spacing: -0.6px;
-            color: var(--ink);
+        .header h1 { font-size: 2.5em; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.5px; }
+        .header h2 { font-size: 1.2em; font-weight: 400; opacity: 0.9; margin-bottom: 20px; }
+
+        .contact-info { font-size: 0.95em; opacity: 0.9; line-height: 1.8; }
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: border-color 0.3s ease;
         }
-        .role {
-            margin-top: 16px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 3.5px;
-            text-transform: uppercase;
-            color: var(--gray);
-        }
+        .contact-info a:hover { border-bottom-color: white; }
 
-        .brandmark { flex-shrink: 0; width: 232px; height: 38px; overflow: hidden; margin-top: 8px; }
-        .brandmark img { width: 232px; height: auto; display: block; }
-
-        .header-divider { height: 1px; background: var(--line-strong); margin: 30px 64px 0; }
-
-        /* contatos */
-        .contact-section { padding: 20px 64px 6px; }
-        .contact-info { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; }
-        .contact-item { display: inline-flex; align-items: baseline; gap: 8px; }
-        .contact-button {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: none; border: none; padding: 0;
-            font-family: var(--font-sans); font-size: 13.5px; font-weight: 500;
-            color: var(--ink); cursor: pointer; text-decoration: none;
-            transition: color 0.2s;
-        }
-        .contact-button i { color: var(--red); font-size: 12px; }
-        .contact-button:hover { color: var(--red); }
-        a.contact-button { cursor: pointer; }
-        .contact-cta { font-size: 10.5px; color: var(--gray); letter-spacing: 0.2px; }
-        .location { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ink); }
-        .location i { color: var(--red); font-size: 12px; }
-
-        /* ==================== SEÇÕES ==================== */
-        .section { padding: 30px 64px; border-top: 1px solid var(--line); }
-        .section:first-of-type { border-top: none; }
+        .content { padding: 50px; }
+        .section { margin-bottom: 40px; }
 
         .section-title {
-            display: flex; align-items: center; gap: 13px;
-            font-family: var(--font-sans);
-            font-size: 12px; font-weight: 700; letter-spacing: 3px;
-            text-transform: uppercase; color: var(--ink);
-            margin-bottom: 22px;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
         }
-        .section-title::before { content: ""; width: 22px; height: 2px; background: var(--red); flex-shrink: 0; }
 
-        .profile-text { font-size: 15.5px; line-height: 1.8; color: var(--ink-soft); max-width: 62ch; }
-
-        /* ==================== SKILLS ==================== */
-        .skills-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
-        .skills-column h3 {
-            font-family: var(--font-serif) !important;
-            font-size: 16px !important; font-weight: 700 !important;
-            color: var(--ink) !important; margin-bottom: 16px !important;
-            padding-bottom: 9px; border-bottom: 1px solid var(--line);
+        /* Skills (markup gerado por renderSkills) */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
         }
         .tool-item { margin-bottom: 14px; }
-        .tool-name { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-        .tool-name > span:first-child { font-size: 13px; font-weight: 500; color: var(--ink); }
-        .tool-percentage { font-size: 10px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: var(--red-deep); }
+        .tool-name {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .tool-percentage { color: var(--accent-color); font-size: 0.85em; font-weight: 600; }
         .dots-container { display: flex; gap: 4px; }
-        .dot { width: 100%; height: 3px; border-radius: 2px; background: var(--line); flex: 1; }
-        .dot.filled { background: var(--red); }
-
-        /* ==================== EXPERIÊNCIA ==================== */
-        .experience-timeline { position: relative; padding-left: 30px; }
-        .experience-timeline::before {
-            content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px;
-            width: 1.5px; background: var(--line-strong);
+        .dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--border-color);
         }
-        .experience-item { position: relative; margin-bottom: 30px; }
-        .experience-item:last-child { margin-bottom: 0; }
-        .experience-item::before {
-            content: ""; position: absolute; left: -30px; top: 4px;
-            width: 11px; height: 11px; border-radius: 50%;
-            background: var(--paper); border: 2px solid var(--red);
-        }
+        .dot.filled { background: var(--primary-color); }
 
+        /* Experiência (markup gerado por renderExperienceTimeline) */
+        .experience-item {
+            position: relative;
+            padding: 25px 25px 25px 70px;
+            margin-bottom: 25px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
         .job-title {
-            display: flex; align-items: center; gap: 11px;
-            font-family: var(--font-serif); font-size: 20px; font-weight: 700;
-            color: var(--ink); line-height: 1.2;
+            font-size: 1.15em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 4px;
         }
         .job-number {
-            flex-shrink: 0;
-            width: 25px; height: 25px; border-radius: 50%;
-            background: var(--red); color: #fff;
-            font-family: var(--font-sans); font-size: 12px; font-weight: 700;
-            display: inline-flex; align-items: center; justify-content: center;
+            position: absolute;
+            left: 20px; top: 25px;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: var(--background-gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            font-weight: 700;
         }
-        .company { font-size: 14px; font-weight: 600; color: var(--red-deep); margin-top: 7px; }
-        .period {
-            display: inline-block; margin-top: 4px;
-            font-size: 11px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase;
-            color: var(--gray);
-        }
-        .job-description { font-size: 14px; line-height: 1.7; color: var(--ink-soft); margin: 12px 0 16px; max-width: 66ch; }
+        .experience-item .company { font-weight: 600; }
+        .experience-item .period { font-size: 0.9em; color: var(--accent-color); margin-bottom: 10px; }
+        .job-description { margin-bottom: 15px; }
 
-        .achievements-container { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .achievements-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
         .achievement-item {
-            display: flex; gap: 12px;
-            background: var(--panel); border: 1px solid var(--line);
-            border-radius: 3px; padding: 14px 16px;
-            transition: border-color 0.2s, transform 0.2s;
+            display: flex;
+            gap: 10px;
+            padding: 12px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
         }
-        .achievement-item:hover { border-color: var(--line-strong); transform: translateY(-2px); }
-        .achievement-icon {
-            flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
-            background: rgba(210, 0, 31, 0.08); color: var(--red);
-            display: inline-flex; align-items: center; justify-content: center; font-size: 13px;
-        }
-        .achievement-title { font-size: 12.5px; font-weight: 700; color: var(--ink); margin-bottom: 3px; letter-spacing: 0.2px; }
-        .achievement-description { font-size: 12px; line-height: 1.55; color: var(--ink-soft); }
+        .achievement-icon { color: var(--primary-color); font-size: 1.1em; padding-top: 2px; }
+        .achievement-title { font-weight: 600; font-size: 0.92em; }
+        .achievement-description { font-size: 0.85em; }
 
-        /* tooltip */
-        .tooltip { position: relative; display: inline-flex; }
-        .tooltip-icon { font-size: 13px; color: var(--gray); cursor: pointer; }
+        /* Tooltips das experiências (markup gerado por renderTooltip) */
+        .tooltip { position: relative; display: inline-block; margin-left: 6px; }
+        .tooltip-icon { color: var(--accent-color); font-size: 0.8em; cursor: help; }
         .tooltip-text {
-            visibility: hidden; opacity: 0; position: absolute; z-index: 20;
-            top: 130%; left: 0; width: 300px;
-            background: var(--ink); color: #F3EFE8; border-radius: 6px; padding: 14px 16px;
-            font-family: var(--font-sans); box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-            transition: opacity 0.2s;
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            z-index: 50;
+            top: 24px; left: 50%;
+            transform: translateX(-50%);
+            width: 340px;
+            max-width: 80vw;
+            background: white;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 15px;
+            font-size: 0.8em;
+            font-weight: 400;
+            text-align: left;
+            transition: opacity 0.2s ease;
         }
-        .tooltip:hover .tooltip-text, .tooltip.tooltip-active .tooltip-text { visibility: visible; opacity: 1; }
-        .tooltip-header { font-size: 12px; font-weight: 700; margin-bottom: 8px; color: #fff; }
-        .tooltip-section-title { font-size: 11px; font-weight: 600; color: #F0B8BE; margin: 8px 0 4px; }
-        .tooltip-list { list-style: none; }
-        .tooltip-list li { font-size: 11px; line-height: 1.5; padding-left: 12px; position: relative; }
-        .tooltip-list li::before { content: "—"; position: absolute; left: 0; color: var(--red); }
+        .tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+        .tooltip-header {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        .tooltip-section { margin-bottom: 8px; }
+        .tooltip-section-title { font-weight: 600; margin-bottom: 3px; }
+        .tooltip-list { padding-left: 18px; }
 
-        /* ==================== FORMAÇÃO / PROJETOS ==================== */
-        .education-container, .projects-container { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-        .education-item, .project-item {
-            padding: 20px 22px; background: var(--panel);
-            border: 1px solid var(--line); border-radius: 3px;
+        /* Educação (markup gerado por renderEducation) */
+        .education-item {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
         }
-        .degree, .project-title { font-family: var(--font-serif); font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.25; }
-        .university { font-size: 13px; color: var(--ink-soft); margin-top: 5px; }
-        .thesis { font-size: 12px; color: var(--gray); font-style: italic; margin-top: 5px; line-height: 1.5; }
-        .project-description { font-size: 13px; line-height: 1.65; color: var(--ink-soft); margin-top: 8px; }
+        .degree { font-weight: 700; color: var(--primary-color); }
+        .university { font-weight: 500; }
+        .thesis { font-size: 0.9em; margin-top: 4px; }
+
+        /* Projetos (markup gerado por renderProjects) */
+        .project-item {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary-color);
+        }
+        .project-title { font-weight: 700; color: var(--primary-color); margin-bottom: 6px; }
         .tech-tag {
-            display: inline-block; margin: 4px 4px 0 0; padding: 3px 9px;
-            font-size: 10.5px; font-weight: 500; letter-spacing: 0.3px;
-            color: var(--ink); background: var(--paper);
-            border: 1px solid var(--line-strong); border-radius: 2px;
+            display: inline-block;
+            padding: 3px 10px;
+            margin: 3px 4px 0 0;
+            background: var(--background-gradient);
+            color: white;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 500;
         }
+
         .cta-button {
-            display: inline-flex; align-items: center; gap: 7px; margin-top: 12px;
-            padding: 8px 15px; font-size: 12px; font-weight: 600;
-            color: #fff; background: var(--red); border-radius: 3px;
-            text-decoration: none; transition: background 0.2s;
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 14px;
+            background: var(--background-gradient);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85em;
         }
-        .cta-button:hover { background: var(--red-deep); }
 
-        /* ==================== TOGGLE / FAB ==================== */
-        .language-toggle {
-            position: fixed; top: 24px; right: 24px; z-index: 100;
-            display: flex; align-items: center; gap: 4px;
-            background: var(--paper); border: 1px solid var(--line-strong);
-            border-radius: 40px; padding: 5px 6px; box-shadow: 0 6px 20px rgba(26,23,18,0.15);
-        }
-        .language-option {
-            display: inline-flex; align-items: center; gap: 5px;
-            padding: 6px 14px; border-radius: 30px; text-decoration: none;
-            font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--gray);
-            transition: all 0.2s;
-        }
-        .language-option.active { background: var(--red); color: #fff; }
-        .language-divider { width: 1px; height: 16px; background: var(--line-strong); }
-
+        /* Print button — FAB fixo inferior-direito (padrão das referências) */
         .print-button {
-            position: fixed; bottom: 26px; right: 26px; z-index: 100;
-            width: 56px; height: 56px; border-radius: 50%;
-            background: var(--red); color: #fff; border: none; cursor: pointer;
-            display: inline-flex; align-items: center; justify-content: center; font-size: 20px;
-            box-shadow: 0 8px 24px rgba(210, 0, 31, 0.4); transition: transform 0.2s, background 0.2s;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #D2001F 0%, #B30020 100%);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
         }
-        .print-button:hover { background: var(--red-deep); transform: translateY(-3px) scale(1.05); }
+        .print-button:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4); }
+        .print-button i { font-size: 24px; }
 
-        /* ==================== RESPONSIVO ==================== */
-        @media (max-width: 820px) {
-            .cv-container { margin: 0; }
-            .header { padding: 42px 26px 26px; }
-            .header-content { flex-direction: column; }
-            .header h1 { font-size: 40px; max-width: none; }
-            .brandmark { margin-top: 4px; }
-            .header-divider, .contact-section, .section { padding-left: 26px; padding-right: 26px; }
-            .header-divider { margin-left: 26px; margin-right: 26px; }
-            .skills-container { grid-template-columns: 1fr; gap: 26px; }
-            .achievements-container, .education-container, .projects-container { grid-template-columns: 1fr; }
+        /* Language toggle — pílula fixa superior-direita (padrão das referências) */
+        .language-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .language-toggle:hover { transform: translateY(-2px); }
+        .language-option {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+        .language-option.active {
+            background: linear-gradient(135deg, #D2001F 0%, #B30020 100%);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cv-container { margin: 10px; border-radius: 15px; }
+            .header { padding: 70px 30px 40px; }
+            .header h1 { font-size: 2em; }
+            .content { padding: 30px; }
+            .print-button, .language-toggle {
+                position: fixed;
+                bottom: 20px;
+                top: auto;
+            }
+            .print-button { right: 20px; }
+            .language-toggle { right: auto; left: 20px; }
+        }
+
+        /* Print styles */
+        @media print {
+            body { background: white; }
+            .animated-bg, .print-button, .language-toggle { display: none; }
+            .cv-container { margin: 0; box-shadow: none; border: none; }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="theme-color" content="#D2001F">
+    <meta name="msapplication-TileColor" content="#D2001F">
 </head>
 <body>
+    <div class="animated-bg"></div>
+
+    <!-- Controles fixos fora do container (backdrop-filter quebraria position:fixed) -->
+    <div class="language-toggle">
+        <a href="renner.html" class="language-option active"><i class="fas fa-check-circle"></i> EN</a>
+        <a href="renner_pt.html" class="language-option "> PT</a>
+    </div>
+
+    <button class="print-button" title="Print CV" onclick="var win = window.open('../../cv_styles/cv_renner_style_EN.html', '_blank'); win.onload = function() { win.print(); }">
+        <i class="fas fa-file-pdf"></i>
+    </button>
+
     <div class="cv-container">
         <header class="header">
-            <div class="header-content">
-                <div class="header-text">
-                    <h1 id="cv-name"></h1>
-                    <div class="role" id="cv-role"></div>
+            <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
+            <h2 id="cv-role">CRM Management and Data Intelligence</h2>
+
+            <div class="contact-info">
+                <div>
+                    <span id="cv-email">pedrohmarconato@gmail.com</span> |
+                    <span id="cv-phone">+55 (55) 981147758</span> |
+                    <span id="cv-location"><span>Cachoeira do Sul, RS</span></span>
                 </div>
-                <div class="brandmark">
-                    <img src="../../assets/images/lojasrenner.png" alt="Lojas Renner S.A.">
+                <div>
+                    <a href="https://linkedin.com/in/pedrohmarconato" id="cv-linkedin">LinkedIn</a> |
+                    <a href="https://github.com/pedrohmarconato" id="cv-repository">Repository</a>
                 </div>
             </div>
         </header>
 
-        <div class="header-divider"></div>
+        <div class="content">
+            <section class="section">
+                <h2 class="section-title" id="section-profile">Professional Profile</h2>
+                <p id="cv-profile">Loading professional profile...</p>
+            </section>
 
-        <div class="contact-section">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <button class="contact-button" onclick="openEmailForm()">
-                        <i class="fas fa-envelope"></i> <span id="cv-email"></span>
-                    </button>
+            <section class="section">
+                <h2 class="section-title" id="section-skills">Skills & Tools</h2>
+                <div class="skills-grid">
+                    <div id="skills-strategic"></div>
+                    <div id="skills-tools"></div>
+                    <div id="skills-emerging"></div>
                 </div>
-                <div class="contact-item">
-                    <button class="contact-button" onclick="openPhoneForm()">
-                        <i class="fas fa-phone"></i> <span id="cv-phone"></span>
-                    </button>
-                </div>
-                <div class="location" id="cv-location">
-                    <i class="fas fa-map-marker-alt"></i> <span></span>
-                </div>
-                <div class="contact-item">
-                    <a href="https://linkedin.com/in/pedrohmarconato" class="contact-button" target="_blank">
-                        <i class="fab fa-linkedin"></i> <span id="cv-linkedin"></span>
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" class="contact-button" target="_blank">
-                        <i class="fab fa-github"></i> <span id="cv-repository"></span>
-                    </a>
-                </div>
-            </div>
-        </div>
+            </section>
 
-        <section class="section">
-            <h2 class="section-title" id="section-profile"></h2>
-            <p class="profile-text" id="cv-profile"></p>
-        </section>
+            <section class="section">
+                <h2 class="section-title" id="section-experience">Professional Experience</h2>
+                <div id="experience-container"></div>
+            </section>
 
-        <section class="section">
-            <h2 class="section-title" id="section-skills"></h2>
-            <div class="skills-container">
-                <div class="skills-column" id="skills-strategic"></div>
-                <div class="skills-column" id="skills-tools"></div>
-                <div class="skills-column" id="skills-emerging"></div>
-            </div>
-        </section>
+            <section class="section">
+                <h2 class="section-title" id="section-education">Education</h2>
+                <div id="education-container"></div>
+            </section>
 
-        <section class="section">
-            <h2 class="section-title" id="section-experience"></h2>
-            <div class="experience-timeline" id="experience-container"></div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title" id="section-education"></h2>
-            <div class="education-container" id="education-container"></div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title" id="section-projects"></h2>
-            <div class="projects-container" id="projects-container"></div>
-        </section>
-    </div>
-
-    <!-- Toggle de idioma -->
-    <div class="language-toggle">
-        <a href="renner.html" class="language-option active"><i class="fas fa-check-circle"></i><span id="lang-en">EN</span></a>
-        <div class="language-divider"></div>
-        <a href="renner_pt.html" class="language-option"><span id="lang-pt">PT</span></a>
-    </div>
-
-    <!-- FAB imprimir (abre o PDF editorial) -->
-    <button class="print-button" title="Download PDF" onclick="var win = window.open('../../cv_styles/cv_renner_style_EN.html', '_blank'); win.onload = function() { win.print(); }">
-        <i class="fas fa-file-pdf"></i>
-    </button>
-
-    <!-- Modal Email -->
-    <div id="emailModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
-        <div style="background-color:white; padding:40px; border-radius:8px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <button onclick="closeEmailModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
-            <h3 id="email-modal-title" style="margin-bottom:25px; color: var(--text-color); font-size: 24px; font-family: var(--font-serif);">Send Email</h3>
-            <form action="https://formspree.io/f/mdkekegw" method="POST">
-                <div style="margin-bottom:20px;">
-                    <label id="email-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
-                    <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:6px; font-size: 16px;">
-                </div>
-                <div style="margin-bottom:20px;">
-                    <label id="email-label-email" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Email</label>
-                    <input type="email" name="email" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:6px; font-size: 16px;">
-                </div>
-                <div style="margin-bottom:20px;">
-                    <label id="email-label-subject" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Subject</label>
-                    <input type="text" name="subject" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:6px; font-size: 16px;">
-                </div>
-                <div style="margin-bottom:25px;">
-                    <label id="email-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message</label>
-                    <textarea name="message" required rows="5" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:6px; font-size: 16px; resize: vertical;"></textarea>
-                </div>
-                <button id="email-button" type="submit" style="background: var(--background-gradient); color: var(--white-text); border:none; padding:14px 28px; border-radius:6px; cursor:pointer; font-weight:600; font-size: 16px; box-shadow: 0 4px 15px rgba(210, 0, 31, 0.4);">Send</button>
-            </form>
+            <section class="section">
+                <h2 class="section-title" id="section-projects">Projects & Innovation</h2>
+                <div id="projects-container"></div>
+            </section>
         </div>
     </div>
 
-    <!-- Modal Telefone -->
-    <div id="phoneModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center;">
-        <div style="background-color:white; padding:40px; border-radius:8px; width:90%; max-width:500px; position:relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <button onclick="closePhoneModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color: var(--dark-gray);">×</button>
-            <h3 id="phone-modal-title" style="margin-bottom:25px; color: var(--text-color); font-size: 24px; font-family: var(--font-serif);">Get in Touch</h3>
-            <form action="https://formspree.io/f/mdkekegw" method="POST">
-                <input type="hidden" name="contact_type" value="phone_request">
-                <div style="margin-bottom:20px;">
-                    <label id="phone-label-name" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Name</label>
-                    <input type="text" name="name" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:6px; font-size: 16px;">
-                </div>
-                <div style="margin-bottom:20px;">
-                    <label id="phone-label-phone" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Your Phone</label>
-                    <input type="tel" name="phone" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:6px; font-size: 16px;">
-                </div>
-                <div style="margin-bottom:20px;">
-                    <label id="phone-label-besttime" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Best time to contact</label>
-                    <input type="text" name="best_time" required style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:6px; font-size: 16px;">
-                </div>
-                <div style="margin-bottom:25px;">
-                    <label id="phone-label-message" style="display:block; margin-bottom:8px; font-weight:500; color: var(--text-color);">Message (Optional)</label>
-                    <textarea name="message" rows="3" style="width:100%; padding:12px; border:2px solid #e5e7eb; border-radius:6px; font-size: 16px; resize: vertical;"></textarea>
-                </div>
-                <div style="display:flex; gap:15px; flex-wrap: wrap;">
-                    <button id="phone-button" type="submit" style="background: var(--background-gradient); color: var(--white-text); border:none; padding:14px 28px; border-radius:6px; cursor:pointer; font-weight:600; font-size: 16px; box-shadow: 0 4px 15px rgba(210, 0, 31, 0.4);">Request Contact</button>
-                    <a href="https://wa.me/55981147758" target="_blank" style="display:inline-flex; align-items:center; background-color:#25D366; color:white; text-decoration:none; padding:14px 28px; border-radius:6px; font-weight:600; font-size: 16px;">
-                        <i class="fab fa-whatsapp" style="margin-right:8px;"></i> <span id="whatsapp-text">WhatsApp</span>
-                    </a>
-                </div>
-            </form>
-        </div>
-    </div>
-
+    <!-- SCRIPTS OBRIGATÓRIOS -->
     <script src="../../assets/js/cv-texts.js"></script>
     <script src="../../assets/js/dynamic-favicon.js"></script>
     <script>
-        function openEmailForm() { document.getElementById('emailModal').style.display = 'flex'; }
-        function closeEmailModal() { document.getElementById('emailModal').style.display = 'none'; }
-        function openPhoneForm() { document.getElementById('phoneModal').style.display = 'flex'; }
-        function closePhoneModal() { document.getElementById('phoneModal').style.display = 'none'; }
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('emailModal')) closeEmailModal();
-            if (event.target == document.getElementById('phoneModal')) closePhoneModal();
-        };
-
         document.addEventListener('DOMContentLoaded', function() {
             var lang = 'en';
-            initializeModalTexts(lang);
             initializeBasicContent(lang);
-
-            var exp = document.getElementById('section-experience');
-            if (exp) exp.textContent = getText('sections.experience', lang);
-            var edu = document.getElementById('section-education');
-            if (edu) edu.textContent = getText('sections.education', lang);
-            var proj = document.getElementById('section-projects');
-            if (proj) proj.textContent = getText('sections.projects', lang);
-
             renderSkills('skills-strategic', 'strategic', lang);
             renderSkills('skills-tools', 'tools', lang);
             renderSkills('skills-emerging', 'emerging', lang);
             renderExperienceTimeline(lang);
             renderEducation(lang);
             renderProjects(lang);
-
-            // realce de borda nos inputs
-            document.querySelectorAll('input, textarea').forEach(function(input) {
-                input.addEventListener('focus', function() { this.style.borderColor = 'var(--renner-red)'; });
-                input.addEventListener('blur', function() { this.style.borderColor = '#e5e7eb'; });
-            });
-
-            // tooltips (toque no mobile)
-            var tips = document.querySelectorAll('.tooltip');
-            tips.forEach(function(t) {
-                t.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    tips.forEach(function(o) { if (o !== t) o.classList.remove('tooltip-active'); });
-                    t.classList.toggle('tooltip-active');
-                });
-            });
-            document.addEventListener('click', function() {
-                tips.forEach(function(t) { t.classList.remove('tooltip-active'); });
-            });
+            initializeModalTexts(lang);
         });
     </script>
 </body>
