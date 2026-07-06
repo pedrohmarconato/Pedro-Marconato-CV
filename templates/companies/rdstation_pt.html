@@ -1842,16 +1842,10 @@
             let html = '';
 
             projects.forEach(project => {
-                const isRepoNews = project.title === 'REPO NEWS';
                 html += `
                     <div class="project-item">
                         <div class="project-title">${project.title}</div>
                         <div class="project-description">${project.description}</div>
-                        ${isRepoNews ? `
-                            <a href="https://www.repo.news/" target="_blank" class="cta-button">
-                                <i class="fas fa-external-link-alt"></i> Visitar Repo News
-                            </a>
-                        ` : ''}
                         <div style="margin-top: 15px;">
                             ${renderTechTags(project.techs)}
                         </div>

@@ -326,9 +326,9 @@ const CVTexts = {
             // Projects
             projects: [
                 {
-                    title: "REPO NEWS",
-                    description: "Weekly insights selected with human curation and summarized by artificial intelligence — straight to the point, no noise.",
-                    techs: ["React", "TypeScript", "Tailwind CSS"]
+                    title: "CARRERA CAMPOS",
+                    description: "Website for a business law firm, featuring a free <a href=\"https://www.carreracampos.com.br/diagnostico\" target=\"_blank\">financial diagnostic tool</a> that estimates a company's financial health in about 4 minutes using academic crisis-prediction models (Altman Z-Score, Fleuriet, Kanitz).",
+                    techs: ["Next.js", "TypeScript", "Supabase"]
                 },
                 {
                     title: "VISUAL RECOGNITION",
@@ -692,9 +692,9 @@ const CVTexts = {
             // Projects
             projects: [
                 {
-                    title: "REPO NEWS",
-                    description: "Insights semanais selecionados com curadoria humana e resumidos por inteligência artificial — direto ao ponto, sem ruído.",
-                    techs: ["React", "TypeScript", "Tailwind CSS"]
+                    title: "CARRERA CAMPOS",
+                    description: "Site de escritório de advocacia empresarial, com uma <a href=\"https://www.carreracampos.com.br/diagnostico\" target=\"_blank\">ferramenta gratuita de diagnóstico financeiro</a> que estima em cerca de 4 minutos a saúde financeira de uma empresa usando modelos acadêmicos de predição de crise (Altman Z-Score, Fleuriet, Kanitz).",
+                    techs: ["Next.js", "TypeScript", "Supabase"]
                 },
                 {
                     title: "RECONHECIMENTO VISUAL",
@@ -1036,18 +1036,12 @@ function renderProjects(lang = 'en') {
     
     let html = '';
     projects.forEach(project => {
-        const repoNewsLink = project.title === 'REPO NEWS' ? 
-            `<a href="https://www.repo.news/" target="_blank" class="cta-button">
-                <i class="fas fa-external-link-alt"></i> Visit Repo News
-            </a>` : '';
-        
         html += `
             <div class="project-item">
                 <div class="project-title">${project.title}</div>
                 <div class="project-description">
                     ${project.description}
                 </div>
-                ${repoNewsLink}
                 <div style="margin-top: 15px;">
                     ${renderTechTags(project.techs)}
                 </div>
