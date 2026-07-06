@@ -26,8 +26,8 @@ O script cria/atualiza automaticamente:
 ```
 templates/companies/[empresa].html        # página EN
 templates/companies/[empresa]_pt.html     # página PT
-cv_styles/cv_[empresa]_style_EN.html      # impressão EN (dinâmica)
-cv_styles/cv_[empresa]_style_PT.html      # impressão PT (dinâmica)
+cv_styles/cv_[empresa]_style_EN.html      # impressão EN (currículo estático branded)
+cv_styles/cv_[empresa]_style_PT.html      # impressão PT (currículo estático branded)
 assets/js/brands-config.js                # cores/gradiente da marca
 index.html                                # companyMappings (busca da home)
 ```
@@ -117,11 +117,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ## 🖨️ ESTILO DE IMPRESSÃO (cv_styles)
 
-Os arquivos de impressão gerados são **dinâmicos**: carregam
-`../assets/js/cv-texts.js` e renderizam o conteúdo com as mesmas funções da
-página. Assim, quando o CV muda (novo cargo, nova skill), a impressão de todas
-as empresas atualiza junto — sem retrabalho manual e sem risco de imprimir
-conteúdo desatualizado.
+Os arquivos de impressão são o **currículo clássico ESTÁTICO** (RESUMO DE
+QUALIFICAÇÕES → FORMAÇÃO → EXPERIÊNCIA), branded por empresa — **um documento
+propositalmente diferente da página** (a página é a versão web rica/dinâmica via
+cv-texts.js; o PDF é o currículo tradicional de 1 página). O conteúdo canônico do
+currículo mora em `cv_boticario_style_{EN,PT}.html`; o gerador **rebranda** essa
+base para cada nova empresa (header escuro + cores da marca; logo, fontes e
+tratamentos especiais de header entram na elevação da marca). Para atualizar o
+currículo do PDF, edite a base canônica e re-rebrande — **nunca** faça o PDF
+espelhar a página (foi o bug corrigido em 2026-07-05).
 
 ---
 

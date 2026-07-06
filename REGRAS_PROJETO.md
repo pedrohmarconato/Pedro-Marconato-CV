@@ -36,8 +36,8 @@
 ```
 templates/companies/[empresa].html        (página EN)
 templates/companies/[empresa]_pt.html     (página PT)
-cv_styles/cv_[empresa]_style_EN.html      (impressão EN — dinâmica)
-cv_styles/cv_[empresa]_style_PT.html      (impressão PT — dinâmica)
+cv_styles/cv_[empresa]_style_EN.html      (impressão EN — currículo estático branded)
+cv_styles/cv_[empresa]_style_PT.html      (impressão PT — currículo estático branded)
 ```
 O script também atualiza `assets/js/brands-config.js` e o
 `companyMappings` do `index.html` (sem isso a empresa não aparece na busca da home).
@@ -131,11 +131,12 @@ win.onload = function() { win.print(); }
 
 1. Fonte única: `assets/js/cv-texts.js` (nunca duplicar)
 2. Referência nos templates: `../../assets/js/cv-texts.js`
-3. Referência nos cv_styles dinâmicos: `../assets/js/cv-texts.js`
-4. Todos os IDs básicos e de seção presentes
-5. Ao atualizar o CV (novo emprego, idade etc.), editar **somente** o cv-texts.js;
-   estilos de impressão estáticos antigos precisam ser atualizados manualmente —
-   prefira os dinâmicos gerados pelo script atual
+3. cv-texts.js alimenta **apenas as páginas** (`templates/companies/`); os
+   `cv_styles/` (impressão/PDF) são **estáticos** e NÃO carregam cv-texts.js
+4. Todos os IDs básicos e de seção presentes (nas páginas)
+5. Ao atualizar o CV da **página**, editar **somente** o cv-texts.js. O currículo
+   do **PDF** é conteúdo separado (base canônica `cv_boticario_style_{EN,PT}.html`)
+   — página ≠ PDF, de propósito; nunca faça o PDF espelhar a página
 
 ---
 

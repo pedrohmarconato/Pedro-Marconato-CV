@@ -9,8 +9,8 @@ Uso não-interativo:  python create-new-template.py <Empresa> <#primaria> <#secu
 Arquivos gerados/atualizados para cada empresa:
   templates/companies/<empresa>.html      (página EN)
   templates/companies/<empresa>_pt.html   (página PT)
-  cv_styles/cv_<empresa>_style_EN.html    (impressão EN, dinâmica via cv-texts.js)
-  cv_styles/cv_<empresa>_style_PT.html    (impressão PT, dinâmica via cv-texts.js)
+  cv_styles/cv_<empresa>_style_EN.html    (impressão EN — currículo clássico ESTÁTICO, branded)
+  cv_styles/cv_<empresa>_style_PT.html    (impressão PT — currículo clássico ESTÁTICO, branded)
   assets/js/brands-config.js              (cores/gradiente da marca)
   index.html                              (companyMappings — busca da home)
 """
@@ -428,165 +428,86 @@ PAGE_TEMPLATE = Template('''<!DOCTYPE html>
 </html>
 ''')
 
-# Estilo de impressão DINÂMICO: renderiza o conteúdo a partir do cv-texts.js,
-# então nunca fica desatualizado quando o CV muda.
-PRINT_TEMPLATE = Template('''<!DOCTYPE html>
-<html lang="$lang">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedro Henrique Marconato - CV</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+# Impressão ESTÁTICA (currículo clássico != página): rebranda o currículo
+# canônico (cv_boticario_style_{EN,PT}.html) aplicando a camada de marca.
+# O conteúdo do currículo mora só na base canônica; a página (dinâmica) e o
+# PDF (estático) são propositalmente dois conteúdos distintos.
 
-        :root {
-            /* $empresa_display Colors */
-            --primary-color: $primary_color;
-            --secondary-color: $secondary_color;
-            --accent-color: $accent_color;
-            --text-color: #2c3e50;
-            --border-color: rgba(0, 0, 0, 0.15);
-        }
+# Âncoras exatas da base canônica (Boticário) usadas na rebrandização.
+_A_TITLE = "<title>Pedro Henrique Marconato - CV</title>"
+_A_IMPORT = ("@import url('https://fonts.googleapis.com/css2?"
+             "family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;"
+             "1,300;1,400;1,500;1,600;1,700&display=swap');")
+_A_BODYFONT = ("font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "
+               "'Segoe UI', Roboto, sans-serif;")
+_A_SKILLTAG_BG = "            background: rgba(123, 194, 36, 0.15);"
+_A_SKILLTAG_BORDER = "            border: 1px solid rgba(123, 194, 36, 0.3);"
+_A_THEME1 = '<meta name="theme-color" content="#011E38">'
+_A_THEME2 = '<meta name="msapplication-TileColor" content="#011E38">'
+_A_LOGO_CSS = """        .boticario-logo {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            width: 160px;
+            height: auto;
+            opacity: 0.9;
+        }"""
+_A_LOGO_IMG = ('<img src="../assets/images/boticario.svg" alt="O Boticário" '
+               'class="boticario-logo">')
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--text-color);
-            line-height: 1.5;
-            background: white;
-            font-size: 12px;
-        }
+def render_print_scaffold(base, data):
+    """Currículo estático da nova empresa a partir da base canônica.
 
-        .cv-container { max-width: 210mm; margin: 0 auto; padding: 14mm; background: white; }
+    Scaffold: header escuro (gradiente da marca), fonte Inter, SEM logo. A
+    elevação da marca (espelhando uma marca existente) adiciona logo, fontes
+    e tratamentos especiais de header (ex.: hero claro/amarelo)."""
+    primary = data['primary_color']
+    secondary = data['secondary_color']
+    accent = data['accent_color']
+    display = data['empresa_display']
 
-        .header { border-bottom: 3px solid var(--primary-color); padding-bottom: 12px; margin-bottom: 16px; }
-        .header h1 { font-size: 22px; color: var(--primary-color); }
-        .header h2 { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-        .contact-info { font-size: 11px; }
-        .contact-info a { color: var(--text-color); text-decoration: none; }
+    def repl(t, old, new, tag):
+        if old not in t:
+            raise ValueError(f"base canônica sem âncora '{tag}' — impressão não gerada")
+        return t.replace(old, new, 1)
 
-        .section { margin-bottom: 14px; }
-        .section-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--primary-color);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 3px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
+    t = base
+    t = repl(t, _A_TITLE,
+             f"<title>Pedro Henrique Marconato - CV ({display})</title>", "title")
+    t = repl(t, _A_IMPORT,
+             "@import url('https://fonts.googleapis.com/css2?"
+             "family=Inter:wght@300;400;500;600;700&display=swap');", "import")
+    root = (
+        "        :root {\n"
+        f"            /* {display} Colors */\n"
+        f"            --primary-color: {primary};\n"
+        f"            --secondary-color: {secondary};\n"
+        f"            --accent-color: {accent};\n"
+        "            --light-accent: #F4F6F9;\n"
+        "            --text-color: #2c3e50;\n"
+        "            --border-color: rgba(0, 0, 0, 0.12);\n"
+        f"            --background-gradient: linear-gradient(135deg, {primary} 0%, {secondary} 100%);\n"
+        "        }"
+    )
+    t2, n = re.subn(r"        :root \{.*?--background-gradient:.*?\n        \}",
+                    lambda m: root, t, count=1, flags=re.S)
+    if n != 1:
+        raise ValueError("base canônica sem âncora ':root' — impressão não gerada")
+    t = t2
+    t = repl(t, _A_BODYFONT,
+             "font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;",
+             "bodyfont")
+    t = repl(t, _A_SKILLTAG_BG, f"            background: {accent}26;", "tagbg")
+    t = repl(t, _A_SKILLTAG_BORDER, f"            border: 1px solid {accent}4D;", "tagborder")
+    t = repl(t, _A_THEME1, f'<meta name="theme-color" content="{primary}">', "theme1")
+    t = repl(t, _A_THEME2, f'<meta name="msapplication-TileColor" content="{primary}">', "theme2")
+    # scaffold sem logo — a elevação da marca insere .brand-logo + <img>
+    t = repl(t, _A_LOGO_CSS,
+             "        /* logo da marca: adicionar .brand-logo na elevação */", "logo_css")
+    t = repl(t, _A_LOGO_IMG, "", "logo_img")
+    return t
 
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-        .tool-item { margin-bottom: 6px; }
-        .tool-name { display: flex; justify-content: space-between; font-weight: 500; font-size: 11px; }
-        .tool-percentage { color: var(--accent-color); font-size: 10px; font-weight: 600; }
-        .dots-container { display: flex; gap: 2px; margin-top: 2px; }
-        .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-color); }
-        .dot.filled { background: var(--primary-color); }
-
-        .experience-item {
-            padding: 8px 0 8px 14px;
-            border-left: 2px solid var(--primary-color);
-            margin-bottom: 10px;
-            page-break-inside: avoid;
-        }
-        .job-title { font-size: 13px; font-weight: 700; color: var(--primary-color); }
-        .job-number { display: none; }
-        .experience-item .company { font-weight: 600; font-size: 12px; }
-        .experience-item .period { font-size: 11px; color: var(--accent-color); margin-bottom: 4px; }
-        .job-description { font-size: 11px; margin-bottom: 6px; }
-        .achievements-container { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-        .achievement-item { display: flex; gap: 6px; font-size: 10.5px; }
-        .achievement-icon { color: var(--primary-color); padding-top: 1px; }
-        .achievement-title { font-weight: 600; }
-        .tooltip { display: none; }
-
-        .education-item { margin-bottom: 8px; page-break-inside: avoid; }
-        .degree { font-weight: 700; color: var(--primary-color); font-size: 12px; }
-        .university { font-size: 11px; }
-        .thesis { font-size: 10.5px; }
-        .cta-button { display: none; }
-
-        .project-item { margin-bottom: 8px; page-break-inside: avoid; }
-        .project-title { font-weight: 700; color: var(--primary-color); font-size: 12px; }
-        .project-description { font-size: 11px; }
-        .tech-tag {
-            display: inline-block;
-            padding: 1px 7px;
-            margin: 2px 3px 0 0;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            border-radius: 8px;
-            font-size: 9.5px;
-        }
-
-        @media print {
-            body { margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .cv-container { margin: 0; padding: 10mm; max-width: none; }
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <div class="cv-container">
-        <header class="header">
-            <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
-            <h2 id="cv-role">$role_text</h2>
-            <div class="contact-info">
-                <span id="cv-email">pedrohmarconato@gmail.com</span> |
-                <span id="cv-phone">+55 (55) 981147758</span> |
-                <span id="cv-location"><span>Cachoeira do Sul, RS</span></span> |
-                <a href="https://linkedin.com/in/pedrohmarconato" id="cv-linkedin">LinkedIn</a>
-            </div>
-        </header>
-
-        <section class="section">
-            <h2 class="section-title" id="section-profile">$profile_title</h2>
-            <p id="cv-profile"></p>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title" id="section-skills">$skills_title</h2>
-            <div class="skills-grid">
-                <div id="skills-strategic"></div>
-                <div id="skills-tools"></div>
-                <div id="skills-emerging"></div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title" id="section-experience">$experience_title</h2>
-            <div id="experience-container"></div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title" id="section-education">$education_title</h2>
-            <div id="education-container"></div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title" id="section-projects">$projects_title</h2>
-            <div id="projects-container"></div>
-        </section>
-    </div>
-
-    <script src="../assets/js/cv-texts.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var lang = '$lang_code';
-            initializeBasicContent(lang);
-            renderSkills('skills-strategic', 'strategic', lang);
-            renderSkills('skills-tools', 'tools', lang);
-            renderSkills('skills-emerging', 'emerging', lang);
-            renderExperienceTimeline(lang);
-            renderEducation(lang);
-            renderProjects(lang);
-        });
-    </script>
-</body>
-</html>
-''')
 
 LANG_CONFIG = {
     'en': {
@@ -685,8 +606,14 @@ class TemplateCreator:
         return file_path
 
     def create_cv_style(self, data, lang):
-        content = PRINT_TEMPLATE.substitute({**data, **LANG_CONFIG[lang]})
-        filename = f"cv_{data['empresa_lower']}_style_{LANG_CONFIG[lang]['lang_upper']}.html"
+        lang_upper = LANG_CONFIG[lang]['lang_upper']
+        base_path = self.cv_styles_dir / f"cv_boticario_style_{lang_upper}.html"
+        if not base_path.exists():
+            raise FileNotFoundError(
+                f"base canônica ausente: {base_path.name} (necessária p/ impressão estática)")
+        base = base_path.read_text(encoding='utf-8')
+        content = render_print_scaffold(base, data)
+        filename = f"cv_{data['empresa_lower']}_style_{lang_upper}.html"
         file_path = self.cv_styles_dir / filename
         file_path.write_text(content, encoding='utf-8')
         return file_path
