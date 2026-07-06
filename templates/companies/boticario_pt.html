@@ -308,7 +308,7 @@
         /* Logo.png como elementos discretos de fundo */
         .logo-bg-element {
             position: fixed;
-            background-image: url('../../docs/logo.png');
+            background-image: url('../../assets/images/logo.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -2210,8 +2210,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="../../assets/js/cv-texts.js"></script>
     <!-- O Boticário Favicon -->
-    <link rel="icon" type="image/png" href="../../docs/favicon.png">
-    <link rel="apple-touch-icon" href="../../docs/favicon.png">
+    <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="../../assets/images/favicon.png">
     <meta name="theme-color" content="#011E38">
     <meta name="msapplication-TileColor" content="#011E38">
 </head>
@@ -2280,7 +2280,7 @@
             </div>
             
             <div class="header-content">
-                <img src="../../docs/letra_clara.png" alt="O Boticário" class="boticario-logo">
+                <img src="../../assets/images/letra_clara.png" alt="O Boticário" class="boticario-logo">
                 <div class="header-text">
                     <h1 id="cv-name" data-text="PEDRO HENRIQUE LIMA MARCONATO" style="font-size: 2.4rem;"></h1>
                     <div class="role" id="cv-role"></div>
@@ -2357,6 +2357,11 @@
     </div>
     
     <!-- Language toggle button -->
+    <!-- Back to home button -->
+    <a href="../../index.html" title="Voltar para a selecao de empresa" style="position: fixed; bottom: 30px; left: 30px; z-index: 100; width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); display: flex; align-items: center; justify-content: center; text-decoration: none; color: #333; font-size: 22px; transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+        <i class="fas fa-house"></i>
+    </a>
+
     <div class="language-toggle">
         <a href="boticario.html" class="language-option">
             <span id="lang-en">EN</span>

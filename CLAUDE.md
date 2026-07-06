@@ -20,7 +20,7 @@ em EN e PT.
 
 ## Regras essenciais
 
-1. Leia `REGRAS_PROJETO.md` antes de modificar qualquer coisa.
+1. Leia `docs/REGRAS_PROJETO.md` antes de modificar qualquer coisa.
 2. Novo template: **sempre** via `python create-new-template.py` — nunca copiar
    HTML de outra empresa.
 3. **Página ≠ PDF — dois conteúdos distintos, de propósito.** A *página*
