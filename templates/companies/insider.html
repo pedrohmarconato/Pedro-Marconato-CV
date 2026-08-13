@@ -3,365 +3,791 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
     <title>Pedro Marconato - Insider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
 
         :root {
-            /* Insider Official Colors */
+            /* Insider Official Colors — medidas no CSS do insiderstore.com.br
+               (--color-button: 0,0,0 / --color-foreground: 61,61,61 / --color-background: 255,255,255).
+               A marca nao possui cor de destaque: hierarquia por peso e tracking. */
             --insider-primary: #000000;
             --insider-secondary: #3D3D3D;
             --insider-accent: #EBEBEB;
 
-            /* Applied Colors */
-            --primary-color: var(--insider-primary);
-            --secondary-color: var(--insider-secondary);
-            --accent-color: var(--insider-accent);
-            --text-color: #2c3e50;
-            --border-color: rgba(0, 0, 0, 0.1);
-            --background-gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            /* Escala monocromatica da pagina (dark editorial) */
+            --insider-ink: #0A0A0A;
+            --insider-surface: #111111;
+            --insider-surface-2: #161616;
+            --insider-surface-3: #1C1C1C;
+            --insider-line: #2A2A2A;
+            --insider-line-strong: #3D3D3D;
+            --insider-fg: #FFFFFF;
+            --insider-fg-muted: #B0B0B0;
+            --insider-fg-dim: #6E6E6E;
+
+            /* Cores aplicadas — na pagina escura o "primario" visual e o branco
+               sobre o preto da marca. As funcoes compartilhadas do cv-texts.js
+               referenciam --primary-color; mante-la legivel no dark e obrigatorio. */
+            --primary-color: var(--insider-fg);
+            --secondary-color: var(--insider-accent);
+            --accent-color: var(--insider-line-strong);
+            --text-color: var(--insider-fg-muted);
+            --border-color: var(--insider-line);
+            --background-gradient: linear-gradient(135deg, var(--insider-primary) 0%, var(--insider-secondary) 100%);
+
+            --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--text-color);
-            line-height: 1.6;
-            background: #f8f9fa;
-            min-height: 100vh;
-            position: relative;
+            font-family: var(--font-sans);
+            background: var(--insider-ink);
+            color: var(--insider-fg-muted);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
-        .animated-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
-            z-index: -2;
+        ::selection { background: var(--insider-fg); color: var(--insider-primary); }
+
+        /* ============================================================
+           SCROLL PROGRESS — filete de leitura no topo
+           ============================================================ */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; right: 0; height: 2px;
+            background: var(--insider-line); z-index: 300; pointer-events: none;
+        }
+        .scroll-progress span {
+            display: block; height: 100%; width: 0;
+            background: var(--insider-fg);
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* ============================================================
+           CURSOR — dot + ring com blend difference (so desktop fine pointer)
+           ============================================================ */
+        .cursor-dot, .cursor-ring {
+            position: fixed; top: 0; left: 0; z-index: 400;
+            pointer-events: none; opacity: 0;
+            mix-blend-mode: difference;
+            will-change: transform;
+        }
+        .cursor-dot {
+            width: 6px; height: 6px; background: #FFFFFF; border-radius: 50%;
+            margin: -3px 0 0 -3px;
+        }
+        .cursor-ring {
+            width: 34px; height: 34px; border: 1px solid #FFFFFF; border-radius: 50%;
+            margin: -17px 0 0 -17px;
+            transition: width .3s var(--ease-out), height .3s var(--ease-out),
+                        margin .3s var(--ease-out), opacity .3s ease;
+        }
+        body.cursor-active .cursor-dot, body.cursor-active .cursor-ring { opacity: 1; }
+        body.cursor-hover .cursor-ring {
+            width: 62px; height: 62px; margin: -31px 0 0 -31px;
         }
 
-        /* Container PADRÃO - 1000px centralizado */
+        /* ============================================================
+           CONTAINER
+           ============================================================ */
         .cv-container {
             max-width: 1000px;
-            margin: 30px auto;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            margin: 0 auto 80px;
+            background: var(--insider-surface);
+            border-left: 1px solid var(--insider-line);
+            border-right: 1px solid var(--insider-line);
+            border-bottom: 1px solid var(--insider-line);
             position: relative;
-            border: 1px solid var(--border-color);
         }
 
+        /* ============================================================
+           HEADER — trama de fios + reveal tipografico
+           ============================================================ */
         .header {
-            background: var(--background-gradient);
-            color: white;
-            padding: 60px 50px;
-            text-align: center;
             position: relative;
+            background: var(--insider-primary);
+            padding: 96px 60px 68px;
+            overflow: hidden;
+            border-bottom: 1px solid var(--insider-line);
         }
 
-        .header h1 { font-size: 2.5em; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.5px; }
-        .header h2 { font-size: 1.2em; font-weight: 400; opacity: 0.9; margin-bottom: 20px; }
-
-        .contact-info { font-size: 0.95em; opacity: 0.9; line-height: 1.8; }
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            transition: border-color 0.3s ease;
+        #fabric-canvas {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            display: block;
+            opacity: .85;
         }
-        .contact-info a:hover { border-bottom-color: white; }
 
-        .content { padding: 50px; }
-        .section { margin-bottom: 40px; }
+        .header-inner { position: relative; z-index: 2; }
 
-        .section-title {
-            font-size: 1.5em;
+        .brand-logo {
+            width: 132px; height: auto; display: block;
+            /* wordmark monocromatico preto -> branco */
+            filter: brightness(0) invert(1);
+            opacity: 0;
+            animation: logoEntrance 1s var(--ease-out) .1s forwards;
+        }
+        @keyframes logoEntrance {
+            from { opacity: 0; transform: translateY(14px); clip-path: inset(0 100% 0 0); }
+            to   { opacity: 1; transform: translateY(0);    clip-path: inset(0 0 0 0); }
+        }
+
+        .company-tagline {
+            margin-top: 26px;
+            font-size: 11px;
             font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--border-color);
+            letter-spacing: 4.4px;
+            text-transform: uppercase;
+            color: var(--insider-fg-dim);
+            opacity: 0;
+            animation: fadeUp .9s var(--ease-out) .45s forwards;
         }
 
-        /* Skills (markup gerado por renderSkills) */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        #cv-name {
+            margin-top: 20px;
+            font-size: clamp(26px, 4.1vw, 44px);
+            font-weight: 800;
+            line-height: 1.14;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            color: var(--insider-fg);
+        }
+        /* o nome quebra em linhas montadas pelo JS — nunca vaza o container */
+        #cv-name .line { display: block; }
+        /* reveal letra a letra (montado por JS) */
+        #cv-name .char {
+            display: inline-block;
+            transform: translateY(105%);
+            animation: charRise .85s var(--ease-out) forwards;
+        }
+        #cv-name .char-wrap { display: inline-block; overflow: hidden; vertical-align: bottom; }
+        @keyframes charRise { to { transform: translateY(0); } }
+
+        .name-rule {
+            width: 0; height: 1px; background: var(--insider-fg);
+            margin: 26px 0 22px;
+            animation: ruleGrow 1.1s var(--ease-out) .9s forwards;
+        }
+        @keyframes ruleGrow { to { width: 120px; } }
+
+        #cv-role {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 3.6px;
+            text-transform: uppercase;
+            color: var(--insider-fg-muted);
+            opacity: 0;
+            animation: fadeUp .9s var(--ease-out) 1.05s forwards;
+        }
+
+        .contact-info {
+            margin-top: 44px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            opacity: 0;
+            animation: fadeUp .9s var(--ease-out) 1.2s forwards;
+        }
+        .contact-line { display: flex; flex-wrap: wrap; gap: 22px 34px; }
+
+        .contact-item {
+            display: inline-flex; align-items: flex-start; gap: 10px;
+            font-size: 12.5px; letter-spacing: .6px;
+            color: var(--insider-fg-muted);
+            text-decoration: none;
+            background: none; border: 0; padding: 0;
+            font-family: var(--font-sans); cursor: pointer;
+            text-align: left;
+        }
+        .contact-item i { font-size: 12px; color: var(--insider-fg-dim); transition: color .3s ease; margin-top: 4px; }
+        .contact-item .label { position: relative; display: inline-block; }
+        .contact-item .label::after {
+            content: ''; position: absolute; left: 0; bottom: -3px;
+            width: 0; height: 1px; background: var(--insider-fg);
+            transition: width .4s var(--ease-out);
+        }
+        .contact-item:hover { color: var(--insider-fg); }
+        .contact-item:hover i { color: var(--insider-fg); }
+        .contact-item:hover .label::after { width: 100%; }
+        .contact-item .cta-hint {
+            display: block;
+            font-size: 9.5px; letter-spacing: 1.6px; text-transform: uppercase;
+            color: var(--insider-fg-dim); margin-top: 3px;
+        }
+
+        /* ============================================================
+           TICKER — repertorio do CV em loop horizontal
+           ============================================================ */
+        .ticker {
+            border-bottom: 1px solid var(--insider-line);
+            background: var(--insider-surface-2);
+            overflow: hidden;
+            padding: 14px 0;
+            white-space: nowrap;
+        }
+        .ticker-track {
+            display: inline-block;
+            animation: tickerScroll 42s linear infinite;
+        }
+        .ticker:hover .ticker-track { animation-play-state: paused; }
+        .ticker-item {
+            display: inline-block;
+            font-size: 11px; font-weight: 700; letter-spacing: 4px;
+            text-transform: uppercase; color: var(--insider-fg-dim);
+            padding: 0 22px;
+        }
+        .ticker-item::after { content: '·'; margin-left: 22px; color: var(--insider-line-strong); }
+        @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* ============================================================
+           SECOES
+           ============================================================ */
+        .section {
+            padding: 72px 60px;
+            border-bottom: 1px solid var(--insider-line);
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .9s var(--ease-out), transform .9s var(--ease-out);
+        }
+        .section:last-child { border-bottom: 0; }
+        .section.in { opacity: 1; transform: translateY(0); }
+
+        .section-head {
+            display: flex; align-items: baseline; gap: 18px;
+            margin-bottom: 38px;
+        }
+        .section-index {
+            font-family: var(--font-mono);
+            font-size: 11px; color: var(--insider-fg-dim); letter-spacing: 1px;
+        }
+        .section-title {
+            font-size: 13px; font-weight: 700;
+            letter-spacing: 4.8px; text-transform: uppercase;
+            color: var(--insider-fg);
+            white-space: nowrap;
+        }
+        .section-rule {
+            flex: 1; height: 1px; background: var(--insider-line);
+            position: relative; overflow: hidden;
+        }
+        .section-rule::after {
+            content: ''; position: absolute; inset: 0;
+            background: var(--insider-fg);
+            transform: scaleX(0); transform-origin: left center;
+            transition: transform 1.1s var(--ease-out) .15s;
+        }
+        .section.in .section-rule::after { transform: scaleX(1); }
+
+        /* PERFIL */
+        #cv-profile {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.85;
+            color: var(--insider-fg-muted);
+            max-width: 78ch;
+        }
+
+        /* ============================================================
+           SKILLS — niveis como fios de trama
+           ============================================================ */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 44px;
         }
-        .tool-item { margin-bottom: 14px; }
+        .skill-column-title {
+            font-size: 10px; font-weight: 700; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--insider-fg-dim);
+            padding-bottom: 12px; margin-bottom: 22px;
+            border-bottom: 1px solid var(--insider-line);
+        }
+        .tool-item {
+            margin-bottom: 20px;
+            opacity: 0; transform: translateY(14px);
+            transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
+            transition-delay: calc(var(--i, 0) * 55ms);
+        }
+        .section.in .tool-item { opacity: 1; transform: translateY(0); }
         .tool-name {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 500;
-            margin-bottom: 5px;
+            display: flex; justify-content: space-between; align-items: baseline;
+            gap: 12px; margin-bottom: 9px;
         }
-        .tool-percentage { color: var(--accent-color); font-size: 0.85em; font-weight: 600; }
+        .tool-name > span:first-child {
+            font-size: 13px; font-weight: 500; color: var(--insider-fg);
+            letter-spacing: .3px;
+        }
+        .tool-percentage {
+            font-family: var(--font-mono);
+            font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase;
+            color: var(--insider-fg-dim); white-space: nowrap;
+        }
         .dots-container { display: flex; gap: 4px; }
+        /* o "dot" da API compartilhada vira fio vertical — trama, nao bolinha */
         .dot {
-            width: 10px; height: 10px;
-            border-radius: 50%;
-            background: var(--border-color);
+            width: 3px; height: 16px;
+            background: var(--insider-line);
+            transition: background .4s var(--ease-out), transform .4s var(--ease-out);
         }
-        .dot.filled { background: var(--primary-color); }
+        .dot.filled { background: var(--insider-fg-dim); }
+        .tool-item:hover .dot.filled { background: var(--insider-fg); transform: scaleY(1.25); }
 
-        /* Experiência (markup gerado por renderExperienceTimeline) */
+        /* ============================================================
+           EXPERIENCIA — cards com spotlight
+           ============================================================ */
         .experience-item {
             position: relative;
-            padding: 25px 25px 25px 70px;
-            margin-bottom: 25px;
-            background: rgba(0, 0, 0, 0.02);
-            border-radius: 12px;
-            border-left: 4px solid var(--primary-color);
+            padding: 30px 32px 30px 34px;
+            margin-bottom: 22px;
+            background: var(--insider-surface-2);
+            border: 1px solid var(--insider-line);
+            opacity: 0; transform: translateY(30px);
+            transition: opacity .8s var(--ease-out), transform .8s var(--ease-out),
+                        border-color .4s ease, background .4s ease;
+            overflow: hidden;
         }
+        .experience-item.animate-in { opacity: 1; transform: translateY(0); }
+        .experience-item::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 1px; background: var(--insider-line-strong);
+            transform: scaleY(0); transform-origin: top center;
+            transition: transform .9s var(--ease-out) .2s;
+        }
+        .experience-item.animate-in::before { transform: scaleY(1); }
+        .experience-item::after {
+            /* spotlight seguindo o mouse */
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(320px circle at var(--mx, -200px) var(--my, -200px),
+                        rgba(255,255,255,.055), transparent 62%);
+            opacity: 0; transition: opacity .4s ease;
+        }
+        .experience-item:hover { border-color: var(--insider-line-strong); background: var(--insider-surface-3); }
+        .experience-item:hover::after { opacity: 1; }
+
         .job-title {
-            font-size: 1.15em;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 4px;
+            display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+            font-size: 15px; font-weight: 700; letter-spacing: 1.4px;
+            text-transform: uppercase; color: var(--insider-fg);
+            margin-bottom: 10px;
         }
         .job-number {
-            position: absolute;
-            left: 20px; top: 25px;
-            width: 34px; height: 34px;
-            border-radius: 50%;
-            background: var(--background-gradient);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9em;
-            font-weight: 700;
+            font-family: var(--font-mono);
+            font-size: 11px; font-weight: 400; letter-spacing: 0;
+            width: 26px; height: 26px; flex: none;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--insider-line-strong);
+            color: var(--insider-fg-dim);
         }
-        .experience-item .company { font-weight: 600; }
-        .experience-item .period { font-size: 0.9em; color: var(--accent-color); margin-bottom: 10px; }
-        .job-description { margin-bottom: 15px; }
+        .company {
+            font-size: 12px; font-weight: 600; letter-spacing: 2.6px;
+            text-transform: uppercase; color: var(--insider-fg-muted);
+            margin-bottom: 4px;
+        }
+        .period {
+            font-family: var(--font-mono);
+            font-size: 11px; letter-spacing: .8px; color: var(--insider-fg-dim);
+            margin-bottom: 18px;
+        }
+        .job-description {
+            font-size: 14px; font-weight: 300; line-height: 1.8;
+            color: var(--insider-fg-muted); margin-bottom: 24px;
+        }
 
+        /* gap real + borda por item: grade impar nao deixa celula fantasma
+           (a 4a experiencia tem 3 conquistas em 2 colunas) */
         .achievements-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
         }
         .achievement-item {
-            display: flex;
-            gap: 10px;
-            padding: 12px;
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+            display: flex; gap: 14px; padding: 18px;
+            background: var(--insider-surface-2);
+            border: 1px solid var(--insider-line);
+            transition: background .35s ease, border-color .35s ease;
         }
-        .achievement-icon { color: var(--primary-color); font-size: 1.1em; padding-top: 2px; }
-        .achievement-title { font-weight: 600; font-size: 0.92em; }
-        .achievement-description { font-size: 0.85em; }
+        .achievement-item:hover { border-color: var(--insider-line-strong); }
+        .achievement-item:hover { background: var(--insider-surface-3); }
+        .achievement-icon {
+            width: 30px; height: 30px; flex: none;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--insider-line-strong);
+            color: var(--insider-fg-muted); font-size: 12px;
+            transition: color .35s ease, border-color .35s ease;
+        }
+        .achievement-item:hover .achievement-icon { color: var(--insider-fg); border-color: var(--insider-fg); }
+        .achievement-title {
+            font-size: 11px; font-weight: 700; letter-spacing: 1.8px;
+            text-transform: uppercase; color: var(--insider-fg); margin-bottom: 6px;
+        }
+        .achievement-description {
+            font-size: 12.5px; font-weight: 300; line-height: 1.7;
+            color: var(--insider-fg-dim);
+        }
+        .metric {
+            color: var(--insider-fg); font-weight: 600;
+            font-family: var(--font-mono); font-size: 12px;
+            white-space: nowrap;
+        }
 
-        /* Tooltips das experiências (markup gerado por renderTooltip) */
-        .tooltip { position: relative; display: inline-block; margin-left: 6px; }
-        .tooltip-icon { color: var(--accent-color); font-size: 0.8em; cursor: help; }
+        /* TOOLTIP */
+        .tooltip { position: relative; display: inline-flex; cursor: pointer; }
+        .tooltip-icon { font-size: 12px; color: var(--insider-fg-dim); transition: color .3s ease; }
+        .tooltip:hover .tooltip-icon, .tooltip.tooltip-active .tooltip-icon { color: var(--insider-fg); }
         .tooltip-text {
-            visibility: hidden;
-            opacity: 0;
-            position: absolute;
-            z-index: 50;
-            top: 24px; left: 50%;
-            transform: translateX(-50%);
-            width: 340px;
-            max-width: 80vw;
-            background: white;
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            padding: 15px;
-            font-size: 0.8em;
-            font-weight: 400;
-            text-align: left;
-            transition: opacity 0.2s ease;
+            position: absolute; bottom: calc(100% + 12px); left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            width: 330px; max-width: 78vw;
+            background: var(--insider-primary);
+            border: 1px solid var(--insider-line-strong);
+            padding: 18px; z-index: 50;
+            opacity: 0; visibility: hidden;
+            transition: opacity .3s ease, transform .3s var(--ease-out), visibility .3s;
+            text-align: left; text-transform: none; letter-spacing: 0;
         }
-        .tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+        .tooltip:hover .tooltip-text, .tooltip.tooltip-active .tooltip-text {
+            opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+        }
         .tooltip-header {
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 8px;
+            font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--insider-fg); padding-bottom: 10px; margin-bottom: 12px;
+            border-bottom: 1px solid var(--insider-line);
         }
-        .tooltip-section { margin-bottom: 8px; }
-        .tooltip-section-title { font-weight: 600; margin-bottom: 3px; }
-        .tooltip-list { padding-left: 18px; }
+        .tooltip-section { margin-bottom: 12px; }
+        .tooltip-section:last-child { margin-bottom: 0; }
+        .tooltip-section-title {
+            font-size: 10px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase;
+            color: var(--insider-fg-muted); margin-bottom: 6px;
+        }
+        .tooltip-list { list-style: none; }
+        .tooltip-list li {
+            font-size: 11.5px; font-weight: 300; line-height: 1.6;
+            color: var(--insider-fg-dim); padding-left: 12px; position: relative;
+        }
+        .tooltip-list li::before {
+            content: ''; position: absolute; left: 0; top: 9px;
+            width: 5px; height: 1px; background: var(--insider-line-strong);
+        }
 
-        /* Educação (markup gerado por renderEducation) */
-        .education-item {
-            padding: 20px;
-            margin-bottom: 15px;
-            background: rgba(0, 0, 0, 0.02);
-            border-radius: 12px;
-            border-left: 4px solid var(--accent-color);
+        /* ============================================================
+           EDUCACAO E PROJETOS — cards com tilt 3D
+           ============================================================ */
+        .education-grid, .projects-grid {
+            display: grid; gap: 20px;
+            perspective: 1200px;
         }
-        .degree { font-weight: 700; color: var(--primary-color); }
-        .university { font-weight: 500; }
-        .thesis { font-size: 0.9em; margin-top: 4px; }
+        .education-grid { grid-template-columns: repeat(2, 1fr); }
+        .projects-grid { grid-template-columns: repeat(3, 1fr); }
 
-        /* Projetos (markup gerado por renderProjects) */
-        .project-item {
-            padding: 20px;
-            margin-bottom: 15px;
-            background: rgba(0, 0, 0, 0.02);
-            border-radius: 12px;
-            border-left: 4px solid var(--secondary-color);
+        .education-item, .project-item {
+            position: relative;
+            padding: 28px;
+            background: var(--insider-surface-2);
+            border: 1px solid var(--insider-line);
+            opacity: 0; transform: translateY(26px);
+            transition: opacity .8s var(--ease-out), transform .5s var(--ease-out),
+                        border-color .4s ease, background .4s ease;
+            transform-style: preserve-3d;
+            overflow: hidden;
         }
-        .project-title { font-weight: 700; color: var(--primary-color); margin-bottom: 6px; }
+        .education-item.animate-in, .project-item.animate-in { opacity: 1; transform: translateY(0); }
+        .education-item:hover, .project-item:hover {
+            border-color: var(--insider-line-strong);
+            background: var(--insider-surface-3);
+        }
+        .education-item::after, .project-item::after {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(260px circle at var(--mx, -200px) var(--my, -200px),
+                        rgba(255,255,255,.06), transparent 60%);
+            opacity: 0; transition: opacity .4s ease;
+        }
+        .education-item:hover::after, .project-item:hover::after { opacity: 1; }
+
+        .degree {
+            font-size: 14px; font-weight: 700; letter-spacing: 1.2px;
+            text-transform: uppercase; color: var(--insider-fg); margin-bottom: 8px;
+        }
+        .university {
+            font-size: 12.5px; font-weight: 400; color: var(--insider-fg-muted); margin-bottom: 6px;
+        }
+        .thesis {
+            font-family: var(--font-mono);
+            font-size: 11px; color: var(--insider-fg-dim); letter-spacing: .4px;
+        }
+
+        .project-title {
+            font-size: 13px; font-weight: 700; letter-spacing: 2.4px;
+            text-transform: uppercase; color: var(--insider-fg); margin-bottom: 12px;
+        }
+        .project-description {
+            font-size: 13px; font-weight: 300; line-height: 1.75;
+            color: var(--insider-fg-dim); margin-bottom: 18px;
+        }
+        .project-description a { color: var(--insider-fg); text-decoration: none; border-bottom: 1px solid var(--insider-line-strong); }
+        .project-description a:hover { border-bottom-color: var(--insider-fg); }
+
         .tech-tag {
             display: inline-block;
-            padding: 3px 10px;
-            margin: 3px 4px 0 0;
-            background: var(--background-gradient);
-            color: white;
-            border-radius: 12px;
-            font-size: 0.75em;
-            font-weight: 500;
+            font-family: var(--font-mono);
+            font-size: 10px; letter-spacing: 1px;
+            color: var(--insider-fg-muted);
+            border: 1px solid var(--insider-line-strong);
+            padding: 4px 10px; margin: 0 6px 6px 0;
+            transition: color .3s ease, border-color .3s ease;
         }
+        .project-item:hover .tech-tag { color: var(--insider-fg); border-color: var(--insider-fg-dim); }
 
         .cta-button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 14px;
-            background: var(--background-gradient);
-            color: white;
-            border-radius: 8px;
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-top: 16px;
+            font-size: 10px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase;
+            color: var(--insider-primary); background: var(--insider-fg);
+            padding: 10px 20px; border-radius: 6px; /* unico raio da marca */
             text-decoration: none;
-            font-size: 0.85em;
+            transition: opacity .3s ease;
         }
+        .cta-button:hover { opacity: .82; }
 
-        /* Print button — FAB fixo inferior-direito (padrão das referências) */
-        .print-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #000000 0%, #3D3D3D 100%);
-            color: white;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-        .print-button:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4); }
-        .print-button i { font-size: 24px; }
-
-        /* Language toggle — pílula fixa superior-direita (padrão das referências) */
+        /* ============================================================
+           CONTROLES FIXOS (fora do .cv-container)
+           ============================================================ */
         .language-toggle {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background: rgba(255, 255, 255, 0.96);
+            position: fixed; top: 30px; right: 30px; z-index: 200;
+            display: flex; align-items: center;
+            background: rgba(10, 10, 10, .92);
+            border: 1px solid var(--insider-line-strong);
             backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 5px;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-            transition: all 0.3s ease;
-            z-index: 100;
         }
-        .language-toggle:hover { transform: translateY(-2px); }
         .language-option {
-            color: var(--text-color);
+            display: flex; align-items: center; gap: 7px;
+            padding: 10px 16px;
+            font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+            color: var(--insider-fg-dim); text-decoration: none;
+            transition: color .3s ease, background .3s ease;
+        }
+        .language-option:hover { color: var(--insider-fg); }
+        .language-option.active { background: var(--insider-fg); color: var(--insider-primary); }
+        .language-option i { font-size: 10px; }
+        .language-divider { width: 1px; height: 18px; background: var(--insider-line-strong); }
+
+        .print-button {
+            position: fixed; bottom: 30px; right: 30px; z-index: 200;
+            width: 60px; height: 60px; border-radius: 50%;
+            background: var(--insider-fg); color: var(--insider-primary);
+            border: 1px solid var(--insider-fg);
+            font-size: 20px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform .35s var(--ease-out), background .3s ease, color .3s ease;
+        }
+        .print-button:hover { background: var(--insider-primary); color: var(--insider-fg); }
+
+        .home-button {
+            position: fixed; bottom: 30px; left: 30px; z-index: 200;
+            width: 60px; height: 60px; border-radius: 50%;
+            background: rgba(10, 10, 10, .92);
+            border: 1px solid var(--insider-line-strong);
+            backdrop-filter: blur(10px);
+            color: var(--insider-fg-muted); font-size: 20px;
+            display: flex; align-items: center; justify-content: center;
             text-decoration: none;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s ease;
+            transition: transform .35s var(--ease-out), color .3s ease, border-color .3s ease;
         }
-        .language-option.active {
-            background: linear-gradient(135deg, #000000 0%, #3D3D3D 100%);
-            color: white;
-        }
+        .home-button:hover { color: var(--insider-fg); border-color: var(--insider-fg); }
 
-        /* Responsive */
+        /* ============================================================
+           MODAIS
+           ============================================================ */
+        .modal {
+            display: none; position: fixed; inset: 0; z-index: 500;
+            background: rgba(0, 0, 0, .86);
+            backdrop-filter: blur(6px);
+            align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .modal.open { display: flex; }
+        .modal-content {
+            background: var(--insider-surface);
+            border: 1px solid var(--insider-line-strong);
+            width: 100%; max-width: 460px;
+            max-height: 90vh; overflow-y: auto;
+            padding: 34px;
+            position: relative;
+            animation: modalRise .45s var(--ease-out);
+        }
+        @keyframes modalRise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-close {
+            position: absolute; top: 16px; right: 18px;
+            background: none; border: 0; cursor: pointer;
+            font-size: 22px; line-height: 1; color: var(--insider-fg-dim);
+            transition: color .3s ease;
+        }
+        .modal-close:hover { color: var(--insider-fg); }
+        .modal-title {
+            font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--insider-fg); margin-bottom: 24px;
+        }
+        .form-group { margin-bottom: 16px; }
+        .form-group label {
+            display: block; margin-bottom: 7px;
+            font-size: 10px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase;
+            color: var(--insider-fg-dim);
+        }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px 14px;
+            background: var(--insider-primary);
+            border: 1px solid var(--insider-line);
+            color: var(--insider-fg);
+            font-family: var(--font-sans); font-size: 13px;
+            transition: border-color .3s ease;
+        }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--insider-fg); }
+        .form-group textarea { min-height: 104px; resize: vertical; }
+        .modal-actions { display: flex; gap: 10px; margin-top: 22px; }
+        .btn-primary, .btn-whatsapp {
+            flex: 1;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px 18px; border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 10.5px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase;
+            cursor: pointer; text-decoration: none; border: 1px solid var(--insider-fg);
+            transition: opacity .3s ease, background .3s ease, color .3s ease;
+        }
+        .btn-primary { background: var(--insider-fg); color: var(--insider-primary); }
+        .btn-primary:hover { opacity: .82; }
+        .btn-whatsapp { background: transparent; color: var(--insider-fg); border-color: var(--insider-line-strong); }
+        .btn-whatsapp:hover { border-color: var(--insider-fg); }
+
+        /* ============================================================
+           RESPONSIVO
+           ============================================================ */
+        @media (max-width: 900px) {
+            .skills-grid { grid-template-columns: 1fr 1fr; }
+            .projects-grid { grid-template-columns: 1fr 1fr; }
+        }
         @media (max-width: 768px) {
-            .cv-container { margin: 10px; border-radius: 15px; }
-            .header { padding: 70px 30px 40px; }
-            .header h1 { font-size: 2em; }
-            .content { padding: 30px; }
-            .print-button, .language-toggle {
-                position: fixed;
-                bottom: 20px;
-                top: auto;
-            }
-            .print-button { right: 20px; }
-            .language-toggle { right: auto; left: 20px; }
+            .header { padding: 76px 26px 48px; }
+            .section { padding: 48px 26px; }
+            .skills-grid, .projects-grid, .education-grid, .achievements-container { grid-template-columns: 1fr; }
+            .section-title { white-space: normal; }
+            .cv-container { margin-bottom: 110px; }
+            .language-toggle { top: auto; bottom: 26px; left: 22px; right: auto; }
+            .print-button { bottom: 26px; right: 22px; width: 52px; height: 52px; font-size: 17px; }
+            .home-button { display: none; }
+            .cursor-dot, .cursor-ring { display: none; }
+            #fabric-canvas { opacity: .55; }
         }
 
-        /* Print styles */
-        @media print {
-            body { background: white; }
-            .animated-bg, .print-button, .language-toggle { display: none; }
-            .cv-container { margin: 0; box-shadow: none; border: none; }
+        /* ============================================================
+           ACESSIBILIDADE — movimento reduzido desliga tudo
+           ============================================================ */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: .001ms !important;
+                animation-delay: 0ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+            }
+            #cv-name .char { transform: none; }
+            .name-rule { width: 120px; }
+            .brand-logo, .company-tagline, #cv-role, .contact-info { opacity: 1; }
+            .section, .experience-item, .project-item, .education-item, .tool-item {
+                opacity: 1; transform: none;
+            }
+            .cursor-dot, .cursor-ring { display: none; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <meta name="theme-color" content="#000000">
-    <meta name="msapplication-TileColor" content="#000000">
 </head>
 <body>
-    <div class="animated-bg"></div>
+    <!-- Progresso de leitura -->
+    <div class="scroll-progress"><span id="scroll-bar"></span></div>
 
-    <!-- Controles fixos fora do container (backdrop-filter quebraria position:fixed) -->
-    <div class="language-toggle">
-        <a href="insider.html" class="language-option active"><i class="fas fa-check-circle"></i> EN</a>
-        <a href="insider_pt.html" class="language-option "> PT</a>
-    </div>
-
-    <button class="print-button" title="Print CV" onclick="var win = window.open('../../cv_styles/cv_insider_style_EN.html', '_blank'); win.onload = function() { win.print(); }">
-        <i class="fas fa-file-pdf"></i>
-    </button>
+    <!-- Cursor custom (ativado por JS apenas em ponteiro fino) -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
 
     <div class="cv-container">
         <header class="header">
-            <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
-            <h2 id="cv-role">CRM Management and Data Intelligence</h2>
+            <canvas id="fabric-canvas"></canvas>
+            <div class="header-inner">
+                <img src="../../assets/images/insider.svg" alt="Insider" class="brand-logo">
+                <div class="company-tagline">Technology. Design. Data.</div>
 
-            <div class="contact-info">
-                <div>
-                    <span id="cv-email">pedrohmarconato@gmail.com</span> |
-                    <span id="cv-phone">+55 (55) 981147758</span> |
-                    <span id="cv-location"><span>Cachoeira do Sul, RS</span></span>
-                </div>
-                <div>
-                    <a href="https://linkedin.com/in/pedrohmarconato" id="cv-linkedin">LinkedIn</a> |
-                    <a href="https://github.com/pedrohmarconato" id="cv-repository">Repository</a>
+                <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
+                <div class="name-rule"></div>
+                <h2 id="cv-role">CRM Management and Data Intelligence</h2>
+
+                <div class="contact-info">
+                    <div class="contact-line">
+                        <button type="button" class="contact-item" onclick="openEmailForm()">
+                            <i class="fas fa-envelope"></i>
+                            <span>
+                                <span class="label" id="cv-email">pedrohmarconato@gmail.com</span>
+                                <span class="cta-hint" id="cv-cta-email"></span>
+                            </span>
+                        </button>
+                        <button type="button" class="contact-item" onclick="openPhoneForm()">
+                            <i class="fas fa-phone"></i>
+                            <span>
+                                <span class="label" id="cv-phone">+55 (55) 981147758</span>
+                                <span class="cta-hint" id="cv-cta-phone"></span>
+                            </span>
+                        </button>
+                        <span class="contact-item" id="cv-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="label">Cachoeira do Sul, RS</span>
+                        </span>
+                    </div>
+                    <div class="contact-line">
+                        <a href="https://linkedin.com/in/pedrohmarconato" target="_blank" rel="noopener" class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <span>
+                                <span class="label" id="cv-linkedin">LinkedIn</span>
+                                <span class="cta-hint" id="cv-cta-linkedin"></span>
+                            </span>
+                        </a>
+                        <a href="https://github.com/pedrohmarconato" target="_blank" rel="noopener" class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <span>
+                                <span class="label" id="cv-repository">Repository</span>
+                                <span class="cta-hint" id="cv-cta-repository"></span>
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </header>
 
+        <div class="ticker"><div class="ticker-track" id="ticker-track"></div></div>
+
         <div class="content">
             <section class="section">
-                <h2 class="section-title" id="section-profile">Professional Profile</h2>
-                <p id="cv-profile">Loading professional profile...</p>
+                <div class="section-head">
+                    <span class="section-index">01</span>
+                    <h2 class="section-title" id="section-profile"></h2>
+                    <span class="section-rule"></span>
+                </div>
+                <p id="cv-profile"></p>
             </section>
 
             <section class="section">
-                <h2 class="section-title" id="section-skills">Skills & Tools</h2>
+                <div class="section-head">
+                    <span class="section-index">02</span>
+                    <h2 class="section-title" id="section-skills"></h2>
+                    <span class="section-rule"></span>
+                </div>
                 <div class="skills-grid">
                     <div id="skills-strategic"></div>
                     <div id="skills-tools"></div>
@@ -370,37 +796,623 @@
             </section>
 
             <section class="section">
-                <h2 class="section-title" id="section-experience">Professional Experience</h2>
-                <div id="experience-container"></div>
+                <div class="section-head">
+                    <span class="section-index">03</span>
+                    <h2 class="section-title" id="section-experience"></h2>
+                    <span class="section-rule"></span>
+                </div>
+                <div id="cv-experience"></div>
             </section>
 
             <section class="section">
-                <h2 class="section-title" id="section-education">Education</h2>
-                <div id="education-container"></div>
+                <div class="section-head">
+                    <span class="section-index">04</span>
+                    <h2 class="section-title" id="section-education"></h2>
+                    <span class="section-rule"></span>
+                </div>
+                <div class="education-grid" id="cv-education"></div>
             </section>
 
             <section class="section">
-                <h2 class="section-title" id="section-projects">Projects & Innovation</h2>
-                <div id="projects-container"></div>
+                <div class="section-head">
+                    <span class="section-index">05</span>
+                    <h2 class="section-title" id="section-projects"></h2>
+                    <span class="section-rule"></span>
+                </div>
+                <div class="projects-grid" id="cv-projects"></div>
             </section>
         </div>
     </div>
 
-    <!-- SCRIPTS OBRIGATÓRIOS -->
+    <!-- Back to home button -->
+    <a href="../../index.html" class="home-button" title="Back to company selection">
+        <i class="fas fa-house"></i>
+    </a>
+
+    <!-- Language toggle button -->
+    <div class="language-toggle">
+        <a href="insider.html" class="language-option active">
+            <i class="fas fa-check-circle"></i>
+            <span id="lang-en">EN</span>
+        </a>
+        <div class="language-divider"></div>
+        <a href="insider_pt.html" class="language-option">
+            <span id="lang-pt">PT</span>
+        </a>
+    </div>
+
+    <!-- Print button -->
+    <button class="print-button" title="Print CV" onclick="var win = window.open('../../cv_styles/cv_insider_style_EN.html', '_blank'); win.onload = function() { win.print(); }">
+        <i class="fas fa-file-pdf"></i>
+    </button>
+
+    <!-- Email modal -->
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" type="button" onclick="closeEmailModal()">&times;</button>
+            <div class="modal-title" id="email-modal-title">Send Email</div>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <div class="form-group">
+                    <label id="email-label-name" for="email-name">Name</label>
+                    <input type="text" id="email-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label id="email-label-email" for="email-address">Email</label>
+                    <input type="email" id="email-address" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label id="email-label-subject" for="email-subject">Subject</label>
+                    <input type="text" id="email-subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label id="email-label-message" for="email-message">Message</label>
+                    <textarea id="email-message" name="message" required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-primary" id="email-button">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Phone modal -->
+    <div id="phoneModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" type="button" onclick="closePhoneModal()">&times;</button>
+            <div class="modal-title" id="phone-modal-title">Get in Touch</div>
+            <form action="https://formspree.io/f/mdkekegw" method="POST">
+                <input type="hidden" name="contact_type" value="phone_request">
+                <div class="form-group">
+                    <label id="phone-label-name" for="phone-name">Name</label>
+                    <input type="text" id="phone-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label id="phone-label-phone" for="phone-number">Phone</label>
+                    <input type="tel" id="phone-number" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label id="phone-label-besttime" for="phone-besttime">Best time to call</label>
+                    <input type="text" id="phone-besttime" name="best_time">
+                </div>
+                <div class="form-group">
+                    <label id="phone-label-message" for="phone-message">Message</label>
+                    <textarea id="phone-message" name="message"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-primary" id="phone-button">Send</button>
+                    <a href="https://wa.me/55981147758" target="_blank" rel="noopener" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> <span id="whatsapp-text">WhatsApp</span>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="../../assets/js/cv-texts.js"></script>
-    <script src="../../assets/js/dynamic-favicon.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var lang = 'en';
+        var PAGE_LANG = 'en';
+        var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var FINE_POINTER = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+        /* ---------------- Modais ---------------- */
+        function openEmailForm() { document.getElementById('emailModal').classList.add('open'); }
+        function closeEmailModal() { document.getElementById('emailModal').classList.remove('open'); }
+        function openPhoneForm() { document.getElementById('phoneModal').classList.add('open'); }
+        function closePhoneModal() { document.getElementById('phoneModal').classList.remove('open'); }
+        window.addEventListener('click', function (e) {
+            if (e.target.classList && e.target.classList.contains('modal')) e.target.classList.remove('open');
+        });
+        window.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') { closeEmailModal(); closePhoneModal(); }
+        });
+
+        /* ---------------- Render local (markup proprio da marca) ---------------- */
+        function skillLabel(level, lang) {
+            var en = ['Beginner', 'Basic', 'Intermediate', 'Advanced', 'Expert'];
+            var pt = ['Iniciante', 'Básico', 'Intermediário', 'Avançado', 'Expert'];
+            return (lang === 'pt' ? pt : en)[Math.max(0, Math.min(4, level - 1))];
+        }
+
+        function renderSkillColumn(containerId, category, lang) {
+            var container = document.getElementById(containerId);
+            if (!container) return;
+            var skills = getText('skills.' + category, lang);
+            var title = getText('skillCategories.' + category, lang);
+            if (!Array.isArray(skills)) return;
+            var html = '<div class="skill-column-title">' + title + '</div>';
+            skills.forEach(function (skill, i) {
+                var filled = skill.level * 2;
+                var dots = '';
+                for (var d = 1; d <= 10; d++) {
+                    dots += '<div class="dot' + (d <= filled ? ' filled' : '') + '"></div>';
+                }
+                html += '<div class="tool-item" style="--i:' + i + '">' +
+                            '<div class="tool-name">' +
+                                '<span>' + skill.name + '</span>' +
+                                '<span class="tool-percentage">' + skillLabel(skill.level, lang) + '</span>' +
+                            '</div>' +
+                            '<div class="dots-container">' + dots + '</div>' +
+                        '</div>';
+            });
+            container.innerHTML = html;
+        }
+
+        function renderExperience(lang) {
+            var container = document.getElementById('cv-experience');
+            if (!container) return;
+            var experiences = getText('experience', lang);
+            if (!Array.isArray(experiences)) return;
+            var html = '';
+            experiences.forEach(function (exp, index) {
+                html += '<div class="experience-item">' +
+                            '<div class="job-title">' +
+                                '<span class="job-number">' + ('0' + (index + 1)).slice(-2) + '</span>' +
+                                exp.title +
+                                (exp.tooltip ? renderTooltip(exp.tooltip) : '') +
+                            '</div>' +
+                            '<div class="company">' + exp.company + '</div>' +
+                            '<div class="period">' + exp.period + '</div>' +
+                            '<div class="job-description">' + exp.description + '</div>' +
+                            '<div class="achievements-container">' + renderAchievements(exp.achievements) + '</div>' +
+                        '</div>';
+            });
+            container.innerHTML = html;
+        }
+
+        function renderEducationCards(lang) {
+            var container = document.getElementById('cv-education');
+            if (!container) return;
+            var education = getText('education', lang);
+            if (!Array.isArray(education)) return;
+            var thesisLabel = lang === 'pt' ? 'Ver dissertação completa' : 'View full thesis';
+            var html = '';
+            education.forEach(function (edu) {
+                var isMaster = /Master|Mestrado/i.test(edu.degree);
+                html += '<div class="education-item">' +
+                            '<div class="degree">' + edu.degree + '</div>' +
+                            '<div class="university">' + edu.university + '</div>' +
+                            '<div class="thesis">' + edu.thesis + '</div>' +
+                            (isMaster
+                                ? '<a class="cta-button" target="_blank" rel="noopener" href="https://repositorio.ufsm.br/bitstream/handle/1/18895/DIS_PPGADMINISTRACAO_2019_MARCONATO_PEDRO.pdf">' +
+                                  '<i class="fas fa-file-pdf"></i> ' + thesisLabel + '</a>'
+                                : '') +
+                        '</div>';
+            });
+            container.innerHTML = html;
+        }
+
+        function renderProjectCards(lang) {
+            var container = document.getElementById('cv-projects');
+            if (!container) return;
+            var projects = getText('projects', lang);
+            if (!Array.isArray(projects)) return;
+            var html = '';
+            projects.forEach(function (project) {
+                html += '<div class="project-item">' +
+                            '<div class="project-title">' + project.title + '</div>' +
+                            '<div class="project-description">' + project.description + '</div>' +
+                            '<div>' + renderTechTags(project.techs) + '</div>' +
+                        '</div>';
+            });
+            container.innerHTML = html;
+        }
+
+        /* initializeBasicContent so preenche section-profile e section-skills */
+        function fillRemainingSectionTitles(lang) {
+            var map = {
+                'section-experience': 'sections.experience',
+                'section-education': 'sections.education',
+                'section-projects': 'sections.projects'
+            };
+            Object.keys(map).forEach(function (id) {
+                var el = document.getElementById(id);
+                if (el) el.textContent = getText(map[id], lang);
+            });
+        }
+
+        /* ---------------- Ticker: repertorio real do CV ---------------- */
+        function buildTicker(lang) {
+            var track = document.getElementById('ticker-track');
+            if (!track) return;
+            var words = [];
+            ['strategic', 'tools', 'emerging'].forEach(function (cat) {
+                var list = getText('skills.' + cat, lang);
+                if (Array.isArray(list)) {
+                    list.forEach(function (s) { words.push(s.name); });
+                }
+            });
+            if (!words.length) return;
+            var once = words.map(function (w) { return '<span class="ticker-item">' + w + '</span>'; }).join('');
+            track.innerHTML = once + once; // duplicado: o loop fecha em -50%
+        }
+
+        /* ---------------- Metricas: count-up do numero que ja esta escrito ---------------- */
+        function wrapMetrics(root) {
+            if (!root) return;
+            var pattern = /([+-]?\d+(?:[.,]\d+)?)(%|x\b)/g;
+            var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+            var targets = [];
+            while (walker.nextNode()) {
+                pattern.lastIndex = 0;
+                if (pattern.test(walker.currentNode.nodeValue)) targets.push(walker.currentNode);
+            }
+            targets.forEach(function (node) {
+                var frag = document.createDocumentFragment();
+                var text = node.nodeValue;
+                var last = 0, match;
+                pattern.lastIndex = 0;
+                while ((match = pattern.exec(text)) !== null) {
+                    if (match.index > last) frag.appendChild(document.createTextNode(text.slice(last, match.index)));
+                    var span = document.createElement('span');
+                    span.className = 'metric';
+                    span.setAttribute('data-value', match[1]);
+                    span.setAttribute('data-suffix', match[2]);
+                    span.textContent = match[0];
+                    frag.appendChild(span);
+                    last = match.index + match[0].length;
+                }
+                if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+                node.parentNode.replaceChild(frag, node);
+            });
+        }
+
+        function countUp(el) {
+            var raw = el.getAttribute('data-value');
+            var suffix = el.getAttribute('data-suffix');
+            var sign = raw.charAt(0) === '+' ? '+' : (raw.charAt(0) === '-' ? '-' : '');
+            var usesComma = raw.indexOf(',') > -1;
+            var numeric = parseFloat(raw.replace(',', '.').replace(/[+-]/, ''));
+            if (isNaN(numeric)) return;
+            var decimals = (raw.split(/[.,]/)[1] || '').length;
+            var duration = 1100;
+            var start = null;
+            function step(ts) {
+                if (!start) start = ts;
+                var p = Math.min(1, (ts - start) / duration);
+                var eased = 1 - Math.pow(1 - p, 3);
+                var current = (numeric * eased).toFixed(decimals);
+                if (usesComma) current = current.replace('.', ',');
+                el.textContent = sign + current + suffix;
+                if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        /* ---------------- Reveal do nome, letra a letra ---------------- */
+        function splitName() {
+            var el = document.getElementById('cv-name');
+            if (!el) return;
+            var words = el.textContent.trim().split(/\s+/);
+            // duas linhas balanceadas: nome grande nunca estoura a largura do container
+            var cut = Math.ceil(words.length / 2);
+            var lines = words.length > 2 ? [words.slice(0, cut), words.slice(cut)] : [words];
+            var i = 0;
+            el.innerHTML = lines.map(function (line) {
+                var content = line.map(function (word) {
+                    var chars = word.split('').map(function (ch) {
+                        var d = (0.55 + i * 0.028).toFixed(3);
+                        i++;
+                        return '<span class="char-wrap"><span class="char" style="animation-delay:' + d + 's">' + ch + '</span></span>';
+                    }).join('');
+                    i++;
+                    return '<span class="word">' + chars + '</span>';
+                }).join(' ');
+                return '<span class="line">' + content + '</span>';
+            }).join('');
+        }
+
+        /* ---------------- Trama de fios no header (canvas) ---------------- */
+        function initFabric() {
+            var canvas = document.getElementById('fabric-canvas');
+            if (!canvas || !canvas.getContext) return;
+            var ctx = canvas.getContext('2d');
+            var dpr = Math.min(window.devicePixelRatio || 1, 2);
+            var STEP = 26, RADIUS = 130, PULL = 16;
+            var cols = 0, rows = 0, pts = [];
+            var mouse = { x: -9999, y: -9999 };
+            var t = 0, running = false, rafId = null;
+
+            function build() {
+                var w = canvas.offsetWidth, h = canvas.offsetHeight;
+                if (!w || !h) return;
+                canvas.width = Math.round(w * dpr);
+                canvas.height = Math.round(h * dpr);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                cols = Math.ceil(w / STEP) + 1;
+                rows = Math.ceil(h / STEP) + 1;
+                pts = [];
+                for (var r = 0; r < rows; r++) {
+                    for (var c = 0; c < cols; c++) {
+                        pts.push({ ox: c * STEP, oy: r * STEP, x: c * STEP, y: r * STEP });
+                    }
+                }
+            }
+
+            function draw() {
+                var w = canvas.offsetWidth, h = canvas.offsetHeight;
+                if (!pts.length) return;
+                ctx.clearRect(0, 0, w, h);
+                var i, p, dx, dy, dist, force, r, c;
+
+                for (i = 0; i < pts.length; i++) {
+                    p = pts[i];
+                    var wave = REDUCED_MOTION ? 0
+                        : Math.sin((p.ox * 0.014) + t) * 1.6 + Math.cos((p.oy * 0.017) + t * 0.8) * 1.6;
+                    var tx = p.ox + wave, ty = p.oy + wave * 0.6;
+                    dx = p.ox - mouse.x; dy = p.oy - mouse.y;
+                    dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < RADIUS && dist > 0.01) {
+                        force = 1 - dist / RADIUS;
+                        tx += (dx / dist) * force * PULL;
+                        ty += (dy / dist) * force * PULL;
+                    }
+                    p.x += (tx - p.x) * 0.16;
+                    p.y += (ty - p.y) * 0.16;
+                }
+
+                ctx.lineWidth = 1;
+                // trama (horizontal)
+                ctx.strokeStyle = 'rgba(255,255,255,0.055)';
+                for (r = 0; r < rows; r++) {
+                    ctx.beginPath();
+                    for (c = 0; c < cols; c++) {
+                        p = pts[r * cols + c];
+                        if (c === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
+                    }
+                    ctx.stroke();
+                }
+                // urdidura (vertical)
+                ctx.strokeStyle = 'rgba(255,255,255,0.035)';
+                for (c = 0; c < cols; c++) {
+                    ctx.beginPath();
+                    for (r = 0; r < rows; r++) {
+                        p = pts[r * cols + c];
+                        if (r === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
+                    }
+                    ctx.stroke();
+                }
+                // nos iluminados perto do ponteiro
+                for (i = 0; i < pts.length; i++) {
+                    p = pts[i];
+                    dx = p.x - mouse.x; dy = p.y - mouse.y;
+                    dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < RADIUS) {
+                        ctx.fillStyle = 'rgba(255,255,255,' + (0.5 * (1 - dist / RADIUS)).toFixed(3) + ')';
+                        ctx.fillRect(p.x - 1, p.y - 1, 2, 2);
+                    }
+                }
+            }
+
+            function loop() {
+                if (!running) return;
+                t += 0.012;
+                draw();
+                rafId = requestAnimationFrame(loop);
+            }
+            function start() { if (!running) { running = true; loop(); } }
+            function stop() { running = false; if (rafId) cancelAnimationFrame(rafId); }
+
+            build();
+            draw();
+            if (REDUCED_MOTION) return;
+
+            window.addEventListener('resize', function () { build(); draw(); });
+
+            var host = canvas.parentElement;
+            host.addEventListener('mousemove', function (e) {
+                var rect = canvas.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+            });
+            host.addEventListener('mouseleave', function () { mouse.x = -9999; mouse.y = -9999; });
+
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(function (entries) {
+                    if (entries[0].isIntersecting) { start(); } else { stop(); }
+                }, { threshold: 0 }).observe(canvas);
+            } else {
+                start();
+            }
+        }
+
+        /* ---------------- Cursor custom ---------------- */
+        function initCursor() {
+            if (REDUCED_MOTION || !FINE_POINTER) return;
+            var dot = document.getElementById('cursor-dot');
+            var ring = document.getElementById('cursor-ring');
+            if (!dot || !ring) return;
+            var mx = 0, my = 0, rx = 0, ry = 0;
+            document.body.classList.add('cursor-active');
+            window.addEventListener('mousemove', function (e) {
+                mx = e.clientX; my = e.clientY;
+                dot.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
+            });
+            (function follow() {
+                rx += (mx - rx) * 0.16;
+                ry += (my - ry) * 0.16;
+                ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+                requestAnimationFrame(follow);
+            })();
+            document.addEventListener('mouseover', function (e) {
+                var interactive = e.target.closest
+                    ? e.target.closest('a, button, .tooltip, .experience-item, .project-item, .education-item')
+                    : null;
+                document.body.classList.toggle('cursor-hover', !!interactive);
+            });
+        }
+
+        /* ---------------- Tilt 3D + spotlight ---------------- */
+        function initTilt() {
+            document.querySelectorAll('.project-item, .education-item').forEach(function (card) {
+                var frame = null;
+                card.addEventListener('mousemove', function (e) {
+                    var rect = card.getBoundingClientRect();
+                    var px = e.clientX - rect.left, py = e.clientY - rect.top;
+                    card.style.setProperty('--mx', px + 'px');
+                    card.style.setProperty('--my', py + 'px');
+                    if (REDUCED_MOTION || !FINE_POINTER || frame) return;
+                    frame = requestAnimationFrame(function () {
+                        var rx = ((py / rect.height) - 0.5) * -6;
+                        var ry = ((px / rect.width) - 0.5) * 6;
+                        card.style.transform = 'perspective(1200px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+                        frame = null;
+                    });
+                });
+                card.addEventListener('mouseleave', function () {
+                    card.style.transform = '';
+                    card.style.setProperty('--mx', '-200px');
+                    card.style.setProperty('--my', '-200px');
+                });
+            });
+            document.querySelectorAll('.experience-item').forEach(function (item) {
+                item.addEventListener('mousemove', function (e) {
+                    var rect = item.getBoundingClientRect();
+                    item.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+                    item.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+                });
+            });
+        }
+
+        /* ---------------- Botoes magneticos ---------------- */
+        function initMagnetic() {
+            if (REDUCED_MOTION || !FINE_POINTER) return;
+            var targets = document.querySelectorAll('.print-button, .home-button');
+            window.addEventListener('mousemove', function (e) {
+                targets.forEach(function (el) {
+                    var rect = el.getBoundingClientRect();
+                    var cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+                    var dx = e.clientX - cx, dy = e.clientY - cy;
+                    var dist = Math.sqrt(dx * dx + dy * dy);
+                    el.style.transform = dist < 110
+                        ? 'translate(' + (dx * 0.28).toFixed(1) + 'px,' + (dy * 0.28).toFixed(1) + 'px)'
+                        : '';
+                });
+            });
+        }
+
+        /* ---------------- Progresso de leitura ---------------- */
+        function initScrollProgress() {
+            var bar = document.getElementById('scroll-bar');
+            if (!bar) return;
+            var ticking = false;
+            function update() {
+                var max = document.documentElement.scrollHeight - window.innerHeight;
+                var p = max > 0 ? window.scrollY / max : 0;
+                bar.style.width = (p * 100).toFixed(2) + '%';
+                ticking = false;
+            }
+            window.addEventListener('scroll', function () {
+                if (!ticking) { ticking = true; requestAnimationFrame(update); }
+            });
+            update();
+        }
+
+        /* ---------------- Reveal on scroll ---------------- */
+        function initReveal() {
+            var items = document.querySelectorAll('.experience-item, .project-item, .education-item');
+            if (!('IntersectionObserver' in window)) {
+                document.querySelectorAll('.section').forEach(function (s) { s.classList.add('in'); });
+                items.forEach(function (i) { i.classList.add('animate-in'); });
+                document.querySelectorAll('.metric').forEach(function (m) { m.classList.add('counted'); });
+                return;
+            }
+
+            var sectionObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in');
+                        sectionObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+            document.querySelectorAll('.section').forEach(function (s) { sectionObserver.observe(s); });
+
+            var itemObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry, i) {
+                    if (entry.isIntersecting) {
+                        var el = entry.target;
+                        setTimeout(function () { el.classList.add('animate-in'); }, i * 90);
+                        itemObserver.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            items.forEach(function (el) { itemObserver.observe(el); });
+
+            if (!REDUCED_MOTION) {
+                var metricObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            countUp(entry.target);
+                            metricObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.8 });
+                document.querySelectorAll('.metric').forEach(function (el) { metricObserver.observe(el); });
+            }
+        }
+
+        /* ---------------- Tooltip por clique ---------------- */
+        function initTooltips() {
+            document.querySelectorAll('.tooltip').forEach(function (tip) {
+                tip.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    var wasActive = tip.classList.contains('tooltip-active');
+                    document.querySelectorAll('.tooltip').forEach(function (t) { t.classList.remove('tooltip-active'); });
+                    if (!wasActive) tip.classList.add('tooltip-active');
+                });
+            });
+            document.addEventListener('click', function () {
+                document.querySelectorAll('.tooltip').forEach(function (t) { t.classList.remove('tooltip-active'); });
+            });
+        }
+
+        /* ---------------- Boot ---------------- */
+        document.addEventListener('DOMContentLoaded', function () {
+            var lang = PAGE_LANG;
+
             initializeBasicContent(lang);
-            renderSkills('skills-strategic', 'strategic', lang);
-            renderSkills('skills-tools', 'tools', lang);
-            renderSkills('skills-emerging', 'emerging', lang);
-            renderExperienceTimeline(lang);
-            renderEducation(lang);
-            renderProjects(lang);
+            fillRemainingSectionTitles(lang);
+            renderSkillColumn('skills-strategic', 'strategic', lang);
+            renderSkillColumn('skills-tools', 'tools', lang);
+            renderSkillColumn('skills-emerging', 'emerging', lang);
+            renderExperience(lang);
+            renderEducationCards(lang);
+            renderProjectCards(lang);
             initializeModalTexts(lang);
+            buildTicker(lang);
+
+            splitName();
+            wrapMetrics(document.getElementById('cv-experience'));
+
+            initFabric();
+            initCursor();
+            initTilt();
+            initMagnetic();
+            initScrollProgress();
+            initTooltips();
+            initReveal();
         });
     </script>
+    <script src="../../assets/js/dynamic-favicon.js"></script>
 </body>
 </html>
