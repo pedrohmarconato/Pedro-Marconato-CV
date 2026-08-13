@@ -358,7 +358,8 @@
             opacity: 0; transform: translateY(30px);
             transition: opacity .8s var(--ease-out), transform .8s var(--ease-out),
                         border-color .4s ease, background .4s ease;
-            overflow: hidden;
+            /* sem overflow:hidden — cortaria o tooltip, que abre acima do card.
+               O spotlight (::after) ja se contem sozinho por inset: 0. */
         }
         .experience-item.animate-in { opacity: 1; transform: translateY(0); }
         .experience-item::before {
@@ -450,6 +451,7 @@
             position: absolute; bottom: calc(100% + 12px); left: 50%;
             transform: translateX(-50%) translateY(6px);
             width: 330px; max-width: 78vw;
+            max-height: 62vh; overflow-y: auto;
             background: var(--insider-primary);
             border: 1px solid var(--insider-line-strong);
             padding: 18px; z-index: 50;
@@ -460,6 +462,8 @@
         .tooltip:hover .tooltip-text, .tooltip.tooltip-active .tooltip-text {
             opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
         }
+        /* sem espaco acima: o tooltip abre para baixo (classe posta pelo JS) */
+        .tooltip-text.below { top: calc(100% + 12px); bottom: auto; }
         .tooltip-header {
             font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
             color: var(--insider-fg); padding-bottom: 10px; margin-bottom: 12px;
@@ -681,6 +685,17 @@
             .section { padding: 48px 26px; }
             .skills-grid, .projects-grid, .education-grid, .achievements-container { grid-template-columns: 1fr; }
             .section-title { white-space: normal; }
+            /* tooltip ancorado ao CARD (nao ao icone): em tela estreita, centralizar
+               no icone jogava a caixa 83px para fora da viewport */
+            .tooltip { position: static; }
+            .tooltip-text {
+                left: 16px; right: 16px; width: auto; max-width: none;
+                top: 58px; bottom: auto;
+                transform: translateY(6px);
+            }
+            .tooltip:hover .tooltip-text, .tooltip.tooltip-active .tooltip-text {
+                transform: translateY(0);
+            }
             .cv-container { margin-bottom: 110px; }
             .language-toggle { top: auto; bottom: 26px; left: 22px; right: auto; }
             .print-button { bottom: 26px; right: 22px; width: 52px; height: 52px; font-size: 17px; }
@@ -1378,7 +1393,25 @@
                     e.stopPropagation();
                     var wasActive = tip.classList.contains('tooltip-active');
                     document.querySelectorAll('.tooltip').forEach(function (t) { t.classList.remove('tooltip-active'); });
-                    if (!wasActive) tip.classList.add('tooltip-active');
+                    if (wasActive) return;
+                    tip.classList.add('tooltip-active');
+
+                    // posiciona no lado com mais espaco e limita a altura ao
+                    // espaco real — o tooltip mais longo tem ~450px e nao cabe
+                    // acima quando o cargo esta no topo da tela
+                    var box = tip.querySelector('.tooltip-text');
+                    if (!box) return;
+                    box.classList.remove('below');
+                    box.style.maxHeight = '';
+                    var MARGEM = 16;
+                    var anchor = tip.getBoundingClientRect();
+                    var espacoAcima = anchor.top - MARGEM;
+                    var espacoAbaixo = window.innerHeight - anchor.bottom - MARGEM;
+                    var altura = box.offsetHeight;
+                    var abrirAbaixo = altura > espacoAcima && espacoAbaixo > espacoAcima;
+                    if (abrirAbaixo) box.classList.add('below');
+                    var disponivel = abrirAbaixo ? espacoAbaixo : espacoAcima;
+                    if (altura > disponivel) box.style.maxHeight = Math.max(160, disponivel) + 'px';
                 });
             });
             document.addEventListener('click', function () {
