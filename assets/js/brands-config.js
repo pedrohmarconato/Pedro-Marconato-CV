@@ -526,6 +526,27 @@ const BRANDS_CONFIG = {
         shapes: 'circles',
         animations: 'standard'
     },
+
+    'insider': {
+        name: 'Insider',
+        colors: {
+            primary: '#000000',
+            secondary: '#3D3D3D',
+            accent: '#EBEBEB',
+            text: '#000000',
+            whiteText: '#FFFFFF',
+            grayText: '#333333',
+            border: 'rgba(0, 0, 0, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #000000 0%, #3D3D3D 100%)',
+        logo: null,
+        tagline: {
+            en: 'Excellence in Innovation',
+            pt: 'Excelência em Inovação'
+        },
+        shapes: 'circles',
+        animations: 'standard'
+    },
 };
 
 // Função para obter configuração de uma marca
