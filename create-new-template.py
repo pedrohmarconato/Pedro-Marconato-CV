@@ -370,7 +370,7 @@ PAGE_TEMPLATE = Template('''<!DOCTYPE html>
                     <span id="cv-location"><span>Cachoeira do Sul, RS</span></span>
                 </div>
                 <div>
-                    <a href="https://linkedin.com/in/pedrohmarconato" id="cv-linkedin">LinkedIn</a> |
+                    <a href="https://linkedin.com/in/pedromarconato" id="cv-linkedin">LinkedIn</a> |
                     <a href="https://github.com/pedrohmarconato" id="cv-repository">$repo_text</a>
                 </div>
             </div>
