@@ -425,26 +425,70 @@
             h1#name { font-size: 48px; }
         }
 
-        /* ===== Mobile ===== */
-        @media (max-width: 900px) {
+        /* ===== Mobile: painel de busca acima da dobra ===== */
+        @media (max-width: 899px) {
             main.layout {
-                grid-template-columns: 1fr;
-                padding: 96px 20px 40px;
-                gap: 40px;
-                align-items: start;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 72px 20px 32px;
+                gap: 0;
             }
-            h1#name { font-size: 40px; }
-            .panel { padding: 28px; }
-        }
 
-        @media (max-width: 599px) {
-            .metrics { flex-wrap: wrap; }
-        }
+            /* .hero não tem estilo próprio (confirmado: nenhuma regra .hero{} no
+               arquivo); display:contents promove seus filhos a itens diretos do
+               flex de main.layout, permitindo intercalar o painel entre eles via
+               order sem mover nó nenhum no DOM. */
+            .hero { display: contents; }
 
-        @media (max-width: 480px) {
-            main.layout { padding: 88px 16px 32px; gap: 32px; }
-            .metrics { gap: 24px; }
-            .metric-value { font-size: 28px; }
+            .chip { order: 1; font-size: 11px; margin-bottom: 12px; }
+
+            h1#name {
+                order: 2;
+                font-size: 30px;
+                line-height: 1.02;
+                margin: 0 0 10px;
+            }
+
+            .role-static { order: 3; font-size: 15px; margin: 0 0 6px; }
+
+            .role-rotator {
+                order: 4;
+                font-size: 14px;
+                min-height: 18px;
+                margin: 0;
+            }
+
+            .panel-wrap { order: 5; margin-top: 18px; }
+            .panel { padding: 22px; border-radius: 20px; }
+            .question { font-size: 19px; }
+            .hint { font-size: 13px; }
+            .field input, .cta-btn { height: 48px; }
+            .skip-link { margin-top: 10px; }
+            .privacy { font-size: 12px; margin-top: 14px; }
+
+            .metrics {
+                order: 6;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+                margin-top: 22px;
+            }
+            .metric-value { font-size: 24px; }
+            .metric-label { font-size: 10px; letter-spacing: .06em; }
+
+            .pills { order: 7; gap: 8px; margin-top: 18px; }
+            .pill { font-size: 12px; padding: 8px 12px; }
+
+            .language-toggle { top: 14px; right: 14px; }
+            .language-toggle button {
+                height: 34px;
+                padding: 0 14px;
+                font-size: 12px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
