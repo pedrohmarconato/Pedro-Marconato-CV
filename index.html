@@ -16,7 +16,7 @@
     <style>
         :root {
             --navy-900:#0B1F3A; --navy-800:#0F2A4F; --navy-700:#123A6B; --accent:#0560A9;
-            --bg:#F3F5F8; --card:#FFFFFF; --text:#111827; --muted:#4B5563; --subtle:#9CA3AF; --line:#E5E7EB; --danger:#B91C1C;
+            --bg:#F3F5F8; --card:#FFFFFF; --text:#111827; --muted:#4B5563; --subtle:#9CA3AF; --muted-2:#6B7280; --line:#E5E7EB; --danger:#B91C1C;
             --radius:20px; --shadow:0 20px 60px rgba(11,31,58,.12);
         }
 
@@ -51,7 +51,7 @@
         .language-toggle button {
             border: 0;
             background: transparent;
-            color: var(--subtle);
+            color: var(--muted-2);
             font: inherit;
             font-size: 13px;
             font-weight: 600;
@@ -229,11 +229,13 @@
             padding-top: 16px;
             border-top: 1px solid var(--line);
             font-size: 12.5px;
-            color: var(--subtle);
+            color: var(--muted-2);
             display: flex;
             gap: 8px;
             align-items: flex-start;
         }
+
+        .privacy i { color: var(--subtle); }
 
         /* ===== Mobile ===== */
         @media (max-width: 480px) {
@@ -625,7 +627,9 @@
             skip: "Continue without a company",
             privacy: "Used only to personalize the résumé. Nothing is stored.",
             title: "Pedro Marconato · Résumé",
-            skipHref: "templates/companies/general.html"
+            skipHref: "templates/companies/general.html",
+            metaDescription: "Résumé of Pedro Henrique Lima Marconato, CRM Management and Data Intelligence. Type your company to open the version prepared for it.",
+            langGroupLabel: "Language"
         },
         pt: {
             role: "Gestão de CRM e Inteligência de Dados",
@@ -638,12 +642,13 @@
             skip: "Continuar sem informar empresa",
             privacy: "Usado apenas para personalizar o currículo. Nada é armazenado.",
             title: "Pedro Marconato · Currículo",
-            skipHref: "templates/companies/general_pt.html"
+            skipHref: "templates/companies/general_pt.html",
+            metaDescription: "Currículo de Pedro Henrique Lima Marconato, Gestão de CRM e Inteligência de Dados. Informe sua empresa para abrir a versão preparada para ela.",
+            langGroupLabel: "Idioma"
         }
     };
 
     var LANG_KEY = 'cv_lang';
-    var HAS_GENERAL_PT = true;
     var currentLang = 'en';
 
     function getInitialLang() {
@@ -663,6 +668,8 @@
         var t = texts[lang];
         document.documentElement.lang = (lang === 'pt') ? 'pt-BR' : 'en';
         document.title = t.title;
+        var metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) metaDescription.content = t.metaDescription;
         document.querySelectorAll('[data-i18n]').forEach(function (el) {
             var key = el.getAttribute('data-i18n');
             el.textContent = t[key];
@@ -673,6 +680,8 @@
         });
         var skipLink = document.getElementById('skipLink');
         if (skipLink) skipLink.href = t.skipHref;
+        var languageToggle = document.querySelector('.language-toggle');
+        if (languageToggle) languageToggle.setAttribute('aria-label', t.langGroupLabel);
         document.querySelectorAll('.language-toggle button').forEach(function (btn) {
             var isActive = btn.getAttribute('data-lang') === lang;
             btn.classList.toggle('active', isActive);
@@ -685,11 +694,12 @@
         if (/_pt\.html$/.test(target)) return target;
         var cand = target.replace(/\.html$/, '_pt.html');
         if (Object.prototype.hasOwnProperty.call(companyMappings, cand)) return cand;
-        if (cand === 'templates/companies/general_pt.html' && HAS_GENERAL_PT) return cand;
         return target;
     }
 
     function checkCompany() {
+        var btn = document.getElementById('accessBtn');
+        if (btn.disabled) return;
         var input = document.getElementById('companyName');
         var errorEl = document.getElementById('fieldError');
         var raw = input.value.trim().toLowerCase();
@@ -710,11 +720,12 @@
         if (currentLang === 'pt') {
             target = preferPortuguese(target);
         }
-        var btn = document.getElementById('accessBtn');
         btn.disabled = true;
         btn.querySelector('span').textContent = texts[currentLang].ctaLoading;
         window.location.href = target;
     }
+
+    setLang(getInitialLang());
 
     document.addEventListener('DOMContentLoaded', function () {
         var input = document.getElementById('companyName');
@@ -732,8 +743,6 @@
         document.querySelectorAll('.language-toggle button').forEach(function (b) {
             b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
         });
-
-        setLang(getInitialLang());
     });
     </script>
 </body>
