@@ -5,18 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Résumé of Pedro Henrique Lima Marconato, CRM Management and Data Intelligence. Prepared for Nelogica.">
     <title>Pedro Marconato - Nelogica</title>
-    <link rel="stylesheet" href="../../assets/css/nelogica.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../../assets/css/nelogica.css?v=2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <meta name="theme-color" content="#182433">
-    <meta name="msapplication-TileColor" content="#182433">
+    <meta name="theme-color" content="#101b2a">
+    <meta name="msapplication-TileColor" content="#101b2a">
 </head>
 <body>
     <a class="skip-link" href="#profile">Skip to résumé</a>
 
-    <!-- Controles fixos fora do container (backdrop-filter quebraria position:fixed) -->
+    <div id="reading-progress" aria-hidden="true"></div>
+    <div class="ambient-bg" aria-hidden="true"><span></span><span></span></div>
+    <a class="home-button" href="../../index.html?lang=en" aria-label="Back to home"><i class="fas fa-house" aria-hidden="true"></i></a>
+    <button class="scroll-top" type="button" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
     <nav class="language-toggle" aria-label="Language">
-        <a href="nelogica.html" class="language-option active" aria-current="page"><i class="fas fa-check-circle"></i> EN</a>
-        <a href="nelogica_pt.html" class="language-option "> PT</a>
+        <a href="nelogica.html" class="language-option active" aria-current="page"><i class="fas fa-check-circle" aria-hidden="true"></i> EN</a>
+        <a href="nelogica_pt.html" class="language-option">PT</a>
     </nav>
 
     <a class="print-button" href="../../cv_styles/cv_nelogica_style_EN.html" target="_blank" rel="noopener" title="Print or save résumé as PDF" aria-label="Print or save résumé as PDF">
@@ -24,71 +29,100 @@
     </a>
 
     <div class="cv-container">
-        <header class="header">
+        <header class="header" id="top">
+            <canvas id="nelogica-network" aria-hidden="true"></canvas>
+            <div class="header-grid" aria-hidden="true"></div><div class="header-aura" aria-hidden="true"></div>
             <div class="brand-intro">
+                <span class="edition"><span class="status-dot" aria-hidden="true"></span>RÉSUMÉ · NELOGICA EDITION</span>
                 <img src="../../assets/images/nelogica/logo-white.png" alt="Nelogica" class="brand-logo" width="465" height="154">
-                <span class="edition">Résumé prepared for Nelogica</span>
             </div>
-            <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
-            <h2 id="cv-role">CRM Management and Data Intelligence</h2>
-
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow">TECHNOLOGY. INTELLIGENCE. RESULTS.</p>
+                    <h1 id="cv-name">PEDRO HENRIQUE LIMA MARCONATO</h1>
+                    <h2 id="cv-role"></h2>
+                    <div id="hero-capabilities" class="hero-capabilities"></div>
+                    <div class="hero-actions">
+                        <a class="hero-contact button-primary" href="mailto:pedrohmarconato@gmail.com">Let’s talk <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                        <a class="button-text" href="#experience">Explore my experience <i class="fas fa-arrow-down" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="visual-label">CONNECTIONS THAT CREATE VALUE</div>
+                    <div class="intelligence-core">
+                        <div class="orbital-ring ring-one"></div><div class="orbital-ring ring-two"></div>
+                        <svg class="connection-lines" viewBox="0 0 280 280" fill="none"><path d="M140 140L140 30M140 140L35 205M140 140L245 205" stroke="currentColor"/><path class="flow-line" d="M140 30L140 140L245 205M140 140L35 205" stroke="currentColor" stroke-width="2"/></svg>
+                        <div class="core-center"><span class="core-symbol">PM<span>_</span></span><span class="core-caption">INTELLIGENCE</span></div>
+                        <span class="orbit-node node-crm"><i class="fas fa-users"></i>CRM</span>
+                        <span class="orbit-node node-data"><i class="fas fa-chart-line"></i>DATA</span>
+                        <span class="orbit-node node-ai"><i class="fas fa-microchip"></i>AI</span>
+                    </div>
+                    <div class="visual-caption">DATA → DECISIONS → RESULTS</div>
+                </div>
+            </div>
             <div class="contact-info">
-                <div class="contact-row">
-                    <a id="cv-email" href="mailto:pedrohmarconato@gmail.com"></a>
-                    <a id="cv-phone" href="https://wa.me/5555981147758"></a>
-                    <span id="cv-location"><span></span></span>
-                </div>
-                <div class="contact-row">
-                    <a href="https://linkedin.com/in/pedromarconato" id="cv-linkedin">LinkedIn</a>
-                    <a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" id="cv-repository"></a>
-                </div>
+                <div class="contact-cell"><i class="far fa-envelope" aria-hidden="true"></i><a id="cv-email" href="mailto:pedrohmarconato@gmail.com"></a></div>
+                <div class="contact-cell"><i class="fab fa-whatsapp" aria-hidden="true"></i><a id="cv-phone" href="https://wa.me/5555981147758"></a></div>
+                <div class="contact-cell"><i class="fas fa-location-dot" aria-hidden="true"></i><span id="cv-location"><span></span></span></div>
+                <div class="contact-cell"><i class="fab fa-linkedin-in" aria-hidden="true"></i><a href="https://linkedin.com/in/pedromarconato" id="cv-linkedin">LinkedIn</a></div>
+                <div class="contact-cell"><i class="fab fa-github" aria-hidden="true"></i><a href="https://github.com/pedrohmarconato/Pedro-Marconato-CV" id="cv-repository"></a></div>
             </div>
+            <div class="hero-bottom"><a class="scroll-cue" href="#impact"><span class="scroll-indicator" aria-hidden="true"></span>Explore the experience behind the results</a><button class="motion-toggle" type="button" aria-pressed="false">Pause animations</button></div>
         </header>
 
         <nav class="section-nav" aria-label="Résumé sections">
-            <a href="#profile">Profile</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#education">Education</a>
-            <a href="#projects">Projects</a>
+            <a href="#profile"><span class="nav-index">01</span>Profile</a>
+            <a href="#skills"><span class="nav-index">02</span>Skills</a>
+            <a href="#experience"><span class="nav-index">03</span>Experience</a>
+            <a href="#education"><span class="nav-index">04</span>Education</a>
+            <a href="#projects"><span class="nav-index">05</span>Projects</a>
         </nav>
 
         <main class="content">
-            <section class="section" id="profile" aria-labelledby="section-profile">
-                <h2 class="section-title" id="section-profile">Professional Profile</h2>
-                <p id="cv-profile">Loading professional profile...</p>
+            <section class="impact-section" id="impact" aria-labelledby="impact-title">
+                <div class="impact-heading"><div><p class="section-kicker">IMPACT IN PRACTICE</p><h2 id="impact-title">Results that make a difference.</h2></div><i class="fas fa-arrow-trend-up" aria-hidden="true"></i></div>
+                <p class="section-intro">Selected results from my experience. Explore each indicator to discover the context.</p>
+                <div id="impact-grid" class="impact-grid"></div>
+            </section>
+            <section class="section profile-section" id="profile" aria-labelledby="section-profile">
+                <div class="section-heading"><span class="section-index">01</span><h2 class="section-title" id="section-profile">Professional Profile</h2><span class="section-line" aria-hidden="true"></span></div>
+                <div class="profile-layout"><div class="profile-statement"><p class="section-kicker">FROM STRATEGY TO EXECUTION</p><h3>Business perspective.<br>Analytical depth.</h3><div class="profile-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div></div><p id="cv-profile"></p></div>
             </section>
 
-            <section class="section" id="skills" aria-labelledby="section-skills">
-                <h2 class="section-title" id="section-skills">Skills & Tools</h2>
+            <section class="section skills-section" id="skills" aria-labelledby="section-skills">
+                <div class="section-heading"><span class="section-index">02</span><h2 class="section-title" id="section-skills">Skills & Tools</h2><span class="section-line" aria-hidden="true"></span></div>
+                <p class="section-intro">Strategy, tools and technologies connecting business challenges to delivery.</p>
                 <div class="skills-grid">
                     <div id="skills-strategic"></div>
                     <div id="skills-tools"></div>
                     <div id="skills-emerging"></div>
                 </div>
+                <div class="stack-ticker"><div id="stack-track" class="stack-track"></div></div>
             </section>
 
-            <section class="section" id="experience" aria-labelledby="section-experience">
-                <h2 class="section-title" id="section-experience">Professional Experience</h2>
+            <section class="section experience-section" id="experience" aria-labelledby="section-experience">
+                <div class="section-heading"><span class="section-index">03</span><h2 class="section-title" id="section-experience">Professional Experience</h2><span class="section-line" aria-hidden="true"></span></div>
+                <p class="section-intro">Leadership, data transformation and customer relationships across large-scale operations.</p>
                 <div id="experience-container"></div>
             </section>
 
-            <section class="section" id="education" aria-labelledby="section-education">
-                <h2 class="section-title" id="section-education">Education</h2>
+            <section class="section education-section" id="education" aria-labelledby="section-education">
+                <div class="section-heading"><span class="section-index">04</span><h2 class="section-title" id="section-education">Education</h2><span class="section-line" aria-hidden="true"></span></div>
                 <div id="education-container"></div>
             </section>
 
-            <section class="section" id="projects" aria-labelledby="section-projects">
-                <h2 class="section-title" id="section-projects">Projects & Innovation</h2>
+            <section class="section projects-section" id="projects" aria-labelledby="section-projects">
+                <div class="section-heading"><span class="section-index">05</span><h2 class="section-title" id="section-projects">Projects & Innovation</h2><span class="section-line" aria-hidden="true"></span></div>
+                <p class="section-intro">Technology applied to real problems. From financial diagnostics to artificial intelligence.</p>
                 <div id="projects-container"></div>
             </section>
         </main>
         <footer class="page-footer">
-            <div>
-                <strong>Pedro Marconato</strong>
-                <p class="footer-note">Résumé prepared for Nelogica · Personal portfolio</p>
-            </div>
-            <a class="footer-contact" href="mailto:pedrohmarconato@gmail.com">Let’s talk <span aria-hidden="true">↗</span></a>
+            <div class="footer-grid" aria-hidden="true"></div>
+            <p class="section-kicker">LET’S CONNECT</p>
+            <h2>The next chapter<br>starts with a conversation.</h2>
+            <a class="footer-contact button-primary" href="mailto:pedrohmarconato@gmail.com">Let’s talk <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+            <div class="footer-bottom"><span>Pedro Marconato</span><span>Personal portfolio prepared for Nelogica</span><img src="../../assets/images/nelogica/logo-white.png" alt="Nelogica" width="465" height="154"></div>
         </footer>
     </div>
 

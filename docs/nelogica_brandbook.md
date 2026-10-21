@@ -31,3 +31,35 @@ para a qual o currículo foi preparado.
 5. Validação do projeto: zero erros/avisos; 43 empresas e 86 versões de impressão.
 6. Conferência com Chrome/Playwright: PT/EN, larguras 320/390/768/1440, conteúdo dinâmico, imagens, ausência de overflow, detalhes por teclado/toque, contatos, troca de idioma, seis buscas na home e abertura/impressão dos PDFs no idioma correto. Nenhum erro JavaScript ou recurso local com falha nas páginas novas.
 7. PDFs gerados e texto comparado à base canônica; screenshots desktop/mobile revisados. Artefatos locais de conferência em `/private/tmp/nelogica-review/`.
+
+
+## Revisão visual — 21/10/2026
+
+A segunda versão amplia o frontend a partir das referências Boticário, Insider,
+Renner, ACT e TKE, mantendo o container de 1000 px e os conteúdos canônicos.
+
+- Hero com rede de dados em canvas, grade, conexões animadas entre CRM/dados/IA,
+  nome com entrada por palavras e marca em evidência.
+- Quatro indicadores extraídos diretamente das experiências já cadastradas:
+  otimização de custos, incremental de CRM, redução de churn e conversão.
+  Cada destaque preserva empresa e contexto e leva à experiência correspondente.
+- Perfil em composição editorial; três painéis de competências com níveis
+  animados; faixa contínua de tecnologias; timeline com marcadores e conquistas;
+  formação em cartões e projetos com identidade visual própria.
+- Navegação fixa por seções, progresso de leitura, voltar ao topo e à home,
+  contatos e impressão no idioma selecionado.
+- Controles de pausa, preferência por movimento reduzido e suspensão do canvas
+  quando fora da tela ou com a aba oculta. Tooltips são apresentados fora dos
+  ancestrais animados para não serem cortados e funcionam com teclado e toque.
+- Paleta corporativa preservada; azul claro auxiliar nas conexões e indicadores.
+  Tipografia Inter + Space Grotesk para a apresentação tecnológica.
+- HTML/CSS/JS exclusivos da Nelogica; nenhum conteúdo canônico ou PDF alterado.
+
+Artefatos de verificação visual e funcional desta revisão:
+`/private/tmp/nelogica-upgrade/`.
+
+Validação da revisão: validador do projeto sem erros/avisos; Chrome em PT/EN
+nas larguras 320, 390, 768, 1024 e 1440; métricas e textos comparados às fontes
+canônicas; pausa/retomada do canvas confirmada por snapshots; preferência de
+movimento reduzido, links dos indicadores, navegação e impressão PT/EN testados.
+Nenhum erro JavaScript ou recurso local com falha.
