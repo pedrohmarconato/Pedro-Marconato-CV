@@ -63,3 +63,22 @@ nas larguras 320, 390, 768, 1024 e 1440; métricas e textos comparados às fonte
 canônicas; pausa/retomada do canvas confirmada por snapshots; preferência de
 movimento reduzido, links dos indicadores, navegação e impressão PT/EN testados.
 Nenhum erro JavaScript ou recurso local com falha.
+
+## Refinamento de fundo e contato — 21/10/2026
+
+- Título de indicadores simplificado para “Alguns resultados” / “Selected results”,
+  sem chamada ou descrição promocional adicional.
+- Fundo externo em grafite, iluminação azul acinzentada, grade sutil e arcos;
+  cabeçalho e rodapé com tons coordenados. As camadas decorativas preservam
+  contraste, pausa de animações e preferência por movimento reduzido.
+- Botões “Vamos conversar” / “Let’s talk” do cabeçalho e rodapé abrem o WhatsApp
+  em nova aba. O número continua vindo do contato canônico, com fallback no HTML.
+  O link de e-mail dedicado permanece disponível.
+- CSS e JS versionados para evitar que o cache restaure o destino anterior do
+  botão. Validador de referências locais ajustado para reconhecer arquivos com
+  query string ou fragmento, preservando a detecção de caminhos inexistentes.
+- Chrome: abertura dos dois botões por clique/teclado em PT/EN e toque em celular,
+  destino e ausência de opener verificados. Navegação externa interceptada apenas
+  no teste, sem envio de mensagens. Layout conferido em 320, 390, 768 e 1440 px;
+  pausa/movimento reduzido e ausência de erros JavaScript verificados.
+- Artefatos visuais e verificação em `/private/tmp/nelogica-polish/`.
