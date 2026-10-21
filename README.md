@@ -20,7 +20,7 @@ sob demanda para dezenas de empresas diferentes.
 
 ![Fluxo de criação de uma nova versão do currículo](docs/media/flow-diagram.svg)
 
-Hoje o site tem **41 empresas** cadastradas (82 páginas web + 82 versões de
+Hoje o site tem **43 empresas** cadastradas (86 páginas web + 86 versões de
 impressão, em português e inglês).
 
 ## Estrutura do repositório

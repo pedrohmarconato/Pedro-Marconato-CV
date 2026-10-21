@@ -143,7 +143,8 @@ window.DynamicFavicon = (function() {
         document.head.appendChild(link);
         
         // Add fallback PNG favicons (if available)
-        const sizes = ['16x16', '32x32', '180x180'];
+        // The personal favicon is SVG-only; no general-*.png assets exist.
+        const sizes = detectedCompany === 'general' ? [] : ['16x16', '32x32', '180x180'];
         sizes.forEach((size, index) => {
             const pngLink = document.createElement('link');
             if (size === '180x180') {
@@ -169,7 +170,10 @@ window.DynamicFavicon = (function() {
             themeColorMeta.name = 'theme-color';
             document.head.appendChild(themeColorMeta);
         }
-        themeColorMeta.content = favicon.color;
+        // A personal favicon should preserve the template's explicit brand theme.
+        if (detectedCompany !== 'general' || !themeColorMeta.content) {
+            themeColorMeta.content = favicon.color;
+        }
         
         return favicon;
     }
