@@ -547,6 +547,27 @@ const BRANDS_CONFIG = {
         shapes: 'circles',
         animations: 'standard'
     },
+
+    'nelogica': {
+        name: 'Nelogica',
+        colors: {
+            primary: '#182433',
+            secondary: '#000000',
+            accent: '#E9F3FF',
+            text: '#000000',
+            whiteText: '#FFFFFF',
+            grayText: '#333333',
+            border: 'rgba(0, 0, 0, 0.2)'
+        },
+        gradient: 'linear-gradient(135deg, #182433 0%, #000000 100%)',
+        logo: '../../assets/images/nelogica/logo-white.png',
+        tagline: {
+            en: 'Technology for the financial market',
+            pt: 'Tecnologia para o mercado financeiro'
+        },
+        shapes: 'circles',
+        animations: 'standard'
+    },
 };
 
 // Função para obter configuração de uma marca
