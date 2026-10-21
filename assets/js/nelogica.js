@@ -10,9 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const email = get('contact.email'), phone = get('contact.phone');
         const emailLink = document.getElementById('cv-email'), phoneLink = document.getElementById('cv-phone');
         if (emailLink && typeof email === 'string') emailLink.href = 'mailto:' + email;
-        if (phoneLink && typeof phone === 'string') phoneLink.href = 'https://wa.me/' + phone.replace(/\D/g, '');
+        const whatsapp = typeof phone === 'string' && phone.replace(/\D/g, '');
+        if (phoneLink && whatsapp) phoneLink.href = 'https://wa.me/' + whatsapp;
         document.querySelectorAll('.hero-contact, .footer-contact').forEach((link) => {
-            if (typeof email === 'string') link.href = 'mailto:' + email;
+            if (whatsapp) link.href = 'https://wa.me/' + whatsapp;
         });
     }
 

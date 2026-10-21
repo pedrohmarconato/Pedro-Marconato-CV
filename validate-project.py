@@ -9,6 +9,7 @@ Uso: python validate-project.py
 import re
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlsplit
 
 # Funções de inicialização que EXISTEM no cv-texts.js
 VALID_INIT_MARKERS = ('initializeBasicContent', 'initializeCV', 'getText')
@@ -203,7 +204,8 @@ class ProjectValidator:
                 if src.startswith(('http', 'data:', '//')) or len(src) > 200:
                     continue
                 checked += 1
-                target = (page.parent / src).resolve()
+                # Query strings version assets; fragments do not change the file path.
+                target = (page.parent / urlsplit(src).path).resolve()
                 if not target.exists():
                     rel = page.relative_to(self.project_root)
                     self.log_error(f"Referência quebrada em {rel}: {src}")
